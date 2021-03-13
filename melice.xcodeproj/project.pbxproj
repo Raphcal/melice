@@ -111,6 +111,7 @@
 		642B2AC725FD4A6900183D42 /* surface.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3925FD448B00183D42 /* surface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B2AC925FD4A6900183D42 /* surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4125FD448B00183D42 /* surface.c */; };
 		642B2ACA25FD4A6900183D42 /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		642B2AD325FD4E9800183D42 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +225,7 @@
 		642B2A4625FD448B00183D42 /* surfacememory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = surfacememory.h; sourceTree = "<group>"; };
 		642B2A4725FD448B00183D42 /* surfacearray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = surfacearray.h; sourceTree = "<group>"; };
 		642B2A4825FD448B00183D42 /* color.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = color.c; sourceTree = "<group>"; };
+		642B2AD225FD4E9800183D42 /* texture.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = texture.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,6 +452,7 @@
 				642B2A4625FD448B00183D42 /* surfacememory.h */,
 				642B2A3A25FD448B00183D42 /* surfacememory.c */,
 				642B2A4325FD448B00183D42 /* texture.h */,
+				642B2AD225FD4E9800183D42 /* texture.c */,
 				642B2A3C25FD448B00183D42 /* texture-sdl.c */,
 				642B2A4425FD448B00183D42 /* textureatlas.h */,
 				642B2A3E25FD448B00183D42 /* textureatlas.c */,
@@ -589,6 +592,7 @@
 				642B2AA925FD49F600183D42 /* motion.c in Sources */,
 				642B2AC025FD4A6900183D42 /* textureatlas.c in Sources */,
 				642B2A6425FD456B00183D42 /* maprenderer.c in Sources */,
+				642B2AD325FD4E9800183D42 /* texture.c in Sources */,
 				642B2A8725FD49C100183D42 /* singleframeanimation.c in Sources */,
 				642B2ABF25FD4A6900183D42 /* surfacememory.c in Sources */,
 				642B2A8625FD49C100183D42 /* animationframe.c in Sources */,

@@ -50,10 +50,18 @@ int MELInputStreamReadByte(MELInputStream * _Nonnull self);
  * Reads size bytes from the given input stream into the given pointer.
  *
  * @param self Input stream to read from.
- * @param destination Pointer where to write the read bytes. If
+ * @param destination Pointer where to write the read bytes.
  * @param size Number of bytes to read.
  */
 void MELInputStreamRead(MELInputStream * _Nonnull self, void * _Nonnull destination, size_t size);
+
+/**
+ * Skip the given number of bytes.
+ *
+ * @param self Input stream to read from.
+ * @param size Number of bytes to skip.
+ */
+void MELInputStreamSkipBytes(MELInputStream * _Nonnull self, size_t size);
 
 /**
  * Reads and returns a boolean from the given input stream.
@@ -70,6 +78,14 @@ MELBoolean MELInputStreamReadBoolean(MELInputStream * _Nonnull self);
  * @return A 32 bits signed integer.
  */
 int32_t MELInputStreamReadInt(MELInputStream * _Nonnull self);
+
+/**
+ * Reads and returns a 16 bits signed integer from the given input stream.
+ *
+ * @param self Input stream instance.
+ * @return A 16 bits signed integer.
+ */
+int16_t MELInputStreamReadShort(MELInputStream * _Nonnull self);
 
 /**
  * Reads and returns a float from the given input stream.

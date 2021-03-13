@@ -85,6 +85,20 @@ void MELInputStreamRead(MELInputStream * _Nonnull self, void * _Nonnull destinat
     self->cursor = cursor + size;
 }
 
+void MELInputStreamSkipBytes(MELInputStream * _Nonnull self, size_t size) {
+    if (size == 0) {
+        return;
+    }
+    if (MELInputStreamRemaining(self) < size) {
+        size -= self->size - self->cursor;
+        self->cursor = 0;
+        self->size = 0;
+        MELInputStreamFillBuffer(self);
+        assert(MELInputStreamRemaining(self) >= size);
+    }
+    self->cursor += size;
+}
+
 MELBoolean MELInputStreamReadBoolean(MELInputStream * _Nonnull self) {
     uint8_t value;
     MELInputStreamRead(self, &value, sizeof(uint8_t));
@@ -94,6 +108,12 @@ MELBoolean MELInputStreamReadBoolean(MELInputStream * _Nonnull self) {
 int32_t MELInputStreamReadInt(MELInputStream * _Nonnull self) {
     int32_t value;
     MELInputStreamRead(self, &value, sizeof(int32_t));
+    return value;
+}
+
+int16_t MELInputStreamReadShort(MELInputStream * _Nonnull self) {
+    int16_t value;
+    MELInputStreamRead(self, &value, sizeof(int16_t));
     return value;
 }
 
