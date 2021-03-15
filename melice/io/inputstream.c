@@ -75,6 +75,14 @@ void MELInputStreamRead(MELInputStream * _Nonnull self, void * _Nonnull destinat
     if (size == 0) {
         return;
     }
+    if (size > MELInputStreamBufferSize) {
+        const size_t readCountFromBuffer = self->size - self->cursor;
+        memcpy(destination, self->buffer + self->cursor, readCountFromBuffer);
+        fread(destination + readCountFromBuffer, size - readCountFromBuffer, sizeof(uint8_t), self->file);
+        self->size = 0;
+        self->cursor = 0;
+        return;
+    }
     if (MELInputStreamRemaining(self) < size) {
         MELInputStreamCompact(self);
         MELInputStreamFillBuffer(self);
