@@ -649,6 +649,7 @@
 				642B298725FD340C00183D42 /* Headers */,
 				642B298825FD340C00183D42 /* Sources */,
 				642B298925FD340C00183D42 /* Frameworks */,
+				642B2C9925FFB64600183D42 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -693,6 +694,26 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		642B2C9925FFB64600183D42 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Copying headers to $TARGET_BUILD_DIR/include\"\ncd $SRCROOT\nfor FILE in `find melice -regex '.*\\.h'`; do\n    mkdir -p $TARGET_BUILD_DIR/include/`dirname $FILE`\n    cp $FILE $TARGET_BUILD_DIR/include/$FILE\ndone\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		642B298825FD340C00183D42 /* Sources */ = {
