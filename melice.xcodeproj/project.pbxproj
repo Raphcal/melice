@@ -238,6 +238,7 @@
 		642B2B0425FF703100183D42 /* map0-sprites.inst */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map0-sprites.inst"; sourceTree = "<group>"; };
 		642B2B0825FF703100183D42 /* spritedefinition-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "spritedefinition-test.c"; sourceTree = "<group>"; };
 		642B2B0B25FF703100183D42 /* map1-sprites.def */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map1-sprites.def"; sourceTree = "<group>"; };
+		642B2B1525FF8FED00183D42 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +255,7 @@
 		642B298225FD340C00183D42 = {
 			isa = PBXGroup;
 			children = (
+				642B2B1525FF8FED00183D42 /* README.md */,
 				642B2ADB25FF6C1B00183D42 /* makefile */,
 				642B299F25FD40C600183D42 /* melice */,
 				642B2AEE25FF703100183D42 /* test */,
