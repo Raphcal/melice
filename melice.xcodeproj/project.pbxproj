@@ -228,6 +228,16 @@
 		642B2A4825FD448B00183D42 /* color.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = color.c; sourceTree = "<group>"; };
 		642B2AD225FD4E9800183D42 /* texture.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = texture.c; sourceTree = "<group>"; };
 		642B2ADB25FF6C1B00183D42 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		642B2AF125FF703100183D42 /* list-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "list-test.c"; sourceTree = "<group>"; };
+		642B2AF325FF703100183D42 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
+		642B2AF825FF703100183D42 /* textureatlas-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "textureatlas-test.c"; sourceTree = "<group>"; };
+		642B2AFC25FF703100183D42 /* map0-texture.atlas */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map0-texture.atlas"; sourceTree = "<group>"; };
+		642B2AFD25FF703100183D42 /* map0-texture.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = "map0-texture.bmp"; sourceTree = "<group>"; };
+		642B2B0125FF703100183D42 /* map-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "map-test.c"; sourceTree = "<group>"; };
+		642B2B0325FF703100183D42 /* map0.grid */ = {isa = PBXFileReference; lastKnownFileType = file; path = map0.grid; sourceTree = "<group>"; };
+		642B2B0425FF703100183D42 /* map0-sprites.inst */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map0-sprites.inst"; sourceTree = "<group>"; };
+		642B2B0825FF703100183D42 /* spritedefinition-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "spritedefinition-test.c"; sourceTree = "<group>"; };
+		642B2B0B25FF703100183D42 /* map1-sprites.def */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map1-sprites.def"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +256,7 @@
 			children = (
 				642B2ADB25FF6C1B00183D42 /* makefile */,
 				642B299F25FD40C600183D42 /* melice */,
+				642B2AEE25FF703100183D42 /* test */,
 				642B298C25FD340C00183D42 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -463,6 +474,87 @@
 			path = surface;
 			sourceTree = "<group>";
 		};
+		642B2AEE25FF703100183D42 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				642B2AEF25FF703100183D42 /* util */,
+				642B2AF325FF703100183D42 /* makefile */,
+				642B2AF725FF703100183D42 /* surface */,
+				642B2AFE25FF703100183D42 /* map */,
+				642B2B0525FF703100183D42 /* sprite */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		642B2AEF25FF703100183D42 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				642B2AF125FF703100183D42 /* list-test.c */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		642B2AF725FF703100183D42 /* surface */ = {
+			isa = PBXGroup;
+			children = (
+				642B2AF825FF703100183D42 /* textureatlas-test.c */,
+				642B2AFB25FF703100183D42 /* assets */,
+			);
+			path = surface;
+			sourceTree = "<group>";
+		};
+		642B2AFB25FF703100183D42 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				642B2AFC25FF703100183D42 /* map0-texture.atlas */,
+				642B2AFD25FF703100183D42 /* map0-texture.bmp */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		642B2AFE25FF703100183D42 /* map */ = {
+			isa = PBXGroup;
+			children = (
+				642B2B0125FF703100183D42 /* map-test.c */,
+				642B2B0225FF703100183D42 /* assets */,
+			);
+			path = map;
+			sourceTree = "<group>";
+		};
+		642B2B0225FF703100183D42 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				642B2B0325FF703100183D42 /* map0.grid */,
+				642B2B0425FF703100183D42 /* map0-sprites.inst */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		642B2B0525FF703100183D42 /* sprite */ = {
+			isa = PBXGroup;
+			children = (
+				642B2B0625FF703100183D42 /* definition */,
+			);
+			path = sprite;
+			sourceTree = "<group>";
+		};
+		642B2B0625FF703100183D42 /* definition */ = {
+			isa = PBXGroup;
+			children = (
+				642B2B0825FF703100183D42 /* spritedefinition-test.c */,
+				642B2B0A25FF703100183D42 /* assets */,
+			);
+			path = definition;
+			sourceTree = "<group>";
+		};
+		642B2B0A25FF703100183D42 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				642B2B0B25FF703100183D42 /* map1-sprites.def */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -530,6 +622,23 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		642B2B0E25FF70AB00183D42 /* melice-test */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 642B2B0F25FF70AB00183D42 /* Build configuration list for PBXLegacyTarget "melice-test" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/raphael/Sources/Melisse/melice/test;
+			dependencies = (
+			);
+			name = "melice-test";
+			passBuildSettingsInEnvironment = 1;
+			productName = "melice-test";
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		642B298A25FD340C00183D42 /* melice */ = {
 			isa = PBXNativeTarget;
@@ -559,6 +668,9 @@
 					642B298A25FD340C00183D42 = {
 						CreatedOnToolsVersion = 12.4;
 					};
+					642B2B0E25FF70AB00183D42 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = 642B298625FD340C00183D42 /* Build configuration list for PBXProject "melice" */;
@@ -575,6 +687,7 @@
 			projectRoot = "";
 			targets = (
 				642B298A25FD340C00183D42 /* melice */,
+				642B2B0E25FF70AB00183D42 /* melice-test */,
 			);
 		};
 /* End PBXProject section */
@@ -772,6 +885,31 @@
 			};
 			name = Release;
 		};
+		642B2B1025FF70AB00183D42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		642B2B1125FF70AB00183D42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -789,6 +927,15 @@
 			buildConfigurations = (
 				642B299025FD340C00183D42 /* Debug */,
 				642B299125FD340C00183D42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		642B2B0F25FF70AB00183D42 /* Build configuration list for PBXLegacyTarget "melice-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				642B2B1025FF70AB00183D42 /* Debug */,
+				642B2B1125FF70AB00183D42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
