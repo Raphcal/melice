@@ -112,6 +112,7 @@
 		642B2AC925FD4A6900183D42 /* surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4125FD448B00183D42 /* surface.c */; };
 		642B2ACA25FD4A6900183D42 /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B2AD325FD4E9800183D42 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
+		642B2ADC25FF6C1B00183D42 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = 642B2ADB25FF6C1B00183D42 /* makefile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -226,6 +227,7 @@
 		642B2A4725FD448B00183D42 /* surfacearray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = surfacearray.h; sourceTree = "<group>"; };
 		642B2A4825FD448B00183D42 /* color.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = color.c; sourceTree = "<group>"; };
 		642B2AD225FD4E9800183D42 /* texture.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = texture.c; sourceTree = "<group>"; };
+		642B2ADB25FF6C1B00183D42 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 		642B298225FD340C00183D42 = {
 			isa = PBXGroup;
 			children = (
+				642B2ADB25FF6C1B00183D42 /* makefile */,
 				642B299F25FD40C600183D42 /* melice */,
 				642B298C25FD340C00183D42 /* Products */,
 			);
@@ -628,6 +631,7 @@
 				642B2A6125FD451F00183D42 /* gamecontrollerlistener.c in Sources */,
 				642B29DC25FD445000183D42 /* time.c in Sources */,
 				642B2AAF25FD4A0300183D42 /* spriteinstance.c in Sources */,
+				642B2ADC25FF6C1B00183D42 /* makefile in Sources */,
 				642B2A9725FD49D500183D42 /* spritedefinition.c in Sources */,
 				642B29C825FD43DC00183D42 /* operation.c in Sources */,
 				642B2A4A25FD44AB00183D42 /* rectangle.c in Sources */,
