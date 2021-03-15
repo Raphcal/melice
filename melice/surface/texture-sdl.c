@@ -12,7 +12,6 @@
 #include <assert.h>
 
 MELTexture MELTextureMake(char * _Nonnull path) {
-    // TODO: Charger les BMP sans SDL.
     SDL_Surface *surface = SDL_LoadBMP(path);
     
     if (surface == NULL) {

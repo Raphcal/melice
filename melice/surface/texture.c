@@ -111,7 +111,7 @@ uint32_t * _Nullable MELLoadBMP(char * _Nonnull path, MELIntSize * _Nonnull size
 
     char winHeader[4];
     MELInputStreamRead(&inputStream, winHeader, 4);
-    if (strncmp(header, " niW", MAGIC_LENGTH) != 0) {
+    if (strncmp(winHeader, " niW", MAGIC_LENGTH) != 0) {
         // Bad header.
         return NULL;
     }
@@ -125,9 +125,13 @@ uint32_t * _Nullable MELLoadBMP(char * _Nonnull path, MELIntSize * _Nonnull size
     // Blue gamma
     MELInputStreamSkipBytes(&inputStream, sizeof(int32_t));
 
-    // Pixels
+    // Reading pixels from bottom to top.
     uint32_t *pixels = malloc(pixelsLength);
-    MELInputStreamRead(&inputStream, pixels, pixelsLength);
+    uint32_t *line = pixels + (imageSize.height - 1) * imageSize.width;
+    const size_t lineLength = imageSize.width * sizeof(uint32_t);
+    for (uint32_t y = 0; y < imageSize.height; y++, line -= imageSize.width) {
+        MELInputStreamRead(&inputStream, line, lineLength);
+    }
 
     return pixels;
 }

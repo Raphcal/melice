@@ -28,7 +28,7 @@ MELTextureAtlas MELTextureAtlasMakeWithPath(char * _Nonnull path) {
     strcat(textureName, TEXTURE_EXTENSION);
     
     char *texturePath = MELFileManagerPathForAsset(fileManager, textureName);
-	free(textureName);
+    free(textureName);
     MELTexture texture = MELTextureMake(texturePath);
     free(texturePath);
     
@@ -37,20 +37,20 @@ MELTextureAtlas MELTextureAtlasMakeWithPath(char * _Nonnull path) {
     strcat(atlasName, ATLAS_EXTENSION);
     
     MELInputStream inputStream = MELFileManagerOpenAsset(fileManager, atlasName);
-	free(atlasName);
+    free(atlasName);
     if (inputStream.file) {
         MELTextureAtlas self = MELTextureAtlasMakeWithInputStreamAndTexture(&inputStream, texture);
         MELInputStreamClose(&inputStream);
         return self;
     }
     return (MELTextureAtlas) {
-		{
-			MELIntSizeZero,
-			0
-		},
-		0,
-		NULL
-	};
+        {
+            MELIntSizeZero,
+            0
+        },
+        0,
+        NULL
+    };
 }
 
 MELTextureAtlas MELTextureAtlasMakeWithInputStreamAndTexture(MELInputStream * _Nonnull inputStream, MELTexture texture) {
