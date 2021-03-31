@@ -7,6 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6421EA1E2614681200952E74 /* melice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; };
+		6421EA1F2614681200952E74 /* melstd.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; };
+		6421EA202614681200952E74 /* point.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; };
+		6421EA212614681200952E74 /* quadrilateral.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2F25FD448B00183D42 /* quadrilateral.h */; };
+		6421EA222614681200952E74 /* rectangle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A3025FD448B00183D42 /* rectangle.h */; };
+		6421EA232614681200952E74 /* size.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2925FD448B00183D42 /* size.h */; };
+		6421EA242614681200952E74 /* buttonstate.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F225FD448A00183D42 /* buttonstate.h */; };
+		6421EA252614681200952E74 /* buttonmapping.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29ED25FD448A00183D42 /* buttonmapping.h */; };
+		6421EA262614681200952E74 /* filemanager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29E725FD448A00183D42 /* filemanager.h */; };
+		6421EA272614681200952E74 /* gamecontroller.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F525FD448A00183D42 /* gamecontroller.h */; };
+		6421EA282614681200952E74 /* gamecontrollerlistener.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F725FD448A00183D42 /* gamecontrollerlistener.h */; };
+		6421EA292614681200952E74 /* inputsourcetype.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F625FD448A00183D42 /* inputsourcetype.h */; };
+		6421EA2A2614681200952E74 /* inputsource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29EF25FD448A00183D42 /* inputsource.h */; };
+		6421EA2B2614681200952E74 /* inputstream.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F125FD448A00183D42 /* inputstream.h */; };
+		6421EA2C2614681200952E74 /* keyboardinputsource-sdl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F325FD448A00183D42 /* keyboardinputsource-sdl.h */; };
+		6421EA2D2614681200952E74 /* map.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29E125FD448A00183D42 /* map.h */; };
+		6421EA2E2614681200952E74 /* maprenderer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29E025FD448A00183D42 /* maprenderer.h */; };
+		6421EA2F2614681200952E74 /* layer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29E225FD448A00183D42 /* layer.h */; };
+		6421EA302614681200952E74 /* director.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A3325FD448B00183D42 /* director.h */; };
+		6421EA312614681200952E74 /* fade.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A3225FD448B00183D42 /* fade.h */; };
+		6421EA322614681200952E74 /* scene.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A3725FD448B00183D42 /* scene.h */; };
+		6421EA332614681200952E74 /* animation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29FF25FD448A00183D42 /* animation.h */; };
+		6421EA342614681200952E74 /* animationframe.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A0425FD448A00183D42 /* animationframe.h */; };
+		6421EA352614681200952E74 /* animationtype.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A0325FD448A00183D42 /* animationtype.h */; };
+		6421EA362614681200952E74 /* loopinganimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A0525FD448A00183D42 /* loopinganimation.h */; };
+		6421EA372614681200952E74 /* noanimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A0825FD448A00183D42 /* noanimation.h */; };
+		6421EA382614681200952E74 /* playonceanimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A0925FD448A00183D42 /* playonceanimation.h */; };
+		6421EA392614681200952E74 /* singleframeanimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A0225FD448A00183D42 /* singleframeanimation.h */; };
+		6421EA3A2614681200952E74 /* synchronizedanimation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A0725FD448A00183D42 /* synchronizedanimation.h */; };
+		6421EA3B2614681200952E74 /* animationdefinition.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A1625FD448A00183D42 /* animationdefinition.h */; };
+		6421EA3C2614681200952E74 /* spritedefinition.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A1825FD448A00183D42 /* spritedefinition.h */; };
+		6421EA3D2614681200952E74 /* hitbox.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2325FD448B00183D42 /* hitbox.h */; };
+		6421EA3E2614681200952E74 /* rotatedhitbox.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2225FD448B00183D42 /* rotatedhitbox.h */; };
+		6421EA3F2614681200952E74 /* simplespritehitbox.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2425FD448B00183D42 /* simplespritehitbox.h */; };
+		6421EA402614681200952E74 /* spritehitbox.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2025FD448B00183D42 /* spritehitbox.h */; };
+		6421EA412614681200952E74 /* statichitbox.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A1E25FD448B00183D42 /* statichitbox.h */; };
+		6421EA422614681200952E74 /* motion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A1125FD448A00183D42 /* motion.h */; };
+		6421EA432614681200952E74 /* nomotion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A1225FD448A00183D42 /* nomotion.h */; };
+		6421EA442614681200952E74 /* axe.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A1325FD448A00183D42 /* axe.h */; };
+		6421EA452614681200952E74 /* direction.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A0D25FD448A00183D42 /* direction.h */; };
+		6421EA462614681200952E74 /* sprite.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A1425FD448A00183D42 /* sprite.h */; };
+		6421EA472614681200952E74 /* spriteinstance.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A1A25FD448A00183D42 /* spriteinstance.h */; };
+		6421EA482614681200952E74 /* spritemanager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2625FD448B00183D42 /* spritemanager.h */; };
+		6421EA492614681200952E74 /* color.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A3F25FD448B00183D42 /* color.h */; };
+		6421EA4A2614681200952E74 /* renderer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A3D25FD448B00183D42 /* renderer.h */; };
+		6421EA4B2614681200952E74 /* referencepool.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A3B25FD448B00183D42 /* referencepool.h */; };
+		6421EA4C2614681200952E74 /* surface.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A3925FD448B00183D42 /* surface.h */; };
+		6421EA4D2614681200952E74 /* surfacearray.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A4725FD448B00183D42 /* surfacearray.h */; };
+		6421EA4E2614681200952E74 /* surfacememory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A4625FD448B00183D42 /* surfacememory.h */; };
+		6421EA4F2614681200952E74 /* texture.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; };
+		6421EA502614681200952E74 /* textureatlas.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A4425FD448B00183D42 /* textureatlas.h */; };
+		6421EA512614681200952E74 /* hashmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A825FD410200183D42 /* hashmap.h */; };
+		6421EA522614681200952E74 /* list.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A925FD410200183D42 /* list.h */; };
+		6421EA532614681200952E74 /* melmath.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AB25FD410200183D42 /* melmath.h */; };
+		6421EA542614681200952E74 /* operation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AC25FD410200183D42 /* operation.h */; };
+		6421EA552614681200952E74 /* random.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AE25FD410200183D42 /* random.h */; };
+		6421EA562614681200952E74 /* time.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* time.h */; };
+		6421EA8826146C4E00952E74 /* melice.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6421E8D52614480000952E74 /* melice.modulemap */; };
 		642B299525FD342100183D42 /* melice.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B299B25FD34A000183D42 /* melstd.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B29B025FD419700183D42 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A925FD410200183D42 /* list.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -112,10 +170,80 @@
 		642B2AC925FD4A6900183D42 /* surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4125FD448B00183D42 /* surface.c */; };
 		642B2ACA25FD4A6900183D42 /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B2AD325FD4E9800183D42 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
-		642B2ADC25FF6C1B00183D42 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = 642B2ADB25FF6C1B00183D42 /* makefile */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6421EA1D261467F000952E74 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				6421EA8826146C4E00952E74 /* melice.modulemap in CopyFiles */,
+				6421EA1E2614681200952E74 /* melice.h in CopyFiles */,
+				6421EA1F2614681200952E74 /* melstd.h in CopyFiles */,
+				6421EA202614681200952E74 /* point.h in CopyFiles */,
+				6421EA212614681200952E74 /* quadrilateral.h in CopyFiles */,
+				6421EA222614681200952E74 /* rectangle.h in CopyFiles */,
+				6421EA232614681200952E74 /* size.h in CopyFiles */,
+				6421EA242614681200952E74 /* buttonstate.h in CopyFiles */,
+				6421EA252614681200952E74 /* buttonmapping.h in CopyFiles */,
+				6421EA262614681200952E74 /* filemanager.h in CopyFiles */,
+				6421EA272614681200952E74 /* gamecontroller.h in CopyFiles */,
+				6421EA282614681200952E74 /* gamecontrollerlistener.h in CopyFiles */,
+				6421EA292614681200952E74 /* inputsourcetype.h in CopyFiles */,
+				6421EA2A2614681200952E74 /* inputsource.h in CopyFiles */,
+				6421EA2B2614681200952E74 /* inputstream.h in CopyFiles */,
+				6421EA2C2614681200952E74 /* keyboardinputsource-sdl.h in CopyFiles */,
+				6421EA2D2614681200952E74 /* map.h in CopyFiles */,
+				6421EA2E2614681200952E74 /* maprenderer.h in CopyFiles */,
+				6421EA2F2614681200952E74 /* layer.h in CopyFiles */,
+				6421EA302614681200952E74 /* director.h in CopyFiles */,
+				6421EA312614681200952E74 /* fade.h in CopyFiles */,
+				6421EA322614681200952E74 /* scene.h in CopyFiles */,
+				6421EA332614681200952E74 /* animation.h in CopyFiles */,
+				6421EA342614681200952E74 /* animationframe.h in CopyFiles */,
+				6421EA352614681200952E74 /* animationtype.h in CopyFiles */,
+				6421EA362614681200952E74 /* loopinganimation.h in CopyFiles */,
+				6421EA372614681200952E74 /* noanimation.h in CopyFiles */,
+				6421EA382614681200952E74 /* playonceanimation.h in CopyFiles */,
+				6421EA392614681200952E74 /* singleframeanimation.h in CopyFiles */,
+				6421EA3A2614681200952E74 /* synchronizedanimation.h in CopyFiles */,
+				6421EA3B2614681200952E74 /* animationdefinition.h in CopyFiles */,
+				6421EA3C2614681200952E74 /* spritedefinition.h in CopyFiles */,
+				6421EA3D2614681200952E74 /* hitbox.h in CopyFiles */,
+				6421EA3E2614681200952E74 /* rotatedhitbox.h in CopyFiles */,
+				6421EA3F2614681200952E74 /* simplespritehitbox.h in CopyFiles */,
+				6421EA402614681200952E74 /* spritehitbox.h in CopyFiles */,
+				6421EA412614681200952E74 /* statichitbox.h in CopyFiles */,
+				6421EA422614681200952E74 /* motion.h in CopyFiles */,
+				6421EA432614681200952E74 /* nomotion.h in CopyFiles */,
+				6421EA442614681200952E74 /* axe.h in CopyFiles */,
+				6421EA452614681200952E74 /* direction.h in CopyFiles */,
+				6421EA462614681200952E74 /* sprite.h in CopyFiles */,
+				6421EA472614681200952E74 /* spriteinstance.h in CopyFiles */,
+				6421EA482614681200952E74 /* spritemanager.h in CopyFiles */,
+				6421EA492614681200952E74 /* color.h in CopyFiles */,
+				6421EA4A2614681200952E74 /* renderer.h in CopyFiles */,
+				6421EA4B2614681200952E74 /* referencepool.h in CopyFiles */,
+				6421EA4C2614681200952E74 /* surface.h in CopyFiles */,
+				6421EA4D2614681200952E74 /* surfacearray.h in CopyFiles */,
+				6421EA4E2614681200952E74 /* surfacememory.h in CopyFiles */,
+				6421EA4F2614681200952E74 /* texture.h in CopyFiles */,
+				6421EA502614681200952E74 /* textureatlas.h in CopyFiles */,
+				6421EA512614681200952E74 /* hashmap.h in CopyFiles */,
+				6421EA522614681200952E74 /* list.h in CopyFiles */,
+				6421EA532614681200952E74 /* melmath.h in CopyFiles */,
+				6421EA542614681200952E74 /* operation.h in CopyFiles */,
+				6421EA552614681200952E74 /* random.h in CopyFiles */,
+				6421EA562614681200952E74 /* time.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		6421E8D52614480000952E74 /* melice.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = melice.modulemap; sourceTree = "<group>"; };
 		642B298B25FD340C00183D42 /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		642B299325FD342100183D42 /* melice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melice.h; sourceTree = "<group>"; };
 		642B299A25FD348900183D42 /* melstd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melstd.h; sourceTree = "<group>"; };
@@ -252,6 +380,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6421E77C2613A84300952E74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		642B298225FD340C00183D42 = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +395,7 @@
 				642B299F25FD40C600183D42 /* melice */,
 				642B2AEE25FF703100183D42 /* test */,
 				642B298C25FD340C00183D42 /* Products */,
+				6421E77C2613A84300952E74 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,6 +410,7 @@
 		642B299F25FD40C600183D42 /* melice */ = {
 			isa = PBXGroup;
 			children = (
+				6421E8D52614480000952E74 /* melice.modulemap */,
 				642B299325FD342100183D42 /* melice.h */,
 				642B299A25FD348900183D42 /* melstd.h */,
 				642B2A2825FD448B00183D42 /* geometry */,
@@ -302,7 +439,7 @@
 				642B29A425FD410200183D42 /* time.h */,
 				642B29AA25FD410200183D42 /* time.c */,
 			);
-			path = util;
+			name = util;
 			sourceTree = "<group>";
 		};
 		642B29DF25FD448A00183D42 /* map */ = {
@@ -315,7 +452,7 @@
 				642B29E225FD448A00183D42 /* layer.h */,
 				642B29E525FD448A00183D42 /* layer.c */,
 			);
-			path = map;
+			name = map;
 			sourceTree = "<group>";
 		};
 		642B29E625FD448A00183D42 /* io */ = {
@@ -339,7 +476,7 @@
 				642B29F325FD448A00183D42 /* keyboardinputsource-sdl.h */,
 				642B29E925FD448A00183D42 /* keyboardinputsource-sdl.c */,
 			);
-			path = io;
+			name = io;
 			sourceTree = "<group>";
 		};
 		642B29F825FD448A00183D42 /* sprite */ = {
@@ -359,7 +496,7 @@
 				642B2A2625FD448B00183D42 /* spritemanager.h */,
 				642B29FB25FD448A00183D42 /* spritemanager.c */,
 			);
-			path = sprite;
+			name = sprite;
 			sourceTree = "<group>";
 		};
 		642B29FC25FD448A00183D42 /* animation */ = {
@@ -382,7 +519,7 @@
 				642B2A0725FD448A00183D42 /* synchronizedanimation.h */,
 				642B29FE25FD448A00183D42 /* synchronizedanimation.c */,
 			);
-			path = animation;
+			name = animation;
 			sourceTree = "<group>";
 		};
 		642B2A0E25FD448A00183D42 /* motion */ = {
@@ -393,7 +530,7 @@
 				642B2A1225FD448A00183D42 /* nomotion.h */,
 				642B2A1025FD448A00183D42 /* nomotion.c */,
 			);
-			path = motion;
+			name = motion;
 			sourceTree = "<group>";
 		};
 		642B2A1525FD448A00183D42 /* definition */ = {
@@ -404,7 +541,7 @@
 				642B2A1825FD448A00183D42 /* spritedefinition.h */,
 				642B2A1725FD448A00183D42 /* spritedefinition.c */,
 			);
-			path = definition;
+			name = definition;
 			sourceTree = "<group>";
 		};
 		642B2A1B25FD448A00183D42 /* hitbox */ = {
@@ -421,7 +558,7 @@
 				642B2A1E25FD448B00183D42 /* statichitbox.h */,
 				642B2A2125FD448B00183D42 /* statichitbox.c */,
 			);
-			path = hitbox;
+			name = hitbox;
 			sourceTree = "<group>";
 		};
 		642B2A2825FD448B00183D42 /* geometry */ = {
@@ -436,7 +573,7 @@
 				642B2A2925FD448B00183D42 /* size.h */,
 				642B2A2D25FD448B00183D42 /* size.c */,
 			);
-			path = geometry;
+			name = geometry;
 			sourceTree = "<group>";
 		};
 		642B2A3125FD448B00183D42 /* scene */ = {
@@ -449,7 +586,7 @@
 				642B2A3725FD448B00183D42 /* scene.h */,
 				642B2A3425FD448B00183D42 /* scene.c */,
 			);
-			path = scene;
+			name = scene;
 			sourceTree = "<group>";
 		};
 		642B2A3825FD448B00183D42 /* surface */ = {
@@ -473,7 +610,7 @@
 				642B2A4425FD448B00183D42 /* textureatlas.h */,
 				642B2A3E25FD448B00183D42 /* textureatlas.c */,
 			);
-			path = surface;
+			name = surface;
 			sourceTree = "<group>";
 		};
 		642B2AEE25FF703100183D42 /* test */ = {
@@ -649,7 +786,7 @@
 				642B298725FD340C00183D42 /* Headers */,
 				642B298825FD340C00183D42 /* Sources */,
 				642B298925FD340C00183D42 /* Frameworks */,
-				642B2C9925FFB64600183D42 /* ShellScript */,
+				6421EA1D261467F000952E74 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -694,26 +831,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		642B2C9925FFB64600183D42 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"Copying headers to $TARGET_BUILD_DIR/include\"\ncd $SRCROOT\nfor FILE in `find melice -regex '.*\\.h'`; do\n    mkdir -p $TARGET_BUILD_DIR/include/`dirname $FILE`\n    cp $FILE $TARGET_BUILD_DIR/include/$FILE\ndone\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		642B298825FD340C00183D42 /* Sources */ = {
@@ -767,7 +884,6 @@
 				642B2A6125FD451F00183D42 /* gamecontrollerlistener.c in Sources */,
 				642B29DC25FD445000183D42 /* time.c in Sources */,
 				642B2AAF25FD4A0300183D42 /* spriteinstance.c in Sources */,
-				642B2ADC25FF6C1B00183D42 /* makefile in Sources */,
 				642B2A9725FD49D500183D42 /* spritedefinition.c in Sources */,
 				642B29C825FD43DC00183D42 /* operation.c in Sources */,
 				642B2A4A25FD44AB00183D42 /* rectangle.c in Sources */,
@@ -892,7 +1008,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				EXECUTABLE_PREFIX = lib;
+				MODULEMAP_FILE = "$(SRCROOT)/melice/melice.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -902,7 +1020,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				EXECUTABLE_PREFIX = lib;
+				MODULEMAP_FILE = "$(SRCROOT)/melice/melice.modulemap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
