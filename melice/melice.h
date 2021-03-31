@@ -30,6 +30,7 @@
 #import "palette.h"
 #import "colorpalette.h"
 #import "imagepalette.h"
+#import "imagepaletteimage.h"
 #import "atlaspalette.h"
 #import "project.h"
 #import "projectformat.h"

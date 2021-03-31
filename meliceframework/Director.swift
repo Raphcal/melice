@@ -5,11 +5,11 @@
 //  Created by Raphaël Calabro on 31/03/2021.
 //
 
-import Melice
+import Foundation
 
 extension MELDirector {
-    mutating func startWith(_ scene: inout MELScene) {
-        MELDirectorStartWithScene(&self, &scene)
+    mutating func start<T: MELSceneType>(with scene: inout T) {
+        MELDirectorStartWithScene(&self, &scene.super)
     }
 
     func draw() {
