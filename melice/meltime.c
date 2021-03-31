@@ -1,12 +1,12 @@
 //
-//  time.c
+//  meltime.c
 //  shmup
 //
 //  Created by Raphaël Calabro on 02/02/2019.
 //  Copyright © 2019 Raphaël Calabro. All rights reserved.
 //
 
-#include "time.h"
+#include "meltime.h"
 
 #ifndef _WIN32
 int64_t MELNanoTime(void) {

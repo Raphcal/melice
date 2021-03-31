@@ -1,5 +1,5 @@
 //
-//  math.c
+//  melmath.c
 //  shmup
 //
 //  Created by Raphaël Calabro on 11/03/2019.

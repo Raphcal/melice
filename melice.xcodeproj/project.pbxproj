@@ -63,8 +63,8 @@
 		6421EA532614681200952E74 /* melmath.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AB25FD410200183D42 /* melmath.h */; };
 		6421EA542614681200952E74 /* operation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AC25FD410200183D42 /* operation.h */; };
 		6421EA552614681200952E74 /* random.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AE25FD410200183D42 /* random.h */; };
-		6421EA562614681200952E74 /* time.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* time.h */; };
-		6421EA8826146C4E00952E74 /* melice.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6421E8D52614480000952E74 /* melice.modulemap */; };
+		6421EA562614681200952E74 /* meltime.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* meltime.h */; };
+		6421EA8826146C4E00952E74 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6421E8D52614480000952E74 /* module.modulemap */; };
 		642B299525FD342100183D42 /* melice.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B299B25FD34A000183D42 /* melstd.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B29B025FD419700183D42 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A925FD410200183D42 /* list.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,8 +74,8 @@
 		642B29D225FD441A00183D42 /* melmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29A525FD410200183D42 /* melmath.c */; };
 		642B29D425FD443B00183D42 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29A725FD410200183D42 /* random.c */; };
 		642B29D625FD444600183D42 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29AE25FD410200183D42 /* random.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		642B29D925FD444B00183D42 /* time.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* time.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		642B29DC25FD445000183D42 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29AA25FD410200183D42 /* time.c */; };
+		642B29D925FD444B00183D42 /* meltime.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* meltime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		642B29DC25FD445000183D42 /* meltime.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29AA25FD410200183D42 /* meltime.c */; };
 		642B2A4925FD44AB00183D42 /* rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3025FD448B00183D42 /* rectangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B2A4A25FD44AB00183D42 /* rectangle.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A2B25FD448B00183D42 /* rectangle.c */; };
 		642B2A4B25FD44AB00183D42 /* point.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -170,7 +170,21 @@
 		642B2AC925FD4A6900183D42 /* surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4125FD448B00183D42 /* surface.c */; };
 		642B2ACA25FD4A6900183D42 /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B2AD325FD4E9800183D42 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
+		645260422614F88D00BB78AC /* meliceframework.h in Headers */ = {isa = PBXBuildFile; fileRef = 645260402614F88D00BB78AC /* meliceframework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		645260482614F89900BB78AC /* libmelice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 642B298B25FD340C00183D42 /* libmelice.a */; };
+		6452604C2614F8A900BB78AC /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6452604B2614F8A900BB78AC /* Director.swift */; };
+		645260592614FB3600BB78AC /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645260582614FB3600BB78AC /* Scene.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		645260492614F89C00BB78AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 642B298325FD340C00183D42 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 642B298A25FD340C00183D42;
+			remoteInfo = melice;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		6421EA1D261467F000952E74 /* CopyFiles */ = {
@@ -179,7 +193,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				6421EA8826146C4E00952E74 /* melice.modulemap in CopyFiles */,
+				6421EA8826146C4E00952E74 /* module.modulemap in CopyFiles */,
 				6421EA1E2614681200952E74 /* melice.h in CopyFiles */,
 				6421EA1F2614681200952E74 /* melstd.h in CopyFiles */,
 				6421EA202614681200952E74 /* point.h in CopyFiles */,
@@ -236,24 +250,24 @@
 				6421EA532614681200952E74 /* melmath.h in CopyFiles */,
 				6421EA542614681200952E74 /* operation.h in CopyFiles */,
 				6421EA552614681200952E74 /* random.h in CopyFiles */,
-				6421EA562614681200952E74 /* time.h in CopyFiles */,
+				6421EA562614681200952E74 /* meltime.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6421E8D52614480000952E74 /* melice.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = melice.modulemap; sourceTree = "<group>"; };
+		6421E8D52614480000952E74 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		642B298B25FD340C00183D42 /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		642B299325FD342100183D42 /* melice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melice.h; sourceTree = "<group>"; };
 		642B299A25FD348900183D42 /* melstd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melstd.h; sourceTree = "<group>"; };
-		642B29A425FD410200183D42 /* time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
+		642B29A425FD410200183D42 /* meltime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = meltime.h; sourceTree = "<group>"; };
 		642B29A525FD410200183D42 /* melmath.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = melmath.c; sourceTree = "<group>"; };
 		642B29A625FD410200183D42 /* operation.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = operation.c; sourceTree = "<group>"; };
 		642B29A725FD410200183D42 /* random.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
 		642B29A825FD410200183D42 /* hashmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hashmap.h; sourceTree = "<group>"; };
 		642B29A925FD410200183D42 /* list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = list.h; sourceTree = "<group>"; };
-		642B29AA25FD410200183D42 /* time.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
+		642B29AA25FD410200183D42 /* meltime.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = meltime.c; sourceTree = "<group>"; };
 		642B29AB25FD410200183D42 /* melmath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melmath.h; sourceTree = "<group>"; };
 		642B29AC25FD410200183D42 /* operation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = operation.h; sourceTree = "<group>"; };
 		642B29AD25FD410200183D42 /* hashmap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hashmap.c; sourceTree = "<group>"; };
@@ -367,6 +381,11 @@
 		642B2B0825FF703100183D42 /* spritedefinition-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "spritedefinition-test.c"; sourceTree = "<group>"; };
 		642B2B0B25FF703100183D42 /* map1-sprites.def */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map1-sprites.def"; sourceTree = "<group>"; };
 		642B2B1525FF8FED00183D42 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6452603E2614F88D00BB78AC /* meliceframework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = meliceframework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		645260402614F88D00BB78AC /* meliceframework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = meliceframework.h; sourceTree = "<group>"; };
+		645260412614F88D00BB78AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6452604B2614F8A900BB78AC /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
+		645260582614FB3600BB78AC /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +393,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6452603B2614F88D00BB78AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				645260482614F89900BB78AC /* libmelice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +421,7 @@
 				642B2ADB25FF6C1B00183D42 /* makefile */,
 				642B299F25FD40C600183D42 /* melice */,
 				642B2AEE25FF703100183D42 /* test */,
+				6452603F2614F88D00BB78AC /* meliceframework */,
 				642B298C25FD340C00183D42 /* Products */,
 				6421E77C2613A84300952E74 /* Frameworks */,
 			);
@@ -403,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				642B298B25FD340C00183D42 /* libmelice.a */,
+				6452603E2614F88D00BB78AC /* meliceframework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -410,7 +439,7 @@
 		642B299F25FD40C600183D42 /* melice */ = {
 			isa = PBXGroup;
 			children = (
-				6421E8D52614480000952E74 /* melice.modulemap */,
+				6421E8D52614480000952E74 /* module.modulemap */,
 				642B299325FD342100183D42 /* melice.h */,
 				642B299A25FD348900183D42 /* melstd.h */,
 				642B2A2825FD448B00183D42 /* geometry */,
@@ -436,8 +465,8 @@
 				642B29A625FD410200183D42 /* operation.c */,
 				642B29AE25FD410200183D42 /* random.h */,
 				642B29A725FD410200183D42 /* random.c */,
-				642B29A425FD410200183D42 /* time.h */,
-				642B29AA25FD410200183D42 /* time.c */,
+				642B29A425FD410200183D42 /* meltime.h */,
+				642B29AA25FD410200183D42 /* meltime.c */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -468,9 +497,9 @@
 				642B29EC25FD448A00183D42 /* gamecontroller.c */,
 				642B29F725FD448A00183D42 /* gamecontrollerlistener.h */,
 				642B29EE25FD448A00183D42 /* gamecontrollerlistener.c */,
-				642B29F625FD448A00183D42 /* inputsourcetype.h */,
 				642B29EF25FD448A00183D42 /* inputsource.h */,
 				642B29E825FD448A00183D42 /* inputsource.c */,
+				642B29F625FD448A00183D42 /* inputsourcetype.h */,
 				642B29F125FD448A00183D42 /* inputstream.h */,
 				642B29EB25FD448A00183D42 /* inputstream.c */,
 				642B29F325FD448A00183D42 /* keyboardinputsource-sdl.h */,
@@ -694,6 +723,25 @@
 			path = assets;
 			sourceTree = "<group>";
 		};
+		6452603F2614F88D00BB78AC /* meliceframework */ = {
+			isa = PBXGroup;
+			children = (
+				645260572614FB2300BB78AC /* Scene */,
+				645260402614F88D00BB78AC /* meliceframework.h */,
+				645260412614F88D00BB78AC /* Info.plist */,
+			);
+			path = meliceframework;
+			sourceTree = "<group>";
+		};
+		645260572614FB2300BB78AC /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				6452604B2614F8A900BB78AC /* Director.swift */,
+				645260582614FB3600BB78AC /* Scene.swift */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -725,7 +773,7 @@
 				642B2A8B25FD49C100183D42 /* singleframeanimation.h in Headers */,
 				642B2A5025FD44AB00183D42 /* quadrilateral.h in Headers */,
 				642B29B025FD419700183D42 /* list.h in Headers */,
-				642B29D925FD444B00183D42 /* time.h in Headers */,
+				642B29D925FD444B00183D42 /* meltime.h in Headers */,
 				642B2A6D25FD462F00183D42 /* scene.h in Headers */,
 				642B2A6825FD456B00183D42 /* map.h in Headers */,
 				642B2A8525FD49C100183D42 /* animation.h in Headers */,
@@ -756,6 +804,14 @@
 				642B2AB125FD4A0300183D42 /* spriteinstance.h in Headers */,
 				642B2AC225FD4A6900183D42 /* surfacearray.h in Headers */,
 				642B29D625FD444600183D42 /* random.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		645260392614F88D00BB78AC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				645260422614F88D00BB78AC /* meliceframework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -797,6 +853,25 @@
 			productReference = 642B298B25FD340C00183D42 /* libmelice.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		6452603D2614F88D00BB78AC /* meliceframework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "meliceframework" */;
+			buildPhases = (
+				645260392614F88D00BB78AC /* Headers */,
+				6452603A2614F88D00BB78AC /* Sources */,
+				6452603B2614F88D00BB78AC /* Frameworks */,
+				6452603C2614F88D00BB78AC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6452604A2614F89C00BB78AC /* PBXTargetDependency */,
+			);
+			name = meliceframework;
+			productName = meliceframework;
+			productReference = 6452603E2614F88D00BB78AC /* meliceframework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -807,9 +882,14 @@
 				TargetAttributes = {
 					642B298A25FD340C00183D42 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					642B2B0E25FF70AB00183D42 = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					6452603D2614F88D00BB78AC = {
+						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -828,9 +908,20 @@
 			targets = (
 				642B298A25FD340C00183D42 /* melice */,
 				642B2B0E25FF70AB00183D42 /* melice-test */,
+				6452603D2614F88D00BB78AC /* meliceframework */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6452603C2614F88D00BB78AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		642B298825FD340C00183D42 /* Sources */ = {
@@ -882,7 +973,7 @@
 				642B29D425FD443B00183D42 /* random.c in Sources */,
 				642B2A9E25FD49E500183D42 /* statichitbox.c in Sources */,
 				642B2A6125FD451F00183D42 /* gamecontrollerlistener.c in Sources */,
-				642B29DC25FD445000183D42 /* time.c in Sources */,
+				642B29DC25FD445000183D42 /* meltime.c in Sources */,
 				642B2AAF25FD4A0300183D42 /* spriteinstance.c in Sources */,
 				642B2A9725FD49D500183D42 /* spritedefinition.c in Sources */,
 				642B29C825FD43DC00183D42 /* operation.c in Sources */,
@@ -890,7 +981,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6452603A2614F88D00BB78AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				645260592614FB3600BB78AC /* Scene.swift in Sources */,
+				6452604C2614F8A900BB78AC /* Director.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6452604A2614F89C00BB78AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 642B298A25FD340C00183D42 /* melice */;
+			targetProxy = 645260492614F89C00BB78AC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		642B298D25FD340C00183D42 /* Debug */ = {
@@ -1007,24 +1115,41 @@
 		642B299025FD340C00183D42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				EXECUTABLE_PREFIX = lib;
-				MODULEMAP_FILE = "$(SRCROOT)/melice/melice.modulemap";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MODULEMAP_FILE = "$(SRCROOT)/melice/module.modulemap";
+				PRODUCT_MODULE_NAME = Melice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		642B299125FD340C00183D42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				EXECUTABLE_PREFIX = lib;
-				MODULEMAP_FILE = "$(SRCROOT)/melice/melice.modulemap";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MODULEMAP_FILE = "$(SRCROOT)/melice/module.modulemap";
+				PRODUCT_MODULE_NAME = Melice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1050,6 +1175,64 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		645260432614F88D00BB78AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = meliceframework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		645260442614F88D00BB78AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = meliceframework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1079,6 +1262,15 @@
 			buildConfigurations = (
 				642B2B1025FF70AB00183D42 /* Debug */,
 				642B2B1125FF70AB00183D42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "meliceframework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				645260432614F88D00BB78AC /* Debug */,
+				645260442614F88D00BB78AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,4 +1,4 @@
-module melice [system][extern_c] {
+module Melice [system] [extern_c] {
     umbrella header "melice.h"
     export *
 }
