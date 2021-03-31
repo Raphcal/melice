@@ -183,16 +183,156 @@
 		643EEC88275D50B70039FDAB /* mapgroup.c in Sources */ = {isa = PBXBuildFile; fileRef = 643EEC84275D50B70039FDAB /* mapgroup.c */; };
 		643EEC8A275D5FA20039FDAB /* mapgroup.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 643EEC83275D50B70039FDAB /* mapgroup.h */; };
 		643EEC8B275D5FB40039FDAB /* mapgroup.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 643EEC83275D50B70039FDAB /* mapgroup.h */; };
+		643EECAB275E6A6B0039FDAB /* melice.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECAC275E6A6B0039FDAB /* melstd.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECAD275E6A6B0039FDAB /* point.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECAE275E6A6B0039FDAB /* quadrilateral.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2F25FD448B00183D42 /* quadrilateral.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECAF275E6A6B0039FDAB /* rectangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3025FD448B00183D42 /* rectangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB0275E6A6B0039FDAB /* size.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2925FD448B00183D42 /* size.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB1275E6A6B0039FDAB /* buttonstate.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29F225FD448A00183D42 /* buttonstate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB2275E6A6B0039FDAB /* buttonmapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29ED25FD448A00183D42 /* buttonmapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB3275E6A6B0039FDAB /* filemanager.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29E725FD448A00183D42 /* filemanager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB4275E6A6B0039FDAB /* gamecontroller.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29F525FD448A00183D42 /* gamecontroller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB5275E6A6B0039FDAB /* gamecontrollerlistener.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29F725FD448A00183D42 /* gamecontrollerlistener.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB6275E6A6B0039FDAB /* inputsource.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29EF25FD448A00183D42 /* inputsource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB7275E6A6B0039FDAB /* inputsourcetype.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29F625FD448A00183D42 /* inputsourcetype.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB8275E6A6B0039FDAB /* inputstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29F125FD448A00183D42 /* inputstream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECB9275E6A6B0039FDAB /* outputstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F00B274BAC5C0040F95A /* outputstream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECBA275E6A6B0039FDAB /* decorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E65272F37A500C8A675 /* decorator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECBB275E6A6B0039FDAB /* layer.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29E225FD448A00183D42 /* layer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECBC275E6A6B0039FDAB /* map.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29E125FD448A00183D42 /* map.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECBD275E6A6B0039FDAB /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECBE275E6A6B0039FDAB /* mapgroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 643EEC83275D50B70039FDAB /* mapgroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECBF275E6A6B0039FDAB /* maprenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29E025FD448A00183D42 /* maprenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC0275E6A6B0039FDAB /* palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E5F272DD7D200C8A675 /* palette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC1275E6A6B0039FDAB /* colorpalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E712730940600C8A675 /* colorpalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC2275E6A6B0039FDAB /* imagepalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E772730943000C8A675 /* imagepalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC3275E6A6B0039FDAB /* atlaspalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 643EEC6C2757ABD30039FDAB /* atlaspalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC4275E6A6B0039FDAB /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC5275E6A6B0039FDAB /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC6275E6A6B0039FDAB /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC7275E6A6B0039FDAB /* director.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3325FD448B00183D42 /* director.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC8275E6A6B0039FDAB /* fade.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3225FD448B00183D42 /* fade.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECC9275E6A6B0039FDAB /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3725FD448B00183D42 /* scene.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECCA275E6A6B0039FDAB /* animation.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29FF25FD448A00183D42 /* animation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECCB275E6A6B0039FDAB /* animationframe.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A0425FD448A00183D42 /* animationframe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECCC275E6A6B0039FDAB /* animationtype.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A0325FD448A00183D42 /* animationtype.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECCD275E6A6B0039FDAB /* loopinganimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A0525FD448A00183D42 /* loopinganimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECCE275E6A6B0039FDAB /* noanimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A0825FD448A00183D42 /* noanimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECCF275E6A6B0039FDAB /* playonceanimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A0925FD448A00183D42 /* playonceanimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD0275E6A6B0039FDAB /* singleframeanimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A0225FD448A00183D42 /* singleframeanimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD1275E6A6B0039FDAB /* synchronizedanimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A0725FD448A00183D42 /* synchronizedanimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD2275E6A6B0039FDAB /* animationdefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A1625FD448A00183D42 /* animationdefinition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD3275E6A6B0039FDAB /* spritedefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A1825FD448A00183D42 /* spritedefinition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD4275E6A6B0039FDAB /* hitbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2325FD448B00183D42 /* hitbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD5275E6A6B0039FDAB /* rotatedhitbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2225FD448B00183D42 /* rotatedhitbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD6275E6A6B0039FDAB /* simplespritehitbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2425FD448B00183D42 /* simplespritehitbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD7275E6A6B0039FDAB /* spritehitbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2025FD448B00183D42 /* spritehitbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD8275E6A6B0039FDAB /* statichitbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A1E25FD448B00183D42 /* statichitbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECD9275E6A6B0039FDAB /* motion.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A1125FD448A00183D42 /* motion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECDA275E6A6B0039FDAB /* nomotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A1225FD448A00183D42 /* nomotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECDB275E6A6B0039FDAB /* axe.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A1325FD448A00183D42 /* axe.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECDC275E6A6B0039FDAB /* direction.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A0D25FD448A00183D42 /* direction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECDD275E6A6B0039FDAB /* sprite.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A1425FD448A00183D42 /* sprite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECDE275E6A6B0039FDAB /* spriteinstance.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A1A25FD448A00183D42 /* spriteinstance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECDF275E6A6B0039FDAB /* spritemanager.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2625FD448B00183D42 /* spritemanager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE0275E6A6B0039FDAB /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE1275E6A6B0039FDAB /* color.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3F25FD448B00183D42 /* color.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE2275E6A6B0039FDAB /* packmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0022746E5010040F95A /* packmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE3275E6A6B0039FDAB /* renderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3D25FD448B00183D42 /* renderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE4275E6A6B0039FDAB /* referencepool.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3B25FD448B00183D42 /* referencepool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE5275E6A6B0039FDAB /* surface.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A3925FD448B00183D42 /* surface.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE6275E6A6B0039FDAB /* surfacearray.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4725FD448B00183D42 /* surfacearray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE7275E6A6B0039FDAB /* surfacememory.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4625FD448B00183D42 /* surfacememory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE8275E6A6B0039FDAB /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECE9275E6A6B0039FDAB /* textureatlas.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4425FD448B00183D42 /* textureatlas.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECEA275E6A6B0039FDAB /* dictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A1B273AAB0100547977 /* dictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECEB275E6A6B0039FDAB /* keyvaluetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECEC275E6A6B0039FDAB /* pointerintpointtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECED275E6A6B0039FDAB /* hashmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A825FD410200183D42 /* hashmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECEE275E6A6B0039FDAB /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A925FD410200183D42 /* list.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECEF275E6A6C0039FDAB /* melmath.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29AB25FD410200183D42 /* melmath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECF0275E6A6C0039FDAB /* melstring.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECF1275E6A6C0039FDAB /* meltime.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* meltime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECF2275E6A6C0039FDAB /* operation.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29AC25FD410200183D42 /* operation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECF3275E6A6C0039FDAB /* primitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECF4275E6A6C0039FDAB /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29AE25FD410200183D42 /* random.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EECF5275E6A6C0039FDAB /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
+		643EECF6275E8D7D0039FDAB /* point.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A2E25FD448B00183D42 /* point.c */; };
+		643EECF7275E8D7D0039FDAB /* quadrilateral.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A2C25FD448B00183D42 /* quadrilateral.c */; };
+		643EECF8275E8D7D0039FDAB /* rectangle.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A2B25FD448B00183D42 /* rectangle.c */; };
+		643EECF9275E8D7D0039FDAB /* size.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A2D25FD448B00183D42 /* size.c */; };
+		643EECFA275E8D7D0039FDAB /* buttonstate.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29EA25FD448A00183D42 /* buttonstate.c */; };
+		643EECFB275E8D7D0039FDAB /* buttonmapping.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29F425FD448A00183D42 /* buttonmapping.c */; };
+		643EECFC275E8D7D0039FDAB /* filemanager.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29F025FD448A00183D42 /* filemanager.c */; };
+		643EECFD275E8D7D0039FDAB /* gamecontroller.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29EC25FD448A00183D42 /* gamecontroller.c */; };
+		643EECFE275E8D7D0039FDAB /* gamecontrollerlistener.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29EE25FD448A00183D42 /* gamecontrollerlistener.c */; };
+		643EECFF275E8D7D0039FDAB /* inputsource.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29E825FD448A00183D42 /* inputsource.c */; };
+		643EED00275E8D7D0039FDAB /* inputstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29EB25FD448A00183D42 /* inputstream.c */; };
+		643EED01275E8D7D0039FDAB /* outputstream.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F00C274BAC5C0040F95A /* outputstream.c */; };
+		643EED02275E8D7D0039FDAB /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
+		643EED03275E8D7D0039FDAB /* layer.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29E525FD448A00183D42 /* layer.c */; };
+		643EED04275E8D7D0039FDAB /* map.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29E425FD448A00183D42 /* map.c */; };
+		643EED05275E8D7D0039FDAB /* mutablemap.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E8A2731D9A700C8A675 /* mutablemap.c */; };
+		643EED06275E8D7D0039FDAB /* mapgroup.c in Sources */ = {isa = PBXBuildFile; fileRef = 643EEC84275D50B70039FDAB /* mapgroup.c */; };
+		643EED07275E8D7D0039FDAB /* maprenderer.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29E325FD448A00183D42 /* maprenderer.c */; };
+		643EED08275E8D7D0039FDAB /* palette.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E7D27318F0900C8A675 /* palette.c */; };
+		643EED09275E8D7D0039FDAB /* colorpalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E722730940600C8A675 /* colorpalette.c */; };
+		643EED0A275E8D7D0039FDAB /* imagepalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E782730943000C8A675 /* imagepalette.c */; };
+		643EED0B275E8D7D0039FDAB /* atlaspalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 643EEC6D2757ABD30039FDAB /* atlaspalette.c */; };
+		643EED0C275E8D7D0039FDAB /* project.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E832731D85500C8A675 /* project.c */; };
+		643EED0D275E8D7D0039FDAB /* mmkprojectformat.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189E827386C9400547977 /* mmkprojectformat.c */; };
+		643EED0E275E8D7E0039FDAB /* director.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A3625FD448B00183D42 /* director.c */; };
+		643EED0F275E8D7E0039FDAB /* fade.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A3525FD448B00183D42 /* fade.c */; };
+		643EED10275E8D7E0039FDAB /* scene.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A3425FD448B00183D42 /* scene.c */; };
+		643EED11275E8D7E0039FDAB /* animation.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A0625FD448A00183D42 /* animation.c */; };
+		643EED12275E8D7E0039FDAB /* animationframe.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A0C25FD448A00183D42 /* animationframe.c */; };
+		643EED13275E8D7E0039FDAB /* animationtype.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A0A25FD448A00183D42 /* animationtype.c */; };
+		643EED14275E8D7E0039FDAB /* loopinganimation.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A0025FD448A00183D42 /* loopinganimation.c */; };
+		643EED15275E8D7E0039FDAB /* noanimation.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29FD25FD448A00183D42 /* noanimation.c */; };
+		643EED16275E8D7E0039FDAB /* playonceanimation.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A0125FD448A00183D42 /* playonceanimation.c */; };
+		643EED17275E8D7E0039FDAB /* singleframeanimation.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A0B25FD448A00183D42 /* singleframeanimation.c */; };
+		643EED18275E8D7E0039FDAB /* synchronizedanimation.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29FE25FD448A00183D42 /* synchronizedanimation.c */; };
+		643EED19275E8D7E0039FDAB /* animationdefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A1925FD448A00183D42 /* animationdefinition.c */; };
+		643EED1A275E8D7E0039FDAB /* spritedefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A1725FD448A00183D42 /* spritedefinition.c */; };
+		643EED1B275E8D7E0039FDAB /* hitbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A1C25FD448A00183D42 /* hitbox.c */; };
+		643EED1C275E8D7E0039FDAB /* rotatedhitbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A1D25FD448B00183D42 /* rotatedhitbox.c */; };
+		643EED1D275E8D7E0039FDAB /* simplespritehitbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A1F25FD448B00183D42 /* simplespritehitbox.c */; };
+		643EED1E275E8D7E0039FDAB /* spritehitbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A2525FD448B00183D42 /* spritehitbox.c */; };
+		643EED1F275E8D7E0039FDAB /* statichitbox.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A2125FD448B00183D42 /* statichitbox.c */; };
+		643EED20275E8D7E0039FDAB /* motion.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A0F25FD448A00183D42 /* motion.c */; };
+		643EED21275E8D7E0039FDAB /* nomotion.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A1025FD448A00183D42 /* nomotion.c */; };
+		643EED22275E8D7E0039FDAB /* direction.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A2725FD448B00183D42 /* direction.c */; };
+		643EED23275E8D7E0039FDAB /* sprite.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29F925FD448A00183D42 /* sprite.c */; };
+		643EED24275E8D7E0039FDAB /* spriteinstance.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29FA25FD448A00183D42 /* spriteinstance.c */; };
+		643EED25275E8D7E0039FDAB /* spritemanager.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29FB25FD448A00183D42 /* spritemanager.c */; };
+		643EED26275E8D7E0039FDAB /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 644872562726B86600DEE2C1 /* bitmap.c */; };
+		643EED27275E8D7E0039FDAB /* color.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4825FD448B00183D42 /* color.c */; };
+		643EED28275E8D7E0039FDAB /* packmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0032746E5010040F95A /* packmap.c */; };
+		643EED29275E8D7E0039FDAB /* renderer.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4225FD448B00183D42 /* renderer.c */; };
+		643EED2A275E8D7E0039FDAB /* referencepool.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4525FD448B00183D42 /* referencepool.c */; };
+		643EED2B275E8D7E0039FDAB /* surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4125FD448B00183D42 /* surface.c */; };
+		643EED2C275E8D7E0039FDAB /* surfacearray.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4025FD448B00183D42 /* surfacearray.c */; };
+		643EED2D275E8D7E0039FDAB /* surfacememory.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A3A25FD448B00183D42 /* surfacememory.c */; };
+		643EED2E275E8D7E0039FDAB /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
+		643EED2F275E8D7E0039FDAB /* textureatlas.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A3E25FD448B00183D42 /* textureatlas.c */; };
+		643EED30275E8D7E0039FDAB /* pointerintpointtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0E1275414C90040F95A /* pointerintpointtable.c */; };
+		643EED31275E8D7E0039FDAB /* hashmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29AD25FD410200183D42 /* hashmap.c */; };
+		643EED32275E8D7E0039FDAB /* melmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29A525FD410200183D42 /* melmath.c */; };
+		643EED33275E8D7E0039FDAB /* melstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 64718A22273AAE5300547977 /* melstring.c */; };
+		643EED34275E8D7E0039FDAB /* meltime.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29AA25FD410200183D42 /* meltime.c */; };
+		643EED35275E8D7E0039FDAB /* operation.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29A625FD410200183D42 /* operation.c */; };
+		643EED36275E8D7E0039FDAB /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 64749395272C2ABA004F3D97 /* primitives.c */; };
+		643EED37275E8D7E0039FDAB /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29A725FD410200183D42 /* random.c */; };
+		643EED38275E8D7E0039FDAB /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		644872572726B86600DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		644872582726B86700DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		644872592726B86700DEE2C1 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 644872562726B86600DEE2C1 /* bitmap.c */; };
 		6448725A2726B86700DEE2C1 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 644872562726B86600DEE2C1 /* bitmap.c */; };
 		6448725B2726BE2C00DEE2C1 /* bitmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; };
 		6448725C2726BE3800DEE2C1 /* bitmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; };
-		645260422614F88D00BB78AC /* meliceframework.h in Headers */ = {isa = PBXBuildFile; fileRef = 645260402614F88D00BB78AC /* meliceframework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		645260482614F89900BB78AC /* libmelice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 642B298B25FD340C00183D42 /* libmelice.a */; };
+		645260422614F88D00BB78AC /* MeliceFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 645260402614F88D00BB78AC /* MeliceFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6452604C2614F8A900BB78AC /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6452604B2614F8A900BB78AC /* Director.swift */; };
-		645260592614FB3600BB78AC /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645260582614FB3600BB78AC /* Scene.swift */; };
 		6460F0042746E5010040F95A /* packmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0022746E5010040F95A /* packmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6460F0052746E5010040F95A /* packmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0022746E5010040F95A /* packmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6460F0062746E5010040F95A /* packmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0032746E5010040F95A /* packmap.c */; };
@@ -397,7 +537,6 @@
 		64CB6772271F523A00663A2E /* operation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AC25FD410200183D42 /* operation.h */; };
 		64CB6773271F523A00663A2E /* random.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AE25FD410200183D42 /* random.h */; };
 		64CB6774271F523A00663A2E /* meltime.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* meltime.h */; };
-		64CB6775271F523A00663A2E /* meliceframework.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 645260402614F88D00BB78AC /* meliceframework.h */; };
 		64CB6776271F523F00663A2E /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6421E8D52614480000952E74 /* module.modulemap */; };
 		64D00E60272DD7DF00C8A675 /* palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E5F272DD7D200C8A675 /* palette.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E61272DD7E000C8A675 /* palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E5F272DD7D200C8A675 /* palette.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -445,17 +584,25 @@
 		64EEAA5727426CE700776662 /* melstring.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; };
 		64EEAA59274280B500776662 /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
 		64EEAA5A274280B500776662 /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
+		64F5D15027600084000C3967 /* imagepaletteimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 64F5D14E27600084000C3967 /* imagepaletteimage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64F5D15127600084000C3967 /* imagepaletteimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 64F5D14E27600084000C3967 /* imagepaletteimage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64F5D15227600084000C3967 /* imagepaletteimage.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D14F27600084000C3967 /* imagepaletteimage.c */; };
+		64F5D15327600084000C3967 /* imagepaletteimage.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D14F27600084000C3967 /* imagepaletteimage.c */; };
+		64F5D1562760E46C000C3967 /* mmkprojectformat-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460EFFE27452C9D0040F95A /* mmkprojectformat-test.c */; };
+		64F5D15F2760EF19000C3967 /* packmap-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D15E2760EF19000C3967 /* packmap-test.c */; };
+		64F5D1692760F6AD000C3967 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D1632760F6AD000C3967 /* Point.swift */; };
+		64F5D16B2760F6AD000C3967 /* Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D1652760F6AD000C3967 /* Rectangle.swift */; };
+		64F5D16D2760F6AD000C3967 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D1672760F6AD000C3967 /* Scene.swift */; };
+		64F5D16E2760F6AD000C3967 /* Quadrilateral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D1682760F6AD000C3967 /* Quadrilateral.swift */; };
+		64F5D1722760F81D000C3967 /* imagepaletteimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 64F5D14E27600084000C3967 /* imagepaletteimage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64F5D1732760FA49000C3967 /* imagepaletteimage.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D14F27600084000C3967 /* imagepaletteimage.c */; };
+		64F5D1772760FBBB000C3967 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D1762760FBBB000C3967 /* Layer.swift */; };
+		64F5D17A2760FDE1000C3967 /* Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D1792760FDE1000C3967 /* Named.swift */; };
+		64F5D17D27610662000C3967 /* ProjectFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D17C27610662000C3967 /* ProjectFormat.swift */; };
+		64F5D17F276109C7000C3967 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D17E276109C7000C3967 /* List.swift */; };
+		64F5D18127610A4D000C3967 /* MutableMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D18027610A4D000C3967 /* MutableMap.swift */; };
+		64F5D18327610A69000C3967 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D18227610A69000C3967 /* Palette.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		645260492614F89C00BB78AC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 642B298325FD340C00183D42 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 642B298A25FD340C00183D42;
-			remoteInfo = melice;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		6421EA1D261467F000952E74 /* CopyFiles */ = {
@@ -623,7 +770,6 @@
 				64CB6772271F523A00663A2E /* operation.h in CopyFiles */,
 				64CB6773271F523A00663A2E /* random.h in CopyFiles */,
 				64CB6774271F523A00663A2E /* meltime.h in CopyFiles */,
-				64CB6775271F523A00663A2E /* meliceframework.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,11 +906,10 @@
 		6448724F2725F4ED00DEE2C1 /* color-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "color-test.c"; sourceTree = "<group>"; };
 		644872552726B86600DEE2C1 /* bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bitmap.h; sourceTree = "<group>"; };
 		644872562726B86600DEE2C1 /* bitmap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bitmap.c; sourceTree = "<group>"; };
-		6452603E2614F88D00BB78AC /* meliceframework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = meliceframework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		645260402614F88D00BB78AC /* meliceframework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = meliceframework.h; sourceTree = "<group>"; };
+		6452603E2614F88D00BB78AC /* MeliceFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeliceFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		645260402614F88D00BB78AC /* MeliceFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeliceFramework.h; sourceTree = "<group>"; };
 		645260412614F88D00BB78AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6452604B2614F8A900BB78AC /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
-		645260582614FB3600BB78AC /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		6460EFFD27452B600040F95A /* HelloVita.mmk */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelloVita.mmk; sourceTree = "<group>"; };
 		6460EFFE27452C9D0040F95A /* mmkprojectformat-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "mmkprojectformat-test.c"; sourceTree = "<group>"; };
 		6460F0022746E5010040F95A /* packmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = packmap.h; sourceTree = "<group>"; };
@@ -803,6 +948,20 @@
 		64D00E8D2731DDF900C8A675 /* projectformat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = projectformat.h; sourceTree = "<group>"; };
 		64EEAA4627418C7500776662 /* melstring-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "melstring-test.c"; sourceTree = "<group>"; };
 		64EEAA58274280B500776662 /* decorator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = decorator.c; sourceTree = "<group>"; };
+		64F5D14E27600084000C3967 /* imagepaletteimage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imagepaletteimage.h; sourceTree = "<group>"; };
+		64F5D14F27600084000C3967 /* imagepaletteimage.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = imagepaletteimage.c; sourceTree = "<group>"; };
+		64F5D15E2760EF19000C3967 /* packmap-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "packmap-test.c"; sourceTree = "<group>"; };
+		64F5D1602760EF95000C3967 /* HelloVita.mmk */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelloVita.mmk; sourceTree = "<group>"; };
+		64F5D1632760F6AD000C3967 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		64F5D1652760F6AD000C3967 /* Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rectangle.swift; sourceTree = "<group>"; };
+		64F5D1672760F6AD000C3967 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		64F5D1682760F6AD000C3967 /* Quadrilateral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quadrilateral.swift; sourceTree = "<group>"; };
+		64F5D1762760FBBB000C3967 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		64F5D1792760FDE1000C3967 /* Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Named.swift; sourceTree = "<group>"; };
+		64F5D17C27610662000C3967 /* ProjectFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectFormat.swift; sourceTree = "<group>"; };
+		64F5D17E276109C7000C3967 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		64F5D18027610A4D000C3967 /* MutableMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableMap.swift; sourceTree = "<group>"; };
+		64F5D18227610A69000C3967 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -817,7 +976,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				645260482614F89900BB78AC /* libmelice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,7 +1014,7 @@
 			isa = PBXGroup;
 			children = (
 				642B298B25FD340C00183D42 /* libmelice.a */,
-				6452603E2614F88D00BB78AC /* meliceframework.framework */,
+				6452603E2614F88D00BB78AC /* MeliceFramework.framework */,
 				64CB66C5271F504E00663A2E /* libmelice.a */,
 			);
 			name = Products;
@@ -925,6 +1083,8 @@
 				64D00E722730940600C8A675 /* colorpalette.c */,
 				64D00E772730943000C8A675 /* imagepalette.h */,
 				64D00E782730943000C8A675 /* imagepalette.c */,
+				64F5D14E27600084000C3967 /* imagepaletteimage.h */,
+				64F5D14F27600084000C3967 /* imagepaletteimage.c */,
 				643EEC6C2757ABD30039FDAB /* atlaspalette.h */,
 				643EEC6D2757ABD30039FDAB /* atlaspalette.c */,
 			);
@@ -949,10 +1109,10 @@
 				642B29F625FD448A00183D42 /* inputsourcetype.h */,
 				642B29F125FD448A00183D42 /* inputstream.h */,
 				642B29EB25FD448A00183D42 /* inputstream.c */,
-				642B29F325FD448A00183D42 /* keyboardinputsource-sdl.h */,
-				642B29E925FD448A00183D42 /* keyboardinputsource-sdl.c */,
 				6460F00B274BAC5C0040F95A /* outputstream.h */,
 				6460F00C274BAC5C0040F95A /* outputstream.c */,
+				642B29F325FD448A00183D42 /* keyboardinputsource-sdl.h */,
+				642B29E925FD448A00183D42 /* keyboardinputsource-sdl.c */,
 			);
 			name = io;
 			sourceTree = "<group>";
@@ -1123,6 +1283,7 @@
 			children = (
 				6460F009274B94D80040F95A /* bitmap-test.c */,
 				6448724F2725F4ED00DEE2C1 /* color-test.c */,
+				64F5D15E2760EF19000C3967 /* packmap-test.c */,
 				642B2AF825FF703100183D42 /* textureatlas-test.c */,
 				642B2AFB25FF703100183D42 /* assets */,
 			);
@@ -1132,6 +1293,7 @@
 		642B2AFB25FF703100183D42 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				64F5D1602760EF95000C3967 /* HelloVita.mmk */,
 				642B2AFC25FF703100183D42 /* map0-texture.atlas */,
 				642B2AFD25FF703100183D42 /* map0-texture.bmp */,
 			);
@@ -1184,8 +1346,12 @@
 		6452603F2614F88D00BB78AC /* meliceframework */ = {
 			isa = PBXGroup;
 			children = (
+				64F5D1702760F796000C3967 /* Geometry */,
+				64F5D1752760FB86000C3967 /* Map */,
+				64F5D17B276105DC000C3967 /* Project */,
 				645260572614FB2300BB78AC /* Scene */,
-				645260402614F88D00BB78AC /* meliceframework.h */,
+				64F5D1782760FDC0000C3967 /* Util */,
+				645260402614F88D00BB78AC /* MeliceFramework.h */,
 				645260412614F88D00BB78AC /* Info.plist */,
 			);
 			path = meliceframework;
@@ -1195,7 +1361,7 @@
 			isa = PBXGroup;
 			children = (
 				6452604B2614F8A900BB78AC /* Director.swift */,
-				645260582614FB3600BB78AC /* Scene.swift */,
+				64F5D1672760F6AD000C3967 /* Scene.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -1258,6 +1424,43 @@
 			name = project;
 			sourceTree = "<group>";
 		};
+		64F5D1702760F796000C3967 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				64F5D1632760F6AD000C3967 /* Point.swift */,
+				64F5D1682760F6AD000C3967 /* Quadrilateral.swift */,
+				64F5D1652760F6AD000C3967 /* Rectangle.swift */,
+			);
+			name = Geometry;
+			sourceTree = "<group>";
+		};
+		64F5D1752760FB86000C3967 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				64F5D1762760FBBB000C3967 /* Layer.swift */,
+				64F5D18027610A4D000C3967 /* MutableMap.swift */,
+				64F5D18227610A69000C3967 /* Palette.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		64F5D1782760FDC0000C3967 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				64F5D1792760FDE1000C3967 /* Named.swift */,
+				64F5D17E276109C7000C3967 /* List.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		64F5D17B276105DC000C3967 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				64F5D17C27610662000C3967 /* ProjectFormat.swift */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1291,6 +1494,7 @@
 				642B2A5325FD451F00183D42 /* inputsourcetype.h in Headers */,
 				642B2A8B25FD49C100183D42 /* singleframeanimation.h in Headers */,
 				642B2A5025FD44AB00183D42 /* quadrilateral.h in Headers */,
+				64F5D15027600084000C3967 /* imagepaletteimage.h in Headers */,
 				642B29B025FD419700183D42 /* list.h in Headers */,
 				642B29D925FD444B00183D42 /* meltime.h in Headers */,
 				642B2A6D25FD462F00183D42 /* scene.h in Headers */,
@@ -1347,7 +1551,83 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				645260422614F88D00BB78AC /* meliceframework.h in Headers */,
+				645260422614F88D00BB78AC /* MeliceFramework.h in Headers */,
+				643EECAB275E6A6B0039FDAB /* melice.h in Headers */,
+				643EECAC275E6A6B0039FDAB /* melstd.h in Headers */,
+				643EECAD275E6A6B0039FDAB /* point.h in Headers */,
+				643EECAE275E6A6B0039FDAB /* quadrilateral.h in Headers */,
+				643EECAF275E6A6B0039FDAB /* rectangle.h in Headers */,
+				643EECB0275E6A6B0039FDAB /* size.h in Headers */,
+				643EECB1275E6A6B0039FDAB /* buttonstate.h in Headers */,
+				643EECB2275E6A6B0039FDAB /* buttonmapping.h in Headers */,
+				643EECB3275E6A6B0039FDAB /* filemanager.h in Headers */,
+				643EECB4275E6A6B0039FDAB /* gamecontroller.h in Headers */,
+				643EECB5275E6A6B0039FDAB /* gamecontrollerlistener.h in Headers */,
+				643EECB6275E6A6B0039FDAB /* inputsource.h in Headers */,
+				643EECB7275E6A6B0039FDAB /* inputsourcetype.h in Headers */,
+				643EECB8275E6A6B0039FDAB /* inputstream.h in Headers */,
+				643EECB9275E6A6B0039FDAB /* outputstream.h in Headers */,
+				643EECBA275E6A6B0039FDAB /* decorator.h in Headers */,
+				643EECBB275E6A6B0039FDAB /* layer.h in Headers */,
+				643EECBC275E6A6B0039FDAB /* map.h in Headers */,
+				643EECBD275E6A6B0039FDAB /* mutablemap.h in Headers */,
+				643EECBE275E6A6B0039FDAB /* mapgroup.h in Headers */,
+				643EECBF275E6A6B0039FDAB /* maprenderer.h in Headers */,
+				643EECC0275E6A6B0039FDAB /* palette.h in Headers */,
+				643EECC1275E6A6B0039FDAB /* colorpalette.h in Headers */,
+				643EECC2275E6A6B0039FDAB /* imagepalette.h in Headers */,
+				643EECC3275E6A6B0039FDAB /* atlaspalette.h in Headers */,
+				643EECC4275E6A6B0039FDAB /* project.h in Headers */,
+				643EECC5275E6A6B0039FDAB /* projectformat.h in Headers */,
+				643EECC6275E6A6B0039FDAB /* mmkprojectformat.h in Headers */,
+				643EECC7275E6A6B0039FDAB /* director.h in Headers */,
+				643EECC8275E6A6B0039FDAB /* fade.h in Headers */,
+				643EECC9275E6A6B0039FDAB /* scene.h in Headers */,
+				643EECCA275E6A6B0039FDAB /* animation.h in Headers */,
+				643EECCB275E6A6B0039FDAB /* animationframe.h in Headers */,
+				643EECCC275E6A6B0039FDAB /* animationtype.h in Headers */,
+				643EECCD275E6A6B0039FDAB /* loopinganimation.h in Headers */,
+				643EECCE275E6A6B0039FDAB /* noanimation.h in Headers */,
+				643EECCF275E6A6B0039FDAB /* playonceanimation.h in Headers */,
+				643EECD0275E6A6B0039FDAB /* singleframeanimation.h in Headers */,
+				643EECD1275E6A6B0039FDAB /* synchronizedanimation.h in Headers */,
+				643EECD2275E6A6B0039FDAB /* animationdefinition.h in Headers */,
+				643EECD3275E6A6B0039FDAB /* spritedefinition.h in Headers */,
+				643EECD4275E6A6B0039FDAB /* hitbox.h in Headers */,
+				643EECD5275E6A6B0039FDAB /* rotatedhitbox.h in Headers */,
+				643EECD6275E6A6B0039FDAB /* simplespritehitbox.h in Headers */,
+				643EECD7275E6A6B0039FDAB /* spritehitbox.h in Headers */,
+				643EECD8275E6A6B0039FDAB /* statichitbox.h in Headers */,
+				643EECD9275E6A6B0039FDAB /* motion.h in Headers */,
+				643EECDA275E6A6B0039FDAB /* nomotion.h in Headers */,
+				643EECDB275E6A6B0039FDAB /* axe.h in Headers */,
+				643EECDC275E6A6B0039FDAB /* direction.h in Headers */,
+				643EECDD275E6A6B0039FDAB /* sprite.h in Headers */,
+				643EECDE275E6A6B0039FDAB /* spriteinstance.h in Headers */,
+				643EECDF275E6A6B0039FDAB /* spritemanager.h in Headers */,
+				643EECE0275E6A6B0039FDAB /* bitmap.h in Headers */,
+				643EECE1275E6A6B0039FDAB /* color.h in Headers */,
+				643EECE2275E6A6B0039FDAB /* packmap.h in Headers */,
+				643EECE3275E6A6B0039FDAB /* renderer.h in Headers */,
+				643EECE4275E6A6B0039FDAB /* referencepool.h in Headers */,
+				643EECE5275E6A6B0039FDAB /* surface.h in Headers */,
+				643EECE6275E6A6B0039FDAB /* surfacearray.h in Headers */,
+				643EECE7275E6A6B0039FDAB /* surfacememory.h in Headers */,
+				643EECE8275E6A6B0039FDAB /* texture.h in Headers */,
+				643EECE9275E6A6B0039FDAB /* textureatlas.h in Headers */,
+				643EECEA275E6A6B0039FDAB /* dictionary.h in Headers */,
+				643EECEB275E6A6B0039FDAB /* keyvaluetable.h in Headers */,
+				643EECEC275E6A6B0039FDAB /* pointerintpointtable.h in Headers */,
+				643EECED275E6A6B0039FDAB /* hashmap.h in Headers */,
+				643EECEE275E6A6B0039FDAB /* list.h in Headers */,
+				643EECEF275E6A6C0039FDAB /* melmath.h in Headers */,
+				643EECF0275E6A6C0039FDAB /* melstring.h in Headers */,
+				643EECF1275E6A6C0039FDAB /* meltime.h in Headers */,
+				643EECF2275E6A6C0039FDAB /* operation.h in Headers */,
+				643EECF3275E6A6C0039FDAB /* primitives.h in Headers */,
+				64F5D1722760F81D000C3967 /* imagepaletteimage.h in Headers */,
+				643EECF4275E6A6C0039FDAB /* random.h in Headers */,
+				643EECF5275E6A6C0039FDAB /* miniz.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,6 +1640,7 @@
 				64CB66D1271F514100663A2E /* melice.h in Headers */,
 				64CB66D2271F514100663A2E /* melstd.h in Headers */,
 				64CB66D3271F514100663A2E /* point.h in Headers */,
+				64F5D15127600084000C3967 /* imagepaletteimage.h in Headers */,
 				64CB66D4271F514100663A2E /* quadrilateral.h in Headers */,
 				64CB66D5271F514100663A2E /* rectangle.h in Headers */,
 				64CB66D6271F514100663A2E /* size.h in Headers */,
@@ -1471,9 +1752,9 @@
 			productReference = 642B298B25FD340C00183D42 /* libmelice.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		6452603D2614F88D00BB78AC /* meliceframework */ = {
+		6452603D2614F88D00BB78AC /* MeliceFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "meliceframework" */;
+			buildConfigurationList = 645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "MeliceFramework" */;
 			buildPhases = (
 				645260392614F88D00BB78AC /* Headers */,
 				6452603A2614F88D00BB78AC /* Sources */,
@@ -1483,11 +1764,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				6452604A2614F89C00BB78AC /* PBXTargetDependency */,
 			);
-			name = meliceframework;
+			name = MeliceFramework;
 			productName = meliceframework;
-			productReference = 6452603E2614F88D00BB78AC /* meliceframework.framework */;
+			productReference = 6452603E2614F88D00BB78AC /* MeliceFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		64CB66C4271F504E00663A2E /* melice (iOS) */ = {
@@ -1550,7 +1830,7 @@
 				642B298A25FD340C00183D42 /* melice */,
 				64CB66C4271F504E00663A2E /* melice (iOS) */,
 				642B2B0E25FF70AB00183D42 /* melice-test */,
-				6452603D2614F88D00BB78AC /* meliceframework */,
+				6452603D2614F88D00BB78AC /* MeliceFramework */,
 			);
 		};
 /* End PBXProject section */
@@ -1626,6 +1906,7 @@
 				642B2A8725FD49C100183D42 /* singleframeanimation.c in Sources */,
 				642B2ABF25FD4A6900183D42 /* surfacememory.c in Sources */,
 				642B2A8625FD49C100183D42 /* animationframe.c in Sources */,
+				64F5D15227600084000C3967 /* imagepaletteimage.c in Sources */,
 				64EEAA59274280B500776662 /* decorator.c in Sources */,
 				642B2A9F25FD49E500183D42 /* rotatedhitbox.c in Sources */,
 				64D00E842731D85500C8A675 /* project.c in Sources */,
@@ -1637,6 +1918,7 @@
 				642B2AC925FD4A6900183D42 /* surface.c in Sources */,
 				642B2AAC25FD49F600183D42 /* nomotion.c in Sources */,
 				642B2AA125FD49E500183D42 /* simplespritehitbox.c in Sources */,
+				64F5D1562760E46C000C3967 /* mmkprojectformat-test.c in Sources */,
 				642B2A9125FD49C100183D42 /* noanimation.c in Sources */,
 				642B2A5725FD451F00183D42 /* inputstream.c in Sources */,
 				642B2A9425FD49C100183D42 /* animation.c in Sources */,
@@ -1644,6 +1926,7 @@
 				642B2A6F25FD462F00183D42 /* director.c in Sources */,
 				642B2A5F25FD451F00183D42 /* filemanager.c in Sources */,
 				64718A25273AAE5300547977 /* melstring.c in Sources */,
+				64F5D15F2760EF19000C3967 /* packmap-test.c in Sources */,
 				642B29D225FD441A00183D42 /* melmath.c in Sources */,
 				642B2A6925FD456B00183D42 /* layer.c in Sources */,
 				642B2AB225FD4A0300183D42 /* sprite.c in Sources */,
@@ -1683,7 +1966,84 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				645260592614FB3600BB78AC /* Scene.swift in Sources */,
+				643EECF6275E8D7D0039FDAB /* point.c in Sources */,
+				643EECF7275E8D7D0039FDAB /* quadrilateral.c in Sources */,
+				643EECF8275E8D7D0039FDAB /* rectangle.c in Sources */,
+				643EECF9275E8D7D0039FDAB /* size.c in Sources */,
+				643EECFA275E8D7D0039FDAB /* buttonstate.c in Sources */,
+				64F5D18127610A4D000C3967 /* MutableMap.swift in Sources */,
+				643EECFB275E8D7D0039FDAB /* buttonmapping.c in Sources */,
+				643EECFC275E8D7D0039FDAB /* filemanager.c in Sources */,
+				643EECFD275E8D7D0039FDAB /* gamecontroller.c in Sources */,
+				643EECFE275E8D7D0039FDAB /* gamecontrollerlistener.c in Sources */,
+				643EECFF275E8D7D0039FDAB /* inputsource.c in Sources */,
+				643EED00275E8D7D0039FDAB /* inputstream.c in Sources */,
+				643EED01275E8D7D0039FDAB /* outputstream.c in Sources */,
+				643EED02275E8D7D0039FDAB /* decorator.c in Sources */,
+				643EED03275E8D7D0039FDAB /* layer.c in Sources */,
+				643EED04275E8D7D0039FDAB /* map.c in Sources */,
+				643EED05275E8D7D0039FDAB /* mutablemap.c in Sources */,
+				643EED06275E8D7D0039FDAB /* mapgroup.c in Sources */,
+				64F5D18327610A69000C3967 /* Palette.swift in Sources */,
+				643EED07275E8D7D0039FDAB /* maprenderer.c in Sources */,
+				643EED08275E8D7D0039FDAB /* palette.c in Sources */,
+				64F5D16E2760F6AD000C3967 /* Quadrilateral.swift in Sources */,
+				643EED09275E8D7D0039FDAB /* colorpalette.c in Sources */,
+				643EED0A275E8D7D0039FDAB /* imagepalette.c in Sources */,
+				643EED0B275E8D7D0039FDAB /* atlaspalette.c in Sources */,
+				643EED0C275E8D7D0039FDAB /* project.c in Sources */,
+				643EED0D275E8D7D0039FDAB /* mmkprojectformat.c in Sources */,
+				643EED0E275E8D7E0039FDAB /* director.c in Sources */,
+				643EED0F275E8D7E0039FDAB /* fade.c in Sources */,
+				643EED10275E8D7E0039FDAB /* scene.c in Sources */,
+				643EED11275E8D7E0039FDAB /* animation.c in Sources */,
+				643EED12275E8D7E0039FDAB /* animationframe.c in Sources */,
+				643EED13275E8D7E0039FDAB /* animationtype.c in Sources */,
+				64F5D17A2760FDE1000C3967 /* Named.swift in Sources */,
+				64F5D16D2760F6AD000C3967 /* Scene.swift in Sources */,
+				643EED14275E8D7E0039FDAB /* loopinganimation.c in Sources */,
+				643EED15275E8D7E0039FDAB /* noanimation.c in Sources */,
+				643EED16275E8D7E0039FDAB /* playonceanimation.c in Sources */,
+				643EED17275E8D7E0039FDAB /* singleframeanimation.c in Sources */,
+				643EED18275E8D7E0039FDAB /* synchronizedanimation.c in Sources */,
+				643EED19275E8D7E0039FDAB /* animationdefinition.c in Sources */,
+				643EED1A275E8D7E0039FDAB /* spritedefinition.c in Sources */,
+				643EED1B275E8D7E0039FDAB /* hitbox.c in Sources */,
+				643EED1C275E8D7E0039FDAB /* rotatedhitbox.c in Sources */,
+				64F5D16B2760F6AD000C3967 /* Rectangle.swift in Sources */,
+				643EED1D275E8D7E0039FDAB /* simplespritehitbox.c in Sources */,
+				643EED1E275E8D7E0039FDAB /* spritehitbox.c in Sources */,
+				64F5D1732760FA49000C3967 /* imagepaletteimage.c in Sources */,
+				643EED1F275E8D7E0039FDAB /* statichitbox.c in Sources */,
+				643EED20275E8D7E0039FDAB /* motion.c in Sources */,
+				643EED21275E8D7E0039FDAB /* nomotion.c in Sources */,
+				643EED22275E8D7E0039FDAB /* direction.c in Sources */,
+				643EED23275E8D7E0039FDAB /* sprite.c in Sources */,
+				64F5D1692760F6AD000C3967 /* Point.swift in Sources */,
+				643EED24275E8D7E0039FDAB /* spriteinstance.c in Sources */,
+				643EED25275E8D7E0039FDAB /* spritemanager.c in Sources */,
+				643EED26275E8D7E0039FDAB /* bitmap.c in Sources */,
+				643EED27275E8D7E0039FDAB /* color.c in Sources */,
+				643EED28275E8D7E0039FDAB /* packmap.c in Sources */,
+				643EED29275E8D7E0039FDAB /* renderer.c in Sources */,
+				643EED2A275E8D7E0039FDAB /* referencepool.c in Sources */,
+				643EED2B275E8D7E0039FDAB /* surface.c in Sources */,
+				643EED2C275E8D7E0039FDAB /* surfacearray.c in Sources */,
+				643EED2D275E8D7E0039FDAB /* surfacememory.c in Sources */,
+				643EED2E275E8D7E0039FDAB /* texture.c in Sources */,
+				64F5D17D27610662000C3967 /* ProjectFormat.swift in Sources */,
+				643EED2F275E8D7E0039FDAB /* textureatlas.c in Sources */,
+				643EED30275E8D7E0039FDAB /* pointerintpointtable.c in Sources */,
+				64F5D1772760FBBB000C3967 /* Layer.swift in Sources */,
+				643EED31275E8D7E0039FDAB /* hashmap.c in Sources */,
+				643EED32275E8D7E0039FDAB /* melmath.c in Sources */,
+				643EED33275E8D7E0039FDAB /* melstring.c in Sources */,
+				643EED34275E8D7E0039FDAB /* meltime.c in Sources */,
+				643EED35275E8D7E0039FDAB /* operation.c in Sources */,
+				64F5D17F276109C7000C3967 /* List.swift in Sources */,
+				643EED36275E8D7E0039FDAB /* primitives.c in Sources */,
+				643EED37275E8D7E0039FDAB /* random.c in Sources */,
+				643EED38275E8D7E0039FDAB /* miniz.c in Sources */,
 				6452604C2614F8A900BB78AC /* Director.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1709,6 +2069,7 @@
 				64CB6716271F51E200663A2E /* maprenderer.c in Sources */,
 				64718A0327390F2A00547977 /* miniz.c in Sources */,
 				64CB6717271F51E200663A2E /* layer.c in Sources */,
+				64F5D15327600084000C3967 /* imagepaletteimage.c in Sources */,
 				64CB6718271F51E200663A2E /* director.c in Sources */,
 				64CB6719271F51E200663A2E /* fade.c in Sources */,
 				64D00E7F27318F0900C8A675 /* palette.c in Sources */,
@@ -1763,14 +2124,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6452604A2614F89C00BB78AC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 642B298A25FD340C00183D42 /* melice */;
-			targetProxy = 645260492614F89C00BB78AC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		642B298D25FD340C00183D42 /* Debug */ = {
@@ -1968,11 +2321,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = meliceframework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MODULEMAP_FILE = "";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1997,11 +2353,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = meliceframework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MODULEMAP_FILE = "";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2080,7 +2439,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "meliceframework" */ = {
+		645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "MeliceFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				645260432614F88D00BB78AC /* Debug */,
