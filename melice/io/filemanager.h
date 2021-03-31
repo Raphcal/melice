@@ -29,6 +29,14 @@ MELFileManager * _Nonnull MELFileManagerGetSharedInstance(void);
 void MELFileManagerInitWithArguments(MELFileManager * _Nonnull self, char * _Nonnull argv[_Nonnull]);
 
 /**
+ * Initiliaze the given file manager.
+ *
+ * @param self File Manager instance to initialize.
+ * @param assetsRoot Path to the directory containing assets.
+ */
+void MELFileManagerInitWithAssetsRoot(MELFileManager * _Nonnull self, const char * _Nonnull assetsRoot);
+
+/**
  * Deinitialize and free the resources used by the given file manager.
  * The file manager itself is not freed.
  *

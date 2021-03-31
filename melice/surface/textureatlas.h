@@ -38,7 +38,7 @@ typedef struct {
  * @param path Path prefix common to the texture and its atlas.
  * @return An atlas.
  */
-MELTextureAtlas MELTextureAtlasMakeWithPath(char * _Nonnull path);
+MELTextureAtlas MELTextureAtlasMakeWithPath(const char * _Nonnull path);
 
 /**
  * Returns an atlas by reading the content of the given input stream.

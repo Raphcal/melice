@@ -15,7 +15,7 @@
 #include "../geometry/point.h"
 
 typedef struct {
-    FILE * _Nonnull file;
+    FILE * _Nullable file;
     uint8_t * _Nonnull buffer;
     size_t size;
     size_t cursor;
