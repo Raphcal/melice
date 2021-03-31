@@ -381,7 +381,7 @@
 		642B2B0825FF703100183D42 /* spritedefinition-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "spritedefinition-test.c"; sourceTree = "<group>"; };
 		642B2B0B25FF703100183D42 /* map1-sprites.def */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map1-sprites.def"; sourceTree = "<group>"; };
 		642B2B1525FF8FED00183D42 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		6452603E2614F88D00BB78AC /* meliceframework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = meliceframework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6452603E2614F88D00BB78AC /* MeliceFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeliceFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		645260402614F88D00BB78AC /* meliceframework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = meliceframework.h; sourceTree = "<group>"; };
 		645260412614F88D00BB78AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6452604B2614F8A900BB78AC /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
@@ -431,7 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				642B298B25FD340C00183D42 /* libmelice.a */,
-				6452603E2614F88D00BB78AC /* meliceframework.framework */,
+				6452603E2614F88D00BB78AC /* MeliceFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -853,9 +853,9 @@
 			productReference = 642B298B25FD340C00183D42 /* libmelice.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		6452603D2614F88D00BB78AC /* meliceframework */ = {
+		6452603D2614F88D00BB78AC /* MeliceFramework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "meliceframework" */;
+			buildConfigurationList = 645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "MeliceFramework" */;
 			buildPhases = (
 				645260392614F88D00BB78AC /* Headers */,
 				6452603A2614F88D00BB78AC /* Sources */,
@@ -867,9 +867,9 @@
 			dependencies = (
 				6452604A2614F89C00BB78AC /* PBXTargetDependency */,
 			);
-			name = meliceframework;
+			name = MeliceFramework;
 			productName = meliceframework;
-			productReference = 6452603E2614F88D00BB78AC /* meliceframework.framework */;
+			productReference = 6452603E2614F88D00BB78AC /* MeliceFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -908,7 +908,7 @@
 			targets = (
 				642B298A25FD340C00183D42 /* melice */,
 				642B2B0E25FF70AB00183D42 /* melice-test */,
-				6452603D2614F88D00BB78AC /* meliceframework */,
+				6452603D2614F88D00BB78AC /* MeliceFramework */,
 			);
 		};
 /* End PBXProject section */
@@ -1196,6 +1196,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1225,6 +1226,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1266,7 +1268,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "meliceframework" */ = {
+		645260452614F88D00BB78AC /* Build configuration list for PBXNativeTarget "MeliceFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				645260432614F88D00BB78AC /* Debug */,

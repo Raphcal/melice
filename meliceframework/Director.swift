@@ -7,7 +7,7 @@
 
 import Melice
 
-extension MELDirector {
+public extension MELDirector {
     mutating func startWith(_ scene: inout MELScene) {
         MELDirectorStartWithScene(&self, &scene)
     }
