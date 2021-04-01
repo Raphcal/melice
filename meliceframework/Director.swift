@@ -8,8 +8,8 @@
 import Melice
 
 public extension MELDirector {
-    mutating func startWith(_ scene: inout MELScene) {
-        MELDirectorStartWithScene(&self, &scene)
+    mutating func startWith<T : MELSceneType>(_ scene: inout T) {
+        MELDirectorStartWithScene(&self, &scene.super)
     }
 
     func draw() {
