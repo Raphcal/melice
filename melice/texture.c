@@ -35,7 +35,12 @@ MELTexture MELTextureMake(char * _Nonnull path) {
     glBindTexture(GL_TEXTURE_2D, self.name);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.width, size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-    
+    GLenum error = glGetError();
+    if (error != GL_NO_ERROR) {
+        printf("glTexImage2D: error %d", error);
+        return (MELTexture) { MELIntSizeZero, 0 };
+    }
+
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     
