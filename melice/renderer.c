@@ -10,59 +10,63 @@
 
 #include <assert.h>
 
-typedef enum {
-    MELDrawModeUnset,
-    MELDrawModeTexture,
-    MELDrawModeColor,
-    MELDrawModeTextureAndColor
-} MELDrawMode;
+const MELRenderer MELRendererZero = {{0, 0}, NULL, MELDrawModeUnset, {{-1, -1}, {2, 2}}};
 
-MELPoint MELRendererLastTranslation = {0, 0};
-MELTexture *MELRendererLastTexture = NULL;
-MELDrawMode MELRendererDrawMode = MELDrawModeUnset;
-MELRectangle MELRendererFrame = {{-1, -1}, {2, 2}};
+MELRenderer defaultRenderer = {{0, 0}, NULL, MELDrawModeUnset, {{-1, -1}, {2, 2}}};
 
 void MELRendererClearState(void) {
-    MELRendererLastTranslation = MELPointMake(0, 0);
-    MELRendererLastTexture = NULL;
-    MELRendererDrawMode = MELDrawModeUnset;
+    defaultRenderer.lastTranslation = MELPointMake(0, 0);
+    defaultRenderer.lastTexture = NULL;
+    defaultRenderer.drawMode = MELDrawModeUnset;
 }
 
 void MELRendererInit(void) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     glAlphaFunc(GL_GREATER, (GLclampf)0.1);
-    
+
     glEnableClientState(GL_VERTEX_ARRAY);
 }
 
 void MELRendererApplyFlatOrthographicProjection(MELSize size) {
-    MELRendererFrame = MELRectangleMake(0, 0, size.width, size.height);
+    MELRendererRefApplyFlatOrthographicProjection(&defaultRenderer, size);
+}
+
+void MELRendererRefApplyFlatOrthographicProjection(MELRenderer * _Nonnull self, MELSize size) {
+    self->frame = MELRectangleMake(0, 0, size.width, size.height);
     glLoadIdentity();
     glOrtho(0, size.width, 0, size.height, -1, 1);
     glTranslatef(0, size.height, 0);
 }
 
 MELRectangle MELRendererGetFrame(void) {
-    return MELRendererFrame;
+    return defaultRenderer.frame;
 }
 
 void MELRendererBindTexture(MELTexture * _Nonnull texture) {
+    MELRendererRefBindTexture(&defaultRenderer, texture);
+}
+
+void MELRendererRefBindTexture(MELRenderer * _Nonnull self, MELTexture * _Nonnull texture) {
     assert(texture != NULL);
-    if (texture != MELRendererLastTexture) {
-        MELRendererLastTexture = texture;
+    if (texture != self->lastTexture) {
+        self->lastTexture = texture;
         glBindTexture(GL_TEXTURE_2D, texture->name);
     }
 }
 
 void MELRendererDrawWithVertexPointerAndTexCoordPointer(int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByTexture, GLfloat * _Nonnull texCoordPointer, GLsizei count) {
-    if (MELRendererDrawMode != MELDrawModeTexture) {
+    MELRendererRefDrawWithVertexPointerAndTexCoordPointer(&defaultRenderer, coordinatesByVertex, vertexPointer, coordinatesByTexture, texCoordPointer, count);
+}
+
+void MELRendererRefDrawWithVertexPointerAndTexCoordPointer(MELRenderer * _Nonnull self, int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByTexture, GLfloat * _Nonnull texCoordPointer, GLsizei count) {
+    if (self->drawMode != MELDrawModeTexture) {
         glDisableClientState(GL_COLOR_ARRAY);
-        if (MELRendererDrawMode != MELDrawModeTextureAndColor) {
+        if (self->drawMode != MELDrawModeTextureAndColor) {
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             glEnable(GL_TEXTURE_2D);
         }
-        MELRendererDrawMode = MELDrawModeTexture;
+        self->drawMode = MELDrawModeTexture;
     }
     glVertexPointer(coordinatesByVertex, GL_FLOAT, 0, vertexPointer);
     glTexCoordPointer(coordinatesByTexture, GL_FLOAT, 0, texCoordPointer);
@@ -70,13 +74,17 @@ void MELRendererDrawWithVertexPointerAndTexCoordPointer(int coordinatesByVertex,
 }
 
 void MELRendererDrawWithVertexPointerAndColorPointer(int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByColor, GLubyte * _Nonnull colorPointer, GLsizei count) {
-    if (MELRendererDrawMode != MELDrawModeColor) {
+    MELRendererRefDrawWithVertexPointerAndColorPointer(&defaultRenderer, coordinatesByVertex, vertexPointer, coordinatesByColor, colorPointer, count);
+}
+
+void MELRendererRefDrawWithVertexPointerAndColorPointer(MELRenderer * _Nonnull self, int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByColor, GLubyte * _Nonnull colorPointer, GLsizei count) {
+    if (self->drawMode != MELDrawModeColor) {
         glDisable(GL_TEXTURE_2D);
         glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-        if (MELRendererDrawMode != MELDrawModeTextureAndColor) {
+        if (self->drawMode != MELDrawModeTextureAndColor) {
             glEnableClientState(GL_COLOR_ARRAY);
         }
-        MELRendererDrawMode = MELDrawModeColor;
+        self->drawMode = MELDrawModeColor;
     }
     
     glVertexPointer(coordinatesByVertex, GL_FLOAT, 0, vertexPointer);
@@ -85,10 +93,14 @@ void MELRendererDrawWithVertexPointerAndColorPointer(int coordinatesByVertex, GL
 }
 
 void MELRendererDrawWithVertexPointerTexCoordPointerAndColorPointer(int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByTexture, GLfloat * _Nonnull texCoordPointer, int coordinatesByColor, GLubyte * _Nonnull colorPointer, GLsizei count) {
-    if (MELRendererDrawMode != MELDrawModeTextureAndColor) {
-        if (MELRendererDrawMode == MELDrawModeTexture) {
+    MELRendererRefDrawWithVertexPointerTexCoordPointerAndColorPointer(&defaultRenderer, coordinatesByVertex, vertexPointer, coordinatesByTexture, texCoordPointer, coordinatesByColor, colorPointer, count);
+}
+
+void MELRendererRefDrawWithVertexPointerTexCoordPointerAndColorPointer(MELRenderer * _Nonnull self, int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByTexture, GLfloat * _Nonnull texCoordPointer, int coordinatesByColor, GLubyte * _Nonnull colorPointer, GLsizei count) {
+    if (self->drawMode != MELDrawModeTextureAndColor) {
+        if (self->drawMode == MELDrawModeTexture) {
             glEnableClientState(GL_COLOR_ARRAY);
-        } else if (MELRendererDrawMode == MELDrawModeColor) {
+        } else if (self->drawMode == MELDrawModeColor) {
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             glEnable(GL_TEXTURE_2D);
         } else {
@@ -96,7 +108,7 @@ void MELRendererDrawWithVertexPointerTexCoordPointerAndColorPointer(int coordina
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             glEnable(GL_TEXTURE_2D);
         }
-        MELRendererDrawMode = MELDrawModeTextureAndColor;
+        self->drawMode = MELDrawModeTextureAndColor;
     }
     glVertexPointer(coordinatesByVertex, GL_FLOAT, 0, vertexPointer);
     glTexCoordPointer(coordinatesByTexture, GL_FLOAT, 0, texCoordPointer);
@@ -105,13 +117,17 @@ void MELRendererDrawWithVertexPointerTexCoordPointerAndColorPointer(int coordina
 }
 
 void MELRendererDrawWithSurfaceArray(MELSurfaceArray surfaceArray) {
-    if (MELRendererDrawMode != MELDrawModeTexture) {
+    MELRendererRefDrawWithSurfaceArray(&defaultRenderer, surfaceArray);
+}
+
+void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceArray surfaceArray) {
+    if (self->drawMode != MELDrawModeTexture) {
         glDisableClientState(GL_COLOR_ARRAY);
-        if (MELRendererDrawMode != MELDrawModeTextureAndColor) {
+        if (self->drawMode != MELDrawModeTextureAndColor) {
             glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             glEnable(GL_TEXTURE_2D);
         }
-        MELRendererDrawMode = MELDrawModeTexture;
+        self->drawMode = MELDrawModeTexture;
     }
     
     // TODO: Gérer l'affichage des couleurs. Ajouter un mode ?
@@ -126,9 +142,14 @@ void MELRendererClearWithColor(MELColor color) {
 }
 
 void MELRendererTranslateToTopLeft(MELPoint topLeft) {
-    MELPoint translation = MELPointSubstract(topLeft, MELRendererLastTranslation);
+    MELRendererRefTranslateToTopLeft(&defaultRenderer, topLeft);
+}
+
+void MELRendererRefTranslateToTopLeft(MELRenderer * _Nonnull self, MELPoint topLeft) {
+    MELPoint translation = MELPointSubstract(topLeft, self->lastTranslation);
     if (!MELPointEquals(translation, MELPointZero)) {
         glTranslatef(-translation.x, translation.y, 0);
-        MELRendererLastTranslation = topLeft;
+        self->lastTranslation = topLeft;
     }
 }
+
