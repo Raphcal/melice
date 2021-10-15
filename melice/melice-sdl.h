@@ -11,6 +11,6 @@
 
 #include "melice.h"
 
-#include "io/keyboardinputsource-sdl.h"
+#include "keyboardinputsource-sdl.h"
 
 #endif /* melice_sdl_h */
