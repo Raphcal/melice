@@ -11,48 +11,72 @@
 #include <string.h>
 #include "inputstream.h"
 
+#define BITMAP_MAGIC "BM"
 #define MAGIC_LENGTH 2
 #define VENDOR_LENGTH 4
 #define BITMAP_HEADER_LENGTH 14
 #define BITMAP_V4_HEADER_LENGTH 108
 #define BITFIELDS_COMPRESSION 3
 
-uint32_t * _Nullable MELLoadBMP(char * _Nonnull path, MELIntSize * _Nonnull size);
+MELIntSize MELReadBMPSize(const char * _Nonnull path);
+uint32_t * _Nullable MELLoadBMP(const char * _Nonnull path, MELIntSize * _Nonnull size);
 
-MELTexture MELTextureMake(char * _Nonnull path) {
+MELTexture MELTextureMake(const char * _Nonnull path) {
+    MELTexture self = {NULL, {0, 0}, 0};
+    const size_t pathLength = strlen(path);
+    self.path = calloc(pathLength + 1, sizeof(char));
+    memcpy(self.path, path, pathLength);
+    self.size = MELReadBMPSize(path);
+    return self;
+}
+
+void MELTextureLoad(MELTexture * _Nonnull self) {
+    assert(self->path != NULL);
+
+    if (self->name != 0) {
+        printf("MELTextureLoad: texture seems to be already loaded. Was bound with name %ud", self->name);
+        return;
+    }
+
     MELIntSize size;
-    void * _Nullable pixels = MELLoadBMP(path, &size);
+    void * _Nullable pixels = MELLoadBMP(self->path, &size);
     
     if (pixels == NULL) {
         printf("MELLoadBMP failed");
-        return (MELTexture) { MELIntSizeZero, 0 };
+        return;
     }
+
+    self->size = size;
     
-    MELTexture self;
-    self.size = size;
-    
-    glGenTextures(1 , &self.name);
-    glBindTexture(GL_TEXTURE_2D, self.name);
+    glGenTextures(1 , &self->name);
+    glBindTexture(GL_TEXTURE_2D, self->name);
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.width, size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    free(pixels);
+
     GLenum error = glGetError();
     if (error != GL_NO_ERROR) {
         printf("glTexImage2D: error %d", error);
-        return (MELTexture) { MELIntSizeZero, 0 };
+        return;
     }
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    
-    free(pixels);
-    
-    return self;
 }
 
 void MELTextureDeinit(MELTexture * _Nonnull self) {
+    free(self->path);
+    self->path = NULL;
     self->size = MELIntSizeZero;
-    glDeleteTextures(1, &self->name);
-    self->name = 0;
+    if (self->name != 0) {
+        glDeleteTextures(1, &self->name);
+        self->name = 0;
+    }
+}
+
+void MELTextureBind(MELTexture self) {
+    assert(self.name != 0);
+    glBindTexture(GL_TEXTURE_2D, self.name);
 }
 
 int32_t bitShiftForMask(uint32_t mask) {
@@ -69,13 +93,39 @@ int32_t bitShiftForMask(uint32_t mask) {
     }
 }
 
-uint32_t * _Nullable MELLoadBMP(char * _Nonnull path, MELIntSize * _Nonnull size) {
+MELIntSize MELReadBMPSize(const char * _Nonnull path) {
     MELInputStream inputStream = MELInputStreamOpen(path);
     char header[2];
     MELInputStreamRead(&inputStream, header, MAGIC_LENGTH);
 
-    if (strncmp(header, "BM", MAGIC_LENGTH) != 0) {
+    if (strncmp(header, BITMAP_MAGIC, MAGIC_LENGTH) != 0) {
         // Bad header.
+        MELInputStreamClose(&inputStream);
+        return MELIntSizeMake(0, 0);
+    }
+
+    /* int32_t fileSize = */ MELInputStreamReadInt(&inputStream);
+    MELInputStreamSkipBytes(&inputStream, VENDOR_LENGTH);
+
+    /* int32_t contentPosition = */ MELInputStreamReadInt(&inputStream);
+
+    int32_t headerLength = MELInputStreamReadInt(&inputStream);
+    assert(headerLength == BITMAP_V4_HEADER_LENGTH);
+
+    MELIntSize imageSize = MELIntSizeMake(MELInputStreamReadInt(&inputStream),
+                           MELInputStreamReadInt(&inputStream));
+    MELInputStreamClose(&inputStream);
+    return imageSize;
+}
+
+uint32_t * _Nullable MELLoadBMP(const char * _Nonnull path, MELIntSize * _Nonnull size) {
+    MELInputStream inputStream = MELInputStreamOpen(path);
+    char header[2];
+    MELInputStreamRead(&inputStream, header, MAGIC_LENGTH);
+
+    if (strncmp(header, BITMAP_MAGIC, MAGIC_LENGTH) != 0) {
+        // Bad header.
+        MELInputStreamClose(&inputStream);
         return NULL;
     }
     /* int32_t fileSize = */ MELInputStreamReadInt(&inputStream);
@@ -118,6 +168,7 @@ uint32_t * _Nullable MELLoadBMP(char * _Nonnull path, MELIntSize * _Nonnull size
     MELInputStreamRead(&inputStream, winHeader, 4);
     if (strncmp(winHeader, " niW", MAGIC_LENGTH) != 0) {
         // Bad header.
+        MELInputStreamClose(&inputStream);
         return NULL;
     }
 
@@ -137,6 +188,8 @@ uint32_t * _Nullable MELLoadBMP(char * _Nonnull path, MELIntSize * _Nonnull size
     for (uint32_t y = 0; y < imageSize.height; y++, line -= imageSize.width) {
         MELInputStreamRead(&inputStream, line, lineLength);
     }
+
+    MELInputStreamClose(&inputStream);
 
     return pixels;
 }
