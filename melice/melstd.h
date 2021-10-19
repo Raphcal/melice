@@ -16,7 +16,13 @@
 #include <math.h>
 
 #ifdef __MACH__
+#include <TargetConditionals.h>
+#if TARGET_OS_IPHONE
+#import <OpenGLES/ES1/gl.h>
+#define glOrtho glOrthof
+#else
 #include <OpenGL/gl.h>
+#endif
 #endif
 
 #ifdef __linux__
