@@ -34,6 +34,7 @@ void MELRendererApplyFlatOrthographicProjection(MELSize size) {
 
 void MELRendererRefApplyFlatOrthographicProjection(MELRenderer * _Nonnull self, MELSize size) {
     self->frame = MELRectangleMake(0, 0, size.width, size.height);
+    self->lastTranslation = MELPointZero;
     glLoadIdentity();
     glOrtho(0, size.width, 0, size.height, -1, 1);
     glTranslatef(0, size.height, 0);
