@@ -11,6 +11,8 @@
 
 #include "melstd.h"
 
+typedef struct melsize MELSize;
+
 /**
  * Floating coordinates of a point in a 2D plane.
  */
@@ -65,6 +67,13 @@ MELBoolean MELPointEquals(MELPoint lhs, MELPoint rhs);
  * @return A point whose coordinates are lhs.x + rhs.x and lhs.y + rhs.y.
  */
 MELPoint MELPointAdd(MELPoint lhs, MELPoint rhs);
+
+/**
+ * Adds the given points.
+ *
+ * @return A point whose coordinates are `lhs.x + rhs.width` and `lhs.y + rhs.height`.
+ */
+MELPoint MELPointAddSize(MELPoint lhs, MELSize rhs);
 
 /**
  * Substracts the given points.

@@ -10,6 +10,7 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "size.h"
 
 const MELPoint MELPointZero = {0, 0};
 
@@ -35,6 +36,13 @@ MELPoint MELPointAdd(MELPoint lhs, MELPoint rhs) {
     return (MELPoint) {
         lhs.x + rhs.x,
         lhs.y + rhs.y
+    };
+}
+
+MELPoint MELPointAddSize(MELPoint lhs, MELSize rhs) {
+    return (MELPoint) {
+        lhs.x + rhs.width,
+        lhs.y + rhs.height
     };
 }
 

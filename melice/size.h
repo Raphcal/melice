@@ -11,7 +11,7 @@
 
 #include "melstd.h"
 
-typedef struct {
+typedef struct melsize {
     GLfloat width;
     GLfloat height;
 } MELSize;
