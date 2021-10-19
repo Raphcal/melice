@@ -355,7 +355,6 @@
 		642B2A3925FD448B00183D42 /* surface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = surface.h; sourceTree = "<group>"; };
 		642B2A3A25FD448B00183D42 /* surfacememory.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = surfacememory.c; sourceTree = "<group>"; };
 		642B2A3B25FD448B00183D42 /* referencepool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = referencepool.h; sourceTree = "<group>"; };
-		642B2A3C25FD448B00183D42 /* texture-sdl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "texture-sdl.c"; sourceTree = "<group>"; };
 		642B2A3D25FD448B00183D42 /* renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = renderer.h; sourceTree = "<group>"; };
 		642B2A3E25FD448B00183D42 /* textureatlas.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = textureatlas.c; sourceTree = "<group>"; };
 		642B2A3F25FD448B00183D42 /* color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
@@ -635,7 +634,6 @@
 				642B2A3A25FD448B00183D42 /* surfacememory.c */,
 				642B2A4325FD448B00183D42 /* texture.h */,
 				642B2AD225FD4E9800183D42 /* texture.c */,
-				642B2A3C25FD448B00183D42 /* texture-sdl.c */,
 				642B2A4425FD448B00183D42 /* textureatlas.h */,
 				642B2A3E25FD448B00183D42 /* textureatlas.c */,
 			);
