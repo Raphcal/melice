@@ -136,7 +136,7 @@ int32_t * _Nonnull MELInputStreamReadIntArray(MELInputStream * _Nonnull self, in
  * @param self Input stream instance.
  * @return An UTF-16 string. You are responsible for freeing the returned string.
  */
-wchar_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self);
+uint16_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self);
 
 /**
  * Reads and returns an UTF-16 string from the given input stream.
@@ -144,7 +144,7 @@ wchar_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self);
  * @param self Input stream instance.
  * @return An UTF-16 string or NULL. You are responsible for freeing the returned string.
  */
-wchar_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self);
+uint16_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self);
 
 /**
  * Reads and returns a color from the given input stream.

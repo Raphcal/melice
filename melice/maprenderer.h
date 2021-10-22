@@ -15,10 +15,12 @@
 #include "textureatlas.h"
 #include "surfacearray.h"
 #include "point.h"
+#include "renderer.h"
 
 #define MELTileSize 32
 
 typedef struct {
+    MELRenderer * _Nonnull renderer;
     MELMap map;
     MELTextureAtlas atlas;
     MELSurfaceArray * _Nullable layerSurfaces;
@@ -32,6 +34,7 @@ typedef struct {
  * @return A renderer.
  */
 MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap map, MELTextureAtlas atlas);
+MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnull renderer, MELMap map, MELTextureAtlas atlas);
 
 MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map);
 

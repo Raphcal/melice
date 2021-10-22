@@ -16,11 +16,11 @@
 #include "list.h"
 
 typedef struct {
-    wchar_t * _Nullable name;
+    uint16_t * _Nullable name;
     uint32_t type;
 	unsigned int animationCount;
     MELAnimationDefinition * _Nullable animations;
-    wchar_t * _Nullable motionName;
+    uint16_t * _Nullable motionName;
 } MELSpriteDefinition;
 
 MELListDefine(MELSpriteDefinition);

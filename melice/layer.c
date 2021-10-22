@@ -15,10 +15,9 @@ MELLayer MELLayerMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
 
     MELLayer self;
     self.name = MELInputStreamReadString(inputStream);
-    self.width = MELInputStreamReadInt(inputStream);
-    self.height = MELInputStreamReadInt(inputStream);
+    self.size = MELIntSizeMake(MELInputStreamReadInt(inputStream), MELInputStreamReadInt(inputStream));
     self.scrollRate = MELInputStreamReadPoint(inputStream);
-    
+
     self.tiles = MELInputStreamReadIntArray(inputStream, &self.tileCount);
     return self;
 }
@@ -26,8 +25,7 @@ MELLayer MELLayerMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
 void MELLayerDeinit(MELLayer * _Nonnull self) {
     free(self->name);
     self->name = NULL;
-    self->width = 0;
-    self->height = 0;
+    self->size = MELIntSizeZero;
     self->tileCount = 0;
     free(self->tiles);
     self->tiles = NULL;
@@ -35,11 +33,11 @@ void MELLayerDeinit(MELLayer * _Nonnull self) {
 }
 
 int MELLayerTileAtXAndY(MELLayer self, int x, int y) {
-    return x >= 0 && x < self.width && y >= 0 && y < self.height ? self.tiles[y * self.width + x] : -1;
+    return x >= 0 && x < self.size.width && y >= 0 && y < self.size.height ? self.tiles[y * self.size.width + x] : -1;
 }
 
 void MELLayerRendererToSurfaceArray(MELLayer self, MELSurfaceArray * _Nonnull destination, MELTextureAtlas textureAtlas) {
-    const int width = self.width;
+    const int width = self.size.width;
     
     for (int index = 0; index < self.tileCount; index++) {
         const GLfloat x = index % width;

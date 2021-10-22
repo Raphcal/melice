@@ -164,21 +164,17 @@ int32_t * _Nonnull MELInputStreamReadIntArray(MELInputStream * _Nonnull self, in
     return array;
 }
 
-wchar_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self) {
+uint16_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self) {
     int32_t count = MELInputStreamReadInt(self);
-    
-    wchar_t *string = malloc(sizeof(wchar_t) * (count + 1));
-    for (int32_t index = 0; index < count; index++) {
-        uint16_t c;
-        MELInputStreamRead(self, &c, sizeof(uint16_t));
-        string[index] = (wchar_t)c;
-    }
+
+    uint16_t *string = malloc(sizeof(uint16_t) * (count + 1));
+    MELInputStreamRead(self, string, sizeof(uint16_t) * count);
     string[count] = '\0';
-    
+
     return string;
 }
 
-wchar_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self) {
+uint16_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self) {
     if (MELInputStreamReadBoolean(self)) {
         return MELInputStreamReadString(self);
     } else {

@@ -16,9 +16,8 @@
 #include "textureatlas.h"
 
 typedef struct {
-    wchar_t * _Nullable name;
-    int width;
-    int height;
+    uint16_t * _Nullable name;
+    MELIntSize size;
     int tileCount;
     int * _Nullable tiles;
     MELPoint scrollRate;

@@ -28,6 +28,10 @@ void MELRendererInit(void) {
     glEnableClientState(GL_VERTEX_ARRAY);
 }
 
+MELRenderer * _Nonnull MELRendererGetDefault(void) {
+    return &defaultRenderer;
+}
+
 void MELRendererApplyFlatOrthographicProjection(MELSize size) {
     MELRendererRefApplyFlatOrthographicProjection(&defaultRenderer, size);
 }

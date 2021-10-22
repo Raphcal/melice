@@ -12,18 +12,23 @@
 #include "renderer.h"
 
 MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap map, MELTextureAtlas atlas) {
+    return MELMapRendererMakeWithRendererAndMapAndAtlas(MELRendererGetDefault(), map, atlas);
+}
+
+MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnull renderer, MELMap map, MELTextureAtlas atlas) {
     MELMapRenderer self;
+    self.renderer = renderer;
     self.map = map;
     self.atlas = atlas;
-    
+
     MELSurfaceArray *layerSurfaces = calloc(map.layerCount, sizeof(MELSurfaceArray));
     for (int index = 0; index < map.layerCount; index++) {
         MELLayer layer = map.layers[index];
         MELSurfaceArray layerSurface = MELSurfaceArrayMakeWithInitialCapacity(layer.tileCount);
-        
-        const int width = layer.width;
-        const int height = layer.height;
-        
+
+        const int width = layer.size.width;
+        const int height = layer.size.height;
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int tile = MELLayerTileAtXAndY(layer, x, y);
@@ -32,28 +37,28 @@ MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap map, MELTextureAtlas atl
                 }
             }
         }
-        
+
         layerSurfaces[index] = layerSurface;
     }
     self.layerSurfaces = layerSurfaces;
-    
+
     return self;
 }
 
 MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map) {
     MELMapRenderer self;
     self.map = map;
-    
+
     MELUInt8Color black = MELUInt8ColorMake(0, 0, 0, 255);
-    
+
     MELSurfaceArray *layerSurfaces = calloc(map.layerCount, sizeof(MELSurfaceArray));
     for (int index = 0; index < map.layerCount; index++) {
         MELLayer layer = map.layers[index];
         MELSurfaceArray layerSurface = MELSurfaceArrayMakeWithInitialCapacity(layer.tileCount);
-        
-        const int width = layer.width;
-        const int height = layer.height;
-        
+
+        const int width = layer.size.width;
+        const int height = layer.size.height;
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int tile = MELLayerTileAtXAndY(layer, x, y);
@@ -62,11 +67,11 @@ MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map) {
                 }
             }
         }
-        
+
         layerSurfaces[index] = layerSurface;
     }
     self.layerSurfaces = layerSurfaces;
-    
+
     return self;
 }
 
@@ -92,8 +97,8 @@ void MELMapRendererDrawTranslated(MELMapRenderer self, MELPoint translation) {
 }
 
 void MELMapRendererDrawRangeTranslated(MELMapRenderer self, MELPoint translation, unsigned int fromLayer, unsigned int toLayer) {
-    MELRendererBindTexture(&self.atlas.texture);
-    
+    MELRendererRefBindTexture(self.renderer, &self.atlas.texture);
+
     assert(fromLayer >= 0);
     assert(toLayer <= (unsigned int)self.map.layerCount);
 
@@ -101,16 +106,14 @@ void MELMapRendererDrawRangeTranslated(MELMapRenderer self, MELPoint translation
     MELLayer *layers = self.map.layers;
     for (unsigned int index = fromLayer; index < toLayer; index++) {
         const MELPoint layerTranslation = MELPointMultiply(translation, layers[index].scrollRate);
-        
-        MELRendererTranslateToTopLeft(layerTranslation);
+
+        MELRendererRefTranslateToTopLeft(self.renderer, layerTranslation);
         MELSurfaceArray layerSurface = layerSurfaces[index];
-        MELRendererDrawWithVertexPointerAndTexCoordPointer(MELCoordinatesByVertex, (GLfloat *) layerSurface.vertex.memory, MELCoordinatesByTexture, (GLfloat *) layerSurface.texture.memory, layerSurface.count);
+        MELRendererRefDrawWithVertexPointerAndTexCoordPointer(self.renderer, MELCoordinatesByVertex, (GLfloat *) layerSurface.vertex.memory, MELCoordinatesByTexture, (GLfloat *) layerSurface.texture.memory, layerSurface.count);
     }
 }
 
 void MELMapRendererDrawColorRangeTranslated(MELMapRenderer self, MELPoint translation, unsigned int fromLayer, unsigned int toLayer) {
-    MELRendererBindTexture(&self.atlas.texture);
-    
     assert(fromLayer >= 0);
     assert(toLayer <= (unsigned int)self.map.layerCount);
     
@@ -119,8 +122,8 @@ void MELMapRendererDrawColorRangeTranslated(MELMapRenderer self, MELPoint transl
     for (unsigned int index = fromLayer; index < toLayer; index++) {
         const MELPoint layerTranslation = MELPointMultiply(translation, layers[index].scrollRate);
         
-        MELRendererTranslateToTopLeft(layerTranslation);
+        MELRendererRefTranslateToTopLeft(self.renderer, layerTranslation);
         MELSurfaceArray layerSurface = layerSurfaces[index];
-        MELRendererDrawWithVertexPointerAndColorPointer(MELCoordinatesByVertex, (GLfloat *) layerSurface.vertex.memory, MELCoordinatesByColor, (GLubyte *) layerSurface.color.memory, layerSurface.count);
+        MELRendererRefDrawWithVertexPointerAndColorPointer(self.renderer, MELCoordinatesByVertex, (GLfloat *) layerSurface.vertex.memory, MELCoordinatesByColor, (GLubyte *) layerSurface.color.memory, layerSurface.count);
     }
 }

@@ -23,18 +23,17 @@ MELMap MELMapMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     self.layers = calloc(self.layerCount, sizeof(MELLayer));
     for (int index = 0; index < self.layerCount; index++) {
         MELLayer layer = MELLayerMakeWithInputStream(inputStream);
-        maxWidth = layer.width > maxWidth ? layer.width : maxWidth;
-        maxHeight = layer.height > maxHeight ? layer.height : maxHeight;
+        maxWidth = layer.size.width > maxWidth ? layer.size.width : maxWidth;
+        maxHeight = layer.size.height > maxHeight ? layer.size.height : maxHeight;
         self.layers[index] = layer;
     }
-    self.width = maxWidth;
-    self.height = maxHeight;
+    self.size = MELIntSizeMake(maxWidth, maxHeight);
     return self;
 }
 
 void MELMapDeinit(MELMap * _Nonnull self) {
-    self->width = 0;
-    self->height = 0;
+    self->size.width = 0;
+    self->size.height = 0;
     self->backgroundColor = (MELColor) {0,0,0,0};
 	unsigned int layerCount = self->layerCount;
     self->layerCount = 0;

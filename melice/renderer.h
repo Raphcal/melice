@@ -55,6 +55,11 @@ void MELRendererRefClearState(MELRenderer * _Nonnull self);
 void MELRendererInit(void);
 
 /**
+ * Get the default renderer;
+ */
+MELRenderer * _Nonnull MELRendererGetDefault(void);
+
+/**
  * Apply a 2D orthographic projection of the given size.
  *
  * @param size Size of the screen after the projection has been applied.

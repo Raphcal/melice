@@ -645,6 +645,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		640E59202721FCB300D2D559 /* editor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = editor;
+			sourceTree = "<group>";
+		};
 		6421E77C2613A84300952E74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,6 +685,7 @@
 		642B299F25FD40C600183D42 /* melice */ = {
 			isa = PBXGroup;
 			children = (
+				640E59202721FCB300D2D559 /* editor */,
 				6421E8D52614480000952E74 /* module.modulemap */,
 				642B299325FD342100183D42 /* melice.h */,
 				642B299A25FD348900183D42 /* melstd.h */,

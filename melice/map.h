@@ -16,8 +16,7 @@
 #include "inputstream.h"
 
 typedef struct {
-    int width;
-    int height;
+    MELIntSize size;
     MELColor backgroundColor;
     int layerCount;
     MELLayer * _Nullable layers;
