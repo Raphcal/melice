@@ -41,7 +41,7 @@ double MELDoubleMaxVariadic(int count, ...) {
 }
 
 GLfloat MELFloatBound(GLfloat min, GLfloat value, GLfloat max) {
-    return value < min ? min : value < max ? value : max;
+    return min > max ? min : (value < min ? min : (value < max ? value : max));
 }
 
 int64_t MELInt64Max(int64_t lhs, int64_t rhs) {
