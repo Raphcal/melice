@@ -43,7 +43,7 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
     assert(self->path != NULL);
 
     if (self->name != 0) {
-        printf("MELTextureLoad: texture seems to be already loaded. Was bound with name %ud", self->name);
+        printf("MELTextureLoad: texture seems to be already loaded. Was bound with name %ud\n", self->name);
         return;
     }
 
@@ -51,7 +51,7 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
     void * _Nullable pixels = MELLoadBMP(self->path, &size);
     
     if (pixels == NULL) {
-        printf("MELLoadBMP failed");
+        printf("MELLoadBMP failed\n");
         return;
     }
     self->size = size;
@@ -62,7 +62,7 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
     glGenTextures(1 , &self->name);
     error = glGetError();
     if (error != GL_NO_ERROR) {
-        printf("glGenTextures: error %d", error);
+        printf("glGenTextures: error %d\n", error);
         return;
     }
 
@@ -71,13 +71,13 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
     if (error != GL_NO_ERROR) {
         switch (error) {
             case GL_INVALID_ENUM:
-                printf("glBindTexture: Target GL_TEXTURE_2D is not allowable"); break;
+                printf("glBindTexture: Target GL_TEXTURE_2D is not allowable\n"); break;
             case GL_INVALID_VALUE:
-                printf("glBindTexture: %d is not a name returned by glGenTextures", self->name); break;
+                printf("glBindTexture: %d is not a name returned by glGenTextures\n", self->name); break;
             case GL_INVALID_OPERATION:
-                printf("glBindTexture: texture %d was previously created with a target that doesn't match that of GL_TEXTURE_2D", self->name); break;
+                printf("glBindTexture: texture %d was previously created with a target that doesn't match that of GL_TEXTURE_2D\n", self->name); break;
             default:
-                printf("glBindTexture: other error %d", error); break;
+                printf("glBindTexture: other error %d\n", error); break;
         }
     }
 
@@ -86,7 +86,7 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
 
     error = glGetError();
     if (error != GL_NO_ERROR) {
-        printf("glTexImage2D: error %d", error);
+        printf("glTexImage2D: error %d\n", error);
         return;
     }
 
