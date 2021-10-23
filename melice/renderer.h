@@ -206,4 +206,6 @@ void MELRendererTranslateToTopLeft(MELPoint topLeft);
  */
 void MELRendererRefTranslateToTopLeft(MELRenderer * _Nonnull self, MELPoint topLeft);
 
+void MELRendererRefSetDrawMode(MELRenderer * _Nonnull self, MELDrawMode drawMode);
+
 #endif /* renderer_h */

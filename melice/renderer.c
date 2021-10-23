@@ -65,14 +65,7 @@ void MELRendererDrawWithVertexPointerAndTexCoordPointer(int coordinatesByVertex,
 }
 
 void MELRendererRefDrawWithVertexPointerAndTexCoordPointer(MELRenderer * _Nonnull self, int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByTexture, GLfloat * _Nonnull texCoordPointer, GLsizei count) {
-    if (self->drawMode != MELDrawModeTexture) {
-        glDisableClientState(GL_COLOR_ARRAY);
-        if (self->drawMode != MELDrawModeTextureAndColor) {
-            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            glEnable(GL_TEXTURE_2D);
-        }
-        self->drawMode = MELDrawModeTexture;
-    }
+    MELRendererRefSetDrawMode(self, MELDrawModeTexture);
     glVertexPointer(coordinatesByVertex, GL_FLOAT, 0, vertexPointer);
     glTexCoordPointer(coordinatesByTexture, GL_FLOAT, 0, texCoordPointer);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, count);
@@ -83,15 +76,7 @@ void MELRendererDrawWithVertexPointerAndColorPointer(int coordinatesByVertex, GL
 }
 
 void MELRendererRefDrawWithVertexPointerAndColorPointer(MELRenderer * _Nonnull self, int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByColor, GLubyte * _Nonnull colorPointer, GLsizei count) {
-    if (self->drawMode != MELDrawModeColor) {
-        glDisable(GL_TEXTURE_2D);
-        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-        if (self->drawMode != MELDrawModeTextureAndColor) {
-            glEnableClientState(GL_COLOR_ARRAY);
-        }
-        self->drawMode = MELDrawModeColor;
-    }
-    
+    MELRendererRefSetDrawMode(self, MELDrawModeColor);
     glVertexPointer(coordinatesByVertex, GL_FLOAT, 0, vertexPointer);
     glColorPointer(coordinatesByColor, GL_UNSIGNED_BYTE, 0, colorPointer);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, count);
@@ -102,19 +87,7 @@ void MELRendererDrawWithVertexPointerTexCoordPointerAndColorPointer(int coordina
 }
 
 void MELRendererRefDrawWithVertexPointerTexCoordPointerAndColorPointer(MELRenderer * _Nonnull self, int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByTexture, GLfloat * _Nonnull texCoordPointer, int coordinatesByColor, GLubyte * _Nonnull colorPointer, GLsizei count) {
-    if (self->drawMode != MELDrawModeTextureAndColor) {
-        if (self->drawMode == MELDrawModeTexture) {
-            glEnableClientState(GL_COLOR_ARRAY);
-        } else if (self->drawMode == MELDrawModeColor) {
-            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            glEnable(GL_TEXTURE_2D);
-        } else {
-            glEnableClientState(GL_COLOR_ARRAY);
-            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            glEnable(GL_TEXTURE_2D);
-        }
-        self->drawMode = MELDrawModeTextureAndColor;
-    }
+    MELRendererRefSetDrawMode(self, MELDrawModeTextureAndColor);
     glVertexPointer(coordinatesByVertex, GL_FLOAT, 0, vertexPointer);
     glTexCoordPointer(coordinatesByTexture, GL_FLOAT, 0, texCoordPointer);
     glColorPointer(coordinatesByColor, GL_UNSIGNED_BYTE, 0, colorPointer);
@@ -126,15 +99,8 @@ void MELRendererDrawWithSurfaceArray(MELSurfaceArray surfaceArray) {
 }
 
 void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceArray surfaceArray) {
-    if (self->drawMode != MELDrawModeTexture) {
-        glDisableClientState(GL_COLOR_ARRAY);
-        if (self->drawMode != MELDrawModeTextureAndColor) {
-            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-            glEnable(GL_TEXTURE_2D);
-        }
-        self->drawMode = MELDrawModeTexture;
-    }
-    
+    MELRendererRefSetDrawMode(self, MELDrawModeTexture);
+
     // TODO: Gérer l'affichage des couleurs. Ajouter un mode ?
     glVertexPointer(MELCoordinatesByVertex, GL_FLOAT, 0, surfaceArray.vertex.memory);
     glTexCoordPointer(MELCoordinatesByTexture, GL_FLOAT, 0, surfaceArray.texture.memory);
@@ -158,3 +124,31 @@ void MELRendererRefTranslateToTopLeft(MELRenderer * _Nonnull self, MELPoint topL
     }
 }
 
+MELBoolean isDrawModeIncluded(MELDrawMode self, MELDrawMode other) {
+    return self == other || self == MELDrawModeTextureAndColor;
+}
+
+void MELRendererRefSetDrawMode(MELRenderer * _Nonnull self, MELDrawMode drawMode) {
+    if (self->drawMode == drawMode) {
+        return;
+    }
+
+    const MELBoolean textureIsEnabled = isDrawModeIncluded(self->drawMode, MELDrawModeTexture);
+    const MELBoolean wantTextureToBeEnabled = isDrawModeIncluded(drawMode, MELDrawModeTexture);
+    if (textureIsEnabled && !wantTextureToBeEnabled) {
+        glDisable(GL_TEXTURE_2D);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    } else if (!textureIsEnabled && wantTextureToBeEnabled) {
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        glEnable(GL_TEXTURE_2D);
+    }
+
+    const MELBoolean colorIsEnabled = isDrawModeIncluded(self->drawMode, MELDrawModeColor);
+    const MELBoolean wantColorToBeEnabled = isDrawModeIncluded(drawMode, MELDrawModeColor);
+    if (colorIsEnabled && !wantColorToBeEnabled) {
+        glDisableClientState(GL_COLOR_ARRAY);
+    } else if (!colorIsEnabled && wantColorToBeEnabled) {
+        glEnableClientState(GL_COLOR_ARRAY);
+    }
+    self->drawMode = drawMode;
+}

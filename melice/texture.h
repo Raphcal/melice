@@ -27,11 +27,23 @@ typedef struct {
 MELTexture MELTextureMake(const char * _Nonnull path);
 
 /**
+ * Create a new texture instance for the bitmap file with the given folder in the current asset folder.
+ *
+ * @param asset Name of the bitmap file.
+ */
+MELTexture MELTextureMakeWithAsset(const char * _Nonnull asset);
+
+/**
  * Load the bitmap for this texture, generate an OpenGL texture and bind it.
  *
  * @param self Texture instance.
  */
 void MELTextureLoad(MELTexture * _Nonnull self);
+
+/**
+ * Free and destroy the texture but does not the path to the texture to be able to load it again later.
+ */
+void MELTextureUnload(MELTexture * _Nonnull self);
 
 /**
  * Bind the given texture. It should have been loaded before using `MELTextureLoad(MELTexture *)`.

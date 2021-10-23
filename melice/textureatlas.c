@@ -27,10 +27,8 @@ MELTextureAtlas MELTextureAtlasMakeWithPath(const char * _Nonnull path) {
     strcpy(textureName, path);
     strcat(textureName, TEXTURE_EXTENSION);
     
-    char *texturePath = MELFileManagerPathForAsset(fileManager, textureName);
+    MELTexture texture = MELTextureMakeWithAsset(textureName);
     free(textureName);
-    MELTexture texture = MELTextureMake(texturePath);
-    free(texturePath);
     
     char *atlasName = calloc(pathLength + ATLAS_EXTENSION_LENGTH + 1, sizeof(char));
     strcpy(atlasName, path);

@@ -9,6 +9,7 @@
 
 #include <assert.h>
 #include <string.h>
+#include "filemanager.h"
 #include "inputstream.h"
 
 #define BITMAP_MAGIC "BM"
@@ -30,6 +31,14 @@ MELTexture MELTextureMake(const char * _Nonnull path) {
     return self;
 }
 
+MELTexture MELTextureMakeWithAsset(const char * _Nonnull asset) {
+    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
+    char *texturePath = MELFileManagerPathForAsset(fileManager, asset);
+    MELTexture texture = MELTextureMake(texturePath);
+    free(texturePath);
+    return texture;
+}
+
 void MELTextureLoad(MELTexture * _Nonnull self) {
     assert(self->path != NULL);
 
@@ -45,16 +54,37 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
         printf("MELLoadBMP failed");
         return;
     }
-
     self->size = size;
-    
+
+    GLenum error;
+
+    glEnable(GL_TEXTURE_2D);
     glGenTextures(1 , &self->name);
+    error = glGetError();
+    if (error != GL_NO_ERROR) {
+        printf("glGenTextures: error %d", error);
+        return;
+    }
+
     glBindTexture(GL_TEXTURE_2D, self->name);
+    error = glGetError();
+    if (error != GL_NO_ERROR) {
+        switch (error) {
+            case GL_INVALID_ENUM:
+                printf("glBindTexture: Target GL_TEXTURE_2D is not allowable"); break;
+            case GL_INVALID_VALUE:
+                printf("glBindTexture: %d is not a name returned by glGenTextures", self->name); break;
+            case GL_INVALID_OPERATION:
+                printf("glBindTexture: texture %d was previously created with a target that doesn't match that of GL_TEXTURE_2D", self->name); break;
+            default:
+                printf("glBindTexture: other error %d", error); break;
+        }
+    }
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.width, size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
     free(pixels);
 
-    GLenum error = glGetError();
+    error = glGetError();
     if (error != GL_NO_ERROR) {
         printf("glTexImage2D: error %d", error);
         return;
@@ -62,6 +92,13 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+}
+
+void MELTextureUnload(MELTexture * _Nonnull self) {
+    if (self->name != 0) {
+        glDeleteTextures(1, &self->name);
+        self->name = 0;
+    }
 }
 
 void MELTextureDeinit(MELTexture * _Nonnull self) {

@@ -83,9 +83,6 @@ void MELMapRendererDeinit(MELMapRenderer * _Nonnull self) {
     }
     free(layerSurfaces);
     self->layerSurfaces = NULL;
-
-    MELMapDeinit(&self->map);
-    MELTextureAtlasDeinit(&self->atlas);
 }
 
 void MELMapRendererDraw(MELMapRenderer self) {
