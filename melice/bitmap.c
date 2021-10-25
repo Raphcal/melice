@@ -170,7 +170,7 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
         const int xInsideTile = x % tileSize.width;
         const int yInsideTile = y % tileSize.height;
 
-        for (int layerIndex = map.layerCount - 1; layerIndex >= 0; layerIndex--) {
+        for (int layerIndex = 0; layerIndex < map.layerCount; layerIndex++) {
             const MELLayer layer = map.layers[layerIndex];
             const int tile = layer.tiles[tileIndex];
             if (tile != -1) {
@@ -179,7 +179,6 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
                 const int texturePixel = location.x + xInsideTile + (location.y + yInsideTile) * atlas.texture.size.width;
                 const MELUInt32Color tileColor = texture[texturePixel];
                 color = MELUInt8ColorBlendWithColor(color, MELRGBAUInt32ColorToMELUInt8Color(tileColor));
-                break;
             }
         }
         image[pixel] = color;

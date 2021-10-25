@@ -8,6 +8,8 @@
 
 #include "color.h"
 
+#include "melmath.h"
+
 MELUInt8Color MELColorToMELUInt8Color(MELColor self) {
     return (MELUInt8Color) {
         (uint8_t) (self.red * 255.0f),
@@ -36,9 +38,9 @@ MELUInt8Color MELRGBAUInt32ColorToMELUInt8Color(MELUInt32Color self) {
 MELUInt8Color MELUInt8ColorBlendWithColor(MELUInt8Color self, MELUInt8Color incoming) {
     const uint oneMinusAlpha = 255 - incoming.alpha;
     return (MELUInt8Color) {
-        incoming.red + self.red * oneMinusAlpha / 255,
-        incoming.green + self.green * oneMinusAlpha / 255,
-        incoming.blue + self.blue * oneMinusAlpha / 255,
+        MELUInt8Min(incoming.red + self.red * oneMinusAlpha / 255, 255),
+        MELUInt8Min(incoming.green + self.green * oneMinusAlpha / 255, 255),
+        MELUInt8Min(incoming.blue + self.blue * oneMinusAlpha / 255, 255),
         255
     };
 }

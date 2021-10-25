@@ -14,6 +14,10 @@ GLfloat MELFloatMin(GLfloat lhs, GLfloat rhs) {
     return lhs < rhs ? lhs : rhs;
 }
 
+uint8_t MELUInt8Min(int lhs, int rhs) {
+    return (uint8_t) (lhs < rhs ? lhs : rhs);
+}
+
 double MELDoubleMinVariadic(int count, ...) {
     va_list list;
     va_start(list, count);

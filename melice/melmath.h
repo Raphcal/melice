@@ -21,6 +21,15 @@
 GLfloat MELFloatMin(GLfloat lhs, GLfloat rhs);
 
 /**
+ * Returns the minimum value between lhs and rhs.
+ *
+ * @param lhs Left operand.
+ * @param rhs Right operand.
+ * @return The minimum value between lhs and rhs.
+ */
+uint8_t MELUInt8Min(int lhs, int rhs);
+
+/**
  * Returns the minimum value among the given values.
  *
  * @param count Number of arguments.
