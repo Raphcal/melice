@@ -46,6 +46,8 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
 }
 
 MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map) {
+    // TODO: Finish this method (ColorPalette is missing).
+    printf("Not implented yet\n");
     MELMapRenderer self;
     self.map = map;
 

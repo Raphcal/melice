@@ -8,6 +8,37 @@
 
 #include "color.h"
 
-MELUInt32Color MELColorToUInt32Color(MELColor self) {
+MELUInt8Color MELColorToMELUInt8Color(MELColor self) {
+    return (MELUInt8Color) {
+        (uint8_t) (self.red * 255.0f),
+        (uint8_t) (self.green * 255.0f),
+        (uint8_t) (self.blue * 255.0f),
+        (uint8_t) (self.alpha * 255.0f)
+    };
+}
+
+MELUInt32Color MELColorToBGRAUInt32Color(MELColor self) {
     return ((MELUInt32Color)(self.blue * 255)) + ((MELUInt32Color)(self.green * 255) << 8) + ((MELUInt32Color)(self.red * 255) << 16) + ((MELUInt32Color)(self.alpha * 255) << 24);
+}
+
+MELUInt32Color MELColorToRGBAUInt32Color(MELColor self) {
+    return ((MELUInt32Color)(self.red * 255)) + ((MELUInt32Color)(self.green * 255) << 8) + ((MELUInt32Color)(self.blue * 255) << 16) + ((MELUInt32Color)(self.alpha * 255) << 24);
+}
+
+MELUInt32Color MELUInt8ColorToRGBAUInt32Color(MELUInt8Color self) {
+    return *((MELUInt32Color *) &self);
+}
+
+MELUInt8Color MELRGBAUInt32ColorToMELUInt8Color(MELUInt32Color self) {
+    return *((MELUInt8Color *) &self);
+}
+
+MELUInt8Color MELUInt8ColorBlendWithColor(MELUInt8Color self, MELUInt8Color incoming) {
+    const uint oneMinusAlpha = 255 - incoming.alpha;
+    return (MELUInt8Color) {
+        incoming.red + self.red * oneMinusAlpha / 255,
+        incoming.green + self.green * oneMinusAlpha / 255,
+        incoming.blue + self.blue * oneMinusAlpha / 255,
+        255
+    };
 }

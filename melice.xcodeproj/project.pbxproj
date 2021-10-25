@@ -170,6 +170,12 @@
 		642B2AC925FD4A6900183D42 /* surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4125FD448B00183D42 /* surface.c */; };
 		642B2ACA25FD4A6900183D42 /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B2AD325FD4E9800183D42 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
+		644872572726B86600DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		644872582726B86700DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		644872592726B86700DEE2C1 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 644872562726B86600DEE2C1 /* bitmap.c */; };
+		6448725A2726B86700DEE2C1 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 644872562726B86600DEE2C1 /* bitmap.c */; };
+		6448725B2726BE2C00DEE2C1 /* bitmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; };
+		6448725C2726BE3800DEE2C1 /* bitmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; };
 		645260422614F88D00BB78AC /* meliceframework.h in Headers */ = {isa = PBXBuildFile; fileRef = 645260402614F88D00BB78AC /* meliceframework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		645260482614F89900BB78AC /* libmelice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 642B298B25FD340C00183D42 /* libmelice.a */; };
 		6452604C2614F8A900BB78AC /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6452604B2614F8A900BB78AC /* Director.swift */; };
@@ -357,6 +363,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				6448725B2726BE2C00DEE2C1 /* bitmap.h in CopyFiles */,
 				6421EA8826146C4E00952E74 /* module.modulemap in CopyFiles */,
 				6421EA1E2614681200952E74 /* melice.h in CopyFiles */,
 				6421EA1F2614681200952E74 /* melstd.h in CopyFiles */,
@@ -424,6 +431,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				6448725C2726BE3800DEE2C1 /* bitmap.h in CopyFiles */,
 				64CB6776271F523F00663A2E /* module.modulemap in CopyFiles */,
 				64CB673D271F523500663A2E /* melice.h in CopyFiles */,
 				64CB673E271F523500663A2E /* melstd.h in CopyFiles */,
@@ -611,6 +619,9 @@
 		642B2B0825FF703100183D42 /* spritedefinition-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "spritedefinition-test.c"; sourceTree = "<group>"; };
 		642B2B0B25FF703100183D42 /* map1-sprites.def */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map1-sprites.def"; sourceTree = "<group>"; };
 		642B2B1525FF8FED00183D42 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6448724F2725F4ED00DEE2C1 /* color-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "color-test.c"; sourceTree = "<group>"; };
+		644872552726B86600DEE2C1 /* bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bitmap.h; sourceTree = "<group>"; };
+		644872562726B86600DEE2C1 /* bitmap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bitmap.c; sourceTree = "<group>"; };
 		6452603E2614F88D00BB78AC /* meliceframework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = meliceframework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		645260402614F88D00BB78AC /* meliceframework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = meliceframework.h; sourceTree = "<group>"; };
 		645260412614F88D00BB78AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -868,6 +879,8 @@
 		642B2A3825FD448B00183D42 /* surface */ = {
 			isa = PBXGroup;
 			children = (
+				644872552726B86600DEE2C1 /* bitmap.h */,
+				644872562726B86600DEE2C1 /* bitmap.c */,
 				642B2A3F25FD448B00183D42 /* color.h */,
 				642B2A4825FD448B00183D42 /* color.c */,
 				642B2A3D25FD448B00183D42 /* renderer.h */,
@@ -911,6 +924,7 @@
 		642B2AF725FF703100183D42 /* surface */ = {
 			isa = PBXGroup;
 			children = (
+				6448724F2725F4ED00DEE2C1 /* color-test.c */,
 				642B2AF825FF703100183D42 /* textureatlas-test.c */,
 				642B2AFB25FF703100183D42 /* assets */,
 			);
@@ -1046,6 +1060,7 @@
 				642B2A5625FD451F00183D42 /* inputsource.h in Headers */,
 				642B2AC625FD4A6900183D42 /* textureatlas.h in Headers */,
 				642B2AA325FD49E500183D42 /* statichitbox.h in Headers */,
+				644872572726B86600DEE2C1 /* bitmap.h in Headers */,
 				642B2AA625FD49E500183D42 /* rotatedhitbox.h in Headers */,
 				642B2AB125FD4A0300183D42 /* spriteinstance.h in Headers */,
 				642B2AC225FD4A6900183D42 /* surfacearray.h in Headers */,
@@ -1116,6 +1131,7 @@
 				64CB6703271F514300663A2E /* textureatlas.h in Headers */,
 				64CB6704271F514300663A2E /* hashmap.h in Headers */,
 				64CB6705271F514300663A2E /* list.h in Headers */,
+				644872582726B86700DEE2C1 /* bitmap.h in Headers */,
 				64CB6706271F514300663A2E /* melmath.h in Headers */,
 				64CB6707271F514300663A2E /* operation.h in Headers */,
 				64CB6708271F514300663A2E /* random.h in Headers */,
@@ -1303,6 +1319,7 @@
 				642B2AC525FD4A6900183D42 /* surfacearray.c in Sources */,
 				642B29D425FD443B00183D42 /* random.c in Sources */,
 				642B2A9E25FD49E500183D42 /* statichitbox.c in Sources */,
+				644872592726B86700DEE2C1 /* bitmap.c in Sources */,
 				642B2A6125FD451F00183D42 /* gamecontrollerlistener.c in Sources */,
 				642B29DC25FD445000183D42 /* meltime.c in Sources */,
 				642B2AAF25FD4A0300183D42 /* spriteinstance.c in Sources */,
@@ -1347,6 +1364,7 @@
 				64CB671D271F51E200663A2E /* animationtype.c in Sources */,
 				64CB671E271F51E200663A2E /* loopinganimation.c in Sources */,
 				64CB671F271F51E200663A2E /* noanimation.c in Sources */,
+				6448725A2726B86700DEE2C1 /* bitmap.c in Sources */,
 				64CB6720271F51E200663A2E /* playonceanimation.c in Sources */,
 				64CB6721271F51E200663A2E /* singleframeanimation.c in Sources */,
 				64CB6722271F51E300663A2E /* synchronizedanimation.c in Sources */,

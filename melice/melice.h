@@ -45,6 +45,7 @@
 #import "rotatedhitbox.h"
 #import "motion.h"
 #import "nomotion.h"
+#import "bitmap.h"
 #import "color.h"
 #import "referencepool.h"
 #import "renderer.h"
