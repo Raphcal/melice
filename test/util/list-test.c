@@ -85,7 +85,7 @@ void testPop(void) {
 MELBoolean releasedLayers[3];
 
 void testDeinitFunc(MELLayer * _Nonnull self) {
-    releasedLayers[self->width] = true;
+    releasedLayers[self->size.width] = true;
 }
 
 void testDeinit(void) {
@@ -102,12 +102,12 @@ void testDeinit(void) {
     MELListPush(layers, layer);
     
     MELLayer *memory = (MELLayer *)layers.memory;
-    assert(memory[0].width == 0);
-    assert(memory[0].height == 32);
-    assert(memory[1].width == 1);
-    assert(memory[1].height == 22);
-    assert(memory[2].width == 2);
-    assert(memory[2].height == 12);
+    assert(memory[0].size.width == 0);
+    assert(memory[0].size.height == 32);
+    assert(memory[1].size.width == 1);
+    assert(memory[1].size.height == 22);
+    assert(memory[2].size.width == 2);
+    assert(memory[2].size.height == 12);
     
     releasedLayers[0] = false;
     releasedLayers[1] = false;

@@ -29,10 +29,10 @@ int main(int argc, char **argv) {
     assert(definitions.count == 1);
     
     MELSpriteDefinition definition = definitions.memory[0];
-    assert(wcscmp(L"Sprites", definition.name) == 0);
+    assert(wcscmp(u"Sprites", definition.name) == 0);
     
     MELAnimationDefinition standAnimation = definition.animations[0];
-    assert(wcscmp(L"stand", standAnimation.name) == 0);
+    assert(wcscmp(u"stand", standAnimation.name) == 0);
     assert(standAnimation.frameCount == 5);
     assert(standAnimation.type == MELAnimationTypePlayOnce);
     
