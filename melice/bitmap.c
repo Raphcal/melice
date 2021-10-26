@@ -129,15 +129,14 @@ MELIntSize findAnyMapTile(MELMap map, MELTextureAtlas atlas) {
         }
         for (int tileIndex = 0; tileIndex < layer.tileCount; tileIndex++) {
             if (layer.tiles[tileIndex] != -1) {
-                MELRectangle rect = atlas.frames[layer.tiles[tileIndex]];
-                return MELIntSizeMake(rect.size.width * atlas.texture.size.width, rect.size.height * atlas.texture.size.width);
+                return atlas.sources[layer.tiles[tileIndex]].size;
             }
         }
     }
     return MELIntSizeZero;
 }
 
-uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSize tileCount, size_t * _Nullable pixelCount, MELIntSize * _Nullable outTileSize) {
+uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSize tileCount, size_t * _Nullable byteCount, MELIntSize * _Nullable outTileSize) {
     if (map.layerCount <= 0) {
         return NULL;
     }
@@ -150,16 +149,16 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
 
     MELIntSize imageSize = MELIntSizeMake(tileCount.width * tileSize.width, tileCount.height * tileSize.height);
 
-    const int length = imageSize.width * imageSize.height;
+    const int pixelCount = imageSize.width * imageSize.height;
 
-    MELUInt8Color *image = malloc(sizeof(MELUInt8Color) * length);
-    if (pixelCount != NULL) {
-        *pixelCount = sizeof(MELUInt8Color) * length;
+    MELUInt8Color *image = malloc(sizeof(MELUInt8Color) * pixelCount);
+    if (byteCount != NULL) {
+        *byteCount = sizeof(MELUInt8Color) * pixelCount;
     }
 
     MELUInt32Color *texture = MELBitmapLoad(atlas.texture.path, NULL);
 
-    for (int pixel = 0; pixel < length; pixel++) {
+    for (int pixel = 0; pixel < pixelCount; pixel++) {
         MELUInt8Color color = MELColorToMELUInt8Color(map.backgroundColor);
         const int x = pixel % imageSize.width;
         const int y = pixel / imageSize.width;
@@ -174,9 +173,8 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
             const MELLayer layer = map.layers[layerIndex];
             const int tile = layer.tiles[tileIndex];
             if (tile != -1) {
-                const MELRectangle tileFrame = atlas.frames[tile];
-                const MELIntPoint location = MELIntPointMake(tileFrame.origin.x * atlas.texture.size.width, tileFrame.origin.y * atlas.texture.size.height);
-                const int texturePixel = location.x + xInsideTile + (location.y + yInsideTile) * atlas.texture.size.width;
+                const MELIntRectangle tileFrame = atlas.sources[tile];
+                const int texturePixel = tileFrame.origin.x + xInsideTile + (tileFrame.origin.y + yInsideTile) * atlas.texture.size.width;
                 const MELUInt32Color tileColor = texture[texturePixel];
                 color = MELUInt8ColorBlendWithColor(color, MELRGBAUInt32ColorToMELUInt8Color(tileColor));
             }
@@ -189,3 +187,42 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
     return (uint8_t *) image;
 }
 
+uint8_t * _Nullable MELBitmapDrawTile(MELTextureAtlas atlas, int tile, MELUInt32Color * _Nullable texture, size_t * _Nullable byteCount, MELIntSize * _Nullable outTileSize) {
+    if (tile < 0 || tile >= atlas.frameCount) {
+        fprintf(stderr, "Tile index out of bounds 0..<%d: %d", atlas.frameCount, tile);
+        return NULL;
+    }
+    const MELBoolean shouldLoadAndFreeTexture = texture == NULL;
+    if (shouldLoadAndFreeTexture) {
+        texture = MELBitmapLoad(atlas.texture.path, NULL);
+        if (texture == NULL) {
+            fprintf(stderr, "Unable to load bitmap image at path %s", atlas.texture.path);
+            return NULL;
+        }
+    }
+    MELIntRectangle source = atlas.sources[tile];
+    if (outTileSize != NULL) {
+        *outTileSize = source.size;
+    }
+    const int pixelCount = source.size.width * source.size.height;
+
+    MELUInt32Color *image = malloc(sizeof(MELUInt32Color) * pixelCount);
+    if (byteCount != NULL) {
+        *byteCount = sizeof(MELUInt8Color) * pixelCount;
+    }
+
+    MELUInt32Color *sourceRow = texture + source.origin.x + source.origin.y * atlas.texture.size.width;
+    MELUInt32Color *targetRow = image;
+    const size_t rowSize = sizeof(MELUInt32Color) * source.size.width;
+    for (int y = 0; y < source.size.height; y++) {
+        memcpy(targetRow, sourceRow, rowSize);
+        sourceRow += atlas.texture.size.width;
+        targetRow += source.size.width;
+    }
+
+    if (shouldLoadAndFreeTexture) {
+        free(texture);
+    }
+
+    return (uint8_t *) image;
+}

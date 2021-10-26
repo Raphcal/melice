@@ -34,11 +34,13 @@ typedef struct {
 typedef uint32_t MELUInt32Color;
 
 #define MELColorMake(red, green, blue, alpha) ((MELColor){red, green, blue, alpha})
+MELColor MELColorMakeWithHex(uint32_t hexColor);
 MELUInt32Color MELColorToBGRAUInt32Color(MELColor self);
 MELUInt32Color MELColorToRGBAUInt32Color(MELColor self);
 MELUInt8Color MELColorToMELUInt8Color(MELColor self);
 
 #define MELUInt8ColorMake(red, green, blue, alpha) ((MELUInt8Color){red, green, blue, alpha})
+MELUInt8Color MELUInt8ColorMakeWithHex(uint32_t hexColor);
 MELUInt8Color MELUInt8ColorBlendWithColor(MELUInt8Color self, MELUInt8Color incoming);
 
 #define MELColorToUInt32Color MELColorToBGRAUInt32Color
