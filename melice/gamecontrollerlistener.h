@@ -22,7 +22,7 @@ typedef struct {
 } MELGameControllerListener;
 
 MELListDefine(MELGameControllerListener);
-MELListDefine(MELListOfMELGameControllerListener);
+MELListDefine(MELGameControllerListenerList);
 
 void MELGameControllerListenerCall(MELGameControllerListener self, MELBoolean pressed);
 

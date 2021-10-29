@@ -13,6 +13,8 @@
 #include "surfacearray.h"
 #include "surfacememory.h"
 
+MELListImplement(MELSurface);
+
 MELSurface MELSurfaceMake(MELSurfaceArray * _Nonnull parent, size_t vertex, size_t texture, size_t color) {
     return (MELSurface) {
         parent,

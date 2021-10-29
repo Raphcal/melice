@@ -13,16 +13,12 @@
 
 #include "list.h"
 #include "inputstream.h"
+#include "primitives.h"
 
 typedef struct {
     uint8_t * _Nonnull code;
     int32_t count;
 } MELOperation;
-
-#ifndef MELListGLfloat
-#define MELListGLfloat
-MELListDefine(GLfloat);
-#endif
 
 typedef struct melsprite MELSprite;
 

@@ -15,16 +15,7 @@
 #include "textureatlas.h"
 #include "rectangle.h"
 #include "list.h"
-
-#ifndef MELListGLfloat
-#define MELListGLfloat
-MELListDefine(GLfloat);
-#endif
-
-#ifndef MELListGLubyte
-#define MELListGLubyte
-MELListDefine(GLubyte);
-#endif
+#include "primitives.h"
 
 typedef struct melsurfacearray {
     MELList(GLfloat) vertex;

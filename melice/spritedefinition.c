@@ -10,6 +10,8 @@
 
 #include <assert.h>
 
+MELListImplement(MELSpriteDefinition);
+
 MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     assert(inputStream->file != NULL);
 

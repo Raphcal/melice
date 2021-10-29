@@ -8,6 +8,8 @@
 
 #include "buttonmapping.h"
 
+MELListImplement(MELButtonMappingRef);
+
 MELButtonMapping MELButtonMappingMake(MELInputSourceType inputSourceType, MELButtonMappingType mappingType, int button) {
     return (MELButtonMapping) {
         inputSourceType,

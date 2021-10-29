@@ -12,6 +12,8 @@
 #include <assert.h>
 #include "surfacememory.h"
 
+MELListImplement(MELSurfaceArray)
+
 MELSurfaceArray MELSurfaceArrayMake(void) {
     return MELSurfaceArrayMakeWithInitialCapacity(100);
 }

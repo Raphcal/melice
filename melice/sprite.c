@@ -16,6 +16,8 @@
 #include "spritehitbox.h"
 #include "statichitbox.h"
 
+MELListImplement(MELSpriteRef);
+
 MELSprite * _Nonnull MELSpriteAlloc(MELSpriteManager * _Nonnull manager, MELSpriteDefinition definition, unsigned int layer) {
     MELSprite *self = malloc(sizeof(MELSprite));
 

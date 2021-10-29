@@ -13,6 +13,17 @@
 
 #include <string.h>
 
+#define MELList(type) type##List
+
+#define MELListReference(type) /** List of type */ typedef struct mellist_##type { \
+/** Content of the list. */ \
+type * _Nullable memory; \
+/** Number of elements in the list. */ \
+size_t count; \
+/** Current capacity. */ \
+size_t capacity; \
+} type##List;
+
 #define MELListDefine(type) /** List of type */ typedef struct mellist_##type { \
     /** Content of the list. */ \
     type * _Nullable memory; \
@@ -20,9 +31,73 @@
     size_t count; \
     /** Current capacity. */ \
     size_t capacity; \
-} MELListOf##type
+} type##List;\
+\
+extern const type##List type##ListEmpty;\
+type##List type##ListMake(void);\
+type##List type##ListMakeWithInitialCapacity(size_t initialCapacity);\
+void type##ListDeinit(type##List * _Nonnull self);\
+void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type*));\
+void type##ListGrow(type##List * _Nonnull self, size_t size);\
+void type##ListEnsureCapacity(type##List * _Nonnull self, size_t required);\
+void type##ListPush(type##List * _Nonnull self, type element);\
+type type##ListPop(type##List * _Nonnull self);\
+type type##ListSet(type##List * _Nonnull self, int index, type element);\
+type type##ListRemove(type##List * _Nonnull self, int index);\
+size_t type##ListRemoveElement(type##List * _Nonnull self, type element);
 
-#define MELList(type) MELListOf##type
+#define MELListImplement(type) const type##List type##ListEmpty = { NULL, 0, 0 };\
+type##List type##ListMake(void) {\
+    return type##ListMakeWithInitialCapacity(10);\
+}\
+type##List type##ListMakeWithInitialCapacity(size_t initialCapacity) {\
+return (type##List) { malloc(initialCapacity * sizeof(type)), 0, initialCapacity };\
+}\
+void type##ListDeinit(type##List * _Nonnull self) {\
+    free(self->memory); \
+    self->memory = NULL; \
+    self->count = 0; \
+    self->capacity = 0; \
+}\
+void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type*)) {\
+    const type *listEnd = self->memory + self->count;\
+    for (type *item = self->memory; item < listEnd; item++) {\
+        deinitFunction(item);\
+    }\
+    type##ListDeinit(self); \
+}\
+void type##ListGrow(type##List * _Nonnull self, size_t size) {\
+    self->memory = realloc(self->memory, size * sizeof(type));\
+    self->capacity = size;\
+}\
+void type##ListEnsureCapacity(type##List * _Nonnull self, size_t required) {\
+    if (self->capacity < required) { \
+        const size_t newCapacity = self->capacity + (self->capacity >> 1) + 1; \
+        type##ListGrow(self, newCapacity > required ? newCapacity : required); \
+    } \
+}\
+void type##ListPush(type##List * _Nonnull self, type element) {\
+    type##ListEnsureCapacity(self, self->count + 1); \
+    self->memory[self->count++] = element; \
+}\
+type type##ListPop(type##List * _Nonnull self) {\
+    return self->memory[--self->count];\
+}\
+type type##ListSet(type##List * _Nonnull self, int index, type element) {\
+    if (index >= self->count) { \
+        type##ListEnsureCapacity(self, index + 1); \
+        memset(self->memory + self->count, 0, sizeof(type) * (index - self->count)); \
+        self->count = index + 1; \
+    } \
+    type oldValue = self->memory[index]; \
+    self->memory[index] = element; \
+    return oldValue;\
+}\
+type type##ListRemove(type##List * _Nonnull self, int index) {\
+    const type oldValue = self->memory[index];\
+    memmove(self->memory + index, self->memory + index + 1, ((self->count--) - index - 1) * sizeof(type));\
+    return oldValue;\
+}\
 
 /**
  * Returns an empty list with the given initial capacity.

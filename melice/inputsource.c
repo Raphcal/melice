@@ -8,6 +8,8 @@
 
 #include "inputsource.h"
 
+MELListImplement(MELInputSourceRef);
+
 MELList(MELInputSourceRef) MELInputSources = MELListMakeEmpty(MELInputSourceRef);
 
 void MELInputSourceRegisterSource(MELInputSource * _Nonnull source) {

@@ -14,6 +14,7 @@
 #include "inputstream.h"
 #include "surfacearray.h"
 #include "textureatlas.h"
+#include "list.h"
 
 typedef struct {
     uint16_t * _Nullable name;
@@ -22,6 +23,8 @@ typedef struct {
     int * _Nullable tiles;
     MELPoint scrollRate;
 } MELLayer;
+
+MELListDefine(MELLayer);
 
 /**
  * Returns a layer with the content of the given input stream.

@@ -8,6 +8,9 @@
 
 #include "gamecontrollerlistener.h"
 
+MELListImplement(MELGameControllerListener);
+MELListImplement(MELGameControllerListenerList);
+
 void MELGameControllerListenerCall(MELGameControllerListener self, MELBoolean pressed) {
     self.listener(self.controller, self.button, pressed);
 }

@@ -10,6 +10,8 @@
 
 #include <assert.h>
 
+MELListImplement(MELLayer);
+
 MELLayer MELLayerMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     assert(inputStream->file != NULL);
 
