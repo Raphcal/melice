@@ -16,6 +16,7 @@
 #include <math.h>
 
 #ifdef __MACH__
+#define GL_SILENCE_DEPRECATION 1
 #include <TargetConditionals.h>
 #if TARGET_OS_IPHONE
 #import <OpenGLES/ES1/gl.h>
