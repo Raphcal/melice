@@ -14,7 +14,7 @@ void MELSDLKeyboardInputSourceRegister(void) {
 }
 
 MELList(MELGameControllerListener) MELSDLKeyboardInputSourceGetListeners(MELSDLKeyboardInputSource * _Nonnull self, SDL_Scancode scancode) {
-    MELList(MELListOfMELGameControllerListener) listeners = self->listeners;
+    MELList(MELGameControllerListenerList) listeners = self->listeners;
     MELList(MELGameControllerListener) listener = scancode < listeners.count ? listeners.memory[scancode] : (MELList(MELGameControllerListener)) MELListMakeEmpty(MELGameControllerListener);
     return listener;
 }
@@ -40,7 +40,7 @@ MELSDLKeyboardInputSource * _Nonnull MELSDLKeyboardInputSourceGetInstance(void) 
             {
                 &MELSDLKeyboardInputSourceClass
             },
-            MELListMake(MELListOfMELGameControllerListener)
+            MELListMake(MELGameControllerListenerList)
         };
     }
     return MELSDLKeyboardInputSourceInstance;

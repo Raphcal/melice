@@ -37,7 +37,7 @@ extern const type##List type##ListEmpty;\
 type##List type##ListMake(void);\
 type##List type##ListMakeWithInitialCapacity(size_t initialCapacity);\
 void type##ListDeinit(type##List * _Nonnull self);\
-void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type*));\
+void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type * _Nonnull));\
 void type##ListGrow(type##List * _Nonnull self, size_t size);\
 void type##ListEnsureCapacity(type##List * _Nonnull self, size_t required);\
 void type##ListPush(type##List * _Nonnull self, type element);\
@@ -59,7 +59,7 @@ void type##ListDeinit(type##List * _Nonnull self) {\
     self->count = 0; \
     self->capacity = 0; \
 }\
-void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type*)) {\
+void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type * _Nonnull)) {\
     const type *listEnd = self->memory + self->count;\
     for (type *item = self->memory; item < listEnd; item++) {\
         deinitFunction(item);\

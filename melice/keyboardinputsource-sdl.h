@@ -20,7 +20,7 @@ extern const MELInputSourceClass MELSDLKeyboardInputSourceClass;
 
 typedef struct {
     MELInputSource super;
-    MELList(MELListOfMELGameControllerListener) listeners;
+    MELList(MELGameControllerListenerList) listeners;
 } MELSDLKeyboardInputSource;
 
 typedef struct {

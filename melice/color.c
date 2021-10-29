@@ -55,7 +55,7 @@ MELUInt32Color MELUInt8ColorToRGBAUInt32Color(MELUInt8Color self) {
 
 
 MELUInt8Color MELUInt8ColorBlendWithColor(MELUInt8Color self, MELUInt8Color incoming) {
-    const uint oneMinusAlpha = 255 - incoming.alpha;
+    const unsigned int oneMinusAlpha = 255 - incoming.alpha;
     return (MELUInt8Color) {
         MELUInt8Min(incoming.red + self.red * oneMinusAlpha / 255, 255),
         MELUInt8Min(incoming.green + self.green * oneMinusAlpha / 255, 255),
