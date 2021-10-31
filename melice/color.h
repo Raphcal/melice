@@ -28,6 +28,12 @@ typedef struct {
     uint8_t alpha;
 } MELUInt8Color;
 
+typedef struct {
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+} MELUint8RGBColor;
+
 /**
  * Color type.
  */

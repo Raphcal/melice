@@ -10,8 +10,25 @@
 
 #include "melstd.h"
 
+#include "list.h"
+#include "palette.h"
+#include "mutablemap.h"
+#include "spritedefinition.h"
+
+typedef struct melmapgroup MELMapGroup;
+
+MELListDefine(MELMapGroup);
+
 typedef struct {
-    
+    MELList(MELPalette) palettes;
+    MELList(MELMapGroup) mapGroups;
 } MELProject;
+
+typedef struct melmapgroup {
+    uint8_t * _Nullable name;
+    MELList(MELSpriteDefinition) sprites;
+    MELList(MELMutableMap) maps;
+    MELMapGroup * _Nullable children;
+} MELMapGroup;
 
 #endif /* project_h */
