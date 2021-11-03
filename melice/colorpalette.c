@@ -6,3 +6,5 @@
 //
 
 #include "colorpalette.h"
+
+// TODO: Not implemented yet.

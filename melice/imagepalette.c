@@ -6,3 +6,5 @@
 //
 
 #include "imagepalette.h"
+
+// TODO: Not implemented yet.

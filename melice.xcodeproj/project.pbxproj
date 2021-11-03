@@ -378,6 +378,8 @@
 		64D00E882731D87F00C8A675 /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; };
 		64D00E8B2731D9A700C8A675 /* mutablemap.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E8A2731D9A700C8A675 /* mutablemap.c */; };
 		64D00E8C2731D9A700C8A675 /* mutablemap.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E8A2731D9A700C8A675 /* mutablemap.c */; };
+		64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; };
+		64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -683,6 +685,7 @@
 		64D00E832731D85500C8A675 /* project.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = project.c; sourceTree = "<group>"; };
 		64D00E862731D87F00C8A675 /* project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = project.h; sourceTree = "<group>"; };
 		64D00E8A2731D9A700C8A675 /* mutablemap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mutablemap.c; sourceTree = "<group>"; };
+		64D00E8D2731DDF900C8A675 /* projectformat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = projectformat.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1066,6 +1069,7 @@
 			children = (
 				64D00E862731D87F00C8A675 /* project.h */,
 				64D00E832731D85500C8A675 /* project.c */,
+				64D00E8D2731DDF900C8A675 /* projectformat.h */,
 			);
 			name = project;
 			sourceTree = "<group>";
@@ -1114,6 +1118,7 @@
 				642B29CA25FD43DF00183D42 /* operation.h in Headers */,
 				642B2A5B25FD451F00183D42 /* inputstream.h in Headers */,
 				642B2A7025FD462F00183D42 /* fade.h in Headers */,
+				64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */,
 				642B2A4E25FD44AB00183D42 /* size.h in Headers */,
 				642B2A5925FD451F00183D42 /* filemanager.h in Headers */,
 				642B2A8D25FD49C100183D42 /* noanimation.h in Headers */,
@@ -1192,6 +1197,7 @@
 				64CB66F1271F514200663A2E /* rotatedhitbox.h in Headers */,
 				64CB66F2271F514200663A2E /* simplespritehitbox.h in Headers */,
 				64CB66F3271F514200663A2E /* spritehitbox.h in Headers */,
+				64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */,
 				64CB66F4271F514200663A2E /* statichitbox.h in Headers */,
 				64CB66F5271F514200663A2E /* motion.h in Headers */,
 				64CB66F6271F514200663A2E /* nomotion.h in Headers */,
