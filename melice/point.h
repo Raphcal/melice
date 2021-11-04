@@ -35,6 +35,11 @@ typedef struct {
 extern const MELPoint MELPointZero;
 
 /**
+ * A point whose coordinates are both zero.
+ */
+extern const MELIntPoint MELIntPointZero;
+
+/**
  * Returns a point with the given coordinates.
  *
  * @param x Horizontal coordinate.

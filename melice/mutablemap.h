@@ -14,8 +14,8 @@
 #include "color.h"
 #include "layer.h"
 #include "list.h"
-
-typedef struct melpalette MELPalette;
+#include "palette.h"
+#include "map.h"
 
 typedef struct {
     MELIntSize size;
@@ -26,5 +26,7 @@ typedef struct {
 } MELMutableMap;
 
 MELListDefine(MELMutableMap);
+
+MELMap MELMutableMapToMELMap(MELMutableMap self);
 
 #endif /* mutablemap_h */

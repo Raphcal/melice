@@ -21,4 +21,6 @@ typedef struct {
     uint8_t alphaLevelCount;
 } MELColorPalette;
 
+MELUInt32Color MELColorPaletteColorForTile(MELColorPalette self, int tileIndex);
+
 #endif /* colorpalette_h */

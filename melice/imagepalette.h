@@ -11,6 +11,7 @@
 #include "melstd.h"
 
 #include "palette.h"
+#include "colorpalette.h"
 
 extern const MELPaletteClass MELImagePaletteClass;
 
@@ -21,7 +22,7 @@ typedef struct {
 
 typedef struct {
     MELPalette super;
-    MELPalette * _Nullable palette;
+    MELColorPalette * _Nullable colorPalette;
     MELImagePaletteImage * _Nullable images;
 } MELImagePalette;
 

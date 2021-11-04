@@ -13,6 +13,7 @@
 #include "size.h"
 
 const MELPoint MELPointZero = {0, 0};
+const MELIntPoint MELIntPointZero = {0, 0};
 
 MELPoint MELPointMake(GLfloat x, GLfloat y) {
     return (MELPoint) {

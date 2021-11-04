@@ -15,10 +15,10 @@
 #include "point.h"
 #include "decorator.h"
 #include "list.h"
+#include "map.h"
 #include "textureatlas.h"
 
 typedef struct melpalette MELPalette;
-typedef struct melmap MELMap;
 
 typedef struct {
     /**
@@ -28,11 +28,13 @@ typedef struct {
      *
      * Each color is composed of 4 components: RGBA. Each component is 8 bits long and each color is 4 bytes long.
      *
-     * @param self Palette instance.
+     * @param self Palette instauinnce.
      * @param tileIndex Index of the tile to draw.
      * @returns An array of bytes representing the tile at the given index. You are responsible for freeing the returned array.
      */
     uint8_t * _Nullable (* _Nonnull paintTile)(MELPalette * _Nonnull self, int tileIndex);
+
+    void (* _Nonnull paintTileToBuffer)(MELPalette * _Nonnull self, int tileIndex, MELIntPoint topLeft, MELUInt32Color * _Nonnull buffer, MELIntSize bufferSize);
 
     /**
      * Allocates a byte array and paints the given area of the given map with palette's preferred tile size.
