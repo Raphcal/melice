@@ -179,6 +179,14 @@
 		645260482614F89900BB78AC /* libmelice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 642B298B25FD340C00183D42 /* libmelice.a */; };
 		6452604C2614F8A900BB78AC /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6452604B2614F8A900BB78AC /* Director.swift */; };
 		645260592614FB3600BB78AC /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645260582614FB3600BB78AC /* Scene.swift */; };
+		647189E927386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; };
+		647189EA27386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; };
+		647189EB27386C9400547977 /* mmkprojectformat.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189E827386C9400547977 /* mmkprojectformat.c */; };
+		647189EC27386C9400547977 /* mmkprojectformat.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189E827386C9400547977 /* mmkprojectformat.c */; };
+		64718A0227390F2A00547977 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; };
+		64718A0327390F2A00547977 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; };
+		64718A0427390F2A00547977 /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
+		64718A0527390F2A00547977 /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
 		64749390272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64749391272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; };
 		64749396272C2ABA004F3D97 /* primitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -671,6 +679,14 @@
 		645260412614F88D00BB78AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6452604B2614F8A900BB78AC /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
 		645260582614FB3600BB78AC /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		647189E427386C6C00547977 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
+		647189E727386C9400547977 /* mmkprojectformat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mmkprojectformat.h; sourceTree = "<group>"; };
+		647189E827386C9400547977 /* mmkprojectformat.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mmkprojectformat.c; sourceTree = "<group>"; };
+		647189ED27386F4800547977 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		647189FE27390F2900547977 /* miniz.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = miniz.c; sourceTree = "<group>"; };
+		647189FF27390F2900547977 /* ChangeLog.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ChangeLog.md; sourceTree = "<group>"; };
+		64718A0027390F2900547977 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		64718A0127390F2900547977 /* miniz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miniz.h; sourceTree = "<group>"; };
 		6474938E272C1470004F3D97 /* mutablemap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mutablemap.h; sourceTree = "<group>"; };
 		64749394272C2ABA004F3D97 /* primitives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primitives.h; sourceTree = "<group>"; };
 		64749395272C2ABA004F3D97 /* primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
@@ -717,6 +733,8 @@
 		6421E77C2613A84300952E74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				647189ED27386F4800547977 /* libz.tbd */,
+				647189E427386C6C00547977 /* libz.1.2.8.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -727,6 +745,7 @@
 				642B2B1525FF8FED00183D42 /* README.md */,
 				642B2ADB25FF6C1B00183D42 /* makefile */,
 				642B299F25FD40C600183D42 /* melice */,
+				647189FC27390F2900547977 /* dependencies */,
 				642B2AEE25FF703100183D42 /* test */,
 				6452603F2614F88D00BB78AC /* meliceframework */,
 				642B298C25FD340C00183D42 /* Products */,
@@ -1064,12 +1083,33 @@
 			name = Scene;
 			sourceTree = "<group>";
 		};
+		647189FC27390F2900547977 /* dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				647189FD27390F2900547977 /* miniz */,
+			);
+			path = dependencies;
+			sourceTree = "<group>";
+		};
+		647189FD27390F2900547977 /* miniz */ = {
+			isa = PBXGroup;
+			children = (
+				64718A0127390F2900547977 /* miniz.h */,
+				647189FE27390F2900547977 /* miniz.c */,
+				647189FF27390F2900547977 /* ChangeLog.md */,
+				64718A0027390F2900547977 /* readme.md */,
+			);
+			path = miniz;
+			sourceTree = "<group>";
+		};
 		64D00E822731D84400C8A675 /* project */ = {
 			isa = PBXGroup;
 			children = (
 				64D00E862731D87F00C8A675 /* project.h */,
 				64D00E832731D85500C8A675 /* project.c */,
 				64D00E8D2731DDF900C8A675 /* projectformat.h */,
+				647189E727386C9400547977 /* mmkprojectformat.h */,
+				647189E827386C9400547977 /* mmkprojectformat.c */,
 			);
 			name = project;
 			sourceTree = "<group>";
@@ -1081,6 +1121,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64718A0427390F2A00547977 /* miniz.h in Headers */,
 				64749396272C2ABA004F3D97 /* primitives.h in Headers */,
 				642B2A6625FD456B00183D42 /* layer.h in Headers */,
 				642B2AB625FD4A0300183D42 /* direction.h in Headers */,
@@ -1117,6 +1158,7 @@
 				642B2A8E25FD49C100183D42 /* animationtype.h in Headers */,
 				642B29CA25FD43DF00183D42 /* operation.h in Headers */,
 				642B2A5B25FD451F00183D42 /* inputstream.h in Headers */,
+				647189E927386C9400547977 /* mmkprojectformat.h in Headers */,
 				642B2A7025FD462F00183D42 /* fade.h in Headers */,
 				64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */,
 				642B2A4E25FD44AB00183D42 /* size.h in Headers */,
@@ -1160,6 +1202,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64718A0527390F2A00547977 /* miniz.h in Headers */,
 				64749397272C2ABA004F3D97 /* primitives.h in Headers */,
 				64CB66D1271F514100663A2E /* melice.h in Headers */,
 				64CB66D2271F514100663A2E /* melstd.h in Headers */,
@@ -1196,6 +1239,7 @@
 				64CB66F0271F514200663A2E /* hitbox.h in Headers */,
 				64CB66F1271F514200663A2E /* rotatedhitbox.h in Headers */,
 				64CB66F2271F514200663A2E /* simplespritehitbox.h in Headers */,
+				647189EA27386C9400547977 /* mmkprojectformat.h in Headers */,
 				64CB66F3271F514200663A2E /* spritehitbox.h in Headers */,
 				64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */,
 				64CB66F4271F514200663A2E /* statichitbox.h in Headers */,
@@ -1445,6 +1489,7 @@
 				642B2AB725FD4A0300183D42 /* direction.c in Sources */,
 				642B2A4D25FD44AB00183D42 /* quadrilateral.c in Sources */,
 				642B2AB325FD4A0300183D42 /* spritemanager.c in Sources */,
+				64718A0227390F2A00547977 /* miniz.c in Sources */,
 				642B2A9225FD49C100183D42 /* playonceanimation.c in Sources */,
 				642B2A5825FD451F00183D42 /* gamecontroller.c in Sources */,
 				642B2A7125FD462F00183D42 /* fade.c in Sources */,
@@ -1458,6 +1503,7 @@
 				642B29DC25FD445000183D42 /* meltime.c in Sources */,
 				642B2AAF25FD4A0300183D42 /* spriteinstance.c in Sources */,
 				642B2A9725FD49D500183D42 /* spritedefinition.c in Sources */,
+				647189EB27386C9400547977 /* mmkprojectformat.c in Sources */,
 				64D00E752730940600C8A675 /* colorpalette.c in Sources */,
 				642B29C825FD43DC00183D42 /* operation.c in Sources */,
 				642B2A4A25FD44AB00183D42 /* rectangle.c in Sources */,
@@ -1492,6 +1538,7 @@
 				64CB6714271F51E200663A2E /* inputstream.c in Sources */,
 				64CB6715271F51E200663A2E /* map.c in Sources */,
 				64CB6716271F51E200663A2E /* maprenderer.c in Sources */,
+				64718A0327390F2A00547977 /* miniz.c in Sources */,
 				64CB6717271F51E200663A2E /* layer.c in Sources */,
 				64CB6718271F51E200663A2E /* director.c in Sources */,
 				64CB6719271F51E200663A2E /* fade.c in Sources */,
@@ -1506,6 +1553,7 @@
 				64CB6720271F51E200663A2E /* playonceanimation.c in Sources */,
 				64CB6721271F51E200663A2E /* singleframeanimation.c in Sources */,
 				64CB6722271F51E300663A2E /* synchronizedanimation.c in Sources */,
+				647189EC27386C9400547977 /* mmkprojectformat.c in Sources */,
 				64CB6723271F51E300663A2E /* animationdefinition.c in Sources */,
 				64CB6724271F51E300663A2E /* spritedefinition.c in Sources */,
 				64CB6725271F51E300663A2E /* hitbox.c in Sources */,
