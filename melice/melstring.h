@@ -13,11 +13,13 @@
 #include "melcharset.h"
 
 typedef struct {
-    uint8_t * _Nullable bytes;
+    char * _Nullable bytes;
     size_t byteCount;
-    int length;
+    size_t length;
     MELCharset charset;
 } MELString;
+
+MELString MELStringMake(char * _Nonnull cString);
 
 uint64_t MELStringHash(MELString string);
 
