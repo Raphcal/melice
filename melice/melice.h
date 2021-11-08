@@ -56,6 +56,7 @@
 #import "surfacearray.h"
 #import "texture.h"
 #import "textureatlas.h"
+#import "hashmap.h"
 #import "list.h"
 #import "melmath.h"
 #import "operation.h"

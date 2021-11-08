@@ -9,7 +9,7 @@ TESTS = $(patsubst %.c, %, $(SOURCES))
 DSYM = $(patsubst %.c, %.dSYM, $(SOURCES))
 
 ifeq ($(shell uname -s),Darwin)
-CFLAGS = -fsanitize=address -O1 -fno-omit-frame-pointer -fno-optimize-sibling-calls -F$(HOME)/Library/Frameworks -framework SDL2 -framework OpenGL
+CFLAGS = -fsanitize=address -O1 -fno-omit-frame-pointer -fno-optimize-sibling-calls -F/Library/Frameworks -framework SDL2 -framework OpenGL
 endif
 
 ifeq ($(shell uname -s),Linux)

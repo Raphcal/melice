@@ -187,6 +187,7 @@
 		64718A0327390F2A00547977 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; };
 		64718A0427390F2A00547977 /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
 		64718A0527390F2A00547977 /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
+		64718A18273A7F0C00547977 /* hashmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29AD25FD410200183D42 /* hashmap.c */; };
 		64749390272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64749391272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; };
 		64749396272C2ABA004F3D97 /* primitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -687,6 +688,7 @@
 		647189FF27390F2900547977 /* ChangeLog.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ChangeLog.md; sourceTree = "<group>"; };
 		64718A0027390F2900547977 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		64718A0127390F2900547977 /* miniz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miniz.h; sourceTree = "<group>"; };
+		64718A16273A735300547977 /* hashmap-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "hashmap-test.c"; sourceTree = "<group>"; };
 		6474938E272C1470004F3D97 /* mutablemap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mutablemap.h; sourceTree = "<group>"; };
 		64749394272C2ABA004F3D97 /* primitives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primitives.h; sourceTree = "<group>"; };
 		64749395272C2ABA004F3D97 /* primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
@@ -998,6 +1000,7 @@
 			isa = PBXGroup;
 			children = (
 				642B2AF125FF703100183D42 /* list-test.c */,
+				64718A16273A735300547977 /* hashmap-test.c */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1468,6 +1471,7 @@
 				642B2A9F25FD49E500183D42 /* rotatedhitbox.c in Sources */,
 				64D00E842731D85500C8A675 /* project.c in Sources */,
 				642B2A9025FD49C100183D42 /* animationtype.c in Sources */,
+				64718A18273A7F0C00547977 /* hashmap.c in Sources */,
 				642B2AA225FD49E500183D42 /* hitbox.c in Sources */,
 				64D00E7E27318F0900C8A675 /* palette.c in Sources */,
 				642B2A4C25FD44AB00183D42 /* point.c in Sources */,

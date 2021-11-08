@@ -10,15 +10,7 @@
 #include <melice.h>
 #include <assert.h>
 
-#ifndef MELListMELPoint
-#define MELListMELPoint
 MELListDefine(MELPoint);
-#endif
-
-#ifndef MELListMELLayer
-#define MELListMELLayer
-MELListDefine(MELLayer);
-#endif
 
 void testPush(void) {
     MELList(MELPoint) points = MELListMakeWithInitialCapacity(MELPoint, 2);
