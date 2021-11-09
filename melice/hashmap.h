@@ -17,12 +17,12 @@ typedef struct {
     uint64_t hash;
     void * _Nonnull key;
     void * _Nullable value;
-} MELHashMapBucketEntry;
+} MELHashMapEntry;
 
-MELListDefine(MELHashMapBucketEntry);
+MELListDefine(MELHashMapEntry);
 
 typedef struct {
-    MELList(MELHashMapBucketEntry) entries;
+    MELList(MELHashMapEntry) entries;
 } MELHashMapBucket;
 
 MELListDefine(MELHashMapBucket);
@@ -42,5 +42,7 @@ void MELHashMapDeinit(MELHashMap * _Nonnull self);
 void * _Nullable MELHashMapPut(MELHashMap * _Nonnull self, void * _Nonnull key, void * _Nullable value);
 
 void * _Nullable MELHashMapGet(MELHashMap * _Nonnull self, void * _Nonnull key);
+
+void * _Nullable MELHashMapRemove(MELHashMap * _Nonnull self, void * _Nonnull key);
 
 #endif /* hashmap_h */

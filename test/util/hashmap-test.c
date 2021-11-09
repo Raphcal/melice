@@ -15,7 +15,7 @@ void debugEntries(MELHashMap hashMap) {
         MELHashMapBucket bucket = hashMap.buckets.memory[i];
         printf("  - Bucket %d: %zu entries\n", i, bucket.entries.count);
         for (int j = 0; j < bucket.entries.count; j++) {
-            MELHashMapBucketEntry entry = bucket.entries.memory[j];
+            MELHashMapEntry entry = bucket.entries.memory[j];
             printf("    - %llu: %s => %s\n", entry.hash, (char *)entry.key, (char *)entry.value);
         }
     }

@@ -43,9 +43,8 @@ void type##ListGrow(type##List * _Nonnull self, size_t size);\
 void type##ListEnsureCapacity(type##List * _Nonnull self, size_t required);\
 void type##ListPush(type##List * _Nonnull self, type element);\
 type type##ListPop(type##List * _Nonnull self);\
-type type##ListSet(type##List * _Nonnull self, int index, type element);\
-type type##ListRemove(type##List * _Nonnull self, int index);\
-size_t type##ListRemoveElement(type##List * _Nonnull self, type element);
+type type##ListSet(type##List * _Nonnull self, size_t index, type element);\
+type type##ListRemove(type##List * _Nonnull self, size_t index);
 
 #define MELListImplement(type) const type##List type##ListEmpty = { NULL, 0, 0 };\
 type##List type##ListMake(void) {\
@@ -94,7 +93,7 @@ void type##ListPush(type##List * _Nonnull self, type element) {\
 type type##ListPop(type##List * _Nonnull self) {\
     return self->memory[--self->count];\
 }\
-type type##ListSet(type##List * _Nonnull self, int index, type element) {\
+type type##ListSet(type##List * _Nonnull self, size_t index, type element) {\
     if (index >= self->count) { \
         type##ListEnsureCapacity(self, index + 1); \
         memset(self->memory + self->count, 0, sizeof(type) * (index - self->count)); \
@@ -104,11 +103,11 @@ type type##ListSet(type##List * _Nonnull self, int index, type element) {\
     self->memory[index] = element; \
     return oldValue;\
 }\
-type type##ListRemove(type##List * _Nonnull self, int index) {\
+type type##ListRemove(type##List * _Nonnull self, size_t index) {\
     const type oldValue = self->memory[index];\
     memmove(self->memory + index, self->memory + index + 1, ((self->count--) - index - 1) * sizeof(type));\
     return oldValue;\
-}\
+}
 
 /**
  * Returns an empty list with the given initial capacity.
@@ -246,7 +245,7 @@ type type##ListRemove(type##List * _Nonnull self, int index) {\
 #define MELListRefPop(self) self->memory[--self->count]
 
 #define MELListSet(self, index, element) { \
-    const int propertyIndex = index; \
+    const size_t propertyIndex = index; \
     if (propertyIndex >= self.count) { \
         MELListEnsureCapacity(self, propertyIndex + 1); \
         memset(self.memory + self.count, 0, sizeof(*self.memory) * (propertyIndex - self.count)); \
@@ -272,7 +271,7 @@ type type##ListRemove(type##List * _Nonnull self, int index) {\
  * @param element Element to remove.
  */
 #define MELListRemoveElement(self, element) { \
-    for (int index = 0; index < self.count; index++) { \
+    for (size_t index = 0; index < self.count; index++) { \
         if (self.memory[index] == element) { \
             MELListRemove(self, index); \
         } \

@@ -58,7 +58,6 @@
 		6421EA4E2614681200952E74 /* surfacememory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A4625FD448B00183D42 /* surfacememory.h */; };
 		6421EA4F2614681200952E74 /* texture.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; };
 		6421EA502614681200952E74 /* textureatlas.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A4425FD448B00183D42 /* textureatlas.h */; };
-		6421EA512614681200952E74 /* hashmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A825FD410200183D42 /* hashmap.h */; };
 		6421EA522614681200952E74 /* list.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A925FD410200183D42 /* list.h */; };
 		6421EA532614681200952E74 /* melmath.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AB25FD410200183D42 /* melmath.h */; };
 		6421EA542614681200952E74 /* operation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AC25FD410200183D42 /* operation.h */; };
@@ -188,6 +187,14 @@
 		64718A0427390F2A00547977 /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
 		64718A0527390F2A00547977 /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
 		64718A18273A7F0C00547977 /* hashmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29AD25FD410200183D42 /* hashmap.c */; };
+		64718A1D273AAB0100547977 /* dictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A1B273AAB0100547977 /* dictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64718A1E273AAB0100547977 /* dictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A1B273AAB0100547977 /* dictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64718A23273AAE5300547977 /* melstring.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64718A24273AAE5300547977 /* melstring.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64718A25273AAE5300547977 /* melstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 64718A22273AAE5300547977 /* melstring.c */; };
+		64718A26273AAE5300547977 /* melstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 64718A22273AAE5300547977 /* melstring.c */; };
+		64718A27273AAE8600547977 /* hashmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A825FD410200183D42 /* hashmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64718A29273AC6D600547977 /* dictionary-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 64718A28273AC6D600547977 /* dictionary-test.c */; };
 		64749390272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64749391272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; };
 		64749396272C2ABA004F3D97 /* primitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -465,7 +472,6 @@
 				6421EA4E2614681200952E74 /* surfacememory.h in CopyFiles */,
 				6421EA4F2614681200952E74 /* texture.h in CopyFiles */,
 				6421EA502614681200952E74 /* textureatlas.h in CopyFiles */,
-				6421EA512614681200952E74 /* hashmap.h in CopyFiles */,
 				6421EA522614681200952E74 /* list.h in CopyFiles */,
 				6421EA532614681200952E74 /* melmath.h in CopyFiles */,
 				6421EA542614681200952E74 /* operation.h in CopyFiles */,
@@ -689,6 +695,10 @@
 		64718A0027390F2900547977 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		64718A0127390F2900547977 /* miniz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miniz.h; sourceTree = "<group>"; };
 		64718A16273A735300547977 /* hashmap-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "hashmap-test.c"; sourceTree = "<group>"; };
+		64718A1B273AAB0100547977 /* dictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dictionary.h; sourceTree = "<group>"; };
+		64718A21273AAE5300547977 /* melstring.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melstring.h; sourceTree = "<group>"; };
+		64718A22273AAE5300547977 /* melstring.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = melstring.c; sourceTree = "<group>"; };
+		64718A28273AC6D600547977 /* dictionary-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "dictionary-test.c"; sourceTree = "<group>"; };
 		6474938E272C1470004F3D97 /* mutablemap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mutablemap.h; sourceTree = "<group>"; };
 		64749394272C2ABA004F3D97 /* primitives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primitives.h; sourceTree = "<group>"; };
 		64749395272C2ABA004F3D97 /* primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
@@ -786,11 +796,14 @@
 		642B29A325FD410200183D42 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				64718A1B273AAB0100547977 /* dictionary.h */,
 				642B29A825FD410200183D42 /* hashmap.h */,
 				642B29AD25FD410200183D42 /* hashmap.c */,
 				642B29A925FD410200183D42 /* list.h */,
 				642B29AB25FD410200183D42 /* melmath.h */,
 				642B29A525FD410200183D42 /* melmath.c */,
+				64718A21273AAE5300547977 /* melstring.h */,
+				64718A22273AAE5300547977 /* melstring.c */,
 				642B29A425FD410200183D42 /* meltime.h */,
 				642B29AA25FD410200183D42 /* meltime.c */,
 				642B29AC25FD410200183D42 /* operation.h */,
@@ -999,8 +1012,9 @@
 		642B2AEF25FF703100183D42 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				642B2AF125FF703100183D42 /* list-test.c */,
+				64718A28273AC6D600547977 /* dictionary-test.c */,
 				64718A16273A735300547977 /* hashmap-test.c */,
+				642B2AF125FF703100183D42 /* list-test.c */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -1138,6 +1152,7 @@
 				642B2AB425FD4A0300183D42 /* axe.h in Headers */,
 				642B2AA025FD49E500183D42 /* simplespritehitbox.h in Headers */,
 				642B2A5A25FD451F00183D42 /* gamecontrollerlistener.h in Headers */,
+				64718A27273AAE8600547977 /* hashmap.h in Headers */,
 				642B2AAB25FD49F600183D42 /* nomotion.h in Headers */,
 				642B2A8825FD49C100183D42 /* playonceanimation.h in Headers */,
 				642B2A5E25FD451F00183D42 /* buttonmapping.h in Headers */,
@@ -1166,6 +1181,7 @@
 				64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */,
 				642B2A4E25FD44AB00183D42 /* size.h in Headers */,
 				642B2A5925FD451F00183D42 /* filemanager.h in Headers */,
+				64718A23273AAE5300547977 /* melstring.h in Headers */,
 				642B2A8D25FD49C100183D42 /* noanimation.h in Headers */,
 				642B2AAA25FD49F600183D42 /* motion.h in Headers */,
 				64D00E872731D87F00C8A675 /* project.h in Headers */,
@@ -1181,6 +1197,7 @@
 				642B2A5625FD451F00183D42 /* inputsource.h in Headers */,
 				642B2AC625FD4A6900183D42 /* textureatlas.h in Headers */,
 				642B2AA325FD49E500183D42 /* statichitbox.h in Headers */,
+				64718A1D273AAB0100547977 /* dictionary.h in Headers */,
 				64D00E61272DD7E000C8A675 /* palette.h in Headers */,
 				64D00E732730940600C8A675 /* colorpalette.h in Headers */,
 				64749390272C1470004F3D97 /* mutablemap.h in Headers */,
@@ -1247,6 +1264,7 @@
 				64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */,
 				64CB66F4271F514200663A2E /* statichitbox.h in Headers */,
 				64CB66F5271F514200663A2E /* motion.h in Headers */,
+				64718A24273AAE5300547977 /* melstring.h in Headers */,
 				64CB66F6271F514200663A2E /* nomotion.h in Headers */,
 				64D00E67272F37A600C8A675 /* decorator.h in Headers */,
 				64D00E882731D87F00C8A675 /* project.h in Headers */,
@@ -1262,6 +1280,7 @@
 				64CB6700271F514200663A2E /* surfacearray.h in Headers */,
 				64CB6701271F514200663A2E /* surfacememory.h in Headers */,
 				64CB6702271F514300663A2E /* texture.h in Headers */,
+				64718A1E273AAB0100547977 /* dictionary.h in Headers */,
 				64CB6703271F514300663A2E /* textureatlas.h in Headers */,
 				64D00E742730940600C8A675 /* colorpalette.h in Headers */,
 				64CB6704271F514300663A2E /* hashmap.h in Headers */,
@@ -1484,6 +1503,7 @@
 				642B2A6725FD456B00183D42 /* map.c in Sources */,
 				642B2A6F25FD462F00183D42 /* director.c in Sources */,
 				642B2A5F25FD451F00183D42 /* filemanager.c in Sources */,
+				64718A25273AAE5300547977 /* melstring.c in Sources */,
 				642B29D225FD441A00183D42 /* melmath.c in Sources */,
 				642B2A6925FD456B00183D42 /* layer.c in Sources */,
 				642B2AB225FD4A0300183D42 /* sprite.c in Sources */,
@@ -1491,6 +1511,7 @@
 				642B2AC125FD4A6900183D42 /* referencepool.c in Sources */,
 				642B2A4F25FD44AB00183D42 /* size.c in Sources */,
 				642B2AB725FD4A0300183D42 /* direction.c in Sources */,
+				64718A29273AC6D600547977 /* dictionary-test.c in Sources */,
 				642B2A4D25FD44AB00183D42 /* quadrilateral.c in Sources */,
 				642B2AB325FD4A0300183D42 /* spritemanager.c in Sources */,
 				64718A0227390F2A00547977 /* miniz.c in Sources */,
@@ -1560,6 +1581,7 @@
 				647189EC27386C9400547977 /* mmkprojectformat.c in Sources */,
 				64CB6723271F51E300663A2E /* animationdefinition.c in Sources */,
 				64CB6724271F51E300663A2E /* spritedefinition.c in Sources */,
+				64718A26273AAE5300547977 /* melstring.c in Sources */,
 				64CB6725271F51E300663A2E /* hitbox.c in Sources */,
 				64CB6726271F51E300663A2E /* rotatedhitbox.c in Sources */,
 				64D00E852731D85500C8A675 /* project.c in Sources */,

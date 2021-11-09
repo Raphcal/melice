@@ -8,23 +8,33 @@
 
 #include "hashmap.h"
 
+#include "melstring.h"
+
 #define LOAD_FACTOR 0.75
 #define DEFAULT_BUCKET_COUNT 16
 
 MELListImplement(MELHashMapBucket);
-MELListImplement(MELHashMapBucketEntry);
+MELListImplement(MELHashMapEntry);
 
-MELHashMapBucketEntry MELHashMapBucketEntryMake(uint64_t hash, void * _Nonnull key, void * _Nullable value) {
-    return (MELHashMapBucketEntry) {hash, key, value};
+MELHashMapEntry MELHashMapEntryMake(uint64_t hash, void * _Nonnull key, void * _Nullable value) {
+    return (MELHashMapEntry) {hash, key, value};
 }
 
 MELHashMap MELHashMapMake(MELBoolean (* _Nonnull equals)(void * _Nonnull lhs, void * _Nonnull rhs), uint64_t (* _Nonnull hash)(void * _Nonnull key)) {
     return (MELHashMap) {{NULL, 0, 0}, 0, equals, hash};
 }
 
+MELHashMap MELHashMapMakeWithStringKeys(void) {
+    // TODO: Should copy and free the keys !
+    return MELHashMapMake((MELBoolean(*)(void *, void *))&MELStringEquals, (uint64_t(*)(void *))&MELStringHash);
+}
+
 void MELHashMapDeinit(MELHashMap * _Nonnull self) {
     for (size_t bucketIndex = 0; bucketIndex < self->buckets.capacity; bucketIndex++) {
-        MELHashMapBucketEntryListDeinit(&self->buckets.memory[bucketIndex].entries);
+        MELHashMapBucket bucket = self->buckets.memory[bucketIndex];
+        if (bucket.entries.memory != NULL) {
+            MELHashMapEntryListDeinit(&self->buckets.memory[bucketIndex].entries);
+        }
     }
     MELHashMapBucketListDeinit(&self->buckets);
     self->count = 0;
@@ -39,13 +49,14 @@ void MELHashMapGrowAndRehash(MELHashMap * _Nonnull self) {
         return;
     }
     memset(newBuckets.memory, 0, sizeof(MELHashMapBucketList) * newBuckets.capacity);
+    newBuckets.count = oldBuckets.count;
     for (size_t bucketIndex = 0; bucketIndex < oldBuckets.capacity; bucketIndex++) {
         MELHashMapBucket bucket = oldBuckets.memory[bucketIndex];
         for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {
-            MELHashMapBucketEntry entry = bucket.entries.memory[entryIndex];
+            MELHashMapEntry entry = bucket.entries.memory[entryIndex];
 
             size_t newBucketIndex = entry.hash % newBuckets.capacity;
-            MELHashMapBucketEntryListPush(&newBuckets.memory[newBucketIndex].entries, entry);
+            MELHashMapEntryListPush(&newBuckets.memory[newBucketIndex].entries, entry);
         }
     }
     self->buckets = newBuckets;
@@ -61,8 +72,8 @@ void * _Nullable MELHashMapPut(MELHashMap * _Nonnull self, void * _Nonnull key, 
     MELHashMapBucket bucket = self->buckets.memory[bucketIndex];
     if (bucket.entries.count > 0 && bucket.entries.memory != NULL) {
         for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {
-            MELHashMapBucketEntry entry = bucket.entries.memory[entryIndex];
-            if (entry.hash == hash && self->equals(entry.key, key)) {
+            MELHashMapEntry entry = bucket.entries.memory[entryIndex];
+            if (entry.hash == hash && (entry.key == key || self->equals(entry.key, key))) {
                 void * _Nullable oldValue = entry.value;
                 entry.value = value;
                 return oldValue;
@@ -73,7 +84,7 @@ void * _Nullable MELHashMapPut(MELHashMap * _Nonnull self, void * _Nonnull key, 
         self->buckets.count++;
     }
     self->count++;
-    MELHashMapBucketEntryListPush(&self->buckets.memory[bucketIndex].entries, MELHashMapBucketEntryMake(hash, key, value));
+    MELHashMapEntryListPush(&self->buckets.memory[bucketIndex].entries, MELHashMapEntryMake(hash, key, value));
 
     const double loadFactor = self->count / (double) self->buckets.capacity;
     if (loadFactor >= LOAD_FACTOR) {
@@ -90,25 +101,28 @@ void * _Nullable MELHashMapGet(MELHashMap * _Nonnull self, void * _Nonnull key) 
     size_t bucketIndex = hash % self->buckets.capacity;
     MELHashMapBucket bucket = self->buckets.memory[bucketIndex];
     for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {
-        MELHashMapBucketEntry entry = bucket.entries.memory[entryIndex];
-        if (entry.hash == hash && self->equals(entry.key, key)) {
+        MELHashMapEntry entry = bucket.entries.memory[entryIndex];
+        if (entry.hash == hash && (entry.key == key || self->equals(entry.key, key))) {
             return entry.value;
         }
     }
     return NULL;
 }
 
-MELBoolean stringEquals(char * _Nonnull lhs, char * _Nonnull rhs) {
-    return strcmp(lhs, rhs) == 0;
-}
-uint64_t stringHash(char * _Nonnull key) {
-    uint64_t hash = 0;
-    while (*key) {
-        hash ^= *key;
-        key++;
+void * _Nullable MELHashMapRemove(MELHashMap * _Nonnull self, void * _Nonnull key) {
+    if (self->buckets.memory == 0 || self->buckets.memory == NULL) {
+        return NULL;
     }
-    return hash;
-}
-MELHashMap MELHashMapMakeWithStringKeys(void) {
-    return MELHashMapMake((MELBoolean(*)(void *, void *))&stringEquals, (uint64_t(*)(void *))&stringHash);
+    uint64_t hash = self->hash(key);
+    size_t bucketIndex = hash % self->buckets.capacity;
+    MELHashMapBucket bucket = self->buckets.memory[bucketIndex];
+    for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {
+        MELHashMapEntry entry = bucket.entries.memory[entryIndex];
+        if (entry.hash == hash && (entry.key == key || self->equals(entry.key, key))) {
+            MELHashMapEntryListRemove(&self->buckets.memory[bucketIndex].entries, entryIndex);
+            self->count--;
+            return entry.value;
+        }
+    }
+    return NULL;
 }
