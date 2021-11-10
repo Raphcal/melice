@@ -9,7 +9,7 @@ TESTS = $(patsubst %.c, %, $(SOURCES))
 DSYM = $(patsubst %.c, %.dSYM, $(SOURCES))
 
 ifeq ($(shell uname -s),Darwin)
-CFLAGS = -fsanitize=address -O1 -fno-omit-frame-pointer -fno-optimize-sibling-calls -F/Library/Frameworks -framework SDL2 -framework OpenGL
+CFLAGS = -fsanitize=address -fsanitize=undefined -O1 -fno-omit-frame-pointer -fno-optimize-sibling-calls -F/Library/Frameworks -framework SDL2 -framework OpenGL
 endif
 
 ifeq ($(shell uname -s),Linux)
@@ -20,14 +20,14 @@ endif
 .PHONY: all
 
 all: $(TESTS)
-	echo $(TESTS)
+	$(info Done compiling $(TESTS))
 
 clean:
 	$(RM) $(TESTS)
 	$(RM) -r $(DSYM)
 
 test: $(TESTS) FORCE
-	$(foreach test, $(TESTS), echo $(test); $(test);)
+	$(foreach test, $(TESTS), echo $(test); MallocNanoZone=0 $(test); echo "";)
 
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $< $(MELICE_LIB) -I $(MELICE_HEADERS) -g
