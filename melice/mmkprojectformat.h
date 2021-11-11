@@ -12,11 +12,6 @@
 
 #include "projectformat.h"
 
-typedef struct {
-    MELProjectFormat super;
-    uint8_t version;
-} MELMmkProjectFormat;
-
 extern const MELProjectFormatClass MELMmkProjectFormatClass;
 
 #endif /* mmkprojectformat_h */
