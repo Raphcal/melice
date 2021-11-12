@@ -24,7 +24,7 @@ typedef struct {
     MELPoint (* _Nullable readPoint)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELRectangle (* _Nullable readRectangle)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELUInt8Color (* _Nullable readColor)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
-    MELPalette (* _Nullable readPalette)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
+    MELPaletteRef (* _Nullable readPalette)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELColorPalette (* _Nullable readColorPalette)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELImagePalette (* _Nullable readImagePalette)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELLayer (* _Nullable readLayer)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);

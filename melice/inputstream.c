@@ -33,12 +33,35 @@ int MELInputStreamClose(MELInputStream * _Nonnull self) {
     return fclose(file);
 }
 
+MELInputStream MELInputStreamInitWithBytes(void * _Nonnull bytes, size_t count) {
+    uint8_t *buffer = malloc(count);
+    memcpy(buffer, bytes, count);
+    return (MELInputStream) {
+        NULL,
+        buffer,
+        count,
+        0
+    };
+}
+
+void MELInputStreamDeinit(MELInputStream * _Nonnull self) {
+    assert(self != NULL);
+    assert(self->file == NULL);
+    self->cursor = 0;
+    self->size = 0;
+    free(self->buffer);
+    self->buffer = NULL;
+}
+
 size_t MELInputStreamRemaining(MELInputStream *self) {
     return self->size - self->cursor;
 }
 
 int MELInputStreamReadByte(MELInputStream *self) {
     if (self->cursor == self->size) {
+        if (self->file == NULL) {
+            return -1;
+        }
         size_t read = fread(self->buffer, sizeof(uint8_t), MELInputStreamBufferSize, self->file);
         if (read < 1) {
             return -1;
@@ -63,6 +86,9 @@ void MELInputStreamCompact(MELInputStream * _Nonnull self) {
 }
 
 void MELInputStreamFillBuffer(MELInputStream * _Nonnull self) {
+    if (self->file == NULL) {
+        return;
+    }
     const size_t size = self->size;
     size_t read = fread(self->buffer + size, sizeof(uint8_t), MELInputStreamBufferSize - size, self->file);
     if (read < 1) {

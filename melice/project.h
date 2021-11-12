@@ -20,7 +20,7 @@ typedef struct melmapgroup MELMapGroup;
 MELListDefine(MELMapGroup);
 
 typedef struct {
-    MELList(MELPalette) palettes;
+    MELList(MELPaletteRef) palettes;
     MELList(MELMapGroup) mapGroups;
 } MELProject;
 

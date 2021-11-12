@@ -62,7 +62,9 @@ typedef struct melpalette {
     uint32_t count;
 } MELPalette;
 
-MELListDefine(MELPalette);
+typedef MELPalette * _Nullable MELPaletteRef;
+
+MELListDefine(MELPaletteRef);
 
 /**
  * Returns the number of bytes required to paint an image made of the given amount of tiles with the given tile size.

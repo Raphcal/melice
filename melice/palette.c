@@ -7,7 +7,7 @@
 
 #include "palette.h"
 
-MELListImplement(MELPalette);
+MELListImplement(MELPaletteRef);
 
 size_t MELPaletteByteCount(MELIntSize tileSize, MELIntSize imageSize) {
     return sizeof(MELUInt32Color) * tileSize.width * imageSize.width * tileSize.height * imageSize.height;

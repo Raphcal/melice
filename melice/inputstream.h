@@ -39,6 +39,22 @@ MELInputStream MELInputStreamOpen(const char * _Nonnull path);
 int MELInputStreamClose(MELInputStream * _Nonnull self);
 
 /**
+ * Creates an inputstream containing a copy of the bytes from the given byte array.
+ *
+ * @param bytes Content of the stream.
+ * @param count Number of bytes to copy.
+ * @return An inputstream.
+ */
+MELInputStream MELInputStreamInitWithBytes(void * _Nonnull bytes, size_t count);
+
+/**
+ * Free the byte buffer backing the inputstream.
+ *
+ * @param self Input stream instance to deinit.
+ */
+void MELInputStreamDeinit(MELInputStream * _Nonnull self);
+
+/**
  * Reads and returns one byte from the given input stream.
  *
  * @param self Input stream instance.
