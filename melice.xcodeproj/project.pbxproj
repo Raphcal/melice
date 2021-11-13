@@ -178,12 +178,12 @@
 		645260482614F89900BB78AC /* libmelice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 642B298B25FD340C00183D42 /* libmelice.a */; };
 		6452604C2614F8A900BB78AC /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6452604B2614F8A900BB78AC /* Director.swift */; };
 		645260592614FB3600BB78AC /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645260582614FB3600BB78AC /* Scene.swift */; };
-		647189E927386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; };
-		647189EA27386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; };
+		647189E927386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		647189EA27386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		647189EB27386C9400547977 /* mmkprojectformat.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189E827386C9400547977 /* mmkprojectformat.c */; };
 		647189EC27386C9400547977 /* mmkprojectformat.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189E827386C9400547977 /* mmkprojectformat.c */; };
-		64718A0227390F2A00547977 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; };
-		64718A0327390F2A00547977 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; };
+		64718A0227390F2A00547977 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		64718A0327390F2A00547977 /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		64718A0427390F2A00547977 /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
 		64718A0527390F2A00547977 /* miniz.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A0127390F2900547977 /* miniz.h */; };
 		64718A18273A7F0C00547977 /* hashmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29AD25FD410200183D42 /* hashmap.c */; };
@@ -194,9 +194,8 @@
 		64718A25273AAE5300547977 /* melstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 64718A22273AAE5300547977 /* melstring.c */; };
 		64718A26273AAE5300547977 /* melstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 64718A22273AAE5300547977 /* melstring.c */; };
 		64718A27273AAE8600547977 /* hashmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A825FD410200183D42 /* hashmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64718A29273AC6D600547977 /* dictionary-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 64718A28273AC6D600547977 /* dictionary-test.c */; };
 		64749390272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64749391272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; };
+		64749391272C1470004F3D97 /* mutablemap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64749396272C2ABA004F3D97 /* primitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64749397272C2ABA004F3D97 /* primitives.h in Headers */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64749398272C2ABA004F3D97 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 64749395272C2ABA004F3D97 /* primitives.c */; };
@@ -367,22 +366,22 @@
 		64CB6774271F523A00663A2E /* meltime.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* meltime.h */; };
 		64CB6775271F523A00663A2E /* meliceframework.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 645260402614F88D00BB78AC /* meliceframework.h */; };
 		64CB6776271F523F00663A2E /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6421E8D52614480000952E74 /* module.modulemap */; };
-		64D00E60272DD7DF00C8A675 /* palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E5F272DD7D200C8A675 /* palette.h */; };
+		64D00E60272DD7DF00C8A675 /* palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E5F272DD7D200C8A675 /* palette.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E61272DD7E000C8A675 /* palette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E5F272DD7D200C8A675 /* palette.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E66272F37A600C8A675 /* decorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E65272F37A500C8A675 /* decorator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64D00E67272F37A600C8A675 /* decorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E65272F37A500C8A675 /* decorator.h */; };
+		64D00E67272F37A600C8A675 /* decorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E65272F37A500C8A675 /* decorator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E6827308C9900C8A675 /* decorator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E65272F37A500C8A675 /* decorator.h */; };
 		64D00E6927308C9900C8A675 /* mutablemap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; };
 		64D00E6A27308C9900C8A675 /* palette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E5F272DD7D200C8A675 /* palette.h */; };
 		64D00E6B27308CA600C8A675 /* decorator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E65272F37A500C8A675 /* decorator.h */; };
 		64D00E6C27308CA600C8A675 /* mutablemap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6474938E272C1470004F3D97 /* mutablemap.h */; };
 		64D00E6D27308CA600C8A675 /* palette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E5F272DD7D200C8A675 /* palette.h */; };
-		64D00E732730940600C8A675 /* colorpalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E712730940600C8A675 /* colorpalette.h */; };
-		64D00E742730940600C8A675 /* colorpalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E712730940600C8A675 /* colorpalette.h */; };
+		64D00E732730940600C8A675 /* colorpalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E712730940600C8A675 /* colorpalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64D00E742730940600C8A675 /* colorpalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E712730940600C8A675 /* colorpalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E752730940600C8A675 /* colorpalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E722730940600C8A675 /* colorpalette.c */; };
 		64D00E762730940600C8A675 /* colorpalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E722730940600C8A675 /* colorpalette.c */; };
-		64D00E792730943000C8A675 /* imagepalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E772730943000C8A675 /* imagepalette.h */; };
-		64D00E7A2730943000C8A675 /* imagepalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E772730943000C8A675 /* imagepalette.h */; };
+		64D00E792730943000C8A675 /* imagepalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E772730943000C8A675 /* imagepalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64D00E7A2730943000C8A675 /* imagepalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E772730943000C8A675 /* imagepalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E7B2730943000C8A675 /* imagepalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E782730943000C8A675 /* imagepalette.c */; };
 		64D00E7C2730943000C8A675 /* imagepalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E782730943000C8A675 /* imagepalette.c */; };
 		64D00E7E27318F0900C8A675 /* palette.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E7D27318F0900C8A675 /* palette.c */; };
@@ -390,12 +389,12 @@
 		64D00E80273192F400C8A675 /* module.modulemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6421E8D52614480000952E74 /* module.modulemap */; };
 		64D00E842731D85500C8A675 /* project.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E832731D85500C8A675 /* project.c */; };
 		64D00E852731D85500C8A675 /* project.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E832731D85500C8A675 /* project.c */; };
-		64D00E872731D87F00C8A675 /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; };
-		64D00E882731D87F00C8A675 /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; };
+		64D00E872731D87F00C8A675 /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64D00E882731D87F00C8A675 /* project.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E8B2731D9A700C8A675 /* mutablemap.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E8A2731D9A700C8A675 /* mutablemap.c */; };
 		64D00E8C2731D9A700C8A675 /* mutablemap.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E8A2731D9A700C8A675 /* mutablemap.c */; };
-		64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; };
-		64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; };
+		64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1172,19 +1171,15 @@
 				642B2A8F25FD49C100183D42 /* animationframe.h in Headers */,
 				642B2AA525FD49E500183D42 /* hitbox.h in Headers */,
 				642B2AA425FD49E500183D42 /* spritehitbox.h in Headers */,
-				64D00E792730943000C8A675 /* imagepalette.h in Headers */,
 				642B2A8E25FD49C100183D42 /* animationtype.h in Headers */,
 				642B29CA25FD43DF00183D42 /* operation.h in Headers */,
 				642B2A5B25FD451F00183D42 /* inputstream.h in Headers */,
-				647189E927386C9400547977 /* mmkprojectformat.h in Headers */,
 				642B2A7025FD462F00183D42 /* fade.h in Headers */,
-				64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */,
 				642B2A4E25FD44AB00183D42 /* size.h in Headers */,
 				642B2A5925FD451F00183D42 /* filemanager.h in Headers */,
 				64718A23273AAE5300547977 /* melstring.h in Headers */,
 				642B2A8D25FD49C100183D42 /* noanimation.h in Headers */,
 				642B2AAA25FD49F600183D42 /* motion.h in Headers */,
-				64D00E872731D87F00C8A675 /* project.h in Headers */,
 				642B299B25FD34A000183D42 /* melstd.h in Headers */,
 				642B2A4B25FD44AB00183D42 /* point.h in Headers */,
 				642B2A9325FD49C100183D42 /* synchronizedanimation.h in Headers */,
@@ -1199,6 +1194,10 @@
 				642B2AA325FD49E500183D42 /* statichitbox.h in Headers */,
 				64718A1D273AAB0100547977 /* dictionary.h in Headers */,
 				64D00E61272DD7E000C8A675 /* palette.h in Headers */,
+				64D00E792730943000C8A675 /* imagepalette.h in Headers */,
+				647189E927386C9400547977 /* mmkprojectformat.h in Headers */,
+				64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */,
+				64D00E872731D87F00C8A675 /* project.h in Headers */,
 				64D00E732730940600C8A675 /* colorpalette.h in Headers */,
 				64749390272C1470004F3D97 /* mutablemap.h in Headers */,
 				64D00E66272F37A600C8A675 /* decorator.h in Headers */,
@@ -1237,7 +1236,6 @@
 				64CB66DC271F514100663A2E /* inputsource.h in Headers */,
 				64CB66DD271F514100663A2E /* inputsourcetype.h in Headers */,
 				64CB66DE271F514100663A2E /* inputstream.h in Headers */,
-				64D00E60272DD7DF00C8A675 /* palette.h in Headers */,
 				64CB66E0271F514200663A2E /* map.h in Headers */,
 				64CB66E1271F514200663A2E /* maprenderer.h in Headers */,
 				64CB66E2271F514200663A2E /* layer.h in Headers */,
@@ -1248,26 +1246,20 @@
 				64CB66E7271F514200663A2E /* animationframe.h in Headers */,
 				64CB66E8271F514200663A2E /* animationtype.h in Headers */,
 				64CB66E9271F514200663A2E /* loopinganimation.h in Headers */,
-				64749391272C1470004F3D97 /* mutablemap.h in Headers */,
 				64CB66EA271F514200663A2E /* noanimation.h in Headers */,
 				64CB66EB271F514200663A2E /* playonceanimation.h in Headers */,
 				64CB66EC271F514200663A2E /* singleframeanimation.h in Headers */,
 				64CB66ED271F514200663A2E /* synchronizedanimation.h in Headers */,
 				64CB66EE271F514200663A2E /* animationdefinition.h in Headers */,
 				64CB66EF271F514200663A2E /* spritedefinition.h in Headers */,
-				64D00E7A2730943000C8A675 /* imagepalette.h in Headers */,
 				64CB66F0271F514200663A2E /* hitbox.h in Headers */,
 				64CB66F1271F514200663A2E /* rotatedhitbox.h in Headers */,
 				64CB66F2271F514200663A2E /* simplespritehitbox.h in Headers */,
-				647189EA27386C9400547977 /* mmkprojectformat.h in Headers */,
 				64CB66F3271F514200663A2E /* spritehitbox.h in Headers */,
-				64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */,
 				64CB66F4271F514200663A2E /* statichitbox.h in Headers */,
 				64CB66F5271F514200663A2E /* motion.h in Headers */,
 				64718A24273AAE5300547977 /* melstring.h in Headers */,
 				64CB66F6271F514200663A2E /* nomotion.h in Headers */,
-				64D00E67272F37A600C8A675 /* decorator.h in Headers */,
-				64D00E882731D87F00C8A675 /* project.h in Headers */,
 				64CB66F7271F514200663A2E /* axe.h in Headers */,
 				64CB66F8271F514200663A2E /* direction.h in Headers */,
 				64CB66F9271F514200663A2E /* sprite.h in Headers */,
@@ -1279,10 +1271,17 @@
 				64CB66FF271F514200663A2E /* surface.h in Headers */,
 				64CB6700271F514200663A2E /* surfacearray.h in Headers */,
 				64CB6701271F514200663A2E /* surfacememory.h in Headers */,
+				64D00E60272DD7DF00C8A675 /* palette.h in Headers */,
+				64749391272C1470004F3D97 /* mutablemap.h in Headers */,
+				64D00E7A2730943000C8A675 /* imagepalette.h in Headers */,
+				647189EA27386C9400547977 /* mmkprojectformat.h in Headers */,
+				64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */,
+				64D00E67272F37A600C8A675 /* decorator.h in Headers */,
+				64D00E882731D87F00C8A675 /* project.h in Headers */,
+				64D00E742730940600C8A675 /* colorpalette.h in Headers */,
 				64CB6702271F514300663A2E /* texture.h in Headers */,
 				64718A1E273AAB0100547977 /* dictionary.h in Headers */,
 				64CB6703271F514300663A2E /* textureatlas.h in Headers */,
-				64D00E742730940600C8A675 /* colorpalette.h in Headers */,
 				64CB6704271F514300663A2E /* hashmap.h in Headers */,
 				64CB6705271F514300663A2E /* list.h in Headers */,
 				644872582726B86700DEE2C1 /* bitmap.h in Headers */,
@@ -1511,7 +1510,6 @@
 				642B2AC125FD4A6900183D42 /* referencepool.c in Sources */,
 				642B2A4F25FD44AB00183D42 /* size.c in Sources */,
 				642B2AB725FD4A0300183D42 /* direction.c in Sources */,
-				64718A29273AC6D600547977 /* dictionary-test.c in Sources */,
 				642B2A4D25FD44AB00183D42 /* quadrilateral.c in Sources */,
 				642B2AB325FD4A0300183D42 /* spritemanager.c in Sources */,
 				64718A0227390F2A00547977 /* miniz.c in Sources */,
