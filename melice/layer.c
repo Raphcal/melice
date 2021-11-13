@@ -21,6 +21,7 @@ MELLayer MELLayerMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     self.scrollRate = MELInputStreamReadPoint(inputStream);
 
     self.tiles = MELInputStreamReadIntArray(inputStream, &self.tileCount);
+    self.sprites = MELSpriteInstanceListEmpty;
     return self;
 }
 
@@ -32,6 +33,7 @@ void MELLayerDeinit(MELLayer * _Nonnull self) {
     free(self->tiles);
     self->tiles = NULL;
     self->scrollRate = MELPointZero;
+    MELSpriteInstanceListDeinit(&self->sprites);
 }
 
 int MELLayerTileAtXAndY(MELLayer self, int x, int y) {

@@ -14,6 +14,7 @@
 #include "inputstream.h"
 #include "surfacearray.h"
 #include "textureatlas.h"
+#include "spriteinstance.h"
 #include "list.h"
 
 typedef struct {
@@ -22,6 +23,7 @@ typedef struct {
     int tileCount;
     int * _Nullable tiles;
     MELPoint scrollRate;
+    MELSpriteInstanceList sprites;
 } MELLayer;
 
 MELListDefine(MELLayer);

@@ -8,6 +8,8 @@
 
 #include "spriteinstance.h"
 
+MELListImplement(MELSpriteInstance);
+
 MELSpriteInstance MELSpriteInstanceMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     MELSpriteInstance self;
     self.definitionIndex = MELInputStreamReadInt(inputStream);

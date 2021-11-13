@@ -8,3 +8,5 @@
 #include "project.h"
 
 MELListImplement(MELMapGroup);
+
+const MELMapGroup MELMapGroupEmpty = {NULL, {NULL, 0, 0}, {NULL, 0, 0}, {NULL, 0, 0}};

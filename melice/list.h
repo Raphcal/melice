@@ -244,6 +244,10 @@ type type##ListRemove(type##List * _Nonnull self, size_t index) {\
 
 #define MELListRefPop(self) self->memory[--self->count]
 
+#define MELListGet(self, index) self.memory[index]
+
+#define MELListRefGet(self, index) self->memory[index]
+
 #define MELListSet(self, index, element) { \
     const size_t propertyIndex = index; \
     if (propertyIndex >= self.count) { \

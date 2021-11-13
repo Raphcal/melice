@@ -14,6 +14,7 @@
 #include "point.h"
 #include "operation.h"
 #include "inputstream.h"
+#include "list.h"
 
 typedef struct {
     int32_t definitionIndex;
@@ -21,6 +22,8 @@ typedef struct {
     MELBoolean isUnique;
     MELOperation initializationScript;
 } MELSpriteInstance;
+
+MELListDefine(MELSpriteInstance);
 
 MELSpriteInstance MELSpriteInstanceMakeWithInputStream(MELInputStream * _Nonnull inputStream);
 

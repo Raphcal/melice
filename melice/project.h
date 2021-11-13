@@ -26,9 +26,11 @@ typedef struct {
 
 typedef struct melmapgroup {
     uint8_t * _Nullable name;
-    MELList(MELSpriteDefinition) sprites;
     MELList(MELMutableMap) maps;
-    MELMapGroup * _Nullable children;
+    MELList(MELSpriteDefinition) sprites;
+    MELMapGroupList children;
 } MELMapGroup;
+
+extern const MELMapGroup MELMapGroupEmpty;
 
 #endif /* project_h */

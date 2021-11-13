@@ -27,20 +27,63 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, cons
     int8_t header[4];
     MELInputStreamRead(&inputStream, header, 4);
 
+    unsigned int version;
     if (memcmp(header, "MMK", 3) == 0) {
-        self->version = header[3] - '0';
+        version = header[3] - '0';
     } else if (memcmp(header, "MM", 2) == 0) {
-        self->version = (header[2] - '0') * 10 + header[3] - '0';
+        version = (header[2] - '0') * 10 + header[3] - '0';
     } else {
-        self->version = 1;
+        version = 1;
         inputStream.cursor = 0;
     }
+    self->version = version;
 
     MELProject project = {MELPaletteRefListEmpty, MELMapGroupListEmpty};
 
-    int paletteCount = MELInputStreamReadInt(&inputStream);
-    for(int index = 0; index < paletteCount; index++) {
+    MELMapGroupListPush(&project.mapGroups, MELMapGroupEmpty);
+
+    // Loading palettes.
+    const int paletteCount = MELInputStreamReadInt(&inputStream);
+    for (int index = 0; index < paletteCount; index++) {
         MELPaletteRefListPush(&project.palettes, self->class->readPalette(self, &project, &inputStream));
+    }
+
+    // Loading maps.
+    const int mapCount = MELInputStreamReadInt(&inputStream);
+    for (int index = 0; index < mapCount; index++) {
+        MELMutableMapListPush(&project.mapGroups.memory[0].maps, self->class->readMap(self, &project, &inputStream));
+    }
+
+    if (version >= 3) {
+        // Loading sprites.
+        const int spriteCount = MELInputStreamReadInt(&inputStream);
+        for (int index = 0; index < spriteCount; index++) {
+            MELSpriteDefinitionListPush(&project.mapGroups.memory[0].sprites, self->class->readSpriteDefinition(self, &project, &inputStream));
+        }
+
+        // Loading sprite instances.
+        const MELPoint defaultScrollRate = MELPointMake(1, 1);
+        for (int mapIndex = 0; mapIndex < mapCount; mapIndex++) {
+            MELLayerList * _Nonnull layers = &project.mapGroups.memory[0].maps.memory[mapIndex].layers;
+            MELLayer * _Nullable layer = NULL;
+            for (int layerIndex = 0; layerIndex < layers->count; layerIndex++) {
+                if (MELPointEquals(layers->memory[layerIndex].scrollRate, defaultScrollRate)) {
+                    layer = layers->memory + layerIndex;
+                    break;
+                }
+            }
+            if (layer == NULL && layers->count > 0) {
+                layer = layers->memory;
+            }
+
+            const int instanceCount = MELInputStreamReadInt(&inputStream);
+            for (int instanceIndex = 0; instanceIndex < instanceCount; instanceIndex++) {
+                MELSpriteInstance instance = self->class->readSpriteInstance(self, &project, &inputStream);
+                if (layer != NULL) {
+                    MELSpriteInstanceListPush(&layer->sprites, instance);
+                }
+            }
+        }
     }
 
     MELInputStreamDeinit(&inputStream);
