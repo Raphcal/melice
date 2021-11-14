@@ -190,8 +190,11 @@ int32_t * _Nonnull MELInputStreamReadIntArray(MELInputStream * _Nonnull self, in
     return array;
 }
 
-uint16_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self) {
+uint16_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self, size_t * _Nullable length) {
     int32_t count = MELInputStreamReadInt(self);
+    if (length) {
+        *length = count;
+    }
 
     uint16_t *string = malloc(sizeof(uint16_t) * (count + 1));
     MELInputStreamRead(self, string, sizeof(uint16_t) * count);
@@ -200,10 +203,13 @@ uint16_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self) {
     return string;
 }
 
-uint16_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self) {
+uint16_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self, size_t * _Nullable length) {
     if (MELInputStreamReadBoolean(self)) {
-        return MELInputStreamReadString(self);
+        return MELInputStreamReadString(self, length);
     } else {
+        if (length) {
+            *length = 0;
+        }
         return NULL;
     }
 }

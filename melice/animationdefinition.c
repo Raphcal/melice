@@ -14,7 +14,7 @@ MELAnimationDefinition MELAnimationDefinitionMakeWithInputStream(MELInputStream 
     assert(inputStream->file != NULL);
 
     MELAnimationDefinition self;
-    self.name = MELInputStreamReadString(inputStream);
+    self.name = MELInputStreamReadString(inputStream, NULL);
     self.frequency = MELInputStreamReadInt(inputStream);
     const MELBoolean looping = MELInputStreamReadBoolean(inputStream);
     

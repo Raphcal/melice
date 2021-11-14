@@ -150,17 +150,19 @@ int32_t * _Nonnull MELInputStreamReadIntArray(MELInputStream * _Nonnull self, in
  * Reads and returns an UTF-16 string from the given input stream.
  *
  * @param self Input stream instance.
+ * @param length Will be set with the length of the string.
  * @return An UTF-16 string. You are responsible for freeing the returned string.
  */
-uint16_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self);
+uint16_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self, size_t * _Nullable length);
 
 /**
  * Reads and returns an UTF-16 string from the given input stream.
  *
  * @param self Input stream instance.
+ * @param length Will be set with the length of the string.
  * @return An UTF-16 string or NULL. You are responsible for freeing the returned string.
  */
-uint16_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self);
+uint16_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self, size_t * _Nullable length);
 
 /**
  * Reads and returns a color from the given input stream.

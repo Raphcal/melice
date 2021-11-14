@@ -92,6 +92,21 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, cons
     return true;
 }
 
+MELPaletteRef MELMmkProjectFormatReadPalette(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
+    char *paletteClass = NULL;
+    uint16_t *class = MELInputStreamReadString(inputStream, NULL);
+    // TODO: Convert UTF-16 to UTF-8
+    if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.AlphaColorPalette") == 0) {
+        return &self->class->readColorPalette(self, project, inputStream)->super;
+    } else if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.EditableImagePalette") == 0) {
+        return &self->class->readImagePalette(self, project, inputStream)->super;
+    } else {
+        fprintf(stderr, "Unsupported palette class: %s\n", paletteClass);
+        return NULL;
+    }
+}
+
 const MELProjectFormatClass MELMmkProjectFormatClass = {
-    .openProject = &MELMmkProjectFormatOpenProject
+    .openProject = &MELMmkProjectFormatOpenProject,
+    .readPalette = &MELMmkProjectFormatReadPalette
 };

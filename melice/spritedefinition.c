@@ -16,11 +16,11 @@ MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Non
     assert(inputStream->file != NULL);
 
     MELSpriteDefinition self;
-    self.name = MELInputStreamReadNullableString(inputStream);
+    self.name = MELInputStreamReadNullableString(inputStream, NULL);
     /* width */ MELInputStreamReadInt(inputStream);
     /* height */ MELInputStreamReadInt(inputStream);
     self.type = MELInputStreamReadInt(inputStream);
-    self.motionName = MELInputStreamReadNullableString(inputStream);
+    self.motionName = MELInputStreamReadNullableString(inputStream, NULL);
     
     const int32_t animationCount = MELInputStreamReadInt(inputStream);
 	self.animationCount = (unsigned int)animationCount;
