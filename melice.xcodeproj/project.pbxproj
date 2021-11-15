@@ -21,7 +21,6 @@
 		6421EA292614681200952E74 /* inputsourcetype.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F625FD448A00183D42 /* inputsourcetype.h */; };
 		6421EA2A2614681200952E74 /* inputsource.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29EF25FD448A00183D42 /* inputsource.h */; };
 		6421EA2B2614681200952E74 /* inputstream.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F125FD448A00183D42 /* inputstream.h */; };
-		6421EA2C2614681200952E74 /* keyboardinputsource-sdl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29F325FD448A00183D42 /* keyboardinputsource-sdl.h */; };
 		6421EA2D2614681200952E74 /* map.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29E125FD448A00183D42 /* map.h */; };
 		6421EA2E2614681200952E74 /* maprenderer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29E025FD448A00183D42 /* maprenderer.h */; };
 		6421EA2F2614681200952E74 /* layer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29E225FD448A00183D42 /* layer.h */; };
@@ -396,6 +395,21 @@
 		64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EEAA4727418C7600776662 /* melstring-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA4627418C7500776662 /* melstring-test.c */; };
+		64EEAA4927426CD400776662 /* colorpalette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E712730940600C8A675 /* colorpalette.h */; };
+		64EEAA4A27426CD400776662 /* imagepalette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E772730943000C8A675 /* imagepalette.h */; };
+		64EEAA4B27426CD400776662 /* project.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; };
+		64EEAA4C27426CD400776662 /* projectformat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; };
+		64EEAA4D27426CD400776662 /* mmkprojectformat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; };
+		64EEAA4E27426CD400776662 /* dictionary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A1B273AAB0100547977 /* dictionary.h */; };
+		64EEAA4F27426CD400776662 /* hashmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A825FD410200183D42 /* hashmap.h */; };
+		64EEAA5027426CD400776662 /* melstring.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; };
+		64EEAA5127426CE600776662 /* colorpalette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E712730940600C8A675 /* colorpalette.h */; };
+		64EEAA5227426CE600776662 /* imagepalette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E772730943000C8A675 /* imagepalette.h */; };
+		64EEAA5327426CE700776662 /* project.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; };
+		64EEAA5427426CE700776662 /* projectformat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; };
+		64EEAA5527426CE700776662 /* mmkprojectformat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; };
+		64EEAA5627426CE700776662 /* dictionary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A1B273AAB0100547977 /* dictionary.h */; };
+		64EEAA5727426CE700776662 /* melstring.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -415,6 +429,14 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				64EEAA4927426CD400776662 /* colorpalette.h in CopyFiles */,
+				64EEAA4A27426CD400776662 /* imagepalette.h in CopyFiles */,
+				64EEAA4B27426CD400776662 /* project.h in CopyFiles */,
+				64EEAA4C27426CD400776662 /* projectformat.h in CopyFiles */,
+				64EEAA4D27426CD400776662 /* mmkprojectformat.h in CopyFiles */,
+				64EEAA4E27426CD400776662 /* dictionary.h in CopyFiles */,
+				64EEAA4F27426CD400776662 /* hashmap.h in CopyFiles */,
+				64EEAA5027426CD400776662 /* melstring.h in CopyFiles */,
 				64D00E80273192F400C8A675 /* module.modulemap in CopyFiles */,
 				64D00E6B27308CA600C8A675 /* decorator.h in CopyFiles */,
 				64D00E6C27308CA600C8A675 /* mutablemap.h in CopyFiles */,
@@ -435,7 +457,6 @@
 				6421EA292614681200952E74 /* inputsourcetype.h in CopyFiles */,
 				6421EA2A2614681200952E74 /* inputsource.h in CopyFiles */,
 				6421EA2B2614681200952E74 /* inputstream.h in CopyFiles */,
-				6421EA2C2614681200952E74 /* keyboardinputsource-sdl.h in CopyFiles */,
 				6421EA2D2614681200952E74 /* map.h in CopyFiles */,
 				6421EA2E2614681200952E74 /* maprenderer.h in CopyFiles */,
 				6421EA2F2614681200952E74 /* layer.h in CopyFiles */,
@@ -486,6 +507,13 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				64EEAA5127426CE600776662 /* colorpalette.h in CopyFiles */,
+				64EEAA5227426CE600776662 /* imagepalette.h in CopyFiles */,
+				64EEAA5327426CE700776662 /* project.h in CopyFiles */,
+				64EEAA5427426CE700776662 /* projectformat.h in CopyFiles */,
+				64EEAA5527426CE700776662 /* mmkprojectformat.h in CopyFiles */,
+				64EEAA5627426CE700776662 /* dictionary.h in CopyFiles */,
+				64EEAA5727426CE700776662 /* melstring.h in CopyFiles */,
 				64D00E6827308C9900C8A675 /* decorator.h in CopyFiles */,
 				64D00E6927308C9900C8A675 /* mutablemap.h in CopyFiles */,
 				64D00E6A27308C9900C8A675 /* palette.h in CopyFiles */,
