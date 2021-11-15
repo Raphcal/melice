@@ -16,7 +16,7 @@ MELLayer MELLayerMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     assert(inputStream->file != NULL);
 
     MELLayer self;
-    self.name = MELInputStreamReadString(inputStream, NULL);
+    self.name = MELInputStreamReadString(inputStream);
     self.size = MELIntSizeMake(MELInputStreamReadInt(inputStream), MELInputStreamReadInt(inputStream));
     self.scrollRate = MELInputStreamReadPoint(inputStream);
 

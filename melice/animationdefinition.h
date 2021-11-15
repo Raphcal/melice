@@ -23,7 +23,7 @@ typedef struct {
     /**
      * Name of the definition.
      */
-    uint16_t * _Nullable name;
+    char * _Nullable name;
     
     /**
      * Number of frames in this animation.

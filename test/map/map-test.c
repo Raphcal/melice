@@ -7,7 +7,7 @@
 //
 
 #include <stdlib.h>
-#include <wchar.h>
+#include <string.h>
 #include <melice.h>
 #include <assert.h>
 
@@ -28,8 +28,8 @@ int main(int argc, char **argv) {
     assert(MELColorToUInt32Color(map.backgroundColor) == (uint32_t)0xff0099cc);
     assert(map.layerCount == 2);
     
-    assert(wcscmp(u"Background", map.layers[0].name) == 0);
-    assert(wcscmp(u"HelloVita", map.layers[1].name) == 0);
+    assert(strcmp("Background", map.layers[0].name) == 0);
+    assert(strcmp("HelloVita", map.layers[1].name) == 0);
     
     MELMapDeinit(&map);
     

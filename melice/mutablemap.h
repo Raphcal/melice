@@ -22,7 +22,7 @@ typedef struct {
     MELColor backgroundColor;
     MELList(MELLayer) layers;
     MELPalette * _Nullable palette;
-    uint16_t * _Nullable name;
+    char * _Nullable name;
 } MELMutableMap;
 
 MELListDefine(MELMutableMap);

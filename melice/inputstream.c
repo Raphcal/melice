@@ -11,6 +11,8 @@
 #include <assert.h>
 #include <string.h>
 
+#include "melstring.h"
+
 #define MELInputStreamBufferSize 4096
 
 MELInputStream MELInputStreamOpen(const char * _Nonnull path) {
@@ -190,26 +192,23 @@ int32_t * _Nonnull MELInputStreamReadIntArray(MELInputStream * _Nonnull self, in
     return array;
 }
 
-uint16_t * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self, size_t * _Nullable length) {
+char * _Nonnull MELInputStreamReadString(MELInputStream * _Nonnull self) {
     int32_t count = MELInputStreamReadInt(self);
-    if (length) {
-        *length = count;
-    }
 
     uint16_t *string = malloc(sizeof(uint16_t) * (count + 1));
     MELInputStreamRead(self, string, sizeof(uint16_t) * count);
     string[count] = '\0';
 
-    return string;
+    char *utf8String = MELUTF8StringMakeWithUTF16String(string);
+    free(string);
+
+    return utf8String;
 }
 
-uint16_t * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self, size_t * _Nullable length) {
+char * _Nullable MELInputStreamReadNullableString(MELInputStream * _Nonnull self) {
     if (MELInputStreamReadBoolean(self)) {
-        return MELInputStreamReadString(self, length);
+        return MELInputStreamReadString(self);
     } else {
-        if (length) {
-            *length = 0;
-        }
         return NULL;
     }
 }

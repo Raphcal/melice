@@ -18,7 +18,7 @@
 #include "list.h"
 
 typedef struct {
-    uint16_t * _Nullable name;
+    char * _Nullable name;
     MELIntSize size;
     int tileCount;
     int * _Nullable tiles;

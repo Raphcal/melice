@@ -55,7 +55,7 @@ typedef struct melpalette {
     /// Class of this palette.
     MELPaletteClass * _Nonnull class;
     /// Palette name.
-    uint16_t * _Nullable name;
+    char * _Nullable name;
     /// Preferred tile size or MELSizeZero if none.
     MELIntSize tileSize;
     /// Number of tiles in this palette.
