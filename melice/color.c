@@ -19,6 +19,15 @@ MELColor MELColorMakeWithHex(uint32_t hexColor) {
     };
 }
 
+MELColor MELColorMakeWithMELUInt8Color(MELUInt8Color color) {
+    return (MELColor) {
+        color.red / 255.0f,
+        color.green / 255.0f,
+        color.blue / 255.0f,
+        color.alpha / 255.0f
+    };
+}
+
 MELUInt8Color MELColorToMELUInt8Color(MELColor self) {
     return (MELUInt8Color) {
         (uint8_t) (self.red * 255.0f),

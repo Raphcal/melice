@@ -177,6 +177,8 @@
 		645260482614F89900BB78AC /* libmelice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 642B298B25FD340C00183D42 /* libmelice.a */; };
 		6452604C2614F8A900BB78AC /* Director.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6452604B2614F8A900BB78AC /* Director.swift */; };
 		645260592614FB3600BB78AC /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645260582614FB3600BB78AC /* Scene.swift */; };
+		6460EFFF27452C9D0040F95A /* mmkprojectformat-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460EFFE27452C9D0040F95A /* mmkprojectformat-test.c */; };
+		6460F0002745593E0040F95A /* spritedefinition-test.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2B0825FF703100183D42 /* spritedefinition-test.c */; };
 		647189E927386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		647189EA27386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		647189EB27386C9400547977 /* mmkprojectformat.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189E827386C9400547977 /* mmkprojectformat.c */; };
@@ -410,6 +412,8 @@
 		64EEAA5527426CE700776662 /* mmkprojectformat.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; };
 		64EEAA5627426CE700776662 /* dictionary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A1B273AAB0100547977 /* dictionary.h */; };
 		64EEAA5727426CE700776662 /* melstring.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; };
+		64EEAA59274280B500776662 /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
+		64EEAA5A274280B500776662 /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -714,6 +718,8 @@
 		645260412614F88D00BB78AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6452604B2614F8A900BB78AC /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
 		645260582614FB3600BB78AC /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		6460EFFD27452B600040F95A /* HelloVita.mmk */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelloVita.mmk; sourceTree = "<group>"; };
+		6460EFFE27452C9D0040F95A /* mmkprojectformat-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "mmkprojectformat-test.c"; sourceTree = "<group>"; };
 		647189E427386C6C00547977 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
 		647189E727386C9400547977 /* mmkprojectformat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mmkprojectformat.h; sourceTree = "<group>"; };
 		647189E827386C9400547977 /* mmkprojectformat.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mmkprojectformat.c; sourceTree = "<group>"; };
@@ -743,6 +749,7 @@
 		64D00E8A2731D9A700C8A675 /* mutablemap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mutablemap.c; sourceTree = "<group>"; };
 		64D00E8D2731DDF900C8A675 /* projectformat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = projectformat.h; sourceTree = "<group>"; };
 		64EEAA4627418C7500776662 /* melstring-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "melstring-test.c"; sourceTree = "<group>"; };
+		64EEAA58274280B500776662 /* decorator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = decorator.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -849,6 +856,7 @@
 			isa = PBXGroup;
 			children = (
 				64D00E65272F37A500C8A675 /* decorator.h */,
+				64EEAA58274280B500776662 /* decorator.c */,
 				642B29E225FD448A00183D42 /* layer.h */,
 				642B29E525FD448A00183D42 /* layer.c */,
 				642B29E125FD448A00183D42 /* map.h */,
@@ -1029,11 +1037,12 @@
 		642B2AEE25FF703100183D42 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				642B2AEF25FF703100183D42 /* util */,
 				642B2AF325FF703100183D42 /* makefile */,
 				642B2AF725FF703100183D42 /* surface */,
 				642B2AFE25FF703100183D42 /* map */,
+				6460EFFB27452B600040F95A /* project */,
 				642B2B0525FF703100183D42 /* sprite */,
+				642B2AEF25FF703100183D42 /* util */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1128,6 +1137,23 @@
 				645260582614FB3600BB78AC /* Scene.swift */,
 			);
 			name = Scene;
+			sourceTree = "<group>";
+		};
+		6460EFFB27452B600040F95A /* project */ = {
+			isa = PBXGroup;
+			children = (
+				6460EFFC27452B600040F95A /* assets */,
+				6460EFFE27452C9D0040F95A /* mmkprojectformat-test.c */,
+			);
+			path = project;
+			sourceTree = "<group>";
+		};
+		6460EFFC27452B600040F95A /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				6460EFFD27452B600040F95A /* HelloVita.mmk */,
+			);
+			path = assets;
 			sourceTree = "<group>";
 		};
 		647189FC27390F2900547977 /* dependencies */ = {
@@ -1517,14 +1543,17 @@
 				642B2A8725FD49C100183D42 /* singleframeanimation.c in Sources */,
 				642B2ABF25FD4A6900183D42 /* surfacememory.c in Sources */,
 				642B2A8625FD49C100183D42 /* animationframe.c in Sources */,
+				64EEAA59274280B500776662 /* decorator.c in Sources */,
 				642B2A9F25FD49E500183D42 /* rotatedhitbox.c in Sources */,
 				64D00E842731D85500C8A675 /* project.c in Sources */,
 				642B2A9025FD49C100183D42 /* animationtype.c in Sources */,
 				64718A18273A7F0C00547977 /* hashmap.c in Sources */,
 				64EEAA4727418C7600776662 /* melstring-test.c in Sources */,
+				6460F0002745593E0040F95A /* spritedefinition-test.c in Sources */,
 				642B2AA225FD49E500183D42 /* hitbox.c in Sources */,
 				64D00E7E27318F0900C8A675 /* palette.c in Sources */,
 				642B2A4C25FD44AB00183D42 /* point.c in Sources */,
+				6460EFFF27452C9D0040F95A /* mmkprojectformat-test.c in Sources */,
 				642B2AC925FD4A6900183D42 /* surface.c in Sources */,
 				642B2AAC25FD49F600183D42 /* nomotion.c in Sources */,
 				642B2AA125FD49E500183D42 /* simplespritehitbox.c in Sources */,
@@ -1609,6 +1638,7 @@
 				64CB6721271F51E200663A2E /* singleframeanimation.c in Sources */,
 				64CB6722271F51E300663A2E /* synchronizedanimation.c in Sources */,
 				647189EC27386C9400547977 /* mmkprojectformat.c in Sources */,
+				64EEAA5A274280B500776662 /* decorator.c in Sources */,
 				64CB6723271F51E300663A2E /* animationdefinition.c in Sources */,
 				64CB6724271F51E300663A2E /* spritedefinition.c in Sources */,
 				64718A26273AAE5300547977 /* melstring.c in Sources */,

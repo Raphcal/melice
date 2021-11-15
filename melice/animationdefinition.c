@@ -10,6 +10,8 @@
 
 #include <assert.h>
 
+MELListImplement(MELAnimationDefinition);
+
 MELAnimationDefinition MELAnimationDefinitionMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     assert(inputStream->file != NULL);
 

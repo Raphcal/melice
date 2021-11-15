@@ -7,6 +7,8 @@
 
 #include "imagepalette.h"
 
+MELListImplement(MELImagePaletteImage);
+
 uint8_t * _Nullable MELImagePalettePaintTile(MELImagePalette * _Nonnull self, int tileIndex) {
     if (tileIndex < 0 || tileIndex >= self->super.count) {
         fprintf(stderr, "Tile index out of bounds 0..<%d: %d", self->super.count, tileIndex);

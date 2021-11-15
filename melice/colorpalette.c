@@ -17,7 +17,7 @@ MELUInt32Color MELColorPaletteColorForTile(MELColorPalette self, int tileIndex) 
         return 0;
     }
 
-    MELUint8RGBColor rgb = self.colors[colorIndex];
+    MELUInt8RGBColor rgb = self.colors[colorIndex];
     uint8_t alpha = self.alphaLevels[alphaIndex];
 
     return MELUInt8ColorToRGBAUInt32Color(MELUInt8ColorMake(rgb.red, rgb.green, rgb.blue, alpha));

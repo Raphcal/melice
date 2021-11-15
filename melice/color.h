@@ -32,7 +32,7 @@ typedef struct {
     uint8_t red;
     uint8_t green;
     uint8_t blue;
-} MELUint8RGBColor;
+} MELUInt8RGBColor;
 
 /**
  * Color type.
@@ -41,6 +41,7 @@ typedef uint32_t MELUInt32Color;
 
 #define MELColorMake(red, green, blue, alpha) ((MELColor){red, green, blue, alpha})
 MELColor MELColorMakeWithHex(uint32_t hexColor);
+MELColor MELColorMakeWithMELUInt8Color(MELUInt8Color color);
 MELUInt32Color MELColorToBGRAUInt32Color(MELColor self);
 MELUInt32Color MELColorToRGBAUInt32Color(MELColor self);
 MELUInt8Color MELColorToMELUInt8Color(MELColor self);

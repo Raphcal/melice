@@ -10,6 +10,9 @@
 
 #include "melstd.h"
 
+#include "list.h"
+#include "rectangle.h"
+
 typedef enum {
     MELDecoratorTypeHitbox,
     MELDecoratorTypeFunction,
@@ -19,5 +22,19 @@ typedef enum {
 typedef struct {
     MELDecoratorType type;
 } MELDecorator;
+
+typedef MELDecorator * _Nullable MELDecoratorRef;
+
+MELListDefine(MELDecoratorRef);
+
+typedef struct {
+    MELDecorator super;
+    char * _Nonnull function;
+} MELFunctionDecorator;
+
+typedef struct {
+    MELDecorator super;
+    MELIntRectangle hitbox;
+} MELHitboxDecorator;
 
 #endif /* decorator_h */

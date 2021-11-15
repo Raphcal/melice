@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     MELSpriteDefinition definition = definitions.memory[0];
     assert(strcmp("Sprites", definition.name) == 0);
     
-    MELAnimationDefinition standAnimation = definition.animations[0];
+    MELAnimationDefinition standAnimation = definition.animations.memory[0];
     assert(strcmp("stand", standAnimation.name) == 0);
     assert(standAnimation.frameCount == 5);
     assert(standAnimation.type == MELAnimationTypePlayOnce);

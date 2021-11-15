@@ -18,8 +18,7 @@
 typedef struct {
     char * _Nullable name;
     uint32_t type;
-	unsigned int animationCount;
-    MELAnimationDefinition * _Nullable animations;
+    MELAnimationDefinitionList animations;
     char * _Nullable motionName;
 } MELSpriteDefinition;
 

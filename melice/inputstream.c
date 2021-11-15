@@ -30,9 +30,44 @@ int MELInputStreamClose(MELInputStream * _Nonnull self) {
     self->size = 0;
     free(self->buffer);
     self->buffer = NULL;
-    FILE *file = self->file;
-    self->file = NULL;
-    return fclose(file);
+
+    if (self->file) {
+        FILE *file = self->file;
+        self->file = NULL;
+        return fclose(file);
+    } else {
+        return 0;
+    }
+}
+
+int MELInputStreamSeek(MELInputStream * _Nonnull self, long offset, MELInputStreamSeekFrom from) {
+    if (self->file) {
+        self->cursor = 0;
+        self->size = 0;
+        return fseek(self->file, offset, from);
+    } else {
+        size_t destination;
+        switch (from) {
+            case MELInputStreamSeekFromStart:
+                destination = offset;
+                break;
+            case MELInputStreamSeekFromCurrent:
+                destination = self->cursor + offset;
+                break;
+            case MELInputStreamSeekFromEnd:
+                destination = self->size + offset;
+                break;
+            default:
+                // TODO: Return EINVAL
+                return 1;
+        }
+        if (destination < 0 || destination >= self->size) {
+            // TODO: Return EINVAL
+            return 1;
+        }
+        self->cursor = destination;
+    }
+    return 0;
 }
 
 MELInputStream MELInputStreamInitWithBytes(void * _Nonnull bytes, size_t count) {
@@ -47,12 +82,7 @@ MELInputStream MELInputStreamInitWithBytes(void * _Nonnull bytes, size_t count) 
 }
 
 void MELInputStreamDeinit(MELInputStream * _Nonnull self) {
-    assert(self != NULL);
-    assert(self->file == NULL);
-    self->cursor = 0;
-    self->size = 0;
-    free(self->buffer);
-    self->buffer = NULL;
+    MELInputStreamClose(self);
 }
 
 size_t MELInputStreamRemaining(MELInputStream *self) {

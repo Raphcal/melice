@@ -21,6 +21,12 @@ typedef struct {
     size_t cursor;
 } MELInputStream;
 
+typedef enum {
+    MELInputStreamSeekFromStart = SEEK_SET,
+    MELInputStreamSeekFromCurrent = SEEK_CUR,
+    MELInputStreamSeekFromEnd = SEEK_END
+} MELInputStreamSeekFrom;
+
 /**
  * Opens and returns an input stream on the given path with the given mode.
  *
@@ -37,6 +43,16 @@ MELInputStream MELInputStreamOpen(const char * _Nonnull path);
  * @return 0 if close operation succeeded, an other value otherwise.
  */
 int MELInputStreamClose(MELInputStream * _Nonnull self);
+
+/**
+ * Seek the position of the current inputstream to the given offset, relative to the given position.
+ *
+ * @param self Input stream instance.
+ * @param offset Offset to seek to.
+ * @param from Start position to seek from.
+ * @return 0 if the operation succeeded, an other value otherwise.
+ */
+int MELInputStreamSeek(MELInputStream * _Nonnull self, long offset, MELInputStreamSeekFrom from);
 
 /**
  * Creates an inputstream containing a copy of the bytes from the given byte array.

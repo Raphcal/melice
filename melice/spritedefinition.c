@@ -23,13 +23,11 @@ MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Non
     self.motionName = MELInputStreamReadNullableString(inputStream);
     
     const int32_t animationCount = MELInputStreamReadInt(inputStream);
-	self.animationCount = (unsigned int)animationCount;
-    MELAnimationDefinition * _Nonnull animations = calloc(animationCount, sizeof(MELAnimationDefinition));
+    self.animations = MELAnimationDefinitionListMakeWithInitialCapacity(animationCount);
+    self.animations.count = animationCount;
     for (int32_t index = 0; index < animationCount; index++) {
-        animations[index] = MELAnimationDefinitionMakeWithInputStream(inputStream);
+        self.animations.memory[index] = MELAnimationDefinitionMakeWithInputStream(inputStream);
     }
-    self.animations = animations;
-    
     return self;
 }
 
@@ -51,12 +49,7 @@ void MELSpriteDefinitionDeinit(MELSpriteDefinition *_Nonnull self) {
 	free(self->name);
 	self->name = NULL;
 	self->type = 0;
-	MELAnimationDefinition *animations = self->animations;
-	for (unsigned int index = 0; index < self->animationCount; index++) {
-		MELAnimationDefinitionDeinit(animations + index);
-	}
-	free(animations);
-	self->animations = NULL;
+    MELAnimationDefinitionListDeinitWithDeinitFunction(&self->animations, &MELAnimationDefinitionDeinit);
 	free(self->motionName);
 	self->motionName = NULL;
 }

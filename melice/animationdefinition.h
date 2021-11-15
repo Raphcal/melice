@@ -14,38 +14,35 @@
 #include "animationframe.h"
 #include "animationtype.h"
 #include "inputstream.h"
+#include "list.h"
 
 /**
  * Definition of an animation.
  */
 typedef struct {
-    
     /**
      * Name of the definition.
      */
     char * _Nullable name;
-    
     /**
      * Number of frames in this animation.
      */
 	unsigned int frameCount;
-    
     /**
      * Frames.
      */
     MELAnimationFrame * _Nullable frames;
-    
     /**
      * Number of frames by seconds.
      */
     int frequency;
-    
     /**
      * Type of animation.
      */
     MELAnimationType type;
-
 } MELAnimationDefinition;
+
+MELListDefine(MELAnimationDefinition);
 
 /**
  * Returns an animation definition with the content of the given input stream.

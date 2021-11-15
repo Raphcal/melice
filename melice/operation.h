@@ -16,7 +16,7 @@
 #include "primitives.h"
 
 typedef struct {
-    uint8_t * _Nonnull code;
+    uint8_t * _Nullable code;
     int32_t count;
 } MELOperation;
 

@@ -21,7 +21,7 @@ typedef struct {
     char * _Nullable name;
     MELIntSize size;
     int tileCount;
-    int * _Nullable tiles;
+    int32_t * _Nullable tiles;
     MELPoint scrollRate;
     MELSpriteInstanceList sprites;
 } MELLayer;

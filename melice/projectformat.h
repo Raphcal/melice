@@ -21,12 +21,14 @@ typedef struct {
     MELBoolean (* _Nullable openProject)(MELProjectFormat * _Nonnull self, const char * _Nonnull path, MELProject * _Nonnull outProject);
     MELBoolean (* _Nullable saveProject)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, const char * _Nonnull path);
 
-    MELPoint (* _Nullable readPoint)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
-    MELRectangle (* _Nullable readRectangle)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
+    MELIntRectangle (* _Nullable readRectangle)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELUInt8Color (* _Nullable readColor)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELPaletteRef (* _Nullable readPalette)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELColorPalette * _Nullable (* _Nullable readColorPalette)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELImagePalette * _Nullable (* _Nullable readImagePalette)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
+    MELImagePaletteImage (* _Nullable readImagePaletteImage)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
+    MELPaletteRef (* _Nullable readPaletteReference)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
+    MELPoint (* _Nullable readScrollRate)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELLayer (* _Nullable readLayer)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELMutableMap (* _Nullable readMap)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     MELSpriteDefinition (* _Nullable readSpriteDefinition)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
@@ -35,7 +37,7 @@ typedef struct {
 } MELProjectFormatClass;
 
 typedef struct melprojectformat {
-    MELProjectFormatClass * _Nonnull class;
+    const MELProjectFormatClass * _Nonnull class;
     uint8_t * _Nonnull name;
     unsigned int version;
 } MELProjectFormat;

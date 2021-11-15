@@ -10,6 +10,16 @@
 
 MELListImplement(MELSpriteInstance);
 
+MELSpriteInstance MELSpriteInstanceMake(int32_t definitionIndex, MELPoint topLeft, MELBoolean isUnique, char * _Nullable initializationScript) {
+    return (MELSpriteInstance) {
+        definitionIndex,
+        topLeft,
+        isUnique,
+        {NULL, 0},
+        initializationScript
+    };
+}
+
 MELSpriteInstance MELSpriteInstanceMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     MELSpriteInstance self;
     self.definitionIndex = MELInputStreamReadInt(inputStream);
@@ -19,13 +29,15 @@ MELSpriteInstance MELSpriteInstanceMakeWithInputStream(MELInputStream * _Nonnull
     self.isUnique = MELInputStreamReadBoolean(inputStream);
     
     if (MELInputStreamReadBoolean(inputStream)) {
-        self.initializationScript = MELOperationMakeWithInputStream(inputStream);
+        self.initializationOperation = MELOperationMakeWithInputStream(inputStream);
     } else {
-        self.initializationScript = (MELOperation) { NULL, 0 };
+        self.initializationOperation = (MELOperation) { NULL, 0 };
     }
     return self;
 }
 
 void MELSpriteInstanceDeinit(MELSpriteInstance * _Nonnull self) {
-    MELOperationDeinit(&self->initializationScript);
+    MELOperationDeinit(&self->initializationOperation);
+    free(self->initializationScript);
+    self->initializationScript = NULL;
 }

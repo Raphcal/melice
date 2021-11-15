@@ -12,12 +12,13 @@
 
 #include "palette.h"
 #include "colorpalette.h"
+#include "decorator.h"
 
 extern const MELPaletteClass MELImagePaletteClass;
 
 typedef struct {
     int * _Nullable tiles;
-    MELDecorator * _Nullable decorators;
+    MELDecoratorRefList decorators;
 } MELImagePaletteImage;
 
 typedef struct {

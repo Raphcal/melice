@@ -35,7 +35,7 @@ void MELMapDeinit(MELMap * _Nonnull self) {
     self->size.width = 0;
     self->size.height = 0;
     self->backgroundColor = (MELColor) {0,0,0,0};
-	unsigned int layerCount = self->layerCount;
+	size_t layerCount = self->layerCount;
     self->layerCount = 0;
     MELLayer *layers = self->layers;
     for (unsigned int index = 0; index < layerCount; index++) {

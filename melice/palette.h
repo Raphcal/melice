@@ -53,7 +53,7 @@ typedef struct {
 
 typedef struct melpalette {
     /// Class of this palette.
-    MELPaletteClass * _Nonnull class;
+    const MELPaletteClass * _Nonnull class;
     /// Palette name.
     char * _Nullable name;
     /// Preferred tile size or MELSizeZero if none.

@@ -21,7 +21,7 @@ MELListImplement(MELSpriteRef);
 MELSprite * _Nonnull MELSpriteAlloc(MELSpriteManager * _Nonnull manager, MELSpriteDefinition definition, unsigned int layer) {
     MELSprite *self = malloc(sizeof(MELSprite));
 
-    MELAnimation *animation = MELAnimationAlloc(definition.animations + 0);
+    MELAnimation *animation = MELAnimationAlloc(definition.animations.memory + 0);
     animation->class->start(animation);
     
     MELRectangle frame = MELRectangleZero;

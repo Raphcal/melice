@@ -109,6 +109,14 @@ MELPoint MELPointMultiply(MELPoint lhs, MELPoint rhs);
 MELPoint MELPointMultiplyByValue(MELPoint self, GLfloat value);
 
 /**
+ * Divides the coordinates of <code>lhs</code> points by those of <code>rhs</code>.
+ * If a coordinate of rhs is 0, then the returned value will be 0 for this coordinate.
+ *
+ * @return A point whose coordinates are lhs.x / rhs.x and lhs.y / rhs.y.
+ */
+MELPoint MELPointDivide(MELPoint lhs, MELPoint rhs);
+
+/**
  * Returns the distance between the 2 points.
  *
  * @param self Source point.

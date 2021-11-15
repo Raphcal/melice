@@ -75,6 +75,13 @@ MELPoint MELPointMultiplyByValue(MELPoint self, GLfloat value) {
     };
 }
 
+MELPoint MELPointDivide(MELPoint lhs, MELPoint rhs) {
+    return (MELPoint) {
+        rhs.x != 0 ? lhs.x / rhs.x : 0,
+        rhs.y != 0 ? lhs.y / rhs.y : 0
+    };
+}
+
 GLfloat MELPointDistanceToPoint(MELPoint self, MELPoint other) {
     return hypotf(self.x - other.x, self.y - other.y);
 }

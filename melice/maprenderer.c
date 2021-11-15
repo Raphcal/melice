@@ -78,7 +78,7 @@ MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map) {
 }
 
 void MELMapRendererDeinit(MELMapRenderer * _Nonnull self) {
-    const unsigned int layerCount = self->map.layerCount;
+    const size_t layerCount = self->map.layerCount;
     MELSurfaceArray *layerSurfaces = self->layerSurfaces;
     for (unsigned int index = 0; index < layerCount; index++) {
         MELSurfaceArrayDeinit(layerSurfaces + index);
@@ -88,11 +88,11 @@ void MELMapRendererDeinit(MELMapRenderer * _Nonnull self) {
 }
 
 void MELMapRendererDraw(MELMapRenderer self) {
-    MELMapRendererDrawRangeTranslated(self, MELPointZero, 0, self.map.layerCount);
+    MELMapRendererDrawRangeTranslated(self, MELPointZero, 0, (unsigned int) self.map.layerCount);
 }
 
 void MELMapRendererDrawTranslated(MELMapRenderer self, MELPoint translation) {
-    MELMapRendererDrawRangeTranslated(self, translation, 0, self.map.layerCount);
+    MELMapRendererDrawRangeTranslated(self, translation, 0, (unsigned int) self.map.layerCount);
 }
 
 void MELMapRendererDrawRangeTranslated(MELMapRenderer self, MELPoint translation, unsigned int fromLayer, unsigned int toLayer) {
