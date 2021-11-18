@@ -41,7 +41,7 @@ size_t count;\
 extern const type##Dictionary type##DictionaryEmpty;\
 void type##DictionaryDeinit(type##Dictionary * _Nonnull self);\
 type type##DictionaryPut(type##Dictionary * _Nonnull self, const char * _Nonnull key, type value);\
-type type##DictionaryGet(type##Dictionary * _Nonnull self, const char * _Nonnull key);\
+type type##DictionaryGet(type##Dictionary self, const char * _Nonnull key);\
 type type##DictionaryRemove(type##Dictionary * _Nonnull self, const char * _Nonnull key);\
 type##DictionaryEntryList type##DictionaryEntries(type##Dictionary * _Nonnull self);
 
@@ -122,13 +122,13 @@ type type##DictionaryPut(type##Dictionary * _Nonnull self, const char * _Nonnull
     return nil;\
 }\
 \
-type type##DictionaryGet(type##Dictionary * _Nonnull self, const char * _Nonnull key) {\
-    if (self->buckets.memory == 0 || self->buckets.memory == NULL) {\
+type type##DictionaryGet(type##Dictionary self, const char * _Nonnull key) {\
+    if (self.buckets.memory == 0 || self.buckets.memory == NULL) {\
         return nil;\
     }\
     uint64_t hash = MELStringHash(key);\
-    size_t bucketIndex = hash % self->buckets.capacity;\
-    type##DictionaryBucket bucket = self->buckets.memory[bucketIndex];\
+    size_t bucketIndex = hash % self.buckets.capacity;\
+    type##DictionaryBucket bucket = self.buckets.memory[bucketIndex];\
     for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {\
         type##DictionaryEntry entry = bucket.entries.memory[entryIndex];\
         if (entry.hash == hash && (entry.key == key || MELStringEquals(entry.key, key))) {\
@@ -161,7 +161,7 @@ type type##DictionaryRemove(type##Dictionary * _Nonnull self, const char * _Nonn
 type##DictionaryEntryList type##DictionaryEntries(type##Dictionary * _Nonnull self) {\
     type##DictionaryEntryList entries = type##DictionaryEntryListMake();\
 \
-    MELPointDictionaryBucketList buckets = self->buckets;\
+    type##DictionaryBucketList buckets = self->buckets;\
     for (size_t bucketIndex = 0; bucketIndex < buckets.capacity; bucketIndex++) {\
         type##DictionaryBucket bucket = buckets.memory[bucketIndex];\
         for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {\

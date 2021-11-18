@@ -12,6 +12,8 @@
 #include <math.h>
 #include "size.h"
 
+MELDictionaryImplement(MELIntPoint, MELIntPointZero);
+
 const MELPoint MELPointZero = {0, 0};
 const MELIntPoint MELIntPointZero = {0, 0};
 
@@ -30,6 +32,10 @@ MELIntPoint MELIntPointMake(int32_t x, int32_t y) {
 }
 
 MELBoolean MELPointEquals(MELPoint lhs, MELPoint rhs) {
+    return lhs.x == rhs.x && lhs.y == rhs.y;
+}
+
+MELBoolean MELIntPointEquals(MELIntPoint lhs, MELIntPoint rhs) {
     return lhs.x == rhs.x && lhs.y == rhs.y;
 }
 

@@ -10,6 +10,7 @@
 #include <assert.h>
 #include <string.h>
 #include "inputstream.h"
+#include "outputstream.h"
 
 #define BITMAP_MAGIC "BM"
 #define MAGIC_LENGTH 2
@@ -17,6 +18,37 @@
 #define BITMAP_HEADER_LENGTH 14
 #define BITMAP_V4_HEADER_LENGTH 108
 #define BITFIELDS_COMPRESSION 3
+#define DPI_1 39.3701
+#define DPI_72 2835
+
+typedef struct {
+    char magic[2];
+    int32_t fileSize;
+    char vendor[4];
+    int32_t contentPosition;
+} MELBitmapHeader;
+
+typedef struct {
+    int32_t headerLength;
+    MELIntSize imageSize;
+    uint16_t planes;
+    int16_t bitsPerPixel;
+    int32_t compression;
+    int32_t pixelsLength;
+    int32_t horizontalDpi;
+    int32_t verticalDpi;
+    int32_t paletteLength;
+    int32_t importantColors;
+    uint32_t redMask;
+    uint32_t blueMask;
+    uint32_t greenMask;
+    uint32_t alphaMask;
+    char winHeader[4];
+    uint8_t empty[36];
+    int32_t redGamma;
+    int32_t greenGamma;
+    int32_t blueGamma;
+} MELBitmapV4Header;
 
 MELIntSize MELBitmapReadSize(const char * _Nonnull path) {
     MELInputStream inputStream = MELInputStreamOpen(path);
@@ -119,6 +151,87 @@ MELUInt32Color * _Nullable MELBitmapLoad(const char * _Nonnull path, MELIntSize 
     MELInputStreamClose(&inputStream);
 
     return pixels;
+}
+
+void MELBitmapSave(const char * _Nonnull path, MELUInt32Color * _Nonnull pixels, MELIntSize size) {
+    MELBitmapSaveWithPremultiplication(path, pixels, size, false);
+}
+
+int premultiplyAlpha(int value, int alpha) {
+    return alpha == -1 ? value : (value * alpha) / 255;
+}
+
+void MELBitmapSaveWithPremultiplication(const char * _Nonnull path, MELUInt32Color * _Nonnull pixels, MELIntSize size, MELBoolean applyPremultiplication) {
+    MELOutputStream outputStream = MELOutputStreamOpen(path);
+    // Magic
+    MELOutputStreamWriteByte(&outputStream, 'B');
+    MELOutputStreamWriteByte(&outputStream, 'M');
+    // File size
+    MELOutputStreamWriteInt(&outputStream, BITMAP_HEADER_LENGTH + BITMAP_V4_HEADER_LENGTH + size.width * size.height * sizeof(MELUInt32Color));
+    // Vendor
+    MELOutputStreamWriteZero(&outputStream, 4);
+    // Content start position
+    MELOutputStreamWriteInt(&outputStream, BITMAP_HEADER_LENGTH + BITMAP_V4_HEADER_LENGTH);
+
+    // DIB header length
+    MELOutputStreamWriteInt(&outputStream, BITMAP_V4_HEADER_LENGTH);
+    // Image size
+    MELOutputStreamWriteInt(&outputStream, size.width);
+    MELOutputStreamWriteInt(&outputStream, size.height);
+    // Planes
+    MELOutputStreamWriteShort(&outputStream, 1);
+    // Bits per pixel
+    MELOutputStreamWriteShort(&outputStream, 32);
+    // Compression
+    MELOutputStreamWriteInt(&outputStream, BITFIELDS_COMPRESSION);
+    // Pixels byte count.
+    MELOutputStreamWriteInt(&outputStream, size.width * size.height * sizeof(MELUInt32Color));
+    // Horizontal and vertical DPI
+    MELOutputStreamWriteInt(&outputStream, DPI_72);
+    MELOutputStreamWriteInt(&outputStream, DPI_72);
+    // Color count.
+    MELOutputStreamWriteInt(&outputStream, 0);
+    // Important colors (0 means all).
+    MELOutputStreamWriteInt(&outputStream, 0);
+    // Red binary mask
+    MELOutputStreamWriteUInt32(&outputStream, 0x000000FF);
+    // Green binary mask
+    MELOutputStreamWriteUInt32(&outputStream, 0x0000FF00);
+    // Blue binary mask
+    MELOutputStreamWriteUInt32(&outputStream, 0x00FF0000);
+    // Alpha binary mask
+    MELOutputStreamWriteUInt32(&outputStream, 0xFF000000);
+    // Win
+    MELOutputStreamWriteByte(&outputStream, ' ');
+    MELOutputStreamWriteByte(&outputStream, 'n');
+    MELOutputStreamWriteByte(&outputStream, 'i');
+    MELOutputStreamWriteByte(&outputStream, 'W');
+    MELOutputStreamWriteZero(&outputStream, 0x24);
+    // Red gamma
+    MELOutputStreamWriteInt(&outputStream, 0);
+    // Green gamma
+    MELOutputStreamWriteInt(&outputStream, 0);
+    // Blue gamma
+    MELOutputStreamWriteInt(&outputStream, 0);
+
+    // Pixels
+    MELUInt8Color *colors = (MELUInt8Color *) pixels;
+    for (int y = size.height - 1; y >= 0; y--) {
+        for (int x = 0; x < size.width; x++) {
+            MELUInt8Color color = colors[y * size.width + x];
+            if (applyPremultiplication) {
+                MELOutputStreamWriteByte(&outputStream, premultiplyAlpha(color.red, color.alpha));
+                MELOutputStreamWriteByte(&outputStream, premultiplyAlpha(color.green, color.alpha));
+                MELOutputStreamWriteByte(&outputStream, premultiplyAlpha(color.blue, color.alpha));
+            } else {
+                MELOutputStreamWriteByte(&outputStream, color.red);
+                MELOutputStreamWriteByte(&outputStream, color.green);
+                MELOutputStreamWriteByte(&outputStream, color.blue);
+            }
+            MELOutputStreamWriteByte(&outputStream, color.alpha);
+        }
+    }
+    MELOutputStreamClose(&outputStream);
 }
 
 MELIntSize findAnyMapTile(MELMap map, MELTextureAtlas atlas) {

@@ -58,7 +58,7 @@ void testPutCount(void) {
 
 void testPutGet(void) {
     MELPointDictionary dictionary = MELPointDictionaryEmpty;
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "center"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "center"), MELPointZero));
 
     MELPointDictionaryPut(&dictionary, "center", MELPointMake(16, 16));
     MELPointDictionaryPut(&dictionary, "topLeft", MELPointMake(0, 0));
@@ -66,20 +66,20 @@ void testPutGet(void) {
     MELPointDictionaryPut(&dictionary, "bottomRight", MELPointMake(32, 32));
     MELPointDictionaryPut(&dictionary, "bottomLeft", MELPointMake(0, 32));
 
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "center"), MELPointMake(16, 16)));
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "topLeft"), MELPointZero));
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "topRight"), MELPointMake(32, 0)));
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "bottomRight"), MELPointMake(32, 32)));
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "bottomLeft"), MELPointMake(0, 32)));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "center"), MELPointMake(16, 16)));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "topLeft"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "topRight"), MELPointMake(32, 0)));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "bottomRight"), MELPointMake(32, 32)));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "bottomLeft"), MELPointMake(0, 32)));
 
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "notAValidKey"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "notAValidKey"), MELPointZero));
 
     MELPointDictionaryDeinit(&dictionary);
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "center"), MELPointZero));
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "topLeft"), MELPointZero));
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "topRight"), MELPointZero));
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "bottomRight"), MELPointZero));
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "bottomLeft"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "center"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "topLeft"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "topRight"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "bottomRight"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "bottomLeft"), MELPointZero));
 }
 
 void testRemove(void) {
@@ -92,11 +92,11 @@ void testRemove(void) {
     MELPointDictionaryPut(&dictionary, "bottomRight", MELPointMake(32, 32));
     MELPointDictionaryPut(&dictionary, "bottomLeft", MELPointMake(0, 32));
     assert(dictionary.count == 5);
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "center"), MELPointMake(16, 16)));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "center"), MELPointMake(16, 16)));
 
     MELPointDictionaryRemove(&dictionary, "center");
     assert(dictionary.count == 4);
-    assert(MELPointEquals(MELPointDictionaryGet(&dictionary, "center"), MELPointZero));
+    assert(MELPointEquals(MELPointDictionaryGet(dictionary, "center"), MELPointZero));
 
     MELPointDictionaryDeinit(&dictionary);
     assert(dictionary.count == 0);

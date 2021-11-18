@@ -15,6 +15,8 @@
 #define LAST_SUPPORTED_VERSION 11
 #define DATA_ENTRY "data"
 
+const MELProjectFormat MELMmkProjectFormat = {&MELMmkProjectFormatClass, NULL, 0};
+
 MELBoolean openFileOrArchiveAtPath(const char * _Nonnull path, MELInputStream * _Nonnull outInputStream) {
     MELInputStream inputStream = MELInputStreamOpen(path);
     if (inputStream.file == NULL) {

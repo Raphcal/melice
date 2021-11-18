@@ -18,7 +18,7 @@
 #ifdef __MACH__
 #define GL_SILENCE_DEPRECATION 1
 #include <TargetConditionals.h>
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && !TARGET_OS_MACCATALYST
 #import <OpenGLES/ES1/gl.h>
 #define glOrtho glOrthof
 #else

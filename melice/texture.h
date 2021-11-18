@@ -11,13 +11,20 @@
 
 #include "melstd.h"
 
+#include "color.h"
 #include "size.h"
+
+/// MELPackMap reference.
+typedef struct melpackmap MELPackMap;
 
 typedef struct {
     char * _Nullable path;
+    MELUInt32Color * _Nullable pixels;
     MELIntSize size;
     GLuint name;
 } MELTexture;
+
+extern const MELTexture MELTextureEmpty;
 
 /**
  * Create a new texture instance for the bitmap file at the given path.
@@ -32,6 +39,8 @@ MELTexture MELTextureMake(const char * _Nonnull path);
  * @param asset Name of the bitmap file.
  */
 MELTexture MELTextureMakeWithAsset(const char * _Nonnull asset);
+
+MELTexture MELTextureMakeWithPackMap(MELPackMap packMap);
 
 /**
  * Load the bitmap for this texture, generate an OpenGL texture and bind it.

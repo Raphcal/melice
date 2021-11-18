@@ -42,11 +42,7 @@ MELTextureAtlas MELTextureAtlasMakeWithPath(const char * _Nonnull path) {
         return self;
     }
     return (MELTextureAtlas) {
-        {
-            NULL,
-            MELIntSizeZero,
-            0
-        },
+        MELTextureEmpty,
         0,
         NULL
     };

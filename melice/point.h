@@ -11,6 +11,8 @@
 
 #include "melstd.h"
 
+#include "dictionary.h"
+
 typedef struct melsize MELSize;
 
 /**
@@ -28,6 +30,8 @@ typedef struct {
     int32_t x;
     int32_t y;
 } MELIntPoint;
+
+MELDictionaryDefine(MELIntPoint);
 
 /**
  * A point whose coordinates are both zero.
@@ -65,6 +69,15 @@ MELIntPoint MELIntPointMake(int32_t x, int32_t y);
  * @return true if the points are the same, false otherwise.
  */
 MELBoolean MELPointEquals(MELPoint lhs, MELPoint rhs);
+
+/**
+ * Compares the two given point.
+ *
+ * @param lhs Left operand.
+ * @param rhs Right operand.
+ * @return true if the points are the same, false otherwise.
+ */
+MELBoolean MELIntPointEquals(MELIntPoint lhs, MELIntPoint rhs);
 
 /**
  * Adds the given points.

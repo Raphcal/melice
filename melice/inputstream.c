@@ -17,7 +17,7 @@
 
 MELInputStream MELInputStreamOpen(const char * _Nonnull path) {
     return (MELInputStream) {
-        fopen(path, "r"),
+        fopen(path, "rb"),
         malloc(sizeof(uint8_t) * MELInputStreamBufferSize),
         0,
         0

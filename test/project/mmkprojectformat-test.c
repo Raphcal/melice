@@ -64,6 +64,19 @@ int main(int argc, char **argv) {
     assert(strcmp("Background", firstMap.layers.memory[0].name) == 0);
     assert(strcmp("HelloVita", firstMap.layers.memory[1].name) == 0);
 
+    MELPaletteRef palette = project.palettes.memory[0];
+    MELPackMapElementList elements = MELPackMapElementListMakeWithInitialCapacity(palette->count);
+    MELPackMapElementListPushPalette(&elements, palette);
+    assert(elements.count == 11);
+    MELPackMap packMap = MELPackMapMakeWithElements(elements);
+
+    MELTexture texture = MELTextureMakeWithPackMap(packMap);
+    char *bmpPath = MELFileManagerPathForAsset(fileManager, "palette0.bmp");
+    MELBitmapSave(bmpPath, texture.pixels, texture.size);
+    remove(bmpPath);
+    free(bmpPath);
+    MELTextureDeinit(&texture);
+
     // TODO: Deinit
 
     return EXIT_SUCCESS;

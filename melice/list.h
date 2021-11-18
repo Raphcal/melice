@@ -44,6 +44,7 @@ void type##ListEnsureCapacity(type##List * _Nonnull self, size_t required);\
 void type##ListPush(type##List * _Nonnull self, type element);\
 type type##ListPop(type##List * _Nonnull self);\
 type type##ListSet(type##List * _Nonnull self, size_t index, type element);\
+void type##ListInsert(type##List * _Nonnull self, size_t index, type element);\
 type type##ListRemove(type##List * _Nonnull self, size_t index);
 
 #define MELListImplement(type) const type##List type##ListEmpty = { NULL, 0, 0 };\
@@ -102,6 +103,18 @@ type type##ListSet(type##List * _Nonnull self, size_t index, type element) {\
     type oldValue = self->memory[index]; \
     self->memory[index] = element; \
     return oldValue;\
+}\
+void type##ListInsert(type##List * _Nonnull self, size_t index, type element) {\
+    const size_t count = self->count;\
+    if (index < 0 || index > count) {\
+        return;\
+    }\
+    type##ListEnsureCapacity(self, count + 1);\
+    if (index < count) {\
+        memmove(self->memory + index + 1, self->memory + index, sizeof(type) * (count - index));\
+    }\
+    self->memory[index] = element;\
+    self->count++;\
 }\
 type type##ListRemove(type##List * _Nonnull self, size_t index) {\
     const type oldValue = self->memory[index];\

@@ -14,4 +14,6 @@
 
 extern const MELProjectFormatClass MELMmkProjectFormatClass;
 
+extern const MELProjectFormat MELMmkProjectFormat;
+
 #endif /* mmkprojectformat_h */

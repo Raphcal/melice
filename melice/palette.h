@@ -32,9 +32,9 @@ typedef struct {
      * @param tileIndex Index of the tile to draw.
      * @returns An array of bytes representing the tile at the given index. You are responsible for freeing the returned array.
      */
-    uint8_t * _Nullable (* _Nonnull paintTile)(MELPalette * _Nonnull self, int tileIndex);
+    uint8_t * _Nullable (* _Nonnull paintTile)(MELPalette * _Nonnull self, unsigned int tileIndex);
 
-    void (* _Nonnull paintTileToBuffer)(MELPalette * _Nonnull self, int tileIndex, MELIntPoint topLeft, MELUInt32Color * _Nonnull buffer, MELIntSize bufferSize);
+    void (* _Nonnull paintTileToBuffer)(MELPalette * _Nonnull self, unsigned int tileIndex, MELIntPoint topLeft, MELUInt32Color * _Nonnull buffer, MELIntSize bufferSize);
 
     /**
      * Allocates a byte array and paints the given area of the given map with palette's preferred tile size.
@@ -49,6 +49,8 @@ typedef struct {
      * @returns An array of bytes representing the area to render of the given map. You are responsible for freeing the returned array.
      */
     uint8_t * _Nullable (* _Nonnull paintMap)(MELPalette * _Nonnull self, MELMap map, MELIntSize areaToRender);
+
+    void * _Nonnull (* _Nonnull tileAtIndex)(MELPalette * _Nonnull self,  unsigned int tileIndex);
 } MELPaletteClass;
 
 typedef struct melpalette {

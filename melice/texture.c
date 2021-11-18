@@ -11,9 +11,12 @@
 #include <string.h>
 #include "filemanager.h"
 #include "bitmap.h"
+#include "packmap.h"
+
+const MELTexture MELTextureEmpty = {NULL, NULL, (MELIntSize) {0, 0}, 0};
 
 MELTexture MELTextureMake(const char * _Nonnull path) {
-    MELTexture self = {NULL, {0, 0}, 0};
+    MELTexture self = MELTextureEmpty;
     const size_t pathLength = strlen(path);
     self.path = calloc(pathLength + 1, sizeof(char));
     memcpy(self.path, path, pathLength);
@@ -29,6 +32,22 @@ MELTexture MELTextureMakeWithAsset(const char * _Nonnull asset) {
     return texture;
 }
 
+MELTexture MELTextureMakeWithPackMap(MELPackMap packMap) {
+    MELIntSize size = packMap.size;
+    size_t count = size.width * size.height;
+    MELUInt32Color *pixels = calloc(count, sizeof(MELUInt32Color));
+
+    MELPackMapElementList elements = packMap.elements;
+    for (unsigned int index = 0; index < elements.count; index++) {
+        MELPackMapElement element = elements.memory[index];
+        MELIntPoint origin = MELIntPointDictionaryGetElementOrigin(packMap.origins, element);
+        for (unsigned int y = 0; y < element.size.height; y++) {
+            memcpy(pixels + origin.x + (origin.y + y) * size.width, element.pixels + y * element.size.width, element.size.width * sizeof(MELUInt32Color));
+        }
+    }
+    return (MELTexture) {NULL, pixels, size, 0};
+}
+
 void MELTextureLoad(MELTexture * _Nonnull self) {
     assert(self->path != NULL);
 
@@ -37,14 +56,22 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
         return;
     }
 
-    MELIntSize size;
-    void * _Nullable pixels = MELBitmapLoad(self->path, &size);
-    
-    if (pixels == NULL) {
-        printf("MELLoadBMP failed\n");
+    MELUInt32Color * _Nullable pixels;
+
+    if (self->pixels) {
+        pixels = self->pixels;
+    } else if (self->path) {
+        MELIntSize size;
+        pixels = MELBitmapLoad(self->path, &size);
+        if (pixels == NULL) {
+            fprintf(stderr, "MELTextureLoad: MELLoadBMP failed for texture at path: %s\n", self->path);
+            return;
+        }
+        self->size = size;
+    } else {
+        fprintf(stderr, "MELTextureLoad: texture path and pixels are NULL\n");
         return;
     }
-    self->size = size;
 
     GLenum error;
 
@@ -71,7 +98,7 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
         }
     }
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, size.width, size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self->size.width, self->size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
     free(pixels);
 
     error = glGetError();
