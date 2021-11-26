@@ -61,14 +61,9 @@ MELBoolean openFileOrArchiveAtPath(const char * _Nonnull path, MELInputStream * 
     return true;
 }
 
-MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, const char * _Nonnull path, MELProject * _Nonnull outProject) {
-    MELInputStream inputStream;
-    if (!openFileOrArchiveAtPath(path, &inputStream)) {
-        return false;
-    }
-
+MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELInputStream * _Nonnull inputStream, MELProject * _Nonnull outProject) {
     uint16_t header[5];
-    MELInputStreamRead(&inputStream, header, sizeof(uint16_t) * 4);
+    MELInputStreamRead(inputStream, header, sizeof(uint16_t) * 4);
     header[4] = 0;
     char *utf8Header = MELUTF8StringMakeWithUTF16String(header);
 
@@ -79,13 +74,12 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, cons
         version = (header[2] - '0') * 10 + header[3] - '0';
     } else {
         version = 1;
-        inputStream.cursor = 0;
+        inputStream->cursor = 0;
     }
     free(utf8Header);
 
     if (version > LAST_SUPPORTED_VERSION) {
         fprintf(stderr, "Project version %d is unsupported, last supported version is %d\n", version, LAST_SUPPORTED_VERSION);
-        MELInputStreamClose(&inputStream);
         return false;
     }
 
@@ -96,22 +90,22 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, cons
     MELMapGroupListPush(&project.mapGroups, MELMapGroupEmpty);
 
     // Loading palettes.
-    const int paletteCount = MELInputStreamReadInt(&inputStream);
+    const int paletteCount = MELInputStreamReadInt(inputStream);
     for (int index = 0; index < paletteCount; index++) {
-        MELPaletteRefListPush(&project.palettes, self->class->readPalette(self, &project, &inputStream));
+        MELPaletteRefListPush(&project.palettes, self->class->readPalette(self, &project, inputStream));
     }
 
     // Loading maps.
-    const int mapCount = MELInputStreamReadInt(&inputStream);
+    const int mapCount = MELInputStreamReadInt(inputStream);
     for (int index = 0; index < mapCount; index++) {
-        MELMutableMapListPush(&project.mapGroups.memory[0].maps, self->class->readMap(self, &project, &inputStream));
+        MELMutableMapListPush(&project.mapGroups.memory[0].maps, self->class->readMap(self, &project, inputStream));
     }
 
     if (version >= 3) {
         // Loading sprites.
-        const int spriteCount = MELInputStreamReadInt(&inputStream);
+        const int spriteCount = MELInputStreamReadInt(inputStream);
         for (int index = 0; index < spriteCount; index++) {
-            MELSpriteDefinitionListPush(&project.mapGroups.memory[0].sprites, self->class->readSpriteDefinition(self, &project, &inputStream));
+            MELSpriteDefinitionListPush(&project.mapGroups.memory[0].sprites, self->class->readSpriteDefinition(self, &project, inputStream));
         }
 
         // Loading sprite instances.
@@ -132,9 +126,9 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, cons
                 layer = layers->memory;
             }
 
-            const int instanceCount = MELInputStreamReadInt(&inputStream);
+            const int instanceCount = MELInputStreamReadInt(inputStream);
             for (int instanceIndex = 0; instanceIndex < instanceCount; instanceIndex++) {
-                MELSpriteInstance instance = self->class->readSpriteInstance(self, &project, &inputStream);
+                MELSpriteInstance instance = self->class->readSpriteInstance(self, &project, inputStream);
                 if (layer != NULL) {
                     MELSpriteInstanceListPush(&layer->sprites, instance);
                 }
@@ -142,10 +136,18 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, cons
         }
     }
 
-    MELInputStreamClose(&inputStream);
-
     *outProject = project;
     return true;
+}
+
+MELBoolean MELMmkProjectFormatOpenProjectAtPath(MELProjectFormat * _Nonnull self, const char * _Nonnull path, MELProject * _Nonnull outProject) {
+    MELInputStream inputStream;
+    if (!openFileOrArchiveAtPath(path, &inputStream)) {
+        return false;
+    }
+    MELBoolean status = MELMmkProjectFormatOpenProject(self, &inputStream, outProject);
+    MELInputStreamClose(&inputStream);
+    return status;
 }
 
 MELIntRectangle MELMmkProjectFormatReadRectangle(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
@@ -405,6 +407,7 @@ MELSpriteInstance MELMmkProjectFormatReadSpriteInstance(MELProjectFormat * _Nonn
 
 const MELProjectFormatClass MELMmkProjectFormatClass = {
     .openProject = &MELMmkProjectFormatOpenProject,
+    .openProjectAtPath = &MELMmkProjectFormatOpenProjectAtPath,
 
     .readRectangle = &MELMmkProjectFormatReadRectangle,
     .readColor = &MELMmkProjectFormatReadColor,

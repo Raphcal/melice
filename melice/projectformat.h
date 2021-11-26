@@ -18,7 +18,8 @@
 typedef struct melprojectformat MELProjectFormat;
 
 typedef struct {
-    MELBoolean (* _Nullable openProject)(MELProjectFormat * _Nonnull self, const char * _Nonnull path, MELProject * _Nonnull outProject);
+    MELBoolean (* _Nullable openProject)(MELProjectFormat * _Nonnull self, MELInputStream * _Nonnull inputStream, MELProject * _Nonnull outProject);
+    MELBoolean (* _Nullable openProjectAtPath)(MELProjectFormat * _Nonnull self, const char * _Nonnull path, MELProject * _Nonnull outProject);
     MELBoolean (* _Nullable saveProject)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, const char * _Nonnull path);
 
     MELIntRectangle (* _Nullable readRectangle)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
