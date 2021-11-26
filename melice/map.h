@@ -18,8 +18,7 @@
 typedef struct {
     MELIntSize size;
     MELColor backgroundColor;
-    MELLayer * _Nullable layers;
-    size_t layerCount;
+    MELList(MELLayer) layers;
 } MELMap;
 
 /**

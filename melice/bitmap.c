@@ -235,8 +235,8 @@ void MELBitmapSaveWithPremultiplication(const char * _Nonnull path, MELUInt32Col
 }
 
 MELIntSize findAnyMapTile(MELMap map, MELTextureAtlas atlas) {
-    for (int layerIndex = 0; layerIndex < map.layerCount; layerIndex++) {
-        const MELLayer layer = map.layers[layerIndex];
+    for (int layerIndex = 0; layerIndex < map.layers.count; layerIndex++) {
+        const MELLayer layer = map.layers.memory[layerIndex];
         if (layer.tiles == NULL) {
             continue;
         }
@@ -250,7 +250,7 @@ MELIntSize findAnyMapTile(MELMap map, MELTextureAtlas atlas) {
 }
 
 uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSize tileCount, size_t * _Nullable byteCount, MELIntSize * _Nullable outTileSize) {
-    if (map.layerCount <= 0) {
+    if (map.layers.count <= 0) {
         return NULL;
     }
 
@@ -282,8 +282,8 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
         const int xInsideTile = x % tileSize.width;
         const int yInsideTile = y % tileSize.height;
 
-        for (int layerIndex = 0; layerIndex < map.layerCount; layerIndex++) {
-            const MELLayer layer = map.layers[layerIndex];
+        for (int layerIndex = 0; layerIndex < map.layers.count; layerIndex++) {
+            const MELLayer layer = map.layers.memory[layerIndex];
             const int tile = layer.tiles[tileIndex];
             if (tile != -1) {
                 const MELIntRectangle tileFrame = atlas.sources[tile];

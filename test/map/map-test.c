@@ -26,10 +26,10 @@ int main(int argc, char **argv) {
     MELInputStreamClose(&inputStream);
     
     assert(MELColorToUInt32Color(map.backgroundColor) == (uint32_t)0xff0099cc);
-    assert(map.layerCount == 2);
+    assert(map.layers.count == 2);
     
-    assert(strcmp("Background", map.layers[0].name) == 0);
-    assert(strcmp("HelloVita", map.layers[1].name) == 0);
+    assert(strcmp("Background", map.layers.memory[0].name) == 0);
+    assert(strcmp("HelloVita", map.layers.memory[1].name) == 0);
     
     MELMapDeinit(&map);
     
