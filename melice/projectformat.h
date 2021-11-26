@@ -39,7 +39,7 @@ typedef struct {
 
 typedef struct melprojectformat {
     const MELProjectFormatClass * _Nonnull class;
-    uint8_t * _Nonnull name;
+    char * _Nonnull name;
     unsigned int version;
 } MELProjectFormat;
 

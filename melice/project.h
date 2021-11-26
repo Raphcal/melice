@@ -25,7 +25,7 @@ typedef struct {
 } MELProject;
 
 typedef struct melmapgroup {
-    uint8_t * _Nullable name;
+    char * _Nullable name;
     MELList(MELMutableMap) maps;
     MELList(MELSpriteDefinition) sprites;
     MELMapGroupList children;
