@@ -49,8 +49,6 @@ MELTexture MELTextureMakeWithPackMap(MELPackMap packMap) {
 }
 
 void MELTextureLoad(MELTexture * _Nonnull self) {
-    assert(self->path != NULL);
-
     if (self->name != 0) {
         printf("MELTextureLoad: texture seems to be already loaded. Was bound with name %ud\n", self->name);
         return;

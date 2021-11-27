@@ -52,13 +52,20 @@ typedef struct melpackmap {
 } MELPackMap;
 
 MELPackMap MELPackMapMakeWithElements(MELPackMapElementList elements);
+void MELPackMapDeinit(MELPackMap * _Nonnull self);
+
+MELIntRectangle MELPackMapFrameForPaletteTile(MELPackMap self, MELPalette * _Nonnull palette, unsigned int tileIndex);
 
 MELPackMapElement MELPackMapElementMakeWithPaletteTile(MELPaletteRef palette, unsigned int tileIndex);
+void MELPackMapElementDeinit(MELPackMapElement * _Nonnull self);
 
 void MELPackMapElementListPushPalette(MELPackMapElementList * _Nonnull self, MELPaletteRef palette);
 void MELPackMapElementListPushSpriteDefinition(MELPackMapElementList * _Nonnull self, MELSpriteDefinition spriteDefinition);
 
+void MELPackMapRowDeinit(MELPackMapRow * _Nonnull self);
+
 MELIntPoint MELIntPointDictionaryPutElementOrigin(MELIntPointDictionary * _Nonnull self, MELPackMapElement element, MELIntPoint origin);
 MELIntPoint MELIntPointDictionaryGetElementOrigin(MELIntPointDictionary self, MELPackMapElement element);
+MELBoolean MELIntPointDictionaryGetValueOrigin(MELIntPointDictionary self, void * _Nullable value, MELIntPoint * _Nonnull origin);
 
 #endif /* packmap_h */

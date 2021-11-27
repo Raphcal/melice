@@ -269,7 +269,12 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
         *byteCount = sizeof(MELUInt8Color) * pixelCount;
     }
 
-    MELUInt32Color *texture = MELBitmapLoad(atlas.texture.path, NULL);
+    MELBoolean mustFreeTexture = false;
+    MELUInt32Color *texture = atlas.texture.pixels;
+    if (!texture) {
+        texture = MELBitmapLoad(atlas.texture.path, NULL);
+        mustFreeTexture = true;
+    }
 
     for (int pixel = 0; pixel < pixelCount; pixel++) {
         MELUInt8Color color = MELColorToMELUInt8Color(map.backgroundColor);
@@ -295,7 +300,9 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
         image[pixel] = color;
     }
 
-    free(texture);
+    if (mustFreeTexture) {
+        free(texture);
+    }
 
     return (uint8_t *) image;
 }

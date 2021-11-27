@@ -37,6 +37,7 @@ extern const type##List type##ListEmpty;\
 type##List type##ListMake(void);\
 type##List type##ListMakeWithInitialCapacity(size_t initialCapacity);\
 type##List type##ListMakeWrappingMemoryAndCount(type * _Nullable memory, size_t count);\
+type##List type##ListMakeWithList(type##List other);\
 void type##ListDeinit(type##List * _Nonnull self);\
 void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type * _Nonnull));\
 void type##ListGrow(type##List * _Nonnull self, size_t size);\
@@ -63,6 +64,11 @@ type##List type##ListMakeWrappingMemoryAndCount(type * _Nullable memory, size_t 
         count,\
         count\
     };\
+}\
+type##List type##ListMakeWithList(type##List other) {\
+    type##List self = {malloc(sizeof(type) * other.count), other.count, other.count};\
+    memcpy(self.memory, other.memory, sizeof(type) * other.count);\
+    return self;\
 }\
 void type##ListDeinit(type##List * _Nonnull self) {\
     free(self->memory); \

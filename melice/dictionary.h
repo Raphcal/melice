@@ -42,6 +42,7 @@ extern const type##Dictionary type##DictionaryEmpty;\
 void type##DictionaryDeinit(type##Dictionary * _Nonnull self);\
 type type##DictionaryPut(type##Dictionary * _Nonnull self, const char * _Nonnull key, type value);\
 type type##DictionaryGet(type##Dictionary self, const char * _Nonnull key);\
+MELBoolean type##DictionaryGetIfPresent(type##Dictionary self, const char * _Nonnull key, type * _Nonnull value);\
 type type##DictionaryRemove(type##Dictionary * _Nonnull self, const char * _Nonnull key);\
 type##DictionaryEntryList type##DictionaryEntries(type##Dictionary * _Nonnull self);
 
@@ -123,8 +124,15 @@ type type##DictionaryPut(type##Dictionary * _Nonnull self, const char * _Nonnull
 }\
 \
 type type##DictionaryGet(type##Dictionary self, const char * _Nonnull key) {\
+    type value;\
+    return type##DictionaryGetIfPresent(self, key, &value)\
+        ? value\
+        : nil;\
+}\
+\
+MELBoolean type##DictionaryGetIfPresent(type##Dictionary self, const char * _Nonnull key, type * _Nonnull value) {\
     if (self.buckets.memory == 0 || self.buckets.memory == NULL) {\
-        return nil;\
+        return false;\
     }\
     uint64_t hash = MELStringHash(key);\
     size_t bucketIndex = hash % self.buckets.capacity;\
@@ -132,10 +140,11 @@ type type##DictionaryGet(type##Dictionary self, const char * _Nonnull key) {\
     for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {\
         type##DictionaryEntry entry = bucket.entries.memory[entryIndex];\
         if (entry.hash == hash && (entry.key == key || MELStringEquals(entry.key, key))) {\
-            return entry.value;\
+            *value = entry.value;\
+            return true;\
         }\
     }\
-    return nil;\
+    return false;\
 }\
 \
 type type##DictionaryRemove(type##Dictionary * _Nonnull self, const char * _Nonnull key) {\

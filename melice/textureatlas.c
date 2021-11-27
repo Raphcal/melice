@@ -12,6 +12,8 @@
 #include <string.h>
 #include "filemanager.h"
 #include "animation.h"
+#include "palette.h"
+#include "packmap.h"
 
 #define ATLAS_EXTENSION ".atlas"
 #define ATLAS_EXTENSION_LENGTH 6
@@ -68,6 +70,33 @@ MELTextureAtlas MELTextureAtlasMakeWithInputStreamAndTexture(MELInputStream * _N
         self.frames[index] = MELRectangleMake((GLfloat)source.origin.x / textureSize.width, (GLfloat)source.origin.y / textureSize.height, (GLfloat)source.size.width / textureSize.width, (GLfloat)source.size.height / textureSize.height);
     }
     
+    return self;
+}
+
+MELTextureAtlas MELTextureAtlasMakeWithPalette(MELPalette * _Nonnull palette) {
+    assert(palette != NULL);
+
+    MELPackMapElementList elements = MELPackMapElementListEmpty;
+    MELPackMapElementListPushPalette(&elements, palette);
+    MELPackMap packMap = MELPackMapMakeWithElements(elements);
+    MELPackMapElementListDeinit(&elements);
+
+    MELTextureAtlas self;
+    self.texture = MELTextureMakeWithPackMap(packMap);
+    self.frameCount = (int) palette->count;
+    self.sources = malloc(sizeof(MELIntRectangle) * palette->count);
+    self.frames = malloc(sizeof(MELRectangle) * palette->count);
+
+    MELIntSize textureSize = self.texture.size;
+
+    for (unsigned int index = 0; index < packMap.elements.count; index++) {
+        MELIntRectangle source = MELPackMapFrameForPaletteTile(packMap, palette, index);
+        self.sources[index] = source;
+        self.frames[index] = MELRectangleMake((GLfloat)source.origin.x / textureSize.width, (GLfloat)source.origin.y / textureSize.height, (GLfloat)source.size.width / textureSize.width, (GLfloat)source.size.height / textureSize.height);
+    }
+
+    MELPackMapDeinit(&packMap);
+
     return self;
 }
 

@@ -22,6 +22,11 @@
 typedef struct melanimation MELAnimation;
 
 /**
+ * Reference to palette type.
+ */
+typedef struct melpalette MELPalette;
+
+/**
  * Atlas listing the coordinates of sprites and tiles in a texture.
  */
 typedef struct {
@@ -48,6 +53,14 @@ MELTextureAtlas MELTextureAtlasMakeWithPath(const char * _Nonnull path);
  * @return An atlas.
  */
 MELTextureAtlas MELTextureAtlasMakeWithInputStreamAndTexture(MELInputStream * _Nonnull inputStream, MELTexture texture);
+
+/**
+ * Returns an atlas by generating a texture using PackMap from every tile in the given palette.
+ *
+ * @param palette Palette to generate a texture and an atlas from.
+ * @return An atlas with every tile from the given palette.
+ */
+MELTextureAtlas MELTextureAtlasMakeWithPalette(MELPalette * _Nonnull palette);
 
 /**
  * Deinitialize and free the resources allocated for the given atlas.
