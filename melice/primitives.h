@@ -11,6 +11,8 @@
 #include "melstd.h"
 #include "list.h"
 
+typedef uintptr_t MELPointer;
+
 MELListDefine(GLfloat);
 MELListDefine(GLubyte);
 

@@ -33,4 +33,6 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
 
 uint8_t * _Nullable MELBitmapDrawTile(MELTextureAtlas atlas, int tile, MELUInt32Color * _Nullable texture, size_t * _Nullable byteCount, MELIntSize * _Nullable outTileSize);
 
+void MELBitmapCopyRectangle(MELUInt32Color * restrict _Nonnull target, MELIntSize targetSize, MELIntPoint targetOffset, const MELUInt32Color * restrict _Nonnull source, MELIntSize sourceSize, MELIntRectangle frameToCopy);
+
 #endif /* bitmap_h */

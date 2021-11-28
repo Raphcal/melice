@@ -16,7 +16,8 @@ int main(int argc, char **argv) {
     MELFileManagerInitWithArguments(fileManager, argv);
 
     char *path = MELFileManagerPathForAsset(fileManager, "HelloVita.mmk");
-    if (access(path, F_OK) != 0) {
+    MELInputStream inputStream = MELInputStreamOpen(path);
+    if (!inputStream.file) {
         fprintf(stderr, "Unable to access file at path: %s\n", path);
         return EXIT_FAILURE;
     }
@@ -24,7 +25,7 @@ int main(int argc, char **argv) {
     MELProjectFormat mmkFormat = {&MELMmkProjectFormatClass, NULL, 0};
 
     MELProject project;
-    if (!mmkFormat.class->openProject(&mmkFormat, path, &project)) {
+    if (!mmkFormat.class->openProject(&mmkFormat, &inputStream, &project)) {
         fprintf(stderr, "Unable to open project at path: %s\n", path);
         return EXIT_FAILURE;
     }

@@ -16,6 +16,7 @@
 #include "color.h"
 #include "palette.h"
 #include "spritedefinition.h"
+#include "pointerintpointtable.h"
 
 typedef struct melpackmap MELPackMap;
 
@@ -46,7 +47,7 @@ MELListDefine(MELPackMapRow);
 typedef struct melpackmap {
     MELIntSize size;
     MELPackMapElementList elements;
-    MELIntPointDictionary origins;
+    MELPointerMELIntPointTable origins;
     MELPackMapRowList rows;
     int takenHeight;
 } MELPackMap;
@@ -63,9 +64,5 @@ void MELPackMapElementListPushPalette(MELPackMapElementList * _Nonnull self, MEL
 void MELPackMapElementListPushSpriteDefinition(MELPackMapElementList * _Nonnull self, MELSpriteDefinition spriteDefinition);
 
 void MELPackMapRowDeinit(MELPackMapRow * _Nonnull self);
-
-MELIntPoint MELIntPointDictionaryPutElementOrigin(MELIntPointDictionary * _Nonnull self, MELPackMapElement element, MELIntPoint origin);
-MELIntPoint MELIntPointDictionaryGetElementOrigin(MELIntPointDictionary self, MELPackMapElement element);
-MELBoolean MELIntPointDictionaryGetValueOrigin(MELIntPointDictionary self, void * _Nullable value, MELIntPoint * _Nonnull origin);
 
 #endif /* packmap_h */

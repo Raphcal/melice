@@ -111,6 +111,8 @@ MELBoolean MELInputStreamReadBoolean(MELInputStream * _Nonnull self);
  */
 int32_t MELInputStreamReadInt(MELInputStream * _Nonnull self);
 
+uint32_t MELInputStreamReadUInt32(MELInputStream * _Nonnull self);
+
 /**
  * Reads and returns a 16 bits signed integer from the given input stream.
  *

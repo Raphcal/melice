@@ -13,6 +13,12 @@ DIST_HEADERS = $(patsubst $(SOURCE_FOLDER)/%.h, $(BUILD_FOLDER)/headers/%.h, $(S
 
 ifeq ($(shell uname -s),Darwin)
 CFLAGS = -F$(HOME)/Library/Frameworks -Wall -Wno-initializer-overrides
+
+ifeq ($(DEBUG),1)
+TARGET = melice-debug.a
+CFLAGS = -F$(HOME)/Library/Frameworks -Wall -Wno-initializer-overrides -O0 -g
+endif
+
 endif
 
 ifeq ($(shell uname -s),Linux)

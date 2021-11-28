@@ -31,8 +31,6 @@ typedef struct {
     int32_t y;
 } MELIntPoint;
 
-MELDictionaryDefine(MELIntPoint);
-
 /**
  * A point whose coordinates are both zero.
  */

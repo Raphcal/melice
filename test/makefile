@@ -1,5 +1,5 @@
 MELICE_ROOT = ..
-MELICE_LIB = $(MELICE_ROOT)/dist/melice.a
+MELICE_LIB = $(MELICE_ROOT)/dist/melice-debug.a
 MELICE_HEADERS = $(MELICE_ROOT)/dist/headers
 
 rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
@@ -9,7 +9,7 @@ TESTS = $(patsubst %.c, %, $(SOURCES))
 DSYM = $(patsubst %.c, %.dSYM, $(SOURCES))
 
 ifeq ($(shell uname -s),Darwin)
-CFLAGS = -fsanitize=address -fsanitize=undefined -O1 -fno-omit-frame-pointer -fno-optimize-sibling-calls -F/Library/Frameworks -framework SDL2 -framework OpenGL
+CFLAGS = -fsanitize=address -fsanitize=undefined -O0 -g -fno-omit-frame-pointer -fno-optimize-sibling-calls -F/Library/Frameworks -framework SDL2 -framework OpenGL
 endif
 
 ifeq ($(shell uname -s),Linux)
@@ -30,6 +30,6 @@ test: $(TESTS) FORCE
 	$(foreach test, $(TESTS), echo $(test); MallocNanoZone=0 $(test); echo "";)
 
 %: %.c
-	$(CC) $(CFLAGS) -o $@ $< $(MELICE_LIB) -I $(MELICE_HEADERS) -g
+	$(CC) $(CFLAGS) -o $@ $< $(MELICE_LIB) -I $(MELICE_HEADERS)
 
 FORCE:

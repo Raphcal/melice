@@ -172,6 +172,27 @@ MELUInt8Color MELMmkProjectFormatReadColor(MELProjectFormat * _Nonnull self, MEL
     return MELUInt8ColorMake(red, green, blue, alpha);
 }
 
+MELPaletteRef MELMmkProjectFormatReadBufferedImagePalette(MELInputStream * _Nonnull inputStream) {
+    int32_t tileSize = MELInputStreamReadInt(inputStream);
+    MELIntSize size = MELIntSizeMake(MELInputStreamReadInt(inputStream), MELInputStreamReadInt(inputStream));
+    MELIntSize tileCount = MELIntSizeMake(size.width / tileSize, size.height / tileSize);
+    int32_t count = MELInputStreamReadInt(inputStream);
+    uint32_t *pixels = malloc(sizeof(uint32_t) * count);
+
+    for (unsigned int index = 0; index < count; index++) {
+        uint32_t pixel = MELInputStreamReadUInt32(inputStream);
+        MELUInt8BGRAColor bgraColor = *((MELUInt8BGRAColor *)&pixel);
+        pixels[index] = MELUInt8ColorToRGBAUInt32Color((MELUInt8Color) {bgraColor.red, bgraColor.green, bgraColor.blue, bgraColor.alpha});
+    }
+
+    MELImagePalette *imagePalette = malloc(sizeof(MELImagePalette));
+    imagePalette->super.tileSize = MELIntSizeMake(tileSize, tileSize);
+    imagePalette->super.count = tileCount.width * tileCount.height;
+    // TODO: Découper pixels en images
+
+    return &imagePalette->super;
+}
+
 MELPaletteRef MELMmkProjectFormatReadPalette(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
     char *paletteClass = MELInputStreamReadString(inputStream);
     if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.AlphaColorPalette") == 0) {
@@ -180,6 +201,8 @@ MELPaletteRef MELMmkProjectFormatReadPalette(MELProjectFormat * _Nonnull self, M
         return &self->class->readImagePalette(self, project, inputStream)->super;
     } else if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.PaletteReference") == 0) {
         return self->class->readPaletteReference(self, project, inputStream);
+    } else if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.ImagePalette") == 0) {
+        return MELMmkProjectFormatReadBufferedImagePalette(inputStream);
     } else {
         fprintf(stderr, "Unsupported palette class: %s\n", paletteClass);
         return NULL;

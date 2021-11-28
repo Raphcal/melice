@@ -40,7 +40,8 @@ MELTexture MELTextureMakeWithPackMap(MELPackMap packMap) {
     MELPackMapElementList elements = packMap.elements;
     for (unsigned int index = 0; index < elements.count; index++) {
         MELPackMapElement element = elements.memory[index];
-        MELIntPoint origin = MELIntPointDictionaryGetElementOrigin(packMap.origins, element);
+        MELIntPoint origin = MELIntPointZero;
+        MELPointerMELIntPointTableGet(packMap.origins, (MELPointer) element.value, &origin);
         for (unsigned int y = 0; y < element.size.height; y++) {
             memcpy(pixels + origin.x + (origin.y + y) * size.width, element.pixels + y * element.size.width, element.size.width * sizeof(MELUInt32Color));
         }

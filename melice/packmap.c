@@ -31,7 +31,7 @@ int MELPackMapElementCompare(const MELPackMapElement *lhs, const  MELPackMapElem
 #pragma mark - MELPackMap
 
 MELPackMap MELPackMapMakeWithElements(MELPackMapElementList elements) {
-    MELPackMap self = {MELIntSizeMake(64, 64), MELPackMapElementListMakeWithList(elements), MELIntPointDictionaryEmpty, MELPackMapRowListEmpty, 0};
+    MELPackMap self = {MELIntSizeMake(64, 64), MELPackMapElementListMakeWithList(elements), MELPointerMELIntPointTableEmpty, MELPackMapRowListEmpty, 0};
     qsort(self.elements.memory, self.elements.count, sizeof(MELPackMapElement), (int(*)(const void *, const void *)) &MELPackMapElementCompare);
     for (size_t index = 0; index < self.elements.count; index++) {
         MELPackMapAddElement(&self, self.elements.memory[index]);
@@ -42,7 +42,7 @@ MELPackMap MELPackMapMakeWithElements(MELPackMapElementList elements) {
 void MELPackMapDeinit(MELPackMap * _Nonnull self) {
     self->size = MELIntSizeZero;
     MELPackMapElementListDeinitWithDeinitFunction(&self->elements, &MELPackMapElementDeinit);
-    MELIntPointDictionaryDeinit(&self->origins);
+    MELPointerMELIntPointTableDeinit(&self->origins);
     MELPackMapRowListDeinitWithDeinitFunction(&self->rows, &MELPackMapRowDeinit);
     self->takenHeight = 0;
 }
@@ -50,7 +50,7 @@ void MELPackMapDeinit(MELPackMap * _Nonnull self) {
 MELIntRectangle MELPackMapFrameForPaletteTile(MELPackMap self, MELPalette * _Nonnull palette, unsigned int tileIndex) {
     void *tile = palette->class->tileAtIndex(palette, tileIndex);
     MELIntPoint origin;
-    if (MELIntPointDictionaryGetValueOrigin(self.origins, tile, &origin)) {
+    if (MELPointerMELIntPointTableGet(self.origins, (MELPointer) tile, &origin)) {
         origin.x += PADDING;
         origin.y += PADDING;
         return MELIntRectangleMakeWithOriginAndSize(origin, palette->tileSize);
@@ -72,7 +72,7 @@ void MELPackMapAddElement(MELPackMap * _Nonnull self, MELPackMapElement element)
                 MELPackMapRowAddElement(row, element);
 
                 MELIntPoint origin = MELIntPointMake(frame.origin.x + row->cells.memory[row->cells.count - 1].x, frame.origin.y);
-                MELIntPointDictionaryPutElementOrigin(&self->origins, element, origin);
+                MELPointerMELIntPointTablePut(&self->origins, (MELPointer) element.value, origin);
 
                 if (MELPackMapRowIsLastElementLargerThanHeight(row, element.size.height)) {
                     row->frame.size.height = element.size.height;
@@ -86,7 +86,7 @@ void MELPackMapAddElement(MELPackMap * _Nonnull self, MELPackMapElement element)
             MELPackMapRowListPush(&self->rows, MELPackMapRowMakeWithFirstElement(self, element, origin));
             self->takenHeight += element.size.height;
 
-            MELIntPointDictionaryPutElementOrigin(&self->origins, element, origin);
+            MELPointerMELIntPointTablePut(&self->origins, (MELPointer) element.value, origin);
             return;
         } else {
             MELPackMapGrow(self);
@@ -212,24 +212,4 @@ void MELPackMapElementListPushPalette(MELPackMapElementList * _Nonnull self, MEL
 
 void MELPackMapElementListPushSpriteDefinition(MELPackMapElementList * _Nonnull self, MELSpriteDefinition spriteDefinition) {
     // TODO: Implement MELPackMapElementListPushSpriteDefinition.
-}
-
-#pragma mark - MELIntPointDictionary
-
-MELIntPoint MELIntPointDictionaryPutElementOrigin(MELIntPointDictionary * _Nonnull self, MELPackMapElement element, MELIntPoint origin) {
-    char key[255];
-    sprintf(key, "%lx", (uintptr_t) element.value);
-    return MELIntPointDictionaryPut(self, key, origin);
-}
-
-MELIntPoint MELIntPointDictionaryGetElementOrigin(MELIntPointDictionary self, MELPackMapElement element) {
-    MELIntPoint origin = MELIntPointZero;
-    MELIntPointDictionaryGetValueOrigin(self, element.value, &origin);
-    return origin;
-}
-
-MELBoolean MELIntPointDictionaryGetValueOrigin(MELIntPointDictionary self, void * _Nullable value, MELIntPoint * _Nonnull origin) {
-    char key[255];
-    sprintf(key, "%lx", (uintptr_t) value);
-    return MELIntPointDictionaryGetIfPresent(self, key, origin);
 }

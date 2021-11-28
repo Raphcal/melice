@@ -331,18 +331,22 @@ uint8_t * _Nullable MELBitmapDrawTile(MELTextureAtlas atlas, int tile, MELUInt32
         *byteCount = sizeof(MELUInt8Color) * pixelCount;
     }
 
-    MELUInt32Color *sourceRow = texture + source.origin.x + source.origin.y * atlas.texture.size.width;
-    MELUInt32Color *targetRow = image;
-    const size_t rowSize = sizeof(MELUInt32Color) * source.size.width;
-    for (int y = 0; y < source.size.height; y++) {
-        memcpy(targetRow, sourceRow, rowSize);
-        sourceRow += atlas.texture.size.width;
-        targetRow += source.size.width;
-    }
+    MELBitmapCopyRectangle(image, source.size, MELIntPointZero, texture, atlas.texture.size, source);
 
     if (shouldLoadAndFreeTexture) {
         free(texture);
     }
 
     return (uint8_t *) image;
+}
+
+void MELBitmapCopyRectangle(MELUInt32Color * restrict _Nonnull target, MELIntSize targetSize, MELIntPoint targetOffset, const MELUInt32Color * restrict _Nonnull source, MELIntSize sourceSize, MELIntRectangle frameToCopy) {
+    const size_t rowSize = sizeof(MELUInt32Color) * frameToCopy.size.width;
+    source += frameToCopy.origin.x + frameToCopy.origin.y * sourceSize.width;
+    target += targetOffset.x + targetOffset.y * targetSize.width;
+    for (int y = 0; y < frameToCopy.size.height; y++) {
+        memcpy(target, source, rowSize);
+        source += sourceSize.width;
+        target += targetSize.width;
+    }
 }

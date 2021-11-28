@@ -178,6 +178,12 @@ int32_t MELInputStreamReadInt(MELInputStream * _Nonnull self) {
     return value;
 }
 
+uint32_t MELInputStreamReadUInt32(MELInputStream * _Nonnull self) {
+    uint32_t value;
+    MELInputStreamRead(self, &value, sizeof(uint32_t));
+    return value;
+}
+
 int16_t MELInputStreamReadShort(MELInputStream * _Nonnull self) {
     int16_t value;
     MELInputStreamRead(self, &value, sizeof(int16_t));
