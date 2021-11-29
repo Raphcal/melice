@@ -9,3 +9,4 @@
 
 MELListImplement(GLfloat);
 MELListImplement(GLubyte);
+MELListImplement(MELByte);

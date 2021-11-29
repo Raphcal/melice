@@ -11,6 +11,8 @@
 
 #include "melstd.h"
 
+#include "list.h"
+
 /**
  * A color.
  */
@@ -45,6 +47,9 @@ typedef struct {
  * Color type.
  */
 typedef uint32_t MELUInt32Color;
+
+MELListDefine(MELUInt32Color);
+MELListDefineIndexOf(MELUInt32Color);
 
 #define MELColorMake(red, green, blue, alpha) ((MELColor){red, green, blue, alpha})
 MELColor MELColorMakeWithHex(uint32_t hexColor);

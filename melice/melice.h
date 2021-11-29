@@ -65,6 +65,7 @@
 #import "textureatlas.h"
 #import "dictionary.h"
 #import "hashmap.h"
+#import "keyvaluetable.h"
 #import "list.h"
 #import "melmath.h"
 #import "melstring.h"

@@ -177,18 +177,46 @@ MELPaletteRef MELMmkProjectFormatReadBufferedImagePalette(MELInputStream * _Nonn
     MELIntSize size = MELIntSizeMake(MELInputStreamReadInt(inputStream), MELInputStreamReadInt(inputStream));
     MELIntSize tileCount = MELIntSizeMake(size.width / tileSize, size.height / tileSize);
     int32_t count = MELInputStreamReadInt(inputStream);
-    uint32_t *pixels = malloc(sizeof(uint32_t) * count);
+    int *atlas = malloc(sizeof(int) * count);
+
+    // TODO: Use a set or a sorted list instead.
+    MELUInt32ColorList palette = MELUInt32ColorListEmpty;
 
     for (unsigned int index = 0; index < count; index++) {
         uint32_t pixel = MELInputStreamReadUInt32(inputStream);
         MELUInt8BGRAColor bgraColor = *((MELUInt8BGRAColor *)&pixel);
-        pixels[index] = MELUInt8ColorToRGBAUInt32Color((MELUInt8Color) {bgraColor.red, bgraColor.green, bgraColor.blue, bgraColor.alpha});
+        MELUInt32Color rgbaColor = MELUInt8ColorToRGBAUInt32Color((MELUInt8Color) {bgraColor.red, bgraColor.green, bgraColor.blue, bgraColor.alpha});
+        int tile = MELUInt32ColorListIndexOf(palette, rgbaColor);
+        if (tile == -1) {
+            tile = (int) palette.count;
+            MELUInt32ColorListPush(&palette, rgbaColor);
+        }
+        atlas[index] = tile;
     }
+
+    MELColorPalette *colorPalette = malloc(sizeof(MELColorPalette));
+    *colorPalette = MELColorPaletteMakeWithUInt32ColorList(palette);
+
+    const int imageCount = tileCount.width * tileCount.height;
 
     MELImagePalette *imagePalette = malloc(sizeof(MELImagePalette));
     imagePalette->super.tileSize = MELIntSizeMake(tileSize, tileSize);
-    imagePalette->super.count = tileCount.width * tileCount.height;
-    // TODO: Découper pixels en images
+    imagePalette->super.count = imageCount;
+    imagePalette->images = malloc(sizeof(MELImagePaletteImage) * imageCount);
+    imagePalette->colorPalette = colorPalette;
+
+    const int imageTileCount = tileSize * tileSize;
+    for (unsigned int imageIndex = 0; imageIndex < imageCount; imageIndex++) {
+        MELImagePaletteImage image = (MELImagePaletteImage) {malloc(sizeof(int) * imageTileCount), MELDecoratorRefListEmpty};
+        const int imageX = imageIndex / tileCount.width;
+        const int imageY = imageIndex % tileCount.width;
+        int *row = atlas + imageX * tileSize + imageY * tileSize * tileCount.width;
+        for (unsigned int y = 0; y < tileSize; y++) {
+            memcpy(image.tiles + y * tileSize, row, sizeof(int) * tileSize);
+            row += tileSize * tileCount.width;
+        }
+        imagePalette->images[imageIndex] = image;
+    }
 
     return &imagePalette->super;
 }

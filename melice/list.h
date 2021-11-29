@@ -48,6 +48,9 @@ type type##ListSet(type##List * _Nonnull self, size_t index, type element);\
 void type##ListInsert(type##List * _Nonnull self, size_t index, type element);\
 type type##ListRemove(type##List * _Nonnull self, size_t index);
 
+#define MELListDefineIndexOf(type) \
+int type##ListIndexOf(type##List self, type entry);
+
 #define MELListImplement(type) const type##List type##ListEmpty = { NULL, 0, 0 };\
 type##List type##ListMake(void) {\
     return type##ListMakeWithInitialCapacity(10);\
@@ -126,6 +129,16 @@ type type##ListRemove(type##List * _Nonnull self, size_t index) {\
     const type oldValue = self->memory[index];\
     memmove(self->memory + index, self->memory + index + 1, ((self->count--) - index - 1) * sizeof(type));\
     return oldValue;\
+}
+
+#define MELListImplementIndexOf(type) \
+int type##ListIndexOf(type##List self, type entry) {\
+    for (unsigned int index = 0; index < self.count; index++) {\
+        if (self.memory[index] == entry) {\
+            return index;\
+        }\
+    }\
+    return -1;\
 }
 
 /**

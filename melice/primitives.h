@@ -13,7 +13,10 @@
 
 typedef uintptr_t MELPointer;
 
+typedef uint8_t MELByte;
+
 MELListDefine(GLfloat);
 MELListDefine(GLubyte);
+MELListDefine(MELByte);
 
 #endif /* primitives_h */

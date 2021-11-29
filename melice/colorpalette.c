@@ -7,7 +7,28 @@
 
 #include "colorpalette.h"
 
+#include "primitives.h"
+
 #define MASK 1000
+
+MELColorPalette MELColorPaletteMakeWithUInt32ColorList(MELUInt32ColorList colors) {
+    MELColorPalette self;
+    self.super.class = &MELColorPaletteClass;
+    self.super.count = (unsigned int) colors.count;
+    self.super.tileSize = MELIntSizeMake(1, 1);
+    self.colors = malloc(sizeof(MELUInt8RGBColor) * colors.count);
+    // TODO: Support alpha levels.
+    self.alphaLevelCount = 1;
+    self.alphaLevels = malloc(sizeof(uint8_t));
+    self.alphaLevels[0] = 255;
+
+    MELUInt8Color *uint8Colors = (MELUInt8Color *) colors.memory;
+    for (unsigned int index = 0; index < self.super.count; index++) {
+        MELUInt8Color color = uint8Colors[index];
+        self.colors[index] = (MELUInt8RGBColor) {color.red, color.green, color.blue};
+    }
+    return self;
+}
 
 MELUInt32Color MELColorPaletteColorForTile(MELColorPalette self, unsigned int tileIndex) {
     const int colorIndex = tileIndex % MASK;
@@ -21,6 +42,11 @@ MELUInt32Color MELColorPaletteColorForTile(MELColorPalette self, unsigned int ti
     uint8_t alpha = self.alphaLevels[alphaIndex];
 
     return MELUInt8ColorToRGBAUInt32Color(MELUInt8ColorMake(rgb.red, rgb.green, rgb.blue, alpha));
+}
+
+int MELColorPaletteTileForColor(MELColorPalette self, MELUInt32Color color) {
+    // TODO: Not implemented yet.
+    return 0;
 }
 
 uint8_t * _Nullable MELColorPalettePaintTile(MELColorPalette * _Nonnull self, unsigned int tileIndex) {

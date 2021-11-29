@@ -10,6 +10,9 @@
 
 #include "melmath.h"
 
+MELListImplement(MELUInt32Color);
+MELListImplementIndexOf(MELUInt32Color);
+
 MELColor MELColorMakeWithHex(uint32_t hexColor) {
     return (MELColor) {
         ((hexColor & 0xFF0000) >> 16) / 255.0f,

@@ -167,6 +167,10 @@
 		642B2AC925FD4A6900183D42 /* surface.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A4125FD448B00183D42 /* surface.c */; };
 		642B2ACA25FD4A6900183D42 /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B2AD325FD4E9800183D42 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
+		643EEC41275574690039FDAB /* keyvaluetable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; };
+		643EEC42275574690039FDAB /* pointerintpointtable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; };
+		643EEC43275574850039FDAB /* keyvaluetable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; };
+		643EEC44275574850039FDAB /* pointerintpointtable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; };
 		644872572726B86600DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		644872582726B86700DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		644872592726B86700DEE2C1 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 644872562726B86600DEE2C1 /* bitmap.c */; };
@@ -189,10 +193,10 @@
 		6460F012274C40580040F95A /* packmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0022746E5010040F95A /* packmap.h */; };
 		6460F013274C40750040F95A /* outputstream.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F00B274BAC5C0040F95A /* outputstream.h */; };
 		6460F014274C40750040F95A /* packmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0022746E5010040F95A /* packmap.h */; };
-		6460F0DE275411330040F95A /* keyvaluetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; };
-		6460F0DF275411340040F95A /* keyvaluetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; };
-		6460F0E2275414C90040F95A /* pointerintpointtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; };
-		6460F0E3275414C90040F95A /* pointerintpointtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; };
+		6460F0DE275411330040F95A /* keyvaluetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6460F0DF275411340040F95A /* keyvaluetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6460F0E2275414C90040F95A /* pointerintpointtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6460F0E3275414C90040F95A /* pointerintpointtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6460F0E4275414C90040F95A /* pointerintpointtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0E1275414C90040F95A /* pointerintpointtable.c */; };
 		6460F0E5275414C90040F95A /* pointerintpointtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0E1275414C90040F95A /* pointerintpointtable.c */; };
 		647189E927386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -448,6 +452,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				643EEC41275574690039FDAB /* keyvaluetable.h in CopyFiles */,
+				643EEC42275574690039FDAB /* pointerintpointtable.h in CopyFiles */,
 				6460F011274C40580040F95A /* outputstream.h in CopyFiles */,
 				6460F012274C40580040F95A /* packmap.h in CopyFiles */,
 				64EEAA4927426CD400776662 /* colorpalette.h in CopyFiles */,
@@ -528,6 +534,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				643EEC43275574850039FDAB /* keyvaluetable.h in CopyFiles */,
+				643EEC44275574850039FDAB /* pointerintpointtable.h in CopyFiles */,
 				6460F013274C40750040F95A /* outputstream.h in CopyFiles */,
 				6460F014274C40750040F95A /* packmap.h in CopyFiles */,
 				64EEAA5127426CE600776662 /* colorpalette.h in CopyFiles */,
@@ -1281,13 +1289,11 @@
 				642B2A4B25FD44AB00183D42 /* point.h in Headers */,
 				642B2A9325FD49C100183D42 /* synchronizedanimation.h in Headers */,
 				642B2ABC25FD4A6900183D42 /* renderer.h in Headers */,
-				6460F0E2275414C90040F95A /* pointerintpointtable.h in Headers */,
 				642B2A6025FD451F00183D42 /* gamecontroller.h in Headers */,
 				642B2A6E25FD462F00183D42 /* director.h in Headers */,
 				642B2A4925FD44AB00183D42 /* rectangle.h in Headers */,
 				642B2AC325FD4A6900183D42 /* surfacememory.h in Headers */,
 				642B2AC725FD4A6900183D42 /* surface.h in Headers */,
-				6460F0DE275411330040F95A /* keyvaluetable.h in Headers */,
 				642B2A5625FD451F00183D42 /* inputsource.h in Headers */,
 				642B2AC625FD4A6900183D42 /* textureatlas.h in Headers */,
 				642B2AA325FD49E500183D42 /* statichitbox.h in Headers */,
@@ -1303,6 +1309,8 @@
 				644872572726B86600DEE2C1 /* bitmap.h in Headers */,
 				642B2AA625FD49E500183D42 /* rotatedhitbox.h in Headers */,
 				642B2AB125FD4A0300183D42 /* spriteinstance.h in Headers */,
+				6460F0E2275414C90040F95A /* pointerintpointtable.h in Headers */,
+				6460F0DE275411330040F95A /* keyvaluetable.h in Headers */,
 				6460F00D274BAC5C0040F95A /* outputstream.h in Headers */,
 				642B2AC225FD4A6900183D42 /* surfacearray.h in Headers */,
 				642B29D625FD444600183D42 /* random.h in Headers */,
@@ -1322,7 +1330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				64718A0527390F2A00547977 /* miniz.h in Headers */,
-				6460F0DF275411340040F95A /* keyvaluetable.h in Headers */,
 				64749397272C2ABA004F3D97 /* primitives.h in Headers */,
 				64CB66D1271F514100663A2E /* melice.h in Headers */,
 				64CB66D2271F514100663A2E /* melstd.h in Headers */,
@@ -1331,7 +1338,6 @@
 				64CB66D5271F514100663A2E /* rectangle.h in Headers */,
 				64CB66D6271F514100663A2E /* size.h in Headers */,
 				64CB66D7271F514100663A2E /* buttonstate.h in Headers */,
-				6460F0E3275414C90040F95A /* pointerintpointtable.h in Headers */,
 				64CB66D8271F514100663A2E /* buttonmapping.h in Headers */,
 				64CB66D9271F514100663A2E /* filemanager.h in Headers */,
 				64CB66DA271F514100663A2E /* gamecontroller.h in Headers */,
@@ -1390,6 +1396,8 @@
 				644872582726B86700DEE2C1 /* bitmap.h in Headers */,
 				64CB6706271F514300663A2E /* melmath.h in Headers */,
 				64CB6707271F514300663A2E /* operation.h in Headers */,
+				6460F0DF275411340040F95A /* keyvaluetable.h in Headers */,
+				6460F0E3275414C90040F95A /* pointerintpointtable.h in Headers */,
 				6460F00E274BAC5C0040F95A /* outputstream.h in Headers */,
 				64CB6708271F514300663A2E /* random.h in Headers */,
 				64CB6709271F514300663A2E /* meltime.h in Headers */,
