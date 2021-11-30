@@ -43,17 +43,16 @@ void MELImagePalettePaintTileToBuffer(MELImagePalette * _Nonnull self, unsigned 
 }
 
 uint8_t * _Nullable MELImagePalettePaintMap(MELImagePalette * _Nonnull self, MELMap map, MELIntSize areaToRender) {
+    const MELColorPalette colorPalette = *self->colorPalette;
+
     const MELIntSize tileSize = self->super.tileSize;
+    const MELIntSize totalSize = MELIntSizeMake(areaToRender.width * tileSize.width, areaToRender.height * tileSize.height);
+    const size_t pixelCount = totalSize.width * totalSize.height;
 
-    MELIntSize imageSize = MELIntSizeMake(areaToRender.width * tileSize.width, areaToRender.height * tileSize.height);
-    const size_t count = imageSize.width * imageSize.height;
-
-    MELColorPalette colorPalette = *self->colorPalette;
-
-    MELUInt32Color *pixels = malloc(MELPaletteByteCount(tileSize, areaToRender));
-    for (int index = 0; index < count; index++) {
-        const int x = index % imageSize.width;
-        const int y = index / imageSize.width;
+    MELUInt8Color *pixels = malloc(sizeof(MELUInt8Color) * pixelCount);
+    for (int index = 0; index < pixelCount; index++) {
+        const int x = index % totalSize.width;
+        const int y = index / totalSize.width;
         const int tileX = x / tileSize.width;
         const int tileY = y / tileSize.height;
         const int tileIndex = tileX + tileY * map.size.width;
@@ -62,9 +61,18 @@ uint8_t * _Nullable MELImagePalettePaintMap(MELImagePalette * _Nonnull self, MEL
         const int yInsideTile = y % tileSize.height;
         const int indexInsideTile = xInsideTile + yInsideTile * tileSize.width;
 
-        MELImagePaletteImage image = self->images[tileIndex];
-        
-        pixels[index] = MELColorPaletteColorForTile(colorPalette, image.tiles[indexInsideTile]);
+        MELUInt8Color color = MELColorToMELUInt8Color(map.backgroundColor);
+        for (int layerIndex = 0; layerIndex < map.layers.count; layerIndex++) {
+            const MELLayer layer = map.layers.memory[layerIndex];
+            const int tile = layer.tiles[tileIndex];
+            if (tile != -1) {
+                MELImagePaletteImage image = self->images[tile];
+                const MELUInt32Color tileColor = MELColorPaletteColorForTile(colorPalette, image.tiles[indexInsideTile]);
+
+                color = MELUInt8ColorBlendWithColor(color, MELRGBAUInt32ColorToMELUInt8Color(tileColor));
+            }
+        }
+        pixels[index] = color;
     }
     return (uint8_t *) pixels;
 }
