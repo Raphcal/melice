@@ -98,7 +98,9 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
     }
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, self->size.width, self->size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-    free(pixels);
+    if (pixels != self->pixels) {
+        free(pixels);
+    }
 
     error = glGetError();
     if (error != GL_NO_ERROR) {
