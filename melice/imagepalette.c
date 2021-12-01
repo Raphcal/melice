@@ -38,7 +38,7 @@ void MELImagePalettePaintTileToBuffer(MELImagePalette * _Nonnull self, unsigned 
     for (size_t index = 0; index < count; index++) {
         const size_t x = index % tileSize.width;
         const size_t y = index / tileSize.width;
-        buffer[topLeft.x + x + (topLeft.y + y) * bufferSize.width] = MELColorPaletteColorForTile(colorPalette, tiles[index]);
+        buffer[topLeft.x + x + (topLeft.y + y) * bufferSize.width] = MELColorPaletteAlphaPremultipliedColorForTile(colorPalette, tiles[index]);
     }
 }
 

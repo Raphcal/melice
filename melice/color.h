@@ -61,6 +61,7 @@ MELUInt8Color MELColorToMELUInt8Color(MELColor self);
 #define MELUInt8ColorMake(red, green, blue, alpha) ((MELUInt8Color){red, green, blue, alpha})
 MELUInt8Color MELUInt8ColorMakeWithHex(uint32_t hexColor);
 MELUInt8Color MELUInt8ColorBlendWithColor(MELUInt8Color self, MELUInt8Color incoming);
+MELUInt8Color MELUInt8ColorBlendWithAlphaPremultipliedColor(MELUInt8Color self, MELUInt8Color incoming);
 
 #define MELColorToUInt32Color MELColorToBGRAUInt32Color
 MELUInt32Color MELUInt8ColorToRGBAUInt32Color(MELUInt8Color self);

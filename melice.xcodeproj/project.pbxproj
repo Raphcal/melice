@@ -171,6 +171,12 @@
 		643EEC42275574690039FDAB /* pointerintpointtable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; };
 		643EEC43275574850039FDAB /* keyvaluetable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; };
 		643EEC44275574850039FDAB /* pointerintpointtable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; };
+		643EEC6E2757ABD30039FDAB /* atlaspalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 643EEC6C2757ABD30039FDAB /* atlaspalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EEC6F2757ABD30039FDAB /* atlaspalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 643EEC6C2757ABD30039FDAB /* atlaspalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		643EEC702757ABD30039FDAB /* atlaspalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 643EEC6D2757ABD30039FDAB /* atlaspalette.c */; };
+		643EEC712757ABD30039FDAB /* atlaspalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 643EEC6D2757ABD30039FDAB /* atlaspalette.c */; };
+		643EEC722757CF380039FDAB /* atlaspalette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 643EEC6C2757ABD30039FDAB /* atlaspalette.h */; };
+		643EEC732757CF470039FDAB /* atlaspalette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 643EEC6C2757ABD30039FDAB /* atlaspalette.h */; };
 		644872572726B86600DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		644872582726B86700DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		644872592726B86700DEE2C1 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 644872562726B86600DEE2C1 /* bitmap.c */; };
@@ -452,6 +458,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				643EEC732757CF470039FDAB /* atlaspalette.h in CopyFiles */,
 				643EEC41275574690039FDAB /* keyvaluetable.h in CopyFiles */,
 				643EEC42275574690039FDAB /* pointerintpointtable.h in CopyFiles */,
 				6460F011274C40580040F95A /* outputstream.h in CopyFiles */,
@@ -534,6 +541,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				643EEC722757CF380039FDAB /* atlaspalette.h in CopyFiles */,
 				643EEC43275574850039FDAB /* keyvaluetable.h in CopyFiles */,
 				643EEC44275574850039FDAB /* pointerintpointtable.h in CopyFiles */,
 				6460F013274C40750040F95A /* outputstream.h in CopyFiles */,
@@ -737,6 +745,8 @@
 		642B2B0825FF703100183D42 /* spritedefinition-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "spritedefinition-test.c"; sourceTree = "<group>"; };
 		642B2B0B25FF703100183D42 /* map1-sprites.def */ = {isa = PBXFileReference; lastKnownFileType = file; path = "map1-sprites.def"; sourceTree = "<group>"; };
 		642B2B1525FF8FED00183D42 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		643EEC6C2757ABD30039FDAB /* atlaspalette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = atlaspalette.h; sourceTree = "<group>"; };
+		643EEC6D2757ABD30039FDAB /* atlaspalette.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = atlaspalette.c; sourceTree = "<group>"; };
 		6448724F2725F4ED00DEE2C1 /* color-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "color-test.c"; sourceTree = "<group>"; };
 		644872552726B86600DEE2C1 /* bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bitmap.h; sourceTree = "<group>"; };
 		644872562726B86600DEE2C1 /* bitmap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bitmap.c; sourceTree = "<group>"; };
@@ -903,6 +913,8 @@
 				64D00E722730940600C8A675 /* colorpalette.c */,
 				64D00E772730943000C8A675 /* imagepalette.h */,
 				64D00E782730943000C8A675 /* imagepalette.c */,
+				643EEC6C2757ABD30039FDAB /* atlaspalette.h */,
+				643EEC6D2757ABD30039FDAB /* atlaspalette.c */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -1312,6 +1324,7 @@
 				6460F0E2275414C90040F95A /* pointerintpointtable.h in Headers */,
 				6460F0DE275411330040F95A /* keyvaluetable.h in Headers */,
 				6460F00D274BAC5C0040F95A /* outputstream.h in Headers */,
+				643EEC6E2757ABD30039FDAB /* atlaspalette.h in Headers */,
 				642B2AC225FD4A6900183D42 /* surfacearray.h in Headers */,
 				642B29D625FD444600183D42 /* random.h in Headers */,
 			);
@@ -1399,6 +1412,7 @@
 				6460F0DF275411340040F95A /* keyvaluetable.h in Headers */,
 				6460F0E3275414C90040F95A /* pointerintpointtable.h in Headers */,
 				6460F00E274BAC5C0040F95A /* outputstream.h in Headers */,
+				643EEC6F2757ABD30039FDAB /* atlaspalette.h in Headers */,
 				64CB6708271F514300663A2E /* random.h in Headers */,
 				64CB6709271F514300663A2E /* meltime.h in Headers */,
 			);
@@ -1626,6 +1640,7 @@
 				642B2A4D25FD44AB00183D42 /* quadrilateral.c in Sources */,
 				6460F00F274BAC5C0040F95A /* outputstream.c in Sources */,
 				642B2AB325FD4A0300183D42 /* spritemanager.c in Sources */,
+				643EEC702757ABD30039FDAB /* atlaspalette.c in Sources */,
 				64718A0227390F2A00547977 /* miniz.c in Sources */,
 				642B2A9225FD49C100183D42 /* playonceanimation.c in Sources */,
 				642B2A5825FD451F00183D42 /* gamecontroller.c in Sources */,
@@ -1707,6 +1722,7 @@
 				6460F0072746E5010040F95A /* packmap.c in Sources */,
 				64CB6729271F51E300663A2E /* statichitbox.c in Sources */,
 				64CB672A271F51E300663A2E /* motion.c in Sources */,
+				643EEC712757ABD30039FDAB /* atlaspalette.c in Sources */,
 				64CB672B271F51E300663A2E /* nomotion.c in Sources */,
 				64CB672C271F51E300663A2E /* direction.c in Sources */,
 				64CB672D271F51E300663A2E /* sprite.c in Sources */,

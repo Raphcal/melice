@@ -65,8 +65,17 @@ MELUInt32Color MELUInt8ColorToRGBAUInt32Color(MELUInt8Color self) {
     return *((MELUInt32Color *) &self);
 }
 
-
 MELUInt8Color MELUInt8ColorBlendWithColor(MELUInt8Color self, MELUInt8Color incoming) {
+    const unsigned int oneMinusAlpha = 255 - incoming.alpha;
+    return (MELUInt8Color) {
+        MELUInt8Min(incoming.red * incoming.alpha / 255 + self.red * oneMinusAlpha / 255, 255),
+        MELUInt8Min(incoming.green * incoming.alpha / 255 + self.green * oneMinusAlpha / 255, 255),
+        MELUInt8Min(incoming.blue * incoming.alpha / 255 + self.blue * oneMinusAlpha / 255, 255),
+        255
+    };
+}
+
+MELUInt8Color MELUInt8ColorBlendWithAlphaPremultipliedColor(MELUInt8Color self, MELUInt8Color incoming) {
     const unsigned int oneMinusAlpha = 255 - incoming.alpha;
     return (MELUInt8Color) {
         MELUInt8Min(incoming.red + self.red * oneMinusAlpha / 255, 255),

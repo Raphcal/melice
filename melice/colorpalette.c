@@ -30,18 +30,27 @@ MELColorPalette MELColorPaletteMakeWithUInt32ColorList(MELUInt32ColorList colors
     return self;
 }
 
-MELUInt32Color MELColorPaletteColorForTile(MELColorPalette self, unsigned int tileIndex) {
+MELUInt8Color MELColorPaletteUInt8ColorForTile(MELColorPalette self, unsigned int tileIndex) {
     const int colorIndex = tileIndex % MASK;
     const int alphaIndex = tileIndex / MASK;
 
     if (colorIndex < 0 || colorIndex >= self.super.count || alphaIndex < 0 || alphaIndex >= self.alphaLevelCount) {
-        return 0;
+        return MELUInt8ColorMake(0, 0, 0, 0);
     }
 
     MELUInt8RGBColor rgb = self.colors[colorIndex];
     uint8_t alpha = self.alphaLevels[alphaIndex];
 
-    return MELUInt8ColorToRGBAUInt32Color(MELUInt8ColorMake(rgb.red, rgb.green, rgb.blue, alpha));
+    return MELUInt8ColorMake(rgb.red, rgb.green, rgb.blue, alpha);
+}
+
+MELUInt32Color MELColorPaletteColorForTile(MELColorPalette self, unsigned int tileIndex) {
+    return MELUInt8ColorToRGBAUInt32Color(MELColorPaletteUInt8ColorForTile(self, tileIndex));
+}
+
+MELUInt32Color MELColorPaletteAlphaPremultipliedColorForTile(MELColorPalette self, unsigned int tileIndex) {
+    MELUInt8Color color = MELColorPaletteUInt8ColorForTile(self, tileIndex);
+    return MELUInt8ColorToRGBAUInt32Color(MELUInt8ColorMake(color.red * color.alpha / 255, color.green * color.alpha / 255, color.blue * color.alpha / 255, color.alpha));
 }
 
 int MELColorPaletteTileForColor(MELColorPalette self, MELUInt32Color color) {

@@ -29,6 +29,7 @@
 #import "palette.h"
 #import "colorpalette.h"
 #import "imagepalette.h"
+#import "atlaspalette.h"
 #import "project.h"
 #import "projectformat.h"
 #import "mmkprojectformat.h"

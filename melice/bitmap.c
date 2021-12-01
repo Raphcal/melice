@@ -294,7 +294,7 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
                 const MELIntRectangle tileFrame = atlas.sources[tile];
                 const int texturePixel = tileFrame.origin.x + xInsideTile + (tileFrame.origin.y + yInsideTile) * atlas.texture.size.width;
                 const MELUInt32Color tileColor = texture[texturePixel];
-                color = MELUInt8ColorBlendWithColor(color, MELRGBAUInt32ColorToMELUInt8Color(tileColor));
+                color = MELUInt8ColorBlendWithAlphaPremultipliedColor(color, MELRGBAUInt32ColorToMELUInt8Color(tileColor));
             }
         }
         image[pixel] = color;
