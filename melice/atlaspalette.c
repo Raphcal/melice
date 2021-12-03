@@ -23,6 +23,12 @@ MELAtlasPalette MELAtlasPaletteMake(MELTextureAtlas atlas) {
     };
 }
 
+MELPaletteRef MELAtlasPaletteToPaletteRef(MELAtlasPalette self) {
+    MELAtlasPalette *ref = malloc(sizeof(MELAtlasPalette));
+    *ref = self;
+    return &ref->super;
+}
+
 uint8_t * _Nullable MELAtlasPalettePaintTile(MELAtlasPalette * _Nonnull self, unsigned int tileIndex) {
     if (tileIndex < 0 || tileIndex >= self->super.count) {
         fprintf(stderr, "Tile index out of bounds 0..<%d: %d", self->super.count, tileIndex);
