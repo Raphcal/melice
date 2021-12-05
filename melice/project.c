@@ -7,6 +7,7 @@
 
 #include "project.h"
 
-MELListImplement(MELMapGroup);
-
-const MELMapGroup MELMapGroupEmpty = {NULL, {NULL, 0, 0}, {NULL, 0, 0}, {NULL, 0, 0}};
+void MELProjectDeinit(MELProject * _Nonnull self) {
+    MELPaletteRefListDeinitWithDeinitFunction(&self->palettes, &MELPaletteRefDeinit);
+    MELMapGroupListDeinitWithDeinitFunction(&self->mapGroups, &MELMapGroupDeinit);
+}

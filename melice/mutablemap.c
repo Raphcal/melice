@@ -9,6 +9,14 @@
 
 MELListImplement(MELMutableMap);
 
+void MELMutableMapDeinit(MELMutableMap * _Nonnull self) {
+    self->size = MELIntSizeZero;
+    self->backgroundColor = (MELColor) {0,0,0,0};
+    MELLayerListDeinitWithDeinitFunction(&self->layers, &MELLayerDeinit);
+    free(self->name);
+    self->name = NULL;
+}
+
 MELMap MELMutableMapToMELMap(MELMutableMap self) {
     return (MELMap) {
         self.size,

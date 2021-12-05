@@ -9,6 +9,18 @@
 
 MELListImplement(MELImagePaletteImage);
 
+void MELImagePaletteDeinit(MELImagePalette * _Nonnull self) {
+    for (uint32_t index = 0; index < self->super.count; index++) {
+        MELImagePaletteImageDeinit(self->images + index);
+    }
+}
+
+void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self) {
+    free(self->tiles);
+    self->tiles = NULL;
+    MELDecoratorRefListDeinitWithDeinitFunction(&self->decorators, &MELDecoratorRefDeinit);
+}
+
 uint8_t * _Nullable MELImagePalettePaintTile(MELImagePalette * _Nonnull self, unsigned int tileIndex) {
     if (tileIndex < 0 || tileIndex >= self->super.count) {
         fprintf(stderr, "Tile index out of bounds 0..<%d: %d", self->super.count, tileIndex);
@@ -82,6 +94,7 @@ MELImagePaletteImage * _Nonnull MELImagePaletteTileAtIndex(MELImagePalette * _No
 }
 
 const MELPaletteClass MELImagePaletteClass = {
+    (void(*)(MELPalette *)) &MELImagePaletteDeinit,
     (uint8_t *(*)(MELPalette *, unsigned int)) &MELImagePalettePaintTile,
     (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELImagePalettePaintTileToBuffer,
     (uint8_t *(*)(MELPalette *, MELMap, MELIntSize)) &MELImagePalettePaintMap,

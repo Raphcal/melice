@@ -21,11 +21,23 @@ typedef struct {
     MELIntSize size;
     MELColor backgroundColor;
     MELList(MELLayer) layers;
-    MELPalette * _Nullable palette;
+    MELPalette * _Nonnull palette;
     char * _Nullable name;
 } MELMutableMap;
 
 MELListDefine(MELMutableMap);
+
+/**
+ * Deinitialize the given mutable map.
+ *
+ * The layers and the name are freed. Name is then set to NULL.
+ * The size is set to zero. Background color is set to black with opacity set to zero.
+ *
+ * The palette is not freed because it is assumed that it may be a reference to a global object.
+ *
+ * @param self Instance to deinitialize.
+ */
+void MELMutableMapDeinit(MELMutableMap * _Nonnull self);
 
 MELMap MELMutableMapToMELMap(MELMutableMap self);
 

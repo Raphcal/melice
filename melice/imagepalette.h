@@ -23,10 +23,21 @@ typedef struct {
 
 typedef struct {
     MELPalette super;
-    MELColorPalette * _Nullable colorPalette;
+    MELColorPalette * _Nonnull colorPalette;
     MELImagePaletteImage * _Nullable images;
 } MELImagePalette;
 
 MELListDefine(MELImagePaletteImage);
+
+/**
+ * Deinitialize the given palette and free its images.
+ *
+ * Color palettes are not freed because it is assumed that they are owned by an other object.
+ *
+ * @param self Image palette to deinitialize.
+ */
+void MELImagePaletteDeinit(MELImagePalette * _Nonnull self);
+
+void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self);
 
 #endif /* imagepalette_h */

@@ -27,14 +27,22 @@ typedef MELDecorator * _Nullable MELDecoratorRef;
 
 MELListDefine(MELDecoratorRef);
 
+void MELDecoratorDeinit(MELDecorator * _Nonnull self);
+
+void MELDecoratorRefDeinit(MELDecoratorRef * _Nonnull self);
+
 typedef struct {
     MELDecorator super;
     char * _Nonnull function;
 } MELFunctionDecorator;
 
+void MELFunctionDecoratorDeinit(MELFunctionDecorator * _Nonnull self);
+
 typedef struct {
     MELDecorator super;
     MELIntRectangle hitbox;
 } MELHitboxDecorator;
+
+void MELHitboxDecoratorDeinit(MELHitboxDecorator * _Nonnull self);
 
 #endif /* decorator_h */

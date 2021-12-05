@@ -408,6 +408,7 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
     animationDefinition.type = type;
 
     animationDefinition.frameCount = 0;
+    animationDefinition.frames = NULL;
 
     const int directionCount = MELInputStreamReadInt(inputStream);
     for (int i = 0; i < directionCount; i++) {

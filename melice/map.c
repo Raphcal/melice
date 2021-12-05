@@ -33,8 +33,7 @@ MELMap MELMapMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
 }
 
 void MELMapDeinit(MELMap * _Nonnull self) {
-    self->size.width = 0;
-    self->size.height = 0;
+    self->size = MELIntSizeZero;
     self->backgroundColor = (MELColor) {0,0,0,0};
     MELLayerListDeinitWithDeinitFunction(&self->layers, &MELLayerDeinit);
 }

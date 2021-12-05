@@ -22,6 +22,13 @@ typedef struct melpalette MELPalette;
 
 typedef struct {
     /**
+     * Deinit the given palette and free its resources.
+     * The palette itself is not freed.
+     *
+     * @param self Instance to deinitialize.
+     */
+    void (* _Nonnull deinit)(MELPalette * _Nonnull self);
+    /**
      * Allocates a byte array and paints the tile at the given index with palette's preferred tile size.
      *
      * Returned byte count can be obtained by calling: <code>MELPaletteByteCount(palette.tileSize, MELIntSizeMake(1, 1));</code>.
@@ -67,6 +74,10 @@ typedef struct melpalette {
 typedef MELPalette * _Nullable MELPaletteRef;
 
 MELListDefine(MELPaletteRef);
+
+void MELPaletteDeinit(MELPalette * _Nonnull self);
+
+void MELPaletteRefDeinit(MELPaletteRef * _Nonnull self);
 
 /**
  * Returns the number of bytes required to paint an image made of the given amount of tiles with the given tile size.

@@ -21,6 +21,7 @@ typedef struct {
 } MELAtlasPalette;
 
 MELAtlasPalette MELAtlasPaletteMake(MELTextureAtlas atlas);
+void MELAtlasPaletteDeinit(MELAtlasPalette * _Nonnull self);
 
 MELPalette * _Nonnull MELAtlasPaletteToPaletteRef(MELAtlasPalette self);
 

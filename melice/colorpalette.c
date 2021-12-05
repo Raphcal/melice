@@ -30,6 +30,14 @@ MELColorPalette MELColorPaletteMakeWithUInt32ColorList(MELUInt32ColorList colors
     return self;
 }
 
+void MELColorPaletteDeinit(MELColorPalette * _Nonnull self) {
+    free(self->colors);
+    self->colors = NULL;
+    free(self->alphaLevels);
+    self->alphaLevels = NULL;
+    self->alphaLevelCount = 0;
+}
+
 MELUInt8Color MELColorPaletteUInt8ColorForTile(MELColorPalette self, unsigned int tileIndex) {
     const int colorIndex = tileIndex % MASK;
     const int alphaIndex = tileIndex / MASK;
@@ -108,6 +116,7 @@ MELUInt8RGBColor * _Nonnull MELColorPaletteTileAtIndex(MELColorPalette * _Nonnul
 }
 
 const MELPaletteClass MELColorPaletteClass = {
+    (void(*)(MELPalette *)) &MELColorPaletteDeinit,
     (uint8_t *(*)(MELPalette *, unsigned int)) &MELColorPalettePaintTile,
     (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELColorPalettePaintTileToBuffer,
     (uint8_t *(*)(MELPalette *, MELMap, MELIntSize)) &MELColorPalettePaintMap,

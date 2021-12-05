@@ -22,6 +22,7 @@ typedef struct {
 } MELColorPalette;
 
 MELColorPalette MELColorPaletteMakeWithUInt32ColorList(MELUInt32ColorList colors);
+void MELColorPaletteDeinit(MELColorPalette * _Nonnull self);
 
 MELUInt32Color MELColorPaletteColorForTile(MELColorPalette self, unsigned int tileIndex);
 MELUInt32Color MELColorPaletteAlphaPremultipliedColorForTile(MELColorPalette self, unsigned int tileIndex);

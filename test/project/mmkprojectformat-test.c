@@ -78,7 +78,7 @@ int main(int argc, char **argv) {
     free(bmpPath);
     MELTextureDeinit(&texture);
 
-    // TODO: Deinit
+    MELProjectDeinit(&project);
 
     return EXIT_SUCCESS;
 }

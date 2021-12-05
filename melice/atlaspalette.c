@@ -23,6 +23,10 @@ MELAtlasPalette MELAtlasPaletteMake(MELTextureAtlas atlas) {
     };
 }
 
+void MELAtlasPaletteDeinit(MELAtlasPalette * _Nonnull self) {
+    // Nothing to free.
+}
+
 MELPaletteRef MELAtlasPaletteToPaletteRef(MELAtlasPalette self) {
     MELAtlasPalette *ref = malloc(sizeof(MELAtlasPalette));
     *ref = self;
@@ -60,6 +64,7 @@ MELIntRectangle * _Nonnull MELAtlasPaletteTileAtIndex(MELAtlasPalette * _Nonnull
 }
 
 const MELPaletteClass MELAtlasPaletteClass = {
+    (void(*)(MELPalette *)) &MELAtlasPaletteDeinit,
     (uint8_t *(*)(MELPalette *, unsigned int)) &MELAtlasPalettePaintTile,
     (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELAtlasPalettePaintTileToBuffer,
     (uint8_t *(*)(MELPalette *, MELMap, MELIntSize)) &MELAtlasPalettePaintMap,

@@ -12,25 +12,13 @@
 
 #include "list.h"
 #include "palette.h"
-#include "mutablemap.h"
-#include "spritedefinition.h"
-
-typedef struct melmapgroup MELMapGroup;
-
-MELListDefine(MELMapGroup);
+#include "mapgroup.h"
 
 typedef struct {
     MELList(MELPaletteRef) palettes;
     MELList(MELMapGroup) mapGroups;
 } MELProject;
 
-typedef struct melmapgroup {
-    char * _Nullable name;
-    MELList(MELMutableMap) maps;
-    MELList(MELSpriteDefinition) sprites;
-    MELMapGroupList children;
-} MELMapGroup;
-
-extern const MELMapGroup MELMapGroupEmpty;
+void MELProjectDeinit(MELProject * _Nonnull self);
 
 #endif /* project_h */
