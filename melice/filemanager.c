@@ -96,11 +96,18 @@ char * _Nonnull MELFileManagerPathForAsset(MELFileManager * _Nonnull self, const
     return filePath;
 }
 
-MELInputStream MELFileManagerOpenAsset(MELFileManager * _Nonnull self, const char *fileName) {
+MELInputStream MELFileManagerOpenAsset(MELFileManager * _Nonnull self, const char * _Nonnull fileName) {
     char *filePath = MELFileManagerPathForAsset(self, fileName);
     MELInputStream inputStream = MELInputStreamOpen(filePath);
     free(filePath);
     return inputStream;
+}
+
+MELOutputStream MELFileManagerWriteAsset(MELFileManager * _Nonnull self, const char * _Nonnull fileName) {
+    char *filePath = MELFileManagerPathForAsset(self, fileName);
+    MELOutputStream outputStream = MELOutputStreamOpen(filePath);
+    free(filePath);
+    return outputStream;
 }
 
 MELBoolean MELFileManagerIsDirectory(const char * _Nonnull path) {

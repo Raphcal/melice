@@ -13,6 +13,7 @@
 
 #include "animationframe.h"
 #include "animationtype.h"
+#include "imagepaletteimage.h"
 #include "inputstream.h"
 #include "list.h"
 
@@ -33,6 +34,10 @@ typedef struct {
      */
     MELAnimationFrame * _Nullable frames;
     /**
+     * Frames as editable images.
+     */
+    MELImagePaletteImage * _Nullable images;
+    /**
      * Number of frames by seconds.
      */
     int frequency;
@@ -40,6 +45,7 @@ typedef struct {
      * Type of animation.
      */
     MELAnimationType type;
+    MELBoolean isScrolling;
 } MELAnimationDefinition;
 
 MELListDefine(MELAnimationDefinition);

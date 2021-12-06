@@ -10,6 +10,38 @@
 #include <melice.h>
 #include <assert.h>
 
+void assertFilesEquals(const char *expectedPath, const char *actualPath);
+
+void testBitmapSave(void) {
+    const MELIntSize size = MELIntSizeMake(4, 2);
+    const MELUInt8Color bitmap[] = {
+        MELUInt8ColorMake(0, 0, 255, 255),
+        MELUInt8ColorMake(0, 255, 0, 255),
+        MELUInt8ColorMake(255, 0, 0, 255),
+        MELUInt8ColorMake(255, 255, 255, 255),
+        MELUInt8ColorMake(0, 0, 255, 127),
+        MELUInt8ColorMake(0, 255, 0, 127),
+        MELUInt8ColorMake(255, 0, 0, 127),
+        MELUInt8ColorMake(255, 255, 255, 127)
+    };
+
+    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
+    char *path = MELFileManagerPathForAsset(fileManager, "actual.bmp");
+
+    MELBitmapSave(path, (MELUInt32Color *) bitmap, size);
+    assert (access(path, F_OK) == 0);
+    assertFilesEquals("expected.bmp", "actual.bmp");
+    assert(remove(path) == 0);
+    free(path);
+}
+
+int main(int argc, char **argv) {
+    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
+    MELFileManagerInitWithArguments(fileManager, argv);
+
+    testBitmapSave();
+}
+
 uint8_t *bytesForAsset(const char *asset, size_t *outCount) {
     MELFileManager *fileManager = MELFileManagerGetSharedInstance();
     char *path = MELFileManagerPathForAsset(fileManager, asset);
@@ -30,30 +62,12 @@ uint8_t *bytesForAsset(const char *asset, size_t *outCount) {
     return bytes;
 }
 
-void testBitmapSave(void) {
-    const MELIntSize size = MELIntSizeMake(4, 2);
-    const MELUInt8Color bitmap[] = {
-        MELUInt8ColorMake(0, 0, 255, 255),
-        MELUInt8ColorMake(0, 255, 0, 255),
-        MELUInt8ColorMake(255, 0, 0, 255),
-        MELUInt8ColorMake(255, 255, 255, 255),
-        MELUInt8ColorMake(0, 0, 255, 127),
-        MELUInt8ColorMake(0, 255, 0, 127),
-        MELUInt8ColorMake(255, 0, 0, 127),
-        MELUInt8ColorMake(255, 255, 255, 127)
-    };
-
-    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
-    char *path = MELFileManagerPathForAsset(fileManager, "actual.bmp");
-
-    MELBitmapSave(path, (MELUInt32Color *) bitmap, size);
-    assert (access(path, F_OK) == 0);
-
+void assertFilesEquals(const char *expectedPath, const char *actualPath) {
     size_t expectedCount;
-    uint8_t *expected = bytesForAsset("expected.bmp", &expectedCount);
+    uint8_t *expected = bytesForAsset(expectedPath, &expectedCount);
 
     size_t actualCount;
-    uint8_t *actual = bytesForAsset("actual.bmp", &actualCount);
+    uint8_t *actual = bytesForAsset(actualPath, &actualCount);
 
     if (actualCount != expectedCount) {
         fprintf(stderr, "actualCount: %zu != expectedCount: %zu\n", actualCount, expectedCount);
@@ -80,14 +94,4 @@ void testBitmapSave(void) {
     }
     free(expected);
     free(actual);
-
-    assert(remove(path) == 0);
-    free(path);
-}
-
-int main(int argc, char **argv) {
-    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
-    MELFileManagerInitWithArguments(fileManager, argv);
-
-    testBitmapSave();
 }

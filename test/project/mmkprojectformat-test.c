@@ -11,25 +11,11 @@
 #include <melice.h>
 #include <assert.h>
 
-int main(int argc, char **argv) {
-    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
-    MELFileManagerInitWithArguments(fileManager, argv);
+const char projectFile[] = "HelloVita.mmk";
 
-    char *path = MELFileManagerPathForAsset(fileManager, "HelloVita.mmk");
-    MELInputStream inputStream = MELInputStreamOpen(path);
-    if (!inputStream.file) {
-        fprintf(stderr, "Unable to access file at path: %s\n", path);
-        return EXIT_FAILURE;
-    }
+void assertFilesEquals(const char *expectedPath, const char *actualPath);
 
-    MELProjectFormat mmkFormat = {&MELMmkProjectFormatClass, NULL, 0};
-
-    MELProject project;
-    if (!mmkFormat.class->openProject(&mmkFormat, &inputStream, &project)) {
-        fprintf(stderr, "Unable to open project at path: %s\n", path);
-        return EXIT_FAILURE;
-    }
-
+void debugProject(MELProject project) {
     printf("%zu palette(s)\n", project.palettes.count);
     for (size_t index = 0; index < project.palettes.count; index++) {
         printf("- palette %s (%dx%d)\n", project.palettes.memory[index]->name, project.palettes.memory[index]->tileSize.width, project.palettes.memory[index]->tileSize.height);
@@ -54,6 +40,19 @@ int main(int argc, char **argv) {
             printf("  - animation %s, %d frame(s)\n", animation.name, animation.frameCount);
         }
     }
+}
+
+void testOpenProjet(void) {
+    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
+
+    MELInputStream inputStream = MELFileManagerOpenAsset(fileManager, projectFile);
+    assert(inputStream.file);
+
+    MELProjectFormat mmkFormat = MELMmkProjectFormat;
+
+    MELProject project;
+    MELBoolean openSuccess = mmkFormat.class->openProject(&mmkFormat, &inputStream, &project);
+    assert(openSuccess);
 
     assert(project.mapGroups.count == 1);
     assert(project.mapGroups.memory[0].maps.count == 2);
@@ -65,20 +64,89 @@ int main(int argc, char **argv) {
     assert(strcmp("Background", firstMap.layers.memory[0].name) == 0);
     assert(strcmp("HelloVita", firstMap.layers.memory[1].name) == 0);
 
-    MELPaletteRef palette = project.palettes.memory[0];
-    MELPackMapElementList elements = MELPackMapElementListMakeWithInitialCapacity(palette->count);
-    MELPackMapElementListPushPalette(&elements, palette);
-    assert(elements.count == 11);
-    MELPackMap packMap = MELPackMapMakeWithElements(elements);
+    MELProjectDeinit(&project);
+}
 
-    MELTexture texture = MELTextureMakeWithPackMap(packMap);
-    char *bmpPath = MELFileManagerPathForAsset(fileManager, "palette0.bmp");
-    MELBitmapSave(bmpPath, texture.pixels, texture.size);
-    remove(bmpPath);
-    free(bmpPath);
-    MELTextureDeinit(&texture);
+void testSaveProject(void) {
+    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
+
+    MELInputStream inputStream = MELFileManagerOpenAsset(fileManager, projectFile);
+    assert(inputStream.file);
+
+    MELProjectFormat mmkFormat = MELMmkProjectFormat;
+
+    MELProject project;
+    MELBoolean openSuccess = mmkFormat.class->openProject(&mmkFormat, &inputStream, &project);
+    assert(openSuccess);
+
+    char *outputPath = MELFileManagerPathForAsset(fileManager, "HelloVita-out.mmk");
+    MELBoolean saveSuccess = mmkFormat.class->saveProjectAtPath(&mmkFormat, project, outputPath);
+    assert(saveSuccess);
+
+    assertFilesEquals("HelloVita.mmk", "HelloVita-out.mmk");
 
     MELProjectDeinit(&project);
+}
+
+int main(int argc, char **argv) {
+    MELFileManagerInitWithArguments(MELFileManagerGetSharedInstance(), argv);
+
+    testOpenProjet();
+    testSaveProject();
 
     return EXIT_SUCCESS;
+}
+
+uint8_t *bytesForAsset(const char *asset, size_t *outCount) {
+    MELFileManager *fileManager = MELFileManagerGetSharedInstance();
+    char *path = MELFileManagerPathForAsset(fileManager, asset);
+
+    FILE *file = fopen(path, "rb");
+    assert(file != NULL);
+
+    fseek(file, 0, SEEK_END);
+    size_t count = ftell(file);
+    *outCount = count;
+    uint8_t *bytes = malloc(sizeof(uint8_t) * count);
+    fseek(file, 0, SEEK_SET);
+    assert(fread(bytes, sizeof(uint8_t), count, file) == count);
+
+    fclose(file);
+    free(path);
+
+    return bytes;
+}
+
+void assertFilesEquals(const char *expectedPath, const char *actualPath) {
+    size_t expectedCount;
+    uint8_t *expected = bytesForAsset(expectedPath, &expectedCount);
+
+    size_t actualCount;
+    uint8_t *actual = bytesForAsset(actualPath, &actualCount);
+
+    if (actualCount != expectedCount) {
+        fprintf(stderr, "actualCount: %zu != expectedCount: %zu\n", actualCount, expectedCount);
+    }
+    size_t count = actualCount < expectedCount ? actualCount : expectedCount;
+    for (size_t index = 0; index < count; index++) {
+        if (actual[index] != expected[index]) {
+            fprintf(stderr, "actual[%zu]: %x != expected[%zu]: %x\n", index, actual[index], index, expected[index]);
+            const size_t from = index > 8 ? index - 8 : 0;
+            const size_t toActual = index + 8 > actualCount ? actualCount : index + 8;
+            const size_t toExpected = index + 8 > expectedCount ? expectedCount : index + 8;
+            fprintf(stderr, "expected:");
+            for (size_t i = from; i < toExpected; i++) {
+                fprintf(stderr, " %02x", expected[i]);
+            }
+            fprintf(stderr, "\n");
+            fprintf(stderr, "but was: ");
+            for (size_t i = from; i < toActual; i++) {
+                fprintf(stderr, " %02x", actual[i]);
+            }
+            fprintf(stderr, "\n");
+        }
+        assert(actual[index] == expected[index]);
+    }
+    free(expected);
+    free(actual);
 }

@@ -21,6 +21,7 @@ MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Non
     /* height */ MELInputStreamReadInt(inputStream);
     self.type = MELInputStreamReadInt(inputStream);
     self.motionName = MELInputStreamReadNullableString(inputStream);
+    self.loadScript = NULL;
     
     const int32_t animationCount = MELInputStreamReadInt(inputStream);
     self.animations = MELAnimationDefinitionListMakeWithInitialCapacity(animationCount);
@@ -52,4 +53,6 @@ void MELSpriteDefinitionDeinit(MELSpriteDefinition *_Nonnull self) {
     MELAnimationDefinitionListDeinitWithDeinitFunction(&self->animations, &MELAnimationDefinitionDeinit);
 	free(self->motionName);
 	self->motionName = NULL;
+    free(self->loadScript);
+    self->loadScript = NULL;
 }

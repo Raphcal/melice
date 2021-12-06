@@ -20,6 +20,7 @@ typedef struct {
     uint32_t type;
     MELAnimationDefinitionList animations;
     char * _Nullable motionName;
+    char * _Nullable loadScript;
 } MELSpriteDefinition;
 
 MELListDefine(MELSpriteDefinition);

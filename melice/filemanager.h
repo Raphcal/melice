@@ -12,6 +12,7 @@
 #include "melstd.h"
 
 #include "inputstream.h"
+#include "outputstream.h"
 
 typedef struct {
     char * _Nullable assetsRoot;
@@ -62,5 +63,7 @@ char * _Nonnull MELFileManagerPathForAsset(MELFileManager * _Nonnull self, const
  * @return An input stream.
  */
 MELInputStream MELFileManagerOpenAsset(MELFileManager * _Nonnull self, const char * _Nonnull fileName);
+
+MELOutputStream MELFileManagerWriteAsset(MELFileManager * _Nonnull self, const char * _Nonnull fileName);
 
 #endif /* filemanager_h */

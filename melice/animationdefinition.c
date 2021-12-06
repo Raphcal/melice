@@ -50,7 +50,9 @@ MELAnimationDefinition MELAnimationDefinitionMakeWithInputStream(MELInputStream 
     
     self.frameCount = mainFrameCount;
     self.frames = mainFrames;
+    self.images = NULL;
     self.type = MELAnimationTypeForFrameCountAndLooping(mainFrameCount, looping);
+    self.isScrolling = false;
     return self;
 }
 
@@ -63,7 +65,10 @@ void MELAnimationDefinitionDeinit(MELAnimationDefinition *_Nonnull self) {
 	self->name = NULL;
 	free(self->frames);
 	self->frames = NULL;
+    free(self->images);
+    self->images = NULL;
 	self->frameCount = 0;
 	self->frequency = 0;
 	self->type = MELAnimationTypeNone;
+    self->isScrolling = false;
 }

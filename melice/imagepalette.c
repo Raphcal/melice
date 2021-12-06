@@ -7,18 +7,10 @@
 
 #include "imagepalette.h"
 
-MELListImplement(MELImagePaletteImage);
-
 void MELImagePaletteDeinit(MELImagePalette * _Nonnull self) {
     for (uint32_t index = 0; index < self->super.count; index++) {
         MELImagePaletteImageDeinit(self->images + index);
     }
-}
-
-void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self) {
-    free(self->tiles);
-    self->tiles = NULL;
-    MELDecoratorRefListDeinitWithDeinitFunction(&self->decorators, &MELDecoratorRefDeinit);
 }
 
 uint8_t * _Nullable MELImagePalettePaintTile(MELImagePalette * _Nonnull self, unsigned int tileIndex) {
