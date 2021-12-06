@@ -16,7 +16,17 @@ MELOutputStream MELOutputStreamOpen(const char * _Nonnull path) {
     return (MELOutputStream) {
         fopen(path, "wb"),
         malloc(sizeof(uint8_t) * MELOutputStreamBufferSize),
-        0
+        0,
+        MELOutputStreamBufferSize
+    };
+}
+
+MELOutputStream MELOutputStreamInit(void) {
+    return (MELOutputStream) {
+        NULL,
+        malloc(sizeof(uint8_t) * MELOutputStreamBufferSize),
+        0,
+        MELOutputStreamBufferSize
     };
 }
 
@@ -37,16 +47,29 @@ int MELOutputStreamClose(MELOutputStream * _Nonnull self) {
     }
 }
 
+void MELOutputStreamDeinit(MELOutputStream * _Nonnull self) {
+    MELOutputStreamClose(self);
+}
+
+uint8_t * _Nonnull MELOutputStreamGetBytes(MELOutputStream self) {
+    uint8_t * bytes = malloc(sizeof(uint8_t) * self.count);
+    memcpy(bytes, self.buffer, sizeof(uint8_t) * self.count);
+    return bytes;
+}
+
 void MELOutputStreamFlush(MELOutputStream * _Nonnull self) {
-    if (self->count > 0) {
+    if (self->file && self->count > 0) {
         fwrite(self->buffer, sizeof(uint8_t), self->count, self->file);
         self->count = 0;
+    } else if (!self->file && self->count >= self->capacity) {
+        self->buffer = realloc(self->buffer, sizeof(uint8_t) * self->capacity * 2);
+        self->capacity *= 2;
     }
 }
 
 void MELOutputStreamWriteByte(MELOutputStream * _Nonnull self, uint8_t byte) {
     self->buffer[self->count++] = byte;
-    if (self->count == MELOutputStreamBufferSize) {
+    if (self->count == self->capacity) {
         MELOutputStreamFlush(self);
     }
 }
@@ -54,10 +77,10 @@ void MELOutputStreamWriteByte(MELOutputStream * _Nonnull self, uint8_t byte) {
 void MELOutputStreamWrite(MELOutputStream * _Nonnull self, void * _Nonnull source, size_t size) {
     size_t count;
     do {
-        count = self->count + size > MELOutputStreamBufferSize ? MELOutputStreamBufferSize - self->count : size;
+        count = self->count + size > self->capacity ? self->capacity - self->count : size;
         memcpy(self->buffer + self->count, source, count);
         self->count += count;
-        if (self->count == MELOutputStreamBufferSize) {
+        if (self->count == self->capacity) {
             MELOutputStreamFlush(self);
         }
         size -= count;

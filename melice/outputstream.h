@@ -17,10 +17,17 @@ typedef struct {
     FILE * _Nullable file;
     uint8_t * _Nonnull buffer;
     int32_t count;
+    int32_t capacity;
 } MELOutputStream;
 
 MELOutputStream MELOutputStreamOpen(const char * _Nonnull path);
 int MELOutputStreamClose(MELOutputStream * _Nonnull self);
+
+MELOutputStream MELOutputStreamInit(void);
+void MELOutputStreamDeinit(MELOutputStream * _Nonnull self);
+
+uint8_t * _Nonnull MELOutputStreamGetBytes(MELOutputStream self);
+
 void MELOutputStreamFlush(MELOutputStream * _Nonnull self);
 
 /**
