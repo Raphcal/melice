@@ -45,6 +45,7 @@ void type##ListEnsureCapacity(type##List * _Nonnull self, size_t required);\
 void type##ListPush(type##List * _Nonnull self, type element);\
 type type##ListPop(type##List * _Nonnull self);\
 type type##ListSet(type##List * _Nonnull self, size_t index, type element);\
+void type##ListAddAll(type##List * _Nonnull self, type##List other);\
 void type##ListInsert(type##List * _Nonnull self, size_t index, type element);\
 type type##ListRemove(type##List * _Nonnull self, size_t index);
 
@@ -124,6 +125,14 @@ void type##ListInsert(type##List * _Nonnull self, size_t index, type element) {\
     }\
     self->memory[index] = element;\
     self->count++;\
+}\
+void type##ListAddAll(type##List * _Nonnull self, type##List other) {\
+    if (other.count == 0) {\
+        return;\
+    }\
+    type##ListEnsureCapacity(self, self->count + other.count); \
+    memcpy(self->memory + self->count, other.memory, sizeof(type) * other.count);\
+    self->count += other.count;\
 }\
 type type##ListRemove(type##List * _Nonnull self, size_t index) {\
     const type oldValue = self->memory[index];\
