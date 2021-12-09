@@ -9,6 +9,12 @@
 
 MELListImplement(MELMutableMap);
 
+MELMutableMap MELMutableMapMakeWithSizeAndPalette(MELIntSize size, MELPalette * _Nonnull palette) {
+    MELMutableMap self = {size, {1,1,1,1}, MELLayerListMakeWithInitialCapacity(1), palette, NULL};
+    MELLayerListPush(&self.layers, MELLayerMakeWithSize(size));
+    return self;
+}
+
 void MELMutableMapDeinit(MELMutableMap * _Nonnull self) {
     self->size = MELIntSizeZero;
     self->backgroundColor = (MELColor) {0,0,0,0};
@@ -21,7 +27,6 @@ MELMap MELMutableMapToMELMap(MELMutableMap self) {
     return (MELMap) {
         self.size,
         self.backgroundColor,
-        self.layers.memory,
-        self.layers.count
+        self.layers
     };
 }

@@ -19,6 +19,7 @@ typedef struct {
     MELList(MELMapGroup) mapGroups;
 } MELProject;
 
+MELProject MELProjectMakeWithEmptyMap(void);
 void MELProjectDeinit(MELProject * _Nonnull self);
 
 #endif /* project_h */

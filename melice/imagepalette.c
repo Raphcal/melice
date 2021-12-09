@@ -7,6 +7,28 @@
 
 #include "imagepalette.h"
 
+#define DEFAULT_EMPTY_IMAGE_COUNT 4
+#define DEFAULT_TILE_SIZE ((MELIntSize){32, 32})
+
+MELImagePalette MELImagePaletteMakeWithColorPalette(MELColorPalette * _Nonnull colorPalette) {
+    MELImagePalette self;
+    self.super.class = &MELImagePaletteClass;
+    self.super.count = DEFAULT_EMPTY_IMAGE_COUNT;
+    self.super.name = strdup("New image palette");
+    self.super.tileSize = DEFAULT_TILE_SIZE;
+    self.images = malloc(DEFAULT_EMPTY_IMAGE_COUNT * sizeof(MELImagePaletteImage));
+    const size_t tileCount = self.super.tileSize.width * self.super.tileSize.height;
+    for (unsigned int index = 0; index < DEFAULT_EMPTY_IMAGE_COUNT; index++) {
+        MELImagePaletteImage image = {malloc(tileCount * sizeof(int32_t)), MELDecoratorRefListEmpty};
+        for (unsigned int tile = 0; tile < tileCount; tile++) {
+            image.tiles[tile] = -1;
+        }
+        self.images[index] = image;
+    }
+    self.colorPalette = colorPalette;
+    return self;
+}
+
 void MELImagePaletteDeinit(MELImagePalette * _Nonnull self) {
     for (uint32_t index = 0; index < self->super.count; index++) {
         MELImagePaletteImageDeinit(self->images + index);

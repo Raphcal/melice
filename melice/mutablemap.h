@@ -27,6 +27,8 @@ typedef struct {
 
 MELListDefine(MELMutableMap);
 
+MELMutableMap MELMutableMapMakeWithSizeAndPalette(MELIntSize size, MELPalette * _Nonnull palette);
+
 /**
  * Deinitialize the given mutable map.
  *

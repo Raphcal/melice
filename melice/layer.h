@@ -28,6 +28,8 @@ typedef struct {
 
 MELListDefine(MELLayer);
 
+MELLayer MELLayerMakeWithSize(MELIntSize size);
+
 /**
  * Returns a layer with the content of the given input stream.
  *

@@ -12,6 +12,15 @@
 
 MELListImplement(MELLayer);
 
+MELLayer MELLayerMakeWithSize(MELIntSize size) {
+    const int tileCount = size.width * size.height;
+    MELLayer self = {NULL, size, tileCount, calloc(tileCount, sizeof(int32_t)), MELPointMake(1, 1), MELSpriteInstanceListEmpty};
+    for (unsigned int tile = 0; tile < tileCount; tile++) {
+        self.tiles[tile] = -1;
+    }
+    return self;
+}
+
 MELLayer MELLayerMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     assert(inputStream->file != NULL);
 

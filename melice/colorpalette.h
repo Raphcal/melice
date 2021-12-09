@@ -21,6 +21,7 @@ typedef struct {
     uint8_t alphaLevelCount;
 } MELColorPalette;
 
+MELColorPalette MELColorPaletteMakeDefault(void);
 MELColorPalette MELColorPaletteMakeWithUInt32ColorList(MELUInt32ColorList colors);
 void MELColorPaletteDeinit(MELColorPalette * _Nonnull self);
 

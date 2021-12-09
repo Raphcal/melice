@@ -22,6 +22,8 @@ typedef struct {
     MELImagePaletteImage * _Nullable images;
 } MELImagePalette;
 
+MELImagePalette MELImagePaletteMakeWithColorPalette(MELColorPalette * _Nonnull colorPalette);
+
 /**
  * Deinitialize the given palette and free its images.
  *

@@ -1004,7 +1004,7 @@
 				642B299F25FD40C600183D42 /* melice */,
 				647189FC27390F2900547977 /* dependencies */,
 				642B2AEE25FF703100183D42 /* test */,
-				6452603F2614F88D00BB78AC /* meliceframework */,
+				6452603F2614F88D00BB78AC /* MeliceFramework */,
 				642B298C25FD340C00183D42 /* Products */,
 				6421E77C2613A84300952E74 /* Frameworks */,
 			);
@@ -1343,7 +1343,7 @@
 			path = assets;
 			sourceTree = "<group>";
 		};
-		6452603F2614F88D00BB78AC /* meliceframework */ = {
+		6452603F2614F88D00BB78AC /* MeliceFramework */ = {
 			isa = PBXGroup;
 			children = (
 				64F5D1702760F796000C3967 /* Geometry */,
@@ -1354,7 +1354,7 @@
 				645260402614F88D00BB78AC /* MeliceFramework.h */,
 				645260412614F88D00BB78AC /* Info.plist */,
 			);
-			path = meliceframework;
+			path = MeliceFramework;
 			sourceTree = "<group>";
 		};
 		645260572614FB2300BB78AC /* Scene */ = {
@@ -2311,6 +2311,7 @@
 		645260432614F88D00BB78AC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2333,6 +2334,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2344,6 +2347,7 @@
 		645260442614F88D00BB78AC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2366,6 +2370,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos macosx iphonesimulator iphoneos driverkit appletvsimulator appletvos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
