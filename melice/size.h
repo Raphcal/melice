@@ -49,4 +49,6 @@ MELSize MELSizeMake(GLfloat width, GLfloat height);
  */
 MELIntSize MELIntSizeMake(int32_t width, int32_t height);
 
+MELSize MELSizeAdd(MELSize lhs, MELSize rhs);
+
 #endif /* size_h */

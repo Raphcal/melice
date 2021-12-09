@@ -325,6 +325,7 @@
 		643EED36275E8D7E0039FDAB /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 64749395272C2ABA004F3D97 /* primitives.c */; };
 		643EED37275E8D7E0039FDAB /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29A725FD410200183D42 /* random.c */; };
 		643EED38275E8D7E0039FDAB /* miniz.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189FE27390F2900547977 /* miniz.c */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		64464C1C27625D610038B044 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64464C1B27625D610038B044 /* Size.swift */; };
 		644872572726B86600DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		644872582726B86700DEE2C1 /* bitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 644872552726B86600DEE2C1 /* bitmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		644872592726B86700DEE2C1 /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 644872562726B86600DEE2C1 /* bitmap.c */; };
@@ -903,6 +904,7 @@
 		643EEC6D2757ABD30039FDAB /* atlaspalette.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = atlaspalette.c; sourceTree = "<group>"; };
 		643EEC83275D50B70039FDAB /* mapgroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapgroup.h; sourceTree = "<group>"; };
 		643EEC84275D50B70039FDAB /* mapgroup.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mapgroup.c; sourceTree = "<group>"; };
+		64464C1B27625D610038B044 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		6448724F2725F4ED00DEE2C1 /* color-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "color-test.c"; sourceTree = "<group>"; };
 		644872552726B86600DEE2C1 /* bitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bitmap.h; sourceTree = "<group>"; };
 		644872562726B86600DEE2C1 /* bitmap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bitmap.c; sourceTree = "<group>"; };
@@ -1430,6 +1432,7 @@
 				64F5D1632760F6AD000C3967 /* Point.swift */,
 				64F5D1682760F6AD000C3967 /* Quadrilateral.swift */,
 				64F5D1652760F6AD000C3967 /* Rectangle.swift */,
+				64464C1B27625D610038B044 /* Size.swift */,
 			);
 			name = Geometry;
 			sourceTree = "<group>";
@@ -1982,6 +1985,7 @@
 				643EED02275E8D7D0039FDAB /* decorator.c in Sources */,
 				643EED03275E8D7D0039FDAB /* layer.c in Sources */,
 				643EED04275E8D7D0039FDAB /* map.c in Sources */,
+				64464C1C27625D610038B044 /* Size.swift in Sources */,
 				643EED05275E8D7D0039FDAB /* mutablemap.c in Sources */,
 				643EED06275E8D7D0039FDAB /* mapgroup.c in Sources */,
 				64F5D18327610A69000C3967 /* Palette.swift in Sources */,

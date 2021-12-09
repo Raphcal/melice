@@ -24,6 +24,15 @@ MELSurface MELSurfaceMake(MELSurfaceArray * _Nonnull parent, size_t vertex, size
     };
 }
 
+MELSurface MELSurfaceMakeWithQuadIndex(MELSurfaceArray * _Nonnull parent, size_t quadIndex) {
+    return (MELSurface) {
+        parent,
+        quadIndex * MELVertexesByQuad * MELCoordinatesByVertex,
+        quadIndex * MELVertexesByQuad * MELCoordinatesByTexture,
+        quadIndex * MELVertexesByQuad * MELCoordinatesByColor
+    };
+}
+
 void MELSurfaceSetVerticesWithRectangle(MELSurface self, MELRectangle vertices) {
     MELSurfaceMemoryAppendRectangle(self.parent->vertex.memory + self.vertex, MELRectangleMake(vertices.origin.x, -vertices.origin.y, vertices.size.width, -vertices.size.height));
 }
@@ -37,7 +46,7 @@ void MELSurfaceSetTexture(MELSurface self, int tile, MELTextureAtlas atlas) {
     MELSurfaceMemoryAppendRectangle(self.parent->texture.memory + self.texture, atlas.frames[tile]);
 }
 
-void MELSurfaceSetColor(MELSurface self, int tile, MELUInt8Color color) {
+void MELSurfaceSetColor(MELSurface self, MELUInt8Color color) {
     GLubyte *colorPointer = self.parent->color.memory + self.color;
     for (unsigned int index = 0; index < MELVertexesByQuad; index++) {
         MELSurfaceMemoryAppendColor(colorPointer, color);

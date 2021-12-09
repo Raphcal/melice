@@ -24,3 +24,7 @@ MELIntSize MELIntSizeMake(int32_t width, int32_t height) {
         height
     };
 }
+
+MELSize MELSizeAdd(MELSize lhs, MELSize rhs) {
+    return (MELSize) {lhs.width + rhs.width, lhs.height + rhs.height};
+}

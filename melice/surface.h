@@ -44,13 +44,15 @@ MELListDefine(MELSurface);
  */
 MELSurface MELSurfaceMake(MELSurfaceArray * _Nonnull parent, size_t vertex, size_t texture, size_t color);
 
+MELSurface MELSurfaceMakeWithQuadIndex(MELSurfaceArray * _Nonnull parent, size_t quadIndex);
+
 void MELSurfaceSetVerticesWithRectangle(MELSurface self, MELRectangle vertices);
 
 void MELSurfaceSetVerticesWithQuadrilateral(MELSurface self, MELQuadrilateral quadrilateral);
 
 void MELSurfaceSetTexture(MELSurface self, int tile, MELTextureAtlas atlas);
 
-void MELSurfaceSetColor(MELSurface self, int tile, MELUInt8Color color);
+void MELSurfaceSetColor(MELSurface self, MELUInt8Color color);
 
 void MELSurfaceClear(MELSurface self);
 

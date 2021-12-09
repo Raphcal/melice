@@ -29,7 +29,7 @@ MELListDefine(MELSurfaceArray);
 
 /**
  * Returns a surface array with the given capacity.
- * Memory is allocated by this method. You have to deallocate it with `SurfaceArrayFree`.
+ * Memory is allocated by this method. You have to deallocate it with `MELSurfaceArrayDeinit`.
  *
  * @return A surface array.
  */
