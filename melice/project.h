@@ -20,6 +20,7 @@ typedef struct {
 } MELProject;
 
 MELProject MELProjectMakeWithEmptyMap(void);
+MELProject MELProjectMakeWithProject(MELProject other);
 void MELProjectDeinit(MELProject * _Nonnull self);
 
 #endif /* project_h */

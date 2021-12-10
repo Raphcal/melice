@@ -25,6 +25,8 @@ typedef struct {
 
 MELListDefine(MELSpriteDefinition);
 
+MELSpriteDefinition MELSpriteDefinitionMakeWithSpriteDefinition(MELSpriteDefinition other);
+
 MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Nonnull inputStream);
 
 MELList(MELSpriteDefinition) MELSpriteDefinitionListMakeWithInputStream(MELInputStream * _Nonnull inputStream);

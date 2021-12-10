@@ -19,4 +19,6 @@ MELListDefine(GLfloat);
 MELListDefine(GLubyte);
 MELListDefine(MELByte);
 
+void * _Nullable MELArrayCopy(const void * restrict _Nullable source, size_t size);
+
 #endif /* primitives_h */

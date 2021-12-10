@@ -27,6 +27,8 @@ typedef struct melmapgroup {
 
 extern const MELMapGroup MELMapGroupEmpty;
 
+MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other);
+
 void MELMapGroupDeinit(MELMapGroup * _Nonnull self);
 
 #endif /* mapgroup_h */

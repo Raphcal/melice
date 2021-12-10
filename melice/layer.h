@@ -30,6 +30,8 @@ MELListDefine(MELLayer);
 
 MELLayer MELLayerMakeWithSize(MELIntSize size);
 
+MELLayer MELLayerMakeWithLayer(MELLayer other);
+
 /**
  * Returns a layer with the content of the given input stream.
  *

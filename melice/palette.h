@@ -19,8 +19,10 @@
 #include "textureatlas.h"
 
 typedef struct melpalette MELPalette;
+typedef MELPalette * _Nullable MELPaletteRef;
 
 typedef struct {
+    MELPaletteRef (* _Nonnull initWithPaletteRef)(MELPalette * _Nonnull other);
     /**
      * Deinit the given palette and free its resources.
      * The palette itself is not freed.
@@ -71,12 +73,11 @@ typedef struct melpalette {
     uint32_t count;
 } MELPalette;
 
-typedef MELPalette * _Nullable MELPaletteRef;
-
 MELListDefine(MELPaletteRef);
 
 void MELPaletteDeinit(MELPalette * _Nonnull self);
 
+MELPaletteRef MELPaletteRefMakeWithPaletteRef(MELPaletteRef other);
 void MELPaletteRefDeinit(MELPaletteRef * _Nonnull self);
 
 /**

@@ -12,6 +12,15 @@
 
 MELListImplement(MELSpriteDefinition);
 
+MELSpriteDefinition MELSpriteDefinitionMakeWithSpriteDefinition(MELSpriteDefinition other) {
+    MELSpriteDefinition self = other;
+    self.name = MELStringCopy(other.name);
+    self.animations = MELAnimationDefinitionListMakeWithListAndCopyFunction(other.animations, &MELAnimationDefinitionMakeWithAnimationDefinition);
+    self.loadScript = MELStringCopy(other.loadScript);
+    self.motionName = MELStringCopy(other.motionName);
+    return self;
+}
+
 MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     assert(inputStream->file != NULL);
 

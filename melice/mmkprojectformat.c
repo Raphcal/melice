@@ -344,9 +344,7 @@ void MELMmkProjectFormatWritePaletteAsReference(MELProjectFormat * _Nonnull self
 MELColorPalette * _Nullable MELMmkProjectFormatReadColorPalette(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
     const int count = MELInputStreamReadInt(inputStream);
 
-    MELColorPalette colorPalette = {{&MELColorPaletteClass, NULL, MELIntSizeMake(1, 1), count}, malloc(sizeof(MELUInt8RGBColor) * count), malloc(sizeof(uint8_t) * 8), 8};
-    uint8_t defaultAlphaLevels[] = {255, 224, 192, 160, 128, 96, 64, 32};
-    memcpy(colorPalette.alphaLevels, defaultAlphaLevels, sizeof(uint8_t) * 8);
+    MELColorPalette colorPalette = MELColorPaletteMakeWithColorCount(count);
 
     MELUInt8Color color;
     for (int index = 0; index < count; index++) {

@@ -24,11 +24,8 @@ uint64_t MELStringHash(const char * _Nonnull key) {
     return hash;
 }
 
-char * _Nonnull MELStringCopy(const char * _Nonnull source) {
-    size_t length = strlen(source) + 1;
-    char *copy = malloc(sizeof(char) * length);
-    strlcpy(copy, source, length);
-    return copy;
+char * _Nonnull MELStringCopy(const char * _Nullable source) {
+    return source != NULL ? strdup(source) : NULL;
 }
 
 MELBoolean isUTF8Wagon(char * _Nonnull source, unsigned int index) {

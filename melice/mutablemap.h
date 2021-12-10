@@ -30,6 +30,11 @@ MELListDefine(MELMutableMap);
 MELMutableMap MELMutableMapMakeWithSizeAndPalette(MELIntSize size, MELPalette * _Nonnull palette);
 
 /**
+ * NOTE: Palette instance is not duplicated and shared with the given instance.
+ */
+MELMutableMap MELMutableMapMakeWithMutableMap(MELMutableMap other);
+
+/**
  * Deinitialize the given mutable map.
  *
  * The layers and the name are freed. Name is then set to NULL.

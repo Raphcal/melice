@@ -45,14 +45,19 @@ typedef MELDecorator * _Nullable MELDecoratorRef;
 MELListDefine(MELDecoratorRef);
 
 void MELDecoratorDeinit(MELDecorator * _Nonnull self);
+
+MELDecoratorRef MELDecoratorRefMakeWithDecoratorRef(MELDecoratorRef other);
 void MELDecoratorRefDeinit(MELDecoratorRef * _Nonnull self);
 MELDecoratorRef MELDecoratorRefListForType(MELDecoratorRefList self, MELDecoratorType type);
 
+MELFunctionDecorator * _Nonnull MELFunctionDecoratorRefMakeWithFunctionDecoratorRef(MELFunctionDecorator * _Nonnull other);
 void MELFunctionDecoratorDeinit(MELFunctionDecorator * _Nonnull self);
 MELFunctionDecorator * _Nullable MELDecoratorRefListGetFunctionDecorator(MELDecoratorRefList self);
 
+MELHitboxDecorator * _Nonnull MELHitboxDecoratorRefMakeWithHitboxDecoratorRef(MELHitboxDecorator * _Nonnull other);
 void MELHitboxDecoratorDeinit(MELHitboxDecorator * _Nonnull self);
 
+MELSizeDecorator * _Nonnull MELSizeDecoratorRefMakeWithSizeDecoratorRef(MELSizeDecorator * _Nonnull other);
 void MELSizeDecoratorDeinit(MELSizeDecorator * _Nonnull self);
 MELSizeDecorator * _Nullable MELDecoratorRefListGetSizeDecorator(MELDecoratorRefList self);
 

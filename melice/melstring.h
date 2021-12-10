@@ -25,7 +25,7 @@ MELBoolean MELStringEquals(const char * _Nonnull lhs, const char * _Nonnull rhs)
 
 uint64_t MELStringHash(const char * _Nonnull key);
 
-char * _Nonnull MELStringCopy(const char * _Nonnull source);
+char * _Nullable MELStringCopy(const char * restrict _Nullable source);
 
 MELCodePointList MELCodePointListMakeWithUTF8String(char * _Nullable source);
 MELCodePointList MELCodePointListMakeWithUTF16String(uint16_t * _Nullable source);

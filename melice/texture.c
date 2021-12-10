@@ -17,9 +17,7 @@ const MELTexture MELTextureEmpty = {NULL, NULL, (MELIntSize) {0, 0}, 0};
 
 MELTexture MELTextureMake(const char * _Nonnull path) {
     MELTexture self = MELTextureEmpty;
-    const size_t pathLength = strlen(path);
-    self.path = calloc(pathLength + 1, sizeof(char));
-    memcpy(self.path, path, pathLength);
+    self.path = strdup(path);
     self.size = MELBitmapReadSize(path);
     return self;
 }

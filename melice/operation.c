@@ -18,6 +18,12 @@ MELOperation MELOperationMakeWithInputStream(MELInputStream * _Nonnull inputStre
     return self;
 }
 
+MELOperation MELOperationMakeWithOperation(MELOperation other) {
+    MELOperation self = other;
+    self.code = MELArrayCopy(other.code, sizeof(uint8_t) * other.count);
+    return self;
+}
+
 void MELOperationDeinit(MELOperation * _Nonnull operation) {
     free(operation->code);
     operation->code = NULL;

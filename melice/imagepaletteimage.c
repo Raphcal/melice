@@ -9,6 +9,13 @@
 
 MELListImplement(MELImagePaletteImage);
 
+MELImagePaletteImage MELImagePaletteImageMakeWithImagePaletteImage(MELImagePaletteImage other, size_t tileCount) {
+    MELImagePaletteImage self = other;
+    self.tiles = MELArrayCopy(other.tiles, sizeof(int) * tileCount);
+    self.decorators = MELDecoratorRefListMakeWithListAndCopyFunction(other.decorators, &MELDecoratorRefMakeWithDecoratorRef);
+    return self;
+}
+
 void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self) {
     free(self->tiles);
     self->tiles = NULL;

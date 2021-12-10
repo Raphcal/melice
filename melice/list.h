@@ -38,6 +38,7 @@ type##List type##ListMake(void);\
 type##List type##ListMakeWithInitialCapacity(size_t initialCapacity);\
 type##List type##ListMakeWrappingMemoryAndCount(type * _Nullable memory, size_t count);\
 type##List type##ListMakeWithList(type##List other);\
+type##List type##ListMakeWithListAndCopyFunction(type##List other, type (* _Nonnull copyFunction)(type));\
 void type##ListDeinit(type##List * _Nonnull self);\
 void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type * _Nonnull));\
 void type##ListGrow(type##List * _Nonnull self, size_t size);\
@@ -72,6 +73,13 @@ type##List type##ListMakeWrappingMemoryAndCount(type * _Nullable memory, size_t 
 type##List type##ListMakeWithList(type##List other) {\
     type##List self = {malloc(sizeof(type) * other.count), other.count, other.count};\
     memcpy(self.memory, other.memory, sizeof(type) * other.count);\
+    return self;\
+}\
+type##List type##ListMakeWithListAndCopyFunction(type##List other, type (* _Nonnull copyFunction)(type)) {\
+    type##List self = {malloc(sizeof(type) * other.count), other.count, other.count};\
+    for (size_t index = 0; index < other.count; index++) {\
+        self.memory[index] = copyFunction(other.memory[index]);\
+    }\
     return self;\
 }\
 void type##ListDeinit(type##List * _Nonnull self) {\

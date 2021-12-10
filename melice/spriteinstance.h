@@ -27,6 +27,7 @@ typedef struct {
 MELListDefine(MELSpriteInstance);
 
 MELSpriteInstance MELSpriteInstanceMake(int32_t definitionIndex, MELPoint topLeft, MELBoolean isUnique, char * _Nullable initializationScript);
+MELSpriteInstance MELSpriteInstanceMakeWithSpriteInstance(MELSpriteInstance other);
 MELSpriteInstance MELSpriteInstanceMakeWithInputStream(MELInputStream * _Nonnull inputStream);
 
 void MELSpriteInstanceDeinit(MELSpriteInstance * _Nonnull self);

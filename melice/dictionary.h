@@ -113,7 +113,7 @@ type type##DictionaryPut(type##Dictionary * _Nonnull self, const char * _Nonnull
         self->buckets.count++;\
     }\
     self->count++;\
-    char *keyCopy = MELStringCopy(key);\
+    char *keyCopy = strdup(key);\
     type##DictionaryEntryListPush(&self->buckets.memory[bucketIndex].entries, (type##DictionaryEntry) {hash, keyCopy, value});\
 \
     const double loadFactor = self->count / (double) self->buckets.capacity;\

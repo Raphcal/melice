@@ -11,6 +11,9 @@
 
 #define MASK 1000
 
+#define defaultColorCount 256
+#define defaultAlphaLevelCount 8
+
 const MELUInt8RGBColor defaultColors[] = {
     {0, 0, 6},
     {232, 250, 255},
@@ -272,12 +275,18 @@ const MELUInt8RGBColor defaultColors[] = {
 const uint8_t defaultAlphaLevels[] = {255, 224, 192, 160, 128, 96, 64, 32};
 
 MELColorPalette MELColorPaletteMakeDefault(void) {
-    MELColorPalette self = {{&MELColorPaletteClass, strdup("Default color palette"), {1, 1}, 256}, NULL, NULL, 8};
-    self.colors = malloc(sizeof(MELUInt8RGBColor) * 256);
-    memcpy(self.colors, defaultColors, sizeof(MELUInt8RGBColor) * 256);
-    self.alphaLevels = malloc(sizeof(uint8_t) * 8);
-    memcpy(self.alphaLevels, defaultAlphaLevels, sizeof(uint8_t) * 8);
+    MELColorPalette self = {{&MELColorPaletteClass, strdup("Default color palette"), {1, 1}, defaultColorCount}, NULL, NULL, defaultAlphaLevelCount};
+    self.colors = MELArrayCopy(defaultColors, sizeof(MELUInt8RGBColor) * defaultColorCount);
+    self.alphaLevels = MELArrayCopy(defaultAlphaLevels, sizeof(uint8_t) * defaultAlphaLevelCount);
     return self;
+}
+
+MELColorPalette MELColorPaletteMakeWithColorCount(size_t colorCount) {
+    return (MELColorPalette) {
+        {&MELColorPaletteClass, NULL, MELIntSizeMake(1, 1), (uint32_t) colorCount},
+        malloc(sizeof(MELUInt8RGBColor) * colorCount),
+        MELArrayCopy(defaultAlphaLevels, sizeof(uint8_t) * defaultAlphaLevelCount),
+        defaultAlphaLevelCount};
 }
 
 MELColorPalette MELColorPaletteMakeWithUInt32ColorList(MELUInt32ColorList colors) {
@@ -305,6 +314,14 @@ void MELColorPaletteDeinit(MELColorPalette * _Nonnull self) {
     free(self->alphaLevels);
     self->alphaLevels = NULL;
     self->alphaLevelCount = 0;
+}
+
+MELColorPalette * _Nonnull MELColorPaletteRefMakeWithColorPaletteRef(MELColorPalette * _Nonnull other) {
+    MELColorPalette *self = malloc(sizeof(MELColorPalette));
+    *self = *other;
+    self->colors = MELArrayCopy(other->colors, sizeof(MELUInt8RGBColor) * other->super.count);
+    self->alphaLevels = MELArrayCopy(other->alphaLevels, sizeof(uint8_t) * other->alphaLevelCount);
+    return self;
 }
 
 MELUInt8Color MELColorPaletteUInt8ColorForTile(MELColorPalette self, unsigned int tileIndex) {
@@ -385,6 +402,7 @@ MELUInt8RGBColor * _Nonnull MELColorPaletteTileAtIndex(MELColorPalette * _Nonnul
 }
 
 const MELPaletteClass MELColorPaletteClass = {
+    (MELPaletteRef(*)(MELPaletteRef)) &MELColorPaletteRefMakeWithColorPaletteRef,
     (void(*)(MELPalette *)) &MELColorPaletteDeinit,
     (uint8_t *(*)(MELPalette *, unsigned int)) &MELColorPalettePaintTile,
     (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELColorPalettePaintTileToBuffer,

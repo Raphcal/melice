@@ -50,6 +50,8 @@ typedef struct {
 
 MELListDefine(MELAnimationDefinition);
 
+MELAnimationDefinition MELAnimationDefinitionMakeWithAnimationDefinition(MELAnimationDefinition other);
+
 /**
  * Returns an animation definition with the content of the given input stream.
  */

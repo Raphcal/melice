@@ -9,6 +9,8 @@
 #include "layer.h"
 
 #include <assert.h>
+#include "melstring.h"
+#include "primitives.h"
 
 MELListImplement(MELLayer);
 
@@ -18,6 +20,14 @@ MELLayer MELLayerMakeWithSize(MELIntSize size) {
     for (unsigned int tile = 0; tile < tileCount; tile++) {
         self.tiles[tile] = -1;
     }
+    return self;
+}
+
+MELLayer MELLayerMakeWithLayer(MELLayer other) {
+    MELLayer self = other;
+    self.name = MELStringCopy(other.name);
+    self.tiles = MELArrayCopy(other.tiles, sizeof(int32_t) * other.tileCount);
+    self.sprites = MELSpriteInstanceListMakeWithListAndCopyFunction(other.sprites, &MELSpriteInstanceMakeWithSpriteInstance);
     return self;
 }
 

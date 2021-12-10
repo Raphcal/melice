@@ -9,6 +9,8 @@
 
 MELListImplement(MELDecoratorRef);
 
+#pragma mark - MELDecorator
+
 void MELDecoratorDeinit(MELDecorator * _Nonnull self) {
     switch (self->type) {
         case MELDecoratorTypeFunction:
@@ -23,6 +25,25 @@ void MELDecoratorDeinit(MELDecorator * _Nonnull self) {
         default:
             fprintf(stderr, "Unsupported decorator type: %d\n", self->type);
             break;
+    }
+}
+
+#pragma mark - MELDecoratorRef
+
+MELDecoratorRef MELDecoratorRefMakeWithDecoratorRef(MELDecoratorRef other) {
+    if (other == NULL) {
+        return NULL;
+    }
+    switch (other->type) {
+        case MELDecoratorTypeFunction:
+            return &MELFunctionDecoratorRefMakeWithFunctionDecoratorRef((MELFunctionDecorator *) other)->super;
+        case MELDecoratorTypeHitbox:
+            return &MELHitboxDecoratorRefMakeWithHitboxDecoratorRef((MELHitboxDecorator *) other)->super;
+        case MELDecoratorTypeSize:
+            return &MELSizeDecoratorRefMakeWithSizeDecoratorRef((MELSizeDecorator *) other)->super;
+        default:
+            fprintf(stderr, "Unsupported decorator type: %d\n", other->type);
+            return NULL;
     }
 }
 
@@ -41,6 +62,8 @@ MELDecoratorRef MELDecoratorRefListForType(MELDecoratorRefList self, MELDecorato
     return NULL;
 }
 
+#pragma mark - MELFunctionDecorator
+
 MELFunctionDecorator * _Nullable MELDecoratorRefListGetFunctionDecorator(MELDecoratorRefList self) {
     return (MELFunctionDecorator *)MELDecoratorRefListForType(self, MELDecoratorTypeFunction);
 }
@@ -50,13 +73,45 @@ void MELFunctionDecoratorDeinit(MELFunctionDecorator * _Nonnull self) {
     self->function = NULL;
 }
 
+MELFunctionDecorator * _Nonnull MELFunctionDecoratorRefMakeWithFunctionDecoratorRef(MELFunctionDecorator * _Nonnull other) {
+    MELFunctionDecorator *self = malloc(sizeof(MELFunctionDecorator));
+    *self = (MELFunctionDecorator) {
+        other->super,
+        strdup(other->function)
+    };
+    return self;
+}
+
+#pragma mark - MELHitboxDecorator
+
 void MELHitboxDecoratorDeinit(MELHitboxDecorator * _Nonnull self) {
     self->hitbox = MELIntRectangleZero;
 }
 
+MELHitboxDecorator * _Nonnull MELHitboxDecoratorRefMakeWithHitboxDecoratorRef(MELHitboxDecorator * _Nonnull other) {
+    MELHitboxDecorator *self = malloc(sizeof(MELHitboxDecorator));
+    *self = (MELHitboxDecorator) {
+        other->super,
+        other->hitbox
+    };
+    return self;
+}
+
+#pragma mark - MELSizeDecorator
+
 void MELSizeDecoratorDeinit(MELSizeDecorator * _Nonnull self) {
     self->size = MELIntSizeZero;
 }
+
+MELSizeDecorator * _Nonnull MELSizeDecoratorRefMakeWithSizeDecoratorRef(MELSizeDecorator * _Nonnull other) {
+    MELSizeDecorator *self = malloc(sizeof(MELSizeDecorator));
+    *self = (MELSizeDecorator) {
+        other->super,
+        other->size
+    };
+    return self;
+}
+
 MELSizeDecorator * _Nullable MELDecoratorRefListGetSizeDecorator(MELDecoratorRefList self) {
     return (MELSizeDecorator *)MELDecoratorRefListForType(self, MELDecoratorTypeSize);
 }

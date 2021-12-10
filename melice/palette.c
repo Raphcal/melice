@@ -17,6 +17,13 @@ void MELPaletteDeinit(MELPalette * _Nonnull self) {
     self->count = 0;
 }
 
+MELPaletteRef MELPaletteRefMakeWithPaletteRef(MELPaletteRef other) {
+    if (other == NULL) {
+        return NULL;
+    }
+    return other->class->initWithPaletteRef(other);
+}
+
 void MELPaletteRefDeinit(MELPaletteRef * _Nonnull self) {
     MELPaletteDeinit(*self);
     free(*self);

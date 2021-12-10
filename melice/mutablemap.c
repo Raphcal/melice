@@ -7,11 +7,20 @@
 
 #include "mutablemap.h"
 
+#include "melstring.h"
+
 MELListImplement(MELMutableMap);
 
 MELMutableMap MELMutableMapMakeWithSizeAndPalette(MELIntSize size, MELPalette * _Nonnull palette) {
     MELMutableMap self = {size, {1,1,1,1}, MELLayerListMakeWithInitialCapacity(1), palette, NULL};
     MELLayerListPush(&self.layers, MELLayerMakeWithSize(size));
+    return self;
+}
+
+MELMutableMap MELMutableMapMakeWithMutableMap(MELMutableMap other) {
+    MELMutableMap self = other;
+    self.name = MELStringCopy(other.name);
+    self.layers = MELLayerListMakeWithListAndCopyFunction(other.layers, &MELLayerMakeWithLayer);
     return self;
 }
 

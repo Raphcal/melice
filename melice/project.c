@@ -40,6 +40,14 @@ MELProject MELProjectMakeWithEmptyMap(void) {
     return self;
 }
 
+MELProject MELProjectMakeWithProject(MELProject other) {
+    MELProject self = {
+        MELPaletteRefListMakeWithListAndCopyFunction(other.palettes, &MELPaletteRefMakeWithPaletteRef),
+        MELMapGroupListMakeWithListAndCopyFunction(other.mapGroups, &MELMapGroupMakeWithMapGroup)
+    };
+    return self;
+}
+
 void MELProjectDeinit(MELProject * _Nonnull self) {
     MELPaletteRefListDeinitWithDeinitFunction(&self->palettes, &MELPaletteRefDeinit);
     MELMapGroupListDeinitWithDeinitFunction(&self->mapGroups, &MELMapGroupDeinit);

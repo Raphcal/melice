@@ -11,6 +11,15 @@ MELListImplement(MELMapGroup);
 
 const MELMapGroup MELMapGroupEmpty = {NULL, {NULL, 0, 0}, {NULL, 0, 0}, {NULL, 0, 0}};
 
+MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other) {
+    MELMapGroup self;
+    self.name = MELStringCopy(other.name);
+    self.maps = MELMutableMapListMakeWithListAndCopyFunction(other.maps, &MELMutableMapMakeWithMutableMap);
+    self.sprites = MELSpriteDefinitionListMakeWithListAndCopyFunction(other.sprites, &MELSpriteDefinitionMakeWithSpriteDefinition);
+    self.children = MELMapGroupListMakeWithListAndCopyFunction(other.children, &MELMapGroupMakeWithMapGroup);
+    return self;
+}
+
 void MELMapGroupDeinit(MELMapGroup * _Nonnull self) {
     free(self->name);
     self->name = NULL;

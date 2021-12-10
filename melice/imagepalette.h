@@ -25,6 +25,11 @@ typedef struct {
 MELImagePalette MELImagePaletteMakeWithColorPalette(MELColorPalette * _Nonnull colorPalette);
 
 /**
+ * NOTE: The colorPalette is not duplicated and will be shared by both instances..
+ */
+MELImagePalette * _Nonnull MELImagePaletteRefMakeWithMELImagePaletteRef(MELImagePalette * _Nonnull other);
+
+/**
  * Deinitialize the given palette and free its images.
  *
  * Color palettes are not freed because it is assumed that they are owned by an other object.

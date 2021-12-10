@@ -12,6 +12,23 @@
 
 MELListImplement(MELAnimationDefinition);
 
+MELAnimationDefinition MELAnimationDefinitionMakeWithAnimationDefinition(MELAnimationDefinition other) {
+    MELAnimationDefinition self = other;
+    self.name = MELStringCopy(other.name);
+    self.frames = MELArrayCopy(other.frames, sizeof(MELAnimationFrame) * other.frameCount);
+    if (other.images) {
+        self.images = calloc(other.frameCount, sizeof(MELImagePaletteImage));
+        for (unsigned int index = 0; index < other.frameCount; index++) {
+            MELImagePaletteImage image = other.images[index];
+            MELSizeDecorator *size = MELDecoratorRefListGetSizeDecorator(image.decorators);
+            if (size) {
+                self.images[index] = MELImagePaletteImageMakeWithImagePaletteImage(image, size->size.width * size->size.height);
+            }
+        }
+    }
+    return self;
+}
+
 MELAnimationDefinition MELAnimationDefinitionMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     assert(inputStream->file != NULL);
 

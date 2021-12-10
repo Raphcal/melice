@@ -35,6 +35,20 @@ void MELImagePaletteDeinit(MELImagePalette * _Nonnull self) {
     }
 }
 
+MELImagePalette * _Nonnull MELImagePaletteRefMakeWithMELImagePaletteRef(MELImagePalette * _Nonnull other) {
+    MELImagePalette *self = malloc(sizeof(MELImagePalette));
+    *self = *other;
+
+    const size_t count = other->super.count;
+    self->images = malloc(sizeof(MELImagePaletteImage) * count);
+
+    const size_t tileCount = other->super.tileSize.width * other->super.tileSize.height;
+    for (unsigned int index = 0; index < count; index++) {
+        self->images[index] = MELImagePaletteImageMakeWithImagePaletteImage(other->images[index], tileCount);
+    }
+    return self;
+}
+
 uint8_t * _Nullable MELImagePalettePaintTile(MELImagePalette * _Nonnull self, unsigned int tileIndex) {
     if (tileIndex < 0 || tileIndex >= self->super.count) {
         fprintf(stderr, "Tile index out of bounds 0..<%d: %d", self->super.count, tileIndex);
@@ -108,6 +122,7 @@ MELImagePaletteImage * _Nonnull MELImagePaletteTileAtIndex(MELImagePalette * _No
 }
 
 const MELPaletteClass MELImagePaletteClass = {
+    (MELPaletteRef(*)(MELPaletteRef)) &MELImagePaletteRefMakeWithMELImagePaletteRef,
     (void(*)(MELPalette *)) &MELImagePaletteDeinit,
     (uint8_t *(*)(MELPalette *, unsigned int)) &MELImagePalettePaintTile,
     (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELImagePalettePaintTileToBuffer,

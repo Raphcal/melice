@@ -23,6 +23,7 @@ typedef struct {
 typedef struct melsprite MELSprite;
 
 MELOperation MELOperationMakeWithInputStream(MELInputStream * _Nonnull inputStream);
+MELOperation MELOperationMakeWithOperation(MELOperation other);
 void MELOperationDeinit(MELOperation * _Nonnull operation);
 
 MELList(GLfloat) MELOperationExecute(MELOperation self, GLfloat x, MELSprite * _Nullable sprite);

@@ -20,6 +20,13 @@ MELSpriteInstance MELSpriteInstanceMake(int32_t definitionIndex, MELPoint topLef
     };
 }
 
+MELSpriteInstance MELSpriteInstanceMakeWithSpriteInstance(MELSpriteInstance other) {
+    MELSpriteInstance self = other;
+    self.initializationOperation = MELOperationMakeWithOperation(other.initializationOperation);
+    self.initializationScript = MELStringCopy(other.initializationScript);
+    return self;
+}
+
 MELSpriteInstance MELSpriteInstanceMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     MELSpriteInstance self;
     self.definitionIndex = MELInputStreamReadInt(inputStream);
