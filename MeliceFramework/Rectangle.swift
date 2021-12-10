@@ -12,3 +12,9 @@ public extension MELRectangle {
         self.init(origin: MELPoint(x: x, y: y), size: MELSize(width: width, height: height))
     }
 }
+
+public extension MELIntRectangle {
+    init(x: Int32, y: Int32, width: Int32, height: Int32) {
+        self.init(origin: MELIntPoint(x: x, y: y), size: MELIntSize(width: width, height: height))
+    }
+}
