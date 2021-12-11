@@ -41,11 +41,9 @@ int MELInputStreamClose(MELInputStream * _Nonnull self) {
 }
 
 MELInputStream MELInputStreamInitWithBytes(const void * _Nonnull bytes, size_t count) {
-    uint8_t *buffer = malloc(count);
-    memcpy(buffer, bytes, count);
     return (MELInputStream) {
         NULL,
-        buffer,
+        MELArrayCopy(bytes, count),
         count,
         0
     };

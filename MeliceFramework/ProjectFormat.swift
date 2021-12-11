@@ -14,6 +14,22 @@ enum ProjectFormatError: Error {
 }
 
 extension MELProjectFormat {
+    public static func open(asset: String, using format: MELProjectFormat = MELMmkProjectFormat) -> MELProject {
+        var project = MELProject()
+        let fileManager = MELFileManagerGetSharedInstance()
+        var inputStream = MELFileManagerOpenAsset(fileManager, asset)
+        if inputStream.file != nil {
+            var formatCopy = format
+            do {
+                try formatCopy.open(project: &project, from: &inputStream)
+            } catch {
+                print("Unable to open asset \(asset)")
+            }
+        }
+        MELInputStreamClose(&inputStream)
+        return project
+    }
+
     public mutating func open(project: inout MELProject, from data: Data) throws {
         guard let openProject = self.class.pointee.openProject
         else {
@@ -26,6 +42,16 @@ extension MELProjectFormat {
         MELInputStreamDeinit(&inputStream)
 
         if !result {
+            throw ProjectFormatError.unableToOpenProject
+        }
+    }
+
+    public mutating func open(project: inout MELProject, from inputStream: UnsafeMutablePointer<MELInputStream>) throws {
+        guard let openProject = self.class.pointee.openProject
+        else {
+            throw ProjectFormatError.openOperationNotSupported
+        }
+        if !openProject(&self, inputStream, &project) {
             throw ProjectFormatError.unableToOpenProject
         }
     }
