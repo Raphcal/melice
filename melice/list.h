@@ -58,7 +58,10 @@ type##List type##ListMake(void) {\
     return type##ListMakeWithInitialCapacity(10);\
 }\
 type##List type##ListMakeWithInitialCapacity(size_t initialCapacity) {\
-return (type##List) { malloc(initialCapacity * sizeof(type)), 0, initialCapacity };\
+    if (!initialCapacity) {\
+        return type##ListEmpty;\
+    }\
+    return (type##List) { malloc(initialCapacity * sizeof(type)), 0, initialCapacity };\
 }\
 type##List type##ListMakeWrappingMemoryAndCount(type * _Nullable memory, size_t count) {\
     if (memory == NULL) {\

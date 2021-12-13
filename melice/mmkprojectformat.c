@@ -256,9 +256,10 @@ void MELMmkProjectFormatWriteColor(MELProjectFormat * _Nonnull self, MELProject 
 }
 
 MELPaletteRef MELMmkProjectFormatReadBufferedImagePalette(MELInputStream * _Nonnull inputStream) {
-    int32_t tileSize = MELInputStreamReadInt(inputStream);
+    MELIntSize tileSize;
+    tileSize.width = tileSize.height = MELInputStreamReadInt(inputStream);
     MELIntSize size = MELIntSizeMake(MELInputStreamReadInt(inputStream), MELInputStreamReadInt(inputStream));
-    MELIntSize tileCount = MELIntSizeMake(size.width / tileSize, size.height / tileSize);
+    MELIntSize tileCount = MELIntSizeMake(size.width / tileSize.width, size.height / tileSize.height);
     int32_t count = MELInputStreamReadInt(inputStream);
     int *atlas = malloc(sizeof(int) * count);
 
@@ -283,20 +284,20 @@ MELPaletteRef MELMmkProjectFormatReadBufferedImagePalette(MELInputStream * _Nonn
     const int imageCount = tileCount.width * tileCount.height;
 
     MELImagePalette *imagePalette = malloc(sizeof(MELImagePalette));
-    imagePalette->super.tileSize = MELIntSizeMake(tileSize, tileSize);
+    imagePalette->super.tileSize = tileSize;
     imagePalette->super.count = imageCount;
     imagePalette->images = malloc(sizeof(MELImagePaletteImage) * imageCount);
     imagePalette->colorPalette = colorPalette;
 
-    const int imageTileCount = tileSize * tileSize;
+    const int imageTileCount = tileSize.width * tileSize.height;
     for (unsigned int imageIndex = 0; imageIndex < imageCount; imageIndex++) {
-        MELImagePaletteImage image = (MELImagePaletteImage) {malloc(sizeof(int) * imageTileCount), MELDecoratorRefListEmpty};
+        MELImagePaletteImage image = (MELImagePaletteImage) {malloc(sizeof(int) * imageTileCount), tileSize, MELDecoratorRefListEmpty};
         const int imageX = imageIndex / tileCount.width;
         const int imageY = imageIndex % tileCount.width;
-        int *row = atlas + imageX * tileSize + imageY * tileSize * tileCount.width;
-        for (unsigned int y = 0; y < tileSize; y++) {
-            memcpy(image.tiles + y * tileSize, row, sizeof(int) * tileSize);
-            row += tileSize * tileCount.width;
+        int *row = atlas + imageX * tileSize.width + imageY * tileSize.height * tileCount.width;
+        for (unsigned int y = 0; y < tileSize.height; y++) {
+            memcpy(image.tiles + y * tileSize.width, row, sizeof(int) * tileSize.width);
+            row += tileSize.width * tileCount.width;
         }
         imagePalette->images[imageIndex] = image;
     }
@@ -410,21 +411,16 @@ void MELMmkProjectFormatWriteImagePalette(MELProjectFormat * _Nonnull self, MELP
     const uint32_t count = imagePalette->super.count;
     MELOutputStreamWriteInt(outputStream, count);
 
-    const MELIntSize tileSize = imagePalette->super.tileSize;
-    const MELLayer baseLayer = (MELLayer) {NULL, tileSize, tileSize.width * tileSize.height, NULL, MELPointZero, MELSpriteInstanceListEmpty};
-
     MELImagePaletteImage *images = imagePalette->images;
     for (unsigned int index = 0; index < count; index++) {
         MELImagePaletteImage image = images[index];
-        MELLayer layer = baseLayer;
-        layer.tiles = image.tiles;
-        self->class->writeLayer(self, project, outputStream, layer);
+        self->class->writeImagePaletteImage(self, project, outputStream, image);
 
         if (self->version >= 3) {
             char *function = NULL;
-            for (unsigned int decoratorIndex = 0; decoratorIndex < image.decorators.count; index++) {
-                if (image.decorators.memory[index]->type == MELDecoratorTypeFunction) {
-                    MELFunctionDecorator *functionDecorator = (MELFunctionDecorator *) image.decorators.memory[index];
+            for (unsigned int decoratorIndex = 0; decoratorIndex < image.decorators.count; decoratorIndex++) {
+                if (image.decorators.memory[decoratorIndex]->type == MELDecoratorTypeFunction) {
+                    MELFunctionDecorator *functionDecorator = (MELFunctionDecorator *) image.decorators.memory[decoratorIndex];
                     function = functionDecorator->function;
                     break;
                 }
@@ -437,7 +433,12 @@ void MELMmkProjectFormatWriteImagePalette(MELProjectFormat * _Nonnull self, MELP
 MELImagePaletteImage MELMmkProjectFormatReadImagePaletteImage(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
     MELLayer layer = self->class->readLayer(self, project, inputStream);
     free(layer.name);
-    return (MELImagePaletteImage) {layer.tiles, MELDecoratorRefListEmpty};
+    return (MELImagePaletteImage) {layer.tiles, layer.size, MELDecoratorRefListEmpty};
+}
+
+void MELMmkProjectFormatWriteImagePaletteImage(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELImagePaletteImage image) {
+    MELLayer layer = (MELLayer) {NULL, image.size, image.size.width * image.size.height, image.tiles, MELPointZero, MELSpriteInstanceListEmpty};
+    self->class->writeLayer(self, project, outputStream, layer);
 }
 
 MELPaletteRef MELMmkProjectFormatReadPaletteReference(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
@@ -480,7 +481,7 @@ void MELMmkProjectFormatWriteLayer(MELProjectFormat * _Nonnull self, MELProject 
     MELOutputStreamWriteInt(outputStream, layer.size.width);
     MELOutputStreamWriteInt(outputStream, layer.size.height);
     self->class->writeScrollRate(self, project, outputStream, layer.scrollRate);
-    MELOutputStreamWriteIntArray(outputStream, layer.tiles, layer.size.width * layer.size.height);
+    MELOutputStreamWriteIntArray(outputStream, layer.tiles, layer.tileCount);
 }
 
 MELMutableMap MELMmkProjectFormatReadMap(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
@@ -644,15 +645,9 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
             animationDefinition.frameCount = frameCount;
         }
 
-        MELImagePaletteImageList frames = MELImagePaletteImageListMakeWithInitialCapacity(frameCount);
-        for (int frame = 0; frame < frameCount; frame++) {
-            MELLayer layer = self->class->readLayer(self, project, inputStream);
-            free(layer.name);
-            MELImagePaletteImage frame = (MELImagePaletteImage) {layer.tiles, MELDecoratorRefListMakeWithInitialCapacity(1)};
-            MELSizeDecorator *size = malloc(sizeof(MELSizeDecorator));
-            size->super.type = MELDecoratorTypeSize;
-            size->size = layer.size;
-            MELDecoratorRefListPush(&frame.decorators, (MELDecoratorRef) size);
+        animationDefinition.images = frameCount > 0 ? malloc(sizeof(MELImagePaletteImage) * frameCount) : NULL;
+        for (int frameIndex = 0; frameIndex < frameCount; frameIndex++) {
+            MELImagePaletteImage frame = self->class->readImagePaletteImage(self, project, inputStream);
 
             if (self->version >= 8) {
                 MELHitboxDecorator *hitboxDecorator = malloc(sizeof(MELHitboxDecorator));
@@ -661,10 +656,8 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
                 MELDecoratorRefListPush(&frame.decorators, &hitboxDecorator->super);
             }
 
-            MELImagePaletteImageListPush(&frames, frame);
+            animationDefinition.images[frameIndex] = frame;
         }
-
-        animationDefinition.images = frames.memory;
     }
 
     return animationDefinition;
@@ -691,10 +684,7 @@ void MELMmkProjectFormatWriteAnimationDefinition(MELProjectFormat * _Nonnull sel
     MELOutputStreamWriteInt(outputStream, animationDefinition.frameCount);
     for (unsigned int index = 0; index < animationDefinition.frameCount; index++) {
         MELImagePaletteImage image = animationDefinition.images[index];
-        MELSizeDecorator *sizeDecorator = MELDecoratorRefListGetSizeDecorator(image.decorators);
-        MELIntSize size = sizeDecorator != NULL ? sizeDecorator->size : MELIntSizeZero;
-        MELLayer layer = (MELLayer) {NULL, size, size.width * size.height, image.tiles, MELPointZero, MELSpriteInstanceListEmpty};
-        self->class->writeLayer(self, project, outputStream, layer);
+        self->class->writeImagePaletteImage(self, project, outputStream, image);
 
         if (self->version >= 8) {
             MELHitboxDecorator *hitboxPlugin = (MELHitboxDecorator *) MELDecoratorRefListForType(image.decorators, MELDecoratorTypeHitbox);
@@ -753,7 +743,7 @@ const MELProjectFormatClass MELMmkProjectFormatClass = {
     .readImagePalette = &MELMmkProjectFormatReadImagePalette,
     .writeImagePalette = &MELMmkProjectFormatWriteImagePalette,
     .readImagePaletteImage = &MELMmkProjectFormatReadImagePaletteImage,
-    .writeImagePaletteImage = NULL,
+    .writeImagePaletteImage = &MELMmkProjectFormatWriteImagePaletteImage,
     .readPaletteReference = &MELMmkProjectFormatReadPaletteReference,
     .writePaletteReference = &MELMmkProjectFormatWritePaletteReference,
     .readScrollRate = &MELMmkProjectFormatReadScrollRate,

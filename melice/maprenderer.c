@@ -45,13 +45,9 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
     return self;
 }
 
-MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map) {
-    // TODO: Finish this method (ColorPalette is missing).
-    printf("Not implented yet\n");
+MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap map, MELColorPalette colorPalette) {
     MELMapRenderer self;
     self.map = map;
-
-    MELUInt8Color black = MELUInt8ColorMake(0, 0, 0, 255);
 
     MELSurfaceArray *layerSurfaces = calloc(map.layers.count, sizeof(MELSurfaceArray));
     for (int index = 0; index < map.layers.count; index++) {
@@ -65,7 +61,8 @@ MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map) {
             for (int x = 0; x < width; x++) {
                 int tile = MELLayerTileAtXAndY(layer, x, y);
                 if (tile >= 0) {
-                    MELSurfaceArrayAppendColoredQuad(&layerSurface, MELRectangleMake((GLfloat)x * MELTileSize, (GLfloat)y * MELTileSize, MELTileSize, MELTileSize), black);
+                    MELUInt32Color color = MELColorPaletteColorForTile(colorPalette, tile);
+                    MELSurfaceArrayAppendColoredQuad(&layerSurface, MELRectangleMake((GLfloat)x * MELTileSize, (GLfloat)y * MELTileSize, MELTileSize, MELTileSize), MELRGBAUInt32ColorToMELUInt8Color(color));
                 }
             }
         }
@@ -85,6 +82,27 @@ void MELMapRendererDeinit(MELMapRenderer * _Nonnull self) {
     }
     free(layerSurfaces);
     self->layerSurfaces = NULL;
+}
+
+void MELMapRendererUpdate(MELMapRenderer self) {
+    for (int index = 0; index < self.map.layers.count; index++) {
+        MELLayer layer = self.map.layers.memory[index];
+        MELSurfaceArray *layerSurface = self.layerSurfaces + index;
+        layerSurface->count = 0;
+        layerSurface->texture.count = 0;
+        layerSurface->vertex.count = 0;
+        layerSurface->color.count = 0;
+
+        const int tileCount = layer.size.width * layer.size.height;
+        for (int tileIndex = 0; tileIndex < tileCount; tileIndex++) {
+            int tile = layer.tiles[tileIndex];
+            if (tile >= 0) {
+                GLfloat x = tileIndex % layer.size.width;
+                GLfloat y = tileIndex / layer.size.width;
+                MELSurfaceArrayAppendTexturedQuad(layerSurface, MELRectangleMake(x * MELTileSize, y * MELTileSize, MELTileSize, MELTileSize), tile, self.atlas);
+            }
+        }
+    }
 }
 
 void MELMapRendererDraw(MELMapRenderer self) {

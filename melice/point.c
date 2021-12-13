@@ -44,6 +44,13 @@ MELPoint MELPointAdd(MELPoint lhs, MELPoint rhs) {
     };
 }
 
+MELIntPoint MELIntPointAdd(MELIntPoint lhs, MELIntPoint rhs) {
+    return (MELIntPoint) {
+        lhs.x + rhs.x,
+        lhs.y + rhs.y
+    };
+}
+
 MELPoint MELPointAddSize(MELPoint point, MELSize size) {
     return (MELPoint) {
         point.x + size.width,
@@ -53,6 +60,13 @@ MELPoint MELPointAddSize(MELPoint point, MELSize size) {
 
 MELPoint MELPointSubstract(MELPoint lhs, MELPoint rhs) {
     return (MELPoint) {
+        lhs.x - rhs.x,
+        lhs.y - rhs.y
+    };
+}
+
+MELIntPoint MELIntPointSubstract(MELIntPoint lhs, MELIntPoint rhs) {
+    return (MELIntPoint) {
         lhs.x - rhs.x,
         lhs.y - rhs.y
     };

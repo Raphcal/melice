@@ -11,9 +11,11 @@
 #include "melstd.h"
 
 #include "decorator.h"
+#include "size.h"
 
 typedef struct {
     int * _Nullable tiles;
+    MELIntSize size;
     MELDecoratorRefList decorators;
 } MELImagePaletteImage;
 

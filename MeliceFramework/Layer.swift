@@ -23,7 +23,6 @@ extension MELLayer: Hashable {
         hasher.combine(self.scrollRate.x)
         hasher.combine(self.scrollRate.y)
         hasher.combine(self.tileCount)
-        hasher.combine(bytes: UnsafeRawBufferPointer(start: self.tiles, count: Int(self.tileCount) * MemoryLayout<Int32>.stride))
     }
 }
 

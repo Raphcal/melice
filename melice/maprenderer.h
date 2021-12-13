@@ -16,6 +16,7 @@
 #include "surfacearray.h"
 #include "point.h"
 #include "renderer.h"
+#include "colorpalette.h"
 
 #define MELTileSize 32
 
@@ -36,7 +37,7 @@ typedef struct {
 MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap map, MELTextureAtlas atlas);
 MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnull renderer, MELMap map, MELTextureAtlas atlas);
 
-MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map);
+MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap map, MELColorPalette colorPalette);
 
 /**
  * Deinitialize and free the resources used by the given map renderer.
@@ -45,6 +46,8 @@ MELMapRenderer MELMapRendererMakeWithMapAndPalette(MELMap map);
  * @param self Map renderer instance.
  */
 void MELMapRendererDeinit(MELMapRenderer * _Nonnull self);
+
+void MELMapRendererUpdate(MELMapRenderer self);
 
 /**
  * Draw the entire map.

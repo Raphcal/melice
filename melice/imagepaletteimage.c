@@ -19,5 +19,6 @@ MELImagePaletteImage MELImagePaletteImageMakeWithImagePaletteImage(MELImagePalet
 void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self) {
     free(self->tiles);
     self->tiles = NULL;
+    self->size = MELIntSizeZero;
     MELDecoratorRefListDeinitWithDeinitFunction(&self->decorators, &MELDecoratorRefDeinit);
 }

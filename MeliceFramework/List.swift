@@ -69,3 +69,7 @@ extension MELSpriteInstanceList: MELList {
     public typealias Element = MELSpriteInstance
     public static let empty = MELSpriteInstanceListEmpty
 }
+extension MELDecoratorRefList: MELList {
+    public typealias Element = MELDecoratorRef?
+    public static let empty = MELDecoratorRefListEmpty
+}

@@ -87,6 +87,13 @@ MELPoint MELPointAdd(MELPoint lhs, MELPoint rhs);
 /**
  * Adds the given points.
  *
+ * @return A point whose coordinates are lhs.x + rhs.x and lhs.y + rhs.y.
+ */
+MELIntPoint MELIntPointAdd(MELIntPoint lhs, MELIntPoint rhs);
+
+/**
+ * Adds the given points.
+ *
  * @return A point whose coordinates are `point.x + size.width` and `point.y + size.height`.
  */
 MELPoint MELPointAddSize(MELPoint point, MELSize size);
@@ -97,6 +104,13 @@ MELPoint MELPointAddSize(MELPoint point, MELSize size);
  * @return A point whose coordinates are lhs.x - rhs.x and lhs.y - rhs.y.
  */
 MELPoint MELPointSubstract(MELPoint lhs, MELPoint rhs);
+
+/**
+ * Substracts the given points.
+ *
+ * @return A point whose coordinates are lhs.x - rhs.x and lhs.y - rhs.y.
+ */
+MELIntPoint MELIntPointSubstract(MELIntPoint lhs, MELIntPoint rhs);
 
 /**
  * Substracts the given size to the given point.
