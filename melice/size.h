@@ -49,6 +49,15 @@ MELSize MELSizeMake(GLfloat width, GLfloat height);
  */
 MELIntSize MELIntSizeMake(int32_t width, int32_t height);
 
+/**
+ * Compares the two given sizes.
+ *
+ * @param lhs Left operand.
+ * @param rhs Right operand.
+ * @return true if the sizes are equals, false otherwise.
+ */
+MELBoolean MELIntSizeEquals(MELIntSize lhs, MELIntSize rhs);
+
 MELSize MELSizeAdd(MELSize lhs, MELSize rhs);
 
 #endif /* size_h */

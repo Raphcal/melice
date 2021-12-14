@@ -586,13 +586,30 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
     return spriteDefinition;
 }
 
+MELIntSize guessSpriteSize(MELSpriteDefinition spriteDefinition) {
+    MELIntSize size = MELIntSizeZero;
+    for (unsigned int index = 0; index < spriteDefinition.animations.count; index++) {
+        MELAnimationDefinition animationDefinition = spriteDefinition.animations.memory[index];
+        if (animationDefinition.frameCount > 0 && animationDefinition.images != NULL) {
+            size = animationDefinition.images[0].size;
+            if (MELStringEquals(animationDefinition.name, "stand")) {
+                break;
+            }
+        }
+    }
+    return MELIntSizeEquals(size, MELIntSizeZero)
+            ? MELIntSizeMake(32, 32)
+            : size;
+}
+
 void MELMmkProjectFormatWriteSpriteDefinition(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELSpriteDefinition spriteDefinition) {
     // Name.
     MELOutputStreamWriteNullableString(outputStream, spriteDefinition.name);
 
     // General properties.
-    MELOutputStreamWriteInt(outputStream, /* width */ 32);
-    MELOutputStreamWriteInt(outputStream, /* height */ 32);
+    MELIntSize spriteSize = guessSpriteSize(spriteDefinition);
+    MELOutputStreamWriteInt(outputStream, spriteSize.width);
+    MELOutputStreamWriteInt(outputStream, spriteSize.height);
     MELOutputStreamWriteInt(outputStream, spriteDefinition.type);
     
     if (self->version >= 9) {
@@ -643,20 +660,27 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
         const int frameCount = MELInputStreamReadInt(inputStream);
         if (direction == 0) {
             animationDefinition.frameCount = frameCount;
+            animationDefinition.images = frameCount > 0 ? malloc(sizeof(MELImagePaletteImage) * frameCount) : NULL;
         }
 
-        animationDefinition.images = frameCount > 0 ? malloc(sizeof(MELImagePaletteImage) * frameCount) : NULL;
         for (int frameIndex = 0; frameIndex < frameCount; frameIndex++) {
             MELImagePaletteImage frame = self->class->readImagePaletteImage(self, project, inputStream);
+            MELHitboxDecorator hitboxDecorator = (MELHitboxDecorator){{MELDecoratorTypeHitbox}, MELIntRectangleZero};
 
             if (self->version >= 8) {
-                MELHitboxDecorator *hitboxDecorator = malloc(sizeof(MELHitboxDecorator));
-                hitboxDecorator->super.type = MELDecoratorTypeHitbox;
-                hitboxDecorator->hitbox = self->class->readRectangle(self, project, inputStream);
-                MELDecoratorRefListPush(&frame.decorators, &hitboxDecorator->super);
+                hitboxDecorator.hitbox = self->class->readRectangle(self, project, inputStream);
             }
 
-            animationDefinition.images[frameIndex] = frame;
+            if (direction == 0) {
+                if (self->version >= 8) {
+                    MELHitboxDecorator *hitboxDecoratorRef = malloc(sizeof(MELHitboxDecorator));
+                    *hitboxDecoratorRef = hitboxDecorator;
+                    MELDecoratorRefListPush(&frame.decorators, &hitboxDecoratorRef->super);
+                }
+                animationDefinition.images[frameIndex] = frame;
+            } else {
+                MELImagePaletteImageDeinit(&frame);
+            }
         }
     }
 

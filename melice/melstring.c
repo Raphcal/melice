@@ -14,7 +14,7 @@ MELListImplement(MELChar16);
 MELListImplement(MELCodePoint);
 
 MELBoolean MELStringEquals(const char * _Nonnull lhs, const char * _Nonnull rhs) {
-    return strcmp(lhs, rhs) == 0;
+    return !strcmp(lhs, rhs);
 }
 uint64_t MELStringHash(const char * _Nonnull key) {
     uint64_t hash = 0;

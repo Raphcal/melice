@@ -7,6 +7,12 @@
 
 import Foundation
 
+#if os(macOS)
+import Cocoa
+#elseif os(iOS)
+import UIKit
+#endif
+
 extension MELPoint: Equatable {
     /// Compares the two given point.
     /// - returns: `true` if the points are the same, `false` otherwise.
@@ -16,6 +22,12 @@ extension MELPoint: Equatable {
 }
 
 public extension MELPoint {
+#if os(macOS) || os(iOS)
+    init(_ point: CGPoint) {
+        self.init(x: GLfloat(point.x), y: GLfloat(point.y))
+    }
+#endif
+
     /// Returns the distance between the two points.
     /// - parameter other: An other point.
     /// - returns: The distance between the points.
@@ -101,4 +113,10 @@ public extension MELIntPoint {
     init(_ point: MELPoint) {
         self.init(x: Int32(point.x), y: Int32(point.y))
     }
+
+#if os(macOS) || os(iOS)
+    init(_ point: CGPoint) {
+        self.init(x: Int32(point.x), y: Int32(point.y))
+    }
+#endif
 }

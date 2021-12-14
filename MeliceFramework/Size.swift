@@ -12,3 +12,9 @@ public extension MELSize {
         return MELSizeAdd(lhs, rhs)
     }
 }
+
+extension MELIntSize: Equatable {
+    public static func == (lhs: MELIntSize, rhs: MELIntSize) -> Bool {
+        return MELIntSizeEquals(lhs, rhs)
+    }
+}
