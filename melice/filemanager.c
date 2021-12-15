@@ -76,10 +76,9 @@ void MELFileManagerInitWithArguments(MELFileManager * _Nonnull self, char * _Non
 }
 
 void MELFileManagerInitWithAssetsRoot(MELFileManager * _Nonnull self, const char * _Nonnull assetsRoot) {
-    const size_t assetsRootLength = strlen(assetsRoot);
-    self->assetsRoot = calloc(assetsRootLength + 1, sizeof(char));
-    memcpy(self->assetsRoot, assetsRoot, assetsRootLength);
-    self->assetsRootLength = assetsRootLength;
+    free(self->assetsRoot);
+    self->assetsRoot = strdup(assetsRoot);
+    self->assetsRootLength = strlen(assetsRoot);
 }
 
 void MELFileManagerDeinit(MELFileManager * _Nonnull self) {

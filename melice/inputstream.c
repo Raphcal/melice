@@ -12,6 +12,7 @@
 #include <string.h>
 
 #include "melstring.h"
+#include "primitives.h"
 
 #define MELInputStreamBufferSize 4096
 

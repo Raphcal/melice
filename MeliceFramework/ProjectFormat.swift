@@ -15,6 +15,7 @@ enum ProjectFormatError: Error {
 
 extension MELProjectFormat {
     public static func open(asset: String, using format: MELProjectFormat = MELMmkProjectFormat) -> MELProject {
+        MELFileManager.initializeSharedInstance()
         var project = MELProject()
         let fileManager = MELFileManagerGetSharedInstance()
         var inputStream = MELFileManagerOpenAsset(fileManager, asset)

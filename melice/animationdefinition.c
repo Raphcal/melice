@@ -9,6 +9,7 @@
 #include "animationdefinition.h"
 
 #include <assert.h>
+#include "primitives.h"
 
 MELListImplement(MELAnimationDefinition);
 

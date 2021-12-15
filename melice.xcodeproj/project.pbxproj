@@ -568,6 +568,7 @@
 		64D00E8C2731D9A700C8A675 /* mutablemap.c in Sources */ = {isa = PBXBuildFile; fileRef = 64D00E8A2731D9A700C8A675 /* mutablemap.c */; };
 		64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D00E8F2731DDF900C8A675 /* projectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D00E8D2731DDF900C8A675 /* projectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64D24D8E276A7FB30088D3B8 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D24D8D276A7FB30088D3B8 /* FileManager.swift */; };
 		64EEAA4927426CD400776662 /* colorpalette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E712730940600C8A675 /* colorpalette.h */; };
 		64EEAA4A27426CD400776662 /* imagepalette.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E772730943000C8A675 /* imagepalette.h */; };
 		64EEAA4B27426CD400776662 /* project.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64D00E862731D87F00C8A675 /* project.h */; };
@@ -948,6 +949,7 @@
 		64D00E862731D87F00C8A675 /* project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = project.h; sourceTree = "<group>"; };
 		64D00E8A2731D9A700C8A675 /* mutablemap.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mutablemap.c; sourceTree = "<group>"; };
 		64D00E8D2731DDF900C8A675 /* projectformat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = projectformat.h; sourceTree = "<group>"; };
+		64D24D8D276A7FB30088D3B8 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		64EEAA4627418C7500776662 /* melstring-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "melstring-test.c"; sourceTree = "<group>"; };
 		64EEAA58274280B500776662 /* decorator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = decorator.c; sourceTree = "<group>"; };
 		64F5D14E27600084000C3967 /* imagepaletteimage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imagepaletteimage.h; sourceTree = "<group>"; };
@@ -1349,6 +1351,7 @@
 			isa = PBXGroup;
 			children = (
 				64F5D1702760F796000C3967 /* Geometry */,
+				64D24D8C276A7FA10088D3B8 /* IO */,
 				64F5D1752760FB86000C3967 /* Map */,
 				64F5D17B276105DC000C3967 /* Project */,
 				645260572614FB2300BB78AC /* Scene */,
@@ -1424,6 +1427,14 @@
 				647189E827386C9400547977 /* mmkprojectformat.c */,
 			);
 			name = project;
+			sourceTree = "<group>";
+		};
+		64D24D8C276A7FA10088D3B8 /* IO */ = {
+			isa = PBXGroup;
+			children = (
+				64D24D8D276A7FB30088D3B8 /* FileManager.swift */,
+			);
+			name = IO;
 			sourceTree = "<group>";
 		};
 		64F5D1702760F796000C3967 /* Geometry */ = {
@@ -2011,6 +2022,7 @@
 				643EED17275E8D7E0039FDAB /* singleframeanimation.c in Sources */,
 				643EED18275E8D7E0039FDAB /* synchronizedanimation.c in Sources */,
 				643EED19275E8D7E0039FDAB /* animationdefinition.c in Sources */,
+				64D24D8E276A7FB30088D3B8 /* FileManager.swift in Sources */,
 				643EED1A275E8D7E0039FDAB /* spritedefinition.c in Sources */,
 				643EED1B275E8D7E0039FDAB /* hitbox.c in Sources */,
 				643EED1C275E8D7E0039FDAB /* rotatedhitbox.c in Sources */,

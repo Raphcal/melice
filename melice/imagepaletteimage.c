@@ -7,6 +7,8 @@
 
 #include "imagepaletteimage.h"
 
+#include "primitives.h"
+
 MELListImplement(MELImagePaletteImage);
 
 MELImagePaletteImage MELImagePaletteImageMakeWithImagePaletteImage(MELImagePaletteImage other, size_t tileCount) {
