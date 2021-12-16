@@ -39,7 +39,52 @@ void MELSurfaceMemoryAppendRectangle(GLfloat * _Nonnull memory, MELRectangle rec
     memory[11] = top;
 }
 
+void MELSurfaceMemoryAppendTile(GLfloat * _Nonnull memory, MELRectangle rectangle) {
+    const GLfloat left = rectangle.origin.x;
+    const GLfloat top = rectangle.origin.y;
+    const GLfloat width = rectangle.size.width;
+    const GLfloat height = rectangle.size.height;
+
+    // Bas gauche
+    memory[0] = left;
+    memory[1] = top + height;
+    
+    // Bas droite
+    memory[2] = left + width;
+    memory[3] = top + height;
+    
+    // Haut gauche
+    memory[4] = left;
+    memory[5] = top;
+    
+    // Haut droite
+    memory[6] = left + width;
+    memory[7] = top;
+}
+
+void MELSurfaceMemoryAppendSkip(GLfloat * _Nonnull memory, MELRectangle rectangle) {
+    const GLfloat left = rectangle.origin.x;
+    const GLfloat top = rectangle.origin.y;
+    const GLfloat width = rectangle.size.width;
+
+    // Haut droite
+    memory[0] = left + width;
+    memory[1] = top;
+}
+
+void MELSurfaceMemoryAppendJoin(GLfloat * _Nonnull memory, MELRectangle rectangle) {
+    const GLfloat left = rectangle.origin.x;
+    const GLfloat top = rectangle.origin.y;
+    const GLfloat height = rectangle.size.height;
+
+    // Bas gauche
+    memory[0] = left;
+    memory[1] = top + height;
+}
+
+
 void MELSurfaceMemoryAppendQuadrilateral(GLfloat * _Nonnull memory, MELQuadrilateral quadrilateral) {
+    // Bas gauche
     memory[0] = quadrilateral.bottomLeft.x;
     memory[1] = -quadrilateral.bottomLeft.y;
     

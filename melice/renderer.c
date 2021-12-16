@@ -71,6 +71,16 @@ void MELRendererRefDrawWithVertexPointerAndTexCoordPointer(MELRenderer * _Nonnul
     glDrawArrays(GL_TRIANGLE_STRIP, 0, count);
 }
 
+
+void MELRendererRefDrawWithVertexPointerAndTexCoordPointerAndIndexPointer(MELRenderer * _Nonnull self, GLfloat * _Nonnull vertexPointer, GLfloat * _Nonnull texCoordPointer, GLint * _Nonnull indexPointer, GLsizei count) {
+    MELRendererRefSetDrawMode(self, MELDrawModeTexture);
+    glEnableClientState(GL_INDEX_ARRAY);
+    glVertexPointer(MELCoordinatesByVertex, GL_FLOAT, 0, vertexPointer);
+    glTexCoordPointer(MELCoordinatesByTexture, GL_FLOAT, 0, texCoordPointer);
+    glIndexPointer(GL_INT, 0, indexPointer);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, count);
+}
+
 void MELRendererDrawWithVertexPointerAndColorPointer(int coordinatesByVertex, GLfloat * _Nonnull vertexPointer, int coordinatesByColor, GLubyte * _Nonnull colorPointer, GLsizei count) {
     MELRendererRefDrawWithVertexPointerAndColorPointer(&defaultRenderer, coordinatesByVertex, vertexPointer, coordinatesByColor, colorPointer, count);
 }

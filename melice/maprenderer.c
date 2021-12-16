@@ -16,6 +16,7 @@ MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap map, MELTextureAtlas atl
 }
 
 MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnull renderer, MELMap map, MELTextureAtlas atlas) {
+    printf("MELMapRendererMakeWithRendererAndMapAndAtlas\n");
     MELMapRenderer self;
     self.renderer = renderer;
     self.map = map;
@@ -32,13 +33,12 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int tile = MELLayerTileAtXAndY(layer, x, y);
-                if (tile >= 0) {
-                    MELSurfaceArrayAppendTexturedQuad(&layerSurface, MELRectangleMake((GLfloat)x * MELTileSize, (GLfloat)y * MELTileSize, MELTileSize, MELTileSize), tile, atlas);
-                }
+                MELSurfaceArrayAppendTexturedLayerTile(&layerSurface, MELRectangleMake((GLfloat)x * MELTileSize, (GLfloat)y * MELTileSize, MELTileSize, MELTileSize), tile, atlas);
             }
+            MELSurfaceArrayAppendSkip(&layerSurface);
         }
-
         layerSurfaces[index] = layerSurface;
+        printf("layerSurfaces[%d].count = %d\n", index, layerSurface.count);
     }
     self.layerSurfaces = layerSurfaces;
 
@@ -85,6 +85,7 @@ void MELMapRendererDeinit(MELMapRenderer * _Nonnull self) {
 }
 
 void MELMapRendererUpdate(MELMapRenderer self) {
+    printf("MELMapRendererUpdate\n");
     for (int index = 0; index < self.map.layers.count; index++) {
         MELLayer layer = self.map.layers.memory[index];
         MELSurfaceArray *layerSurface = self.layerSurfaces + index;
@@ -96,12 +97,15 @@ void MELMapRendererUpdate(MELMapRenderer self) {
         const int tileCount = layer.size.width * layer.size.height;
         for (int tileIndex = 0; tileIndex < tileCount; tileIndex++) {
             int tile = layer.tiles[tileIndex];
-            if (tile >= 0) {
-                GLfloat x = tileIndex % layer.size.width;
-                GLfloat y = tileIndex / layer.size.width;
-                MELSurfaceArrayAppendTexturedQuad(layerSurface, MELRectangleMake(x * MELTileSize, y * MELTileSize, MELTileSize, MELTileSize), tile, self.atlas);
+            GLfloat x = tileIndex % layer.size.width;
+            GLfloat y = tileIndex / layer.size.width;
+            if (tileIndex > 0 && x == 0) {
+                MELSurfaceArrayAppendSkip(layerSurface);
             }
+            MELSurfaceArrayAppendTexturedLayerTile(layerSurface, MELRectangleMake(x * MELTileSize, y * MELTileSize, MELTileSize, MELTileSize), tile, self.atlas);
         }
+
+        printf("layerSurfaces[%d].count = %d\n", index, layerSurface->count);
     }
 }
 

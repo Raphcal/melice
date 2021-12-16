@@ -16,6 +16,9 @@
 #include "quadrilateral.h"
 
 void MELSurfaceMemoryAppendRectangle(GLfloat * _Nonnull memory, MELRectangle rectangle);
+void MELSurfaceMemoryAppendTile(GLfloat * _Nonnull memory, MELRectangle rectangle);
+void MELSurfaceMemoryAppendSkip(GLfloat * _Nonnull memory, MELRectangle rectangle);
+void MELSurfaceMemoryAppendJoin(GLfloat * _Nonnull memory, MELRectangle rectangle);
 
 void MELSurfaceMemoryAppendQuadrilateral(GLfloat * _Nonnull memory, MELQuadrilateral quadrilateral);
 

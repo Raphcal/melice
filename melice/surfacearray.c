@@ -43,6 +43,35 @@ void MELListAppendRectangle(MELList(GLfloat) * _Nonnull self, MELRectangle recta
     self->count = cursor + 12;
 }
 
+void MELListAppendTile(MELList(GLfloat) * _Nonnull self, MELRectangle rectangle) {
+    const size_t cursor = self->count;
+    GLfloatListEnsureCapacity(self, cursor + MELVertexesByTile * MELCoordinatesByVertex);
+    MELSurfaceMemoryAppendTile(self->memory + cursor, rectangle);
+    self->count = cursor + MELVertexesByTile * MELCoordinatesByVertex;
+}
+
+void MELListAppendSkip(MELList(GLfloat) * _Nonnull self, MELRectangle rectangle) {
+    const size_t cursor = self->count;
+    GLfloatListEnsureCapacity(self, cursor + MELVertexesBySkip * MELCoordinatesByVertex);
+    MELSurfaceMemoryAppendSkip(self->memory + cursor, rectangle);
+    self->count = cursor + MELVertexesBySkip * MELCoordinatesByVertex;
+}
+
+void MELListAppendJoin(MELList(GLfloat) * _Nonnull self, MELRectangle rectangle) {
+    const size_t cursor = self->count;
+    GLfloatListEnsureCapacity(self, cursor + MELVertexesByJoin * MELCoordinatesByVertex);
+    MELSurfaceMemoryAppendJoin(self->memory + cursor, rectangle);
+    self->count = cursor + MELVertexesByJoin * MELCoordinatesByVertex;
+}
+
+void MELListAppendLastVertex(MELList(GLfloat) * _Nonnull self) {
+    const size_t cursor = self->count;
+    GLfloatListEnsureCapacity(self, cursor + MELCoordinatesByVertex);
+    self->memory[cursor] = self->memory[cursor - 2];
+    self->memory[cursor + 1] = self->memory[cursor - 1];
+    self->count = cursor + 2;
+}
+
 void MELListAppendColor(MELList(GLubyte) * _Nonnull self, MELUInt8Color color) {
     const size_t cursor = self->count;
     MELListRefEnsureCapacity(self, cursor + 4);
@@ -55,6 +84,36 @@ void MELSurfaceArrayAppendTexturedQuad(MELSurfaceArray * _Nonnull self, MELRecta
     self->count += MELVertexesByQuad;
     MELListAppendRectangle(&self->vertex, MELRectangleMake(vertices.origin.x, -vertices.origin.y, vertices.size.width, -vertices.size.height));
     MELListAppendRectangle(&self->texture, atlas.frames[tile]);
+}
+
+void MELSurfaceArrayAppendTexturedLayerTile(MELSurfaceArray * _Nonnull self, MELRectangle vertices, int tile, MELTextureAtlas atlas) {
+    const MELRectangle vertRect = MELRectangleMake(vertices.origin.x, -vertices.origin.y, vertices.size.width, -vertices.size.height);
+
+    const MELBoolean isTile = tile >= 0 && tile < atlas.frameCount;
+    const MELBoolean previousWasSkip = self->count % 2 == 1;
+    if (isTile && previousWasSkip) {
+        self->count += MELVertexesByJoin + MELVertexesByTile;
+        MELListAppendJoin(&self->vertex, vertRect);
+        MELListAppendTile(&self->vertex, vertRect);
+        MELListAppendJoin(&self->texture, atlas.frames[tile]);
+        MELListAppendTile(&self->texture, atlas.frames[tile]);
+    } else if (isTile) {
+        self->count += MELVertexesByTile;
+        MELListAppendTile(&self->vertex, vertRect);
+        MELListAppendTile(&self->texture, atlas.frames[tile]);
+    } else if (!previousWasSkip && self->count > 0) {
+        self->count += MELVertexesBySkip;
+        MELListAppendSkip(&self->vertex, vertRect);
+        MELListAppendSkip(&self->texture, atlas.frames[tile]);
+    }
+}
+
+void MELSurfaceArrayAppendSkip(MELSurfaceArray * _Nonnull self) {
+    if (self->count == 0) {
+        return;
+    }
+    MELListAppendLastVertex(&self->vertex);
+    MELListAppendLastVertex(&self->texture);
 }
 
 void MELSurfaceArrayAppendColoredQuad(MELSurfaceArray * _Nonnull self, MELRectangle vertices, MELUInt8Color color) {

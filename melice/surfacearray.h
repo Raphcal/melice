@@ -47,6 +47,10 @@ void MELSurfaceArrayDeinit(MELSurfaceArray * _Nonnull self);
 
 void MELSurfaceArrayAppendTexturedQuad(MELSurfaceArray * _Nonnull self, MELRectangle vertices, int tile, MELTextureAtlas atlas);
 
+void MELSurfaceArrayAppendTexturedLayerTile(MELSurfaceArray * _Nonnull self, MELRectangle vertices, int tile, MELTextureAtlas atlas);
+
+void MELSurfaceArrayAppendSkip(MELSurfaceArray * _Nonnull self);
+
 void MELSurfaceArrayAppendColoredQuad(MELSurfaceArray * _Nonnull self, MELRectangle vertices, MELUInt8Color color);
 
 /**

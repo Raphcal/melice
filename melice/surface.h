@@ -18,6 +18,9 @@
 #include "list.h"
 
 #define MELVertexesByQuad 6
+#define MELVertexesByTile 4
+#define MELVertexesBySkip 1
+#define MELVertexesByJoin 1
 #define MELCoordinatesByVertex 2
 #define MELCoordinatesByTexture 2
 #define MELCoordinatesByColor 4
