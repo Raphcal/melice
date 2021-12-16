@@ -11,9 +11,10 @@ extension MELLayer: Named {
     public static var defaultName = "Layer"
 }
 
-extension MELLayer: Hashable {
+extension MELLayer: Equatable, Hashable {
     public static func == (lhs: MELLayer, rhs: MELLayer) -> Bool {
-        return lhs.hashValue == rhs.hashValue
+        return lhs.tileCount == rhs.tileCount &&
+            memcmp(lhs.tiles, rhs.tiles, MemoryLayout<Int32>.stride * Int(lhs.tileCount)) == 0
     }
 
     public func hash(into hasher: inout Hasher) {

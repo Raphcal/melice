@@ -45,7 +45,25 @@ public extension MELList {
     }
 }
 
-extension MELLayerList: MELList {
+public protocol EquatableMELList: MELList, Equatable where Element: Equatable {
+    // Empty.
+}
+
+extension EquatableMELList {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        if lhs.count != rhs.count {
+            return false
+        }
+        for index in 0 ..< Int(lhs.count) {
+            if lhs[index] != rhs[index] {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+extension MELLayerList: EquatableMELList {
     public typealias Element = MELLayer
     public static let empty = MELLayerListEmpty
 }
