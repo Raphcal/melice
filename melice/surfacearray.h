@@ -21,6 +21,7 @@ typedef struct melsurfacearray {
     MELList(GLfloat) vertex;
     MELList(GLfloat) texture;
     MELList(GLubyte) color;
+    MELList(GLint) index;
     GLsizei count;
     MELList(MELSurface) pool;
 } MELSurfaceArray;

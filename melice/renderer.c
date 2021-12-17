@@ -98,12 +98,22 @@ void MELRendererDrawWithSurfaceArray(MELSurfaceArray surfaceArray) {
     MELRendererRefDrawWithSurfaceArray(&defaultRenderer, surfaceArray);
 }
 
-void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceArray surfaceArray) {
-    MELRendererRefSetDrawMode(self, MELDrawModeTexture);
+uint8_t MELRendererDrawModeMake(MELBoolean enableTexture, MELBoolean enableColor, MELBoolean enableIndex) {
+    return (enableTexture == true) | ((enableColor == true) << 1) | ((enableIndex == true) << 2);
+}
 
-    // TODO: Gérer l'affichage des couleurs. Ajouter un mode ?
+void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceArray surfaceArray) {
+    MELRendererRefSetDrawMode(self, MELRendererDrawModeMake(surfaceArray.texture.count != 0, surfaceArray.color.count != 0, surfaceArray.index.count != 0));
     glVertexPointer(MELCoordinatesByVertex, GL_FLOAT, 0, surfaceArray.vertex.memory);
-    glTexCoordPointer(MELCoordinatesByTexture, GL_FLOAT, 0, surfaceArray.texture.memory);
+    if (surfaceArray.texture.count != 0) {
+        glTexCoordPointer(MELCoordinatesByTexture, GL_FLOAT, 0, surfaceArray.texture.memory);
+    }
+    if (surfaceArray.color.count != 0) {
+        glColorPointer(MELCoordinatesByColor, GL_UNSIGNED_BYTE, 0, surfaceArray.color.memory);
+    }
+    if (surfaceArray.index.count != 0) {
+        glIndexPointer(GL_INT, 0, surfaceArray.index.memory);
+    }
     glDrawArrays(GL_TRIANGLE_STRIP, 0, surfaceArray.count);
 }
 
@@ -129,12 +139,12 @@ MELBoolean isDrawModeIncluded(MELDrawMode self, MELDrawMode other) {
 }
 
 void MELRendererRefSetDrawMode(MELRenderer * _Nonnull self, MELDrawMode drawMode) {
-    if (self->drawMode == drawMode) {
+    const uint8_t currentDrawMode = self->drawMode;
+    if (currentDrawMode == drawMode) {
         return;
     }
-
-    const MELBoolean textureIsEnabled = isDrawModeIncluded(self->drawMode, MELDrawModeTexture);
-    const MELBoolean wantTextureToBeEnabled = isDrawModeIncluded(drawMode, MELDrawModeTexture);
+    const MELBoolean textureIsEnabled = currentDrawMode & MELDrawModeTexture;
+    const MELBoolean wantTextureToBeEnabled = drawMode & MELDrawModeTexture;
     if (textureIsEnabled && !wantTextureToBeEnabled) {
         glDisable(GL_TEXTURE_2D);
         glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -143,12 +153,21 @@ void MELRendererRefSetDrawMode(MELRenderer * _Nonnull self, MELDrawMode drawMode
         glEnable(GL_TEXTURE_2D);
     }
 
-    const MELBoolean colorIsEnabled = isDrawModeIncluded(self->drawMode, MELDrawModeColor);
-    const MELBoolean wantColorToBeEnabled = isDrawModeIncluded(drawMode, MELDrawModeColor);
+    const MELBoolean colorIsEnabled = currentDrawMode & MELDrawModeColor;
+    const MELBoolean wantColorToBeEnabled = drawMode & MELDrawModeColor;
     if (colorIsEnabled && !wantColorToBeEnabled) {
         glDisableClientState(GL_COLOR_ARRAY);
     } else if (!colorIsEnabled && wantColorToBeEnabled) {
         glEnableClientState(GL_COLOR_ARRAY);
     }
+
+    const MELBoolean indexIsEnabled = currentDrawMode & MELDrawModeIndex;
+    const MELBoolean wantIndexToBeEnabled = drawMode & MELDrawModeIndex;
+    if (indexIsEnabled && !wantIndexToBeEnabled) {
+        glDisableClientState(GL_INDEX_ARRAY);
+    } else if (!indexIsEnabled && wantIndexToBeEnabled) {
+        glEnableClientState(GL_INDEX_ARRAY);
+    }
+
     self->drawMode = drawMode;
 }

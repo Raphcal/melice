@@ -23,6 +23,7 @@ MELSurfaceArray MELSurfaceArrayMakeWithInitialCapacity(unsigned int initialCapac
         MELListMakeWithInitialCapacity(GLfloat, initialCapacity),
         MELListMakeWithInitialCapacity(GLfloat, initialCapacity),
         MELListMakeWithInitialCapacity(GLubyte, initialCapacity),
+        MELListMakeWithInitialCapacity(GLint, initialCapacity),
         0,
         MELListMake(MELSurface)
     };
@@ -32,6 +33,7 @@ void MELSurfaceArrayDeinit(MELSurfaceArray * _Nonnull self) {
     MELListDeinit(self->vertex);
     MELListDeinit(self->texture);
     MELListDeinit(self->color);
+    MELListDeinit(self->index);
     self->count = 0;
     MELListDeinit(self->pool);
 }
@@ -74,6 +76,7 @@ void MELSurfaceArrayClear(MELSurfaceArray * _Nonnull self) {
     self->vertex.count = 0;
     self->texture.count = 0;
     self->color.count = 0;
+    self->index.count = 0;
     self->pool.count = 0;
 }
 

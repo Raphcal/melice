@@ -19,16 +19,17 @@
 #include "size.h"
 
 typedef enum {
-    MELDrawModeUnset,
-    MELDrawModeTexture,
-    MELDrawModeColor,
-    MELDrawModeTextureAndColor
+    MELDrawModeUnset = 0,
+    MELDrawModeTexture = 1,
+    MELDrawModeColor = 2,
+    MELDrawModeTextureAndColor = 3,
+    MELDrawModeIndex = 4
 } MELDrawMode;
 
 typedef struct {
     MELPoint lastTranslation;
     MELTexture * _Nullable lastTexture;
-    MELDrawMode drawMode;
+    uint8_t drawMode;
     MELRectangle frame;
 } MELRenderer;
 
@@ -205,6 +206,8 @@ void MELRendererTranslateToTopLeft(MELPoint topLeft);
  * @param topLeft Coordinates to translate to.
  */
 void MELRendererRefTranslateToTopLeft(MELRenderer * _Nonnull self, MELPoint topLeft);
+
+uint8_t MELRendererDrawModeMake(MELBoolean enableTexture, MELBoolean enableColor, MELBoolean enableIndex);
 
 void MELRendererRefSetDrawMode(MELRenderer * _Nonnull self, MELDrawMode drawMode);
 
