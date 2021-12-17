@@ -913,6 +913,7 @@
 		645260402614F88D00BB78AC /* MeliceFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeliceFramework.h; sourceTree = "<group>"; };
 		645260412614F88D00BB78AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6452604B2614F8A900BB78AC /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
+		645F1593276CBBC4007AD2CB /* surfacearray-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "surfacearray-test.c"; sourceTree = "<group>"; };
 		6460EFFD27452B600040F95A /* HelloVita.mmk */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelloVita.mmk; sourceTree = "<group>"; };
 		6460EFFE27452C9D0040F95A /* mmkprojectformat-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "mmkprojectformat-test.c"; sourceTree = "<group>"; };
 		6460F0022746E5010040F95A /* packmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = packmap.h; sourceTree = "<group>"; };
@@ -1288,6 +1289,7 @@
 				6460F009274B94D80040F95A /* bitmap-test.c */,
 				6448724F2725F4ED00DEE2C1 /* color-test.c */,
 				64F5D15E2760EF19000C3967 /* packmap-test.c */,
+				645F1593276CBBC4007AD2CB /* surfacearray-test.c */,
 				642B2AF825FF703100183D42 /* textureatlas-test.c */,
 				642B2AFB25FF703100183D42 /* assets */,
 			);

@@ -17,6 +17,7 @@ typedef uint8_t MELByte;
 
 MELListDefine(GLfloat);
 MELListDefine(GLubyte);
+MELListDefine(GLint);
 MELListDefine(MELByte);
 
 void * _Nullable MELArrayCopy(const void * restrict _Nullable source, size_t size);

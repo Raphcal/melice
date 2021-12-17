@@ -92,9 +92,11 @@ void type##ListDeinit(type##List * _Nonnull self) {\
     self->capacity = 0; \
 }\
 void type##ListDeinitWithDeinitFunction(type##List * _Nonnull self, void (* _Nonnull deinitFunction)(type * _Nonnull)) {\
-    const type *listEnd = self->memory + self->count;\
-    for (type *item = self->memory; item < listEnd; item++) {\
-        deinitFunction(item);\
+    if (self->count) {\
+        const type *listEnd = self->memory + self->count;\
+        for (type *item = self->memory; item < listEnd; item++) {\
+            deinitFunction(item);\
+        }\
     }\
     type##ListDeinit(self); \
 }\
