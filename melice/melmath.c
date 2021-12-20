@@ -48,6 +48,10 @@ GLfloat MELFloatBound(GLfloat min, GLfloat value, GLfloat max) {
     return min > max ? min : (value < min ? min : (value < max ? value : max));
 }
 
+int32_t MELIntBound(int32_t min, int32_t value, int32_t max) {
+    return min > max ? min : (value < min ? min : (value < max ? value : max));
+}
+
 int64_t MELInt64Max(int64_t lhs, int64_t rhs) {
     return lhs > rhs ? lhs : rhs;
 }

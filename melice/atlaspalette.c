@@ -17,6 +17,7 @@ MELAtlasPalette MELAtlasPaletteMake(MELTextureAtlas atlas) {
             atlas.sources != NULL
                     ? atlas.sources[0].size
                     : MELIntSizeMake(32, 32),
+            6,
             atlas.frameCount
         },
         atlas

@@ -275,7 +275,7 @@ const MELUInt8RGBColor defaultColors[] = {
 const uint8_t defaultAlphaLevels[] = {255, 224, 192, 160, 128, 96, 64, 32};
 
 MELColorPalette MELColorPaletteMakeDefault(void) {
-    MELColorPalette self = {{&MELColorPaletteClass, strdup("Default color palette"), {1, 1}, defaultColorCount}, NULL, NULL, defaultAlphaLevelCount};
+    MELColorPalette self = {{&MELColorPaletteClass, strdup("Default color palette"), {1, 1}, 6, defaultColorCount}, NULL, NULL, defaultAlphaLevelCount};
     self.colors = MELArrayCopy(defaultColors, sizeof(MELUInt8RGBColor) * defaultColorCount);
     self.alphaLevels = MELArrayCopy(defaultAlphaLevels, sizeof(uint8_t) * defaultAlphaLevelCount);
     return self;
@@ -283,7 +283,7 @@ MELColorPalette MELColorPaletteMakeDefault(void) {
 
 MELColorPalette MELColorPaletteMakeWithColorCount(size_t colorCount) {
     return (MELColorPalette) {
-        {&MELColorPaletteClass, NULL, MELIntSizeMake(1, 1), (uint32_t) colorCount},
+        {&MELColorPaletteClass, NULL, MELIntSizeMake(1, 1), 6, (uint32_t) colorCount},
         malloc(sizeof(MELUInt8RGBColor) * colorCount),
         MELArrayCopy(defaultAlphaLevels, sizeof(uint8_t) * defaultAlphaLevelCount),
         defaultAlphaLevelCount};
@@ -293,6 +293,7 @@ MELColorPalette MELColorPaletteMakeWithUInt32ColorList(MELUInt32ColorList colors
     MELColorPalette self;
     self.super.class = &MELColorPaletteClass;
     self.super.count = (unsigned int) colors.count;
+    self.super.columns = 6;
     self.super.tileSize = MELIntSizeMake(1, 1);
     self.colors = malloc(sizeof(MELUInt8RGBColor) * colors.count);
     // TODO: Support alpha levels.

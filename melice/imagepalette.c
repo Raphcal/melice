@@ -15,6 +15,7 @@ MELImagePalette MELImagePaletteMakeWithColorPalette(MELColorPalette * _Nonnull c
     self.super.class = &MELImagePaletteClass;
     self.super.count = DEFAULT_EMPTY_IMAGE_COUNT;
     self.super.name = strdup("New image palette");
+    self.super.columns = 6;
     self.super.tileSize = DEFAULT_TILE_SIZE;
     self.images = malloc(DEFAULT_EMPTY_IMAGE_COUNT * sizeof(MELImagePaletteImage));
     const size_t tileCount = self.super.tileSize.width * self.super.tileSize.height;

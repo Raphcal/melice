@@ -68,6 +68,17 @@ double MELDoubleMaxVariadic(int count, ...);
 GLfloat MELFloatBound(GLfloat min, GLfloat value, GLfloat max);
 
 /**
+ * Returns the given value if it is greater than min and less than max.
+ * Otherwise, min will be returned if the value is less than min or else max.
+ *
+ * @param min Minimum value.
+ * @param value Value to test.
+ * @param max Maximum value.
+ * @return The value or one of the bounds.
+ */
+int32_t MELIntBound(int32_t min, int32_t value, int32_t max);
+
+/**
  * Returns the maximum value between lhs and rhs.
  *
  * @param lhs Left operand.

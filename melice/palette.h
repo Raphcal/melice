@@ -69,6 +69,8 @@ typedef struct melpalette {
     char * _Nullable name;
     /// Preferred tile size or MELSizeZero if none.
     MELIntSize tileSize;
+    /// Preferred number of columns in the editor.
+    uint8_t columns;
     /// Number of tiles in this palette.
     uint32_t count;
 } MELPalette;

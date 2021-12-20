@@ -373,13 +373,13 @@ MELImagePalette * _Nullable MELMmkProjectFormatReadImagePalette(MELProjectFormat
     char *name = MELInputStreamReadString(inputStream);
 
     const int tileSize = MELInputStreamReadInt(inputStream);
-    /* columns */ MELInputStreamReadInt(inputStream);
+    int32_t columns = MELInputStreamReadInt(inputStream);
 
     MELColorPalette *colorPalette = self->class->readColorPalette(self, project, inputStream);
 
     const int count = MELInputStreamReadInt(inputStream);
 
-    MELImagePalette imagePalette = {{&MELImagePaletteClass, name, MELIntSizeMake(tileSize, tileSize), count}, colorPalette, malloc(sizeof(MELImagePaletteImage) * count)};
+    MELImagePalette imagePalette = {{&MELImagePaletteClass, name, MELIntSizeMake(tileSize, tileSize), (uint8_t) MELIntBound(0, columns, 0xFF), count}, colorPalette, malloc(sizeof(MELImagePaletteImage) * count)};
 
     for (int index = 0; index < count; index++) {
         MELImagePaletteImage image = self->class->readImagePaletteImage(self, project, inputStream);
@@ -404,7 +404,7 @@ MELImagePalette * _Nullable MELMmkProjectFormatReadImagePalette(MELProjectFormat
 void MELMmkProjectFormatWriteImagePalette(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELImagePalette * _Nonnull imagePalette) {
     MELOutputStreamWriteString(outputStream, imagePalette->super.name);
     MELOutputStreamWriteInt(outputStream, imagePalette->super.tileSize.width);
-    MELOutputStreamWriteInt(outputStream, /* columns */ 4);
+    MELOutputStreamWriteInt(outputStream, imagePalette->super.columns);
 
     self->class->writeColorPalette(self, project, outputStream, imagePalette->colorPalette);
 

@@ -14,6 +14,7 @@ void MELPaletteDeinit(MELPalette * _Nonnull self) {
     free(self->name);
     self->name = NULL;
     self->tileSize = MELIntSizeZero;
+    self->columns = 0;
     self->count = 0;
 }
 

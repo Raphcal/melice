@@ -24,6 +24,10 @@ public extension MELPaletteRef {
         return self.pointee.count
     }
 
+    var columns: Int {
+        return Int(self.pointee.columns)
+    }
+
     func paint(tile: UInt32) -> UnsafeMutablePointer<UInt8>? {
         return self.pointee.class.pointee.paintTile(self, tile)
     }
