@@ -57,6 +57,14 @@ void MELLayerDeinit(MELLayer * _Nonnull self);
  */
 int MELLayerTileAtXAndY(MELLayer self, int x, int y);
 
+/**
+ * Changes the size of the layer to the given size.
+ *
+ * @param self Layer to resize.
+ * @param newSize New size of the layer.
+ */
+void MELLayerResize(MELLayer * _Nonnull self, MELIntSize newSize);
+
 void MELLayerRendererToSurfaceArray(MELLayer self, MELSurfaceArray * _Nonnull destination, MELTextureAtlas textureAtlas);
 
 #endif /* layer_h */

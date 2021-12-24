@@ -59,6 +59,47 @@ int MELLayerTileAtXAndY(MELLayer self, int x, int y) {
     return x >= 0 && x < self.size.width && y >= 0 && y < self.size.height ? self.tiles[y * self.size.width + x] : -1;
 }
 
+void MELLayerResize(MELLayer * _Nonnull self, MELIntSize newSize) {
+    MELLayer layer = *self;
+    if (layer.size.width == newSize.width && layer.size.height == newSize.height) {
+        return;
+    }
+
+    const int newTileCount = newSize.width * newSize.height;
+    int32_t *newTiles = malloc(sizeof(int32_t) * newTileCount);
+
+    if (layer.tiles != NULL) {
+        const int32_t minWidth = layer.size.width < newSize.width ? layer.size.width : newSize.width;
+        const int32_t paddingWidth = newSize.width - layer.size.width;
+        const int32_t minHeight = layer.size.height < newSize.height ? layer.size.height : newSize.height;
+
+        int32_t *oldRow = layer.tiles;
+        int32_t *newRow = newTiles;
+        for (int32_t y = 0; y < minHeight; y++) {
+            memcpy(newRow, oldRow, sizeof(int32_t) * minWidth);
+            int32_t *padding = newRow + minWidth;
+            for (int x = 0; x < paddingWidth; x++) {
+                padding[x] = -1;
+            }
+            oldRow += layer.size.width;
+            newRow += newSize.width;
+        }
+        for (int index = minHeight * newSize.width; index < newTileCount; index++) {
+            newTiles[index] = -1;
+        }
+
+        free(layer.tiles);
+    } else {
+        for (int index = 0; index < newTileCount; index++) {
+            newTiles[index] = -1;
+        }
+    }
+    layer.tiles = newTiles;
+    layer.size = newSize;
+    layer.tileCount = newTileCount;
+    *self = layer;
+}
+
 void MELLayerRendererToSurfaceArray(MELLayer self, MELSurfaceArray * _Nonnull destination, MELTextureAtlas textureAtlas) {
     const int width = self.size.width;
     
