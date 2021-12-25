@@ -24,10 +24,10 @@ void debugProject(MELProject project) {
     printf("%zu map(s)\n", mapGroup.maps.count);
     for (size_t index = 0; index < mapGroup.maps.count; index++) {
         MELMutableMap map = mapGroup.maps.memory[index];
-        printf("- map %s (%dx%d)\n", map.name, map.size.width, map.size.height);
-        printf("  - %zu layer(s)\n", map.layers.count);
-        for (size_t layerIndex = 0; layerIndex < map.layers.count; layerIndex++) {
-            MELLayer layer = map.layers.memory[layerIndex];
+        printf("- map %s (%dx%d)\n", map.name, map.super.size.width, map.super.size.height);
+        printf("  - %zu layer(s)\n", map.super.layers.count);
+        for (size_t layerIndex = 0; layerIndex < map.super.layers.count; layerIndex++) {
+            MELLayer layer = map.super.layers.memory[layerIndex];
             printf("  - layer %s (%dx%d), %zu sprite(s)\n", layer.name, layer.size.width, layer.size.height, layer.sprites.count);
         }
     }
@@ -58,11 +58,11 @@ void testOpenProjet(void) {
     assert(project.mapGroups.memory[0].maps.count == 2);
 
     MELMutableMap firstMap = project.mapGroups.memory[0].maps.memory[0];
-    assert(MELColorToUInt32Color(firstMap.backgroundColor) == (uint32_t)0xff0099cc);
-    assert(firstMap.layers.count == 2);
+    assert(MELColorToUInt32Color(firstMap.super.backgroundColor) == (uint32_t)0xff0099cc);
+    assert(firstMap.super.layers.count == 2);
 
-    assert(strcmp("Background", firstMap.layers.memory[0].name) == 0);
-    assert(strcmp("HelloVita", firstMap.layers.memory[1].name) == 0);
+    assert(strcmp("Background", firstMap.super.layers.memory[0].name) == 0);
+    assert(strcmp("HelloVita", firstMap.super.layers.memory[1].name) == 0);
 
     MELProjectDeinit(&project);
 }

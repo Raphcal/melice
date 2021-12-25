@@ -26,6 +26,21 @@ extension MELMutableMap: Hashable {
 }
 
 public extension MELMutableMap {
+    var layers: MELLayerList {
+        get { self.super.layers }
+        set { self.super.layers = newValue }
+    }
+
+    var size: MELIntSize {
+        get { self.super.size }
+        set { self.super.size = newValue }
+    }
+
+    var backgroundColor: MELColor {
+        get { self.super.backgroundColor }
+        set { self.super.backgroundColor = newValue }
+    }
+
     func locationInLayer(_ location: MELIntPoint, layerIndex: Int, camera: MELPoint) -> MELIntPoint {
         return MELIntPoint((location + camera * layers[layerIndex].scrollRate) / self.palette.tileSize)
     }

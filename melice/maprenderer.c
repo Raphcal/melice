@@ -45,6 +45,10 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
     return self;
 }
 
+MELMapRenderer MELMapRendererMakeWithRendererAndMutableMapAndAtlas(MELRenderer * _Nonnull renderer, MELMutableMap mutableMap, MELTextureAtlas atlas) {
+    return MELMapRendererMakeWithRendererAndMapAndAtlas(renderer, mutableMap.super, atlas);
+}
+
 MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap map, MELColorPalette colorPalette) {
     MELMapRenderer self;
     self.map = map;

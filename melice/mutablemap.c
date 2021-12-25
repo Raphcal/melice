@@ -12,30 +12,20 @@
 MELListImplement(MELMutableMap);
 
 MELMutableMap MELMutableMapMakeWithSizeAndPalette(MELIntSize size, MELPalette * _Nonnull palette) {
-    MELMutableMap self = {size, {1,1,1,1}, MELLayerListMakeWithInitialCapacity(1), palette, NULL};
-    MELLayerListPush(&self.layers, MELLayerMakeWithSize(size));
+    MELMutableMap self = {{size, {1,1,1,1}, MELLayerListMakeWithInitialCapacity(1)}, palette, NULL};
+    MELLayerListPush(&self.super.layers, MELLayerMakeWithSize(size));
     return self;
 }
 
 MELMutableMap MELMutableMapMakeWithMutableMap(MELMutableMap other) {
     MELMutableMap self = other;
     self.name = MELStringCopy(other.name);
-    self.layers = MELLayerListMakeWithListAndCopyFunction(other.layers, &MELLayerMakeWithLayer);
+    self.super.layers = MELLayerListMakeWithListAndCopyFunction(other.super.layers, &MELLayerMakeWithLayer);
     return self;
 }
 
 void MELMutableMapDeinit(MELMutableMap * _Nonnull self) {
-    self->size = MELIntSizeZero;
-    self->backgroundColor = (MELColor) {0,0,0,0};
-    MELLayerListDeinitWithDeinitFunction(&self->layers, &MELLayerDeinit);
+    MELMapDeinit(&self->super);
     free(self->name);
     self->name = NULL;
-}
-
-MELMap MELMutableMapToMELMap(MELMutableMap self) {
-    return (MELMap) {
-        self.size,
-        self.backgroundColor,
-        self.layers
-    };
 }

@@ -111,7 +111,7 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
         // Loading sprite instances.
         const MELPoint defaultScrollRate = MELPointMake(1, 1);
         for (int mapIndex = 0; mapIndex < mapCount; mapIndex++) {
-            MELLayerList * _Nonnull layers = &project.mapGroups.memory[0].maps.memory[mapIndex].layers;
+            MELLayerList * _Nonnull layers = &project.mapGroups.memory[0].maps.memory[mapIndex].super.layers;
             MELLayer * _Nullable layer = NULL;
             for (int layerIndex = 0; layerIndex < layers->count; layerIndex++) {
                 if (strcmp(layers->memory[layerIndex].name, "Piste") == 0) {
@@ -185,8 +185,8 @@ void writeProject(MELProjectFormat * _Nonnull self, MELOutputStream * _Nonnull o
         for (unsigned int mapIndex = 0; mapIndex < maps.count; mapIndex++) {
             const MELMutableMap map = maps.memory[mapIndex];
             MELSpriteInstanceList instances = MELSpriteInstanceListEmpty;
-            for (unsigned int layerIndex = 0; layerIndex < map.layers.count; layerIndex++) {
-                MELSpriteInstanceListAddAll(&instances, map.layers.memory[layerIndex].sprites);
+            for (unsigned int layerIndex = 0; layerIndex < map.super.layers.count; layerIndex++) {
+                MELSpriteInstanceListAddAll(&instances, map.super.layers.memory[layerIndex].sprites);
             }
 
             MELOutputStreamWriteInt(outputStream, (int32_t) instances.count);
@@ -492,20 +492,20 @@ MELMutableMap MELMmkProjectFormatReadMap(MELProjectFormat * _Nonnull self, MELPr
     if (self->version >= 6) {
         map.name = MELInputStreamReadNullableString(inputStream);
     }
-    map.backgroundColor = MELColorMakeWithMELUInt8Color(self->class->readColor(self, project, inputStream));
+    map.super.backgroundColor = MELColorMakeWithMELUInt8Color(self->class->readColor(self, project, inputStream));
     map.palette = self->class->readPalette(self, project, inputStream);
 
-    map.size = MELIntSizeZero;
+    map.super.size = MELIntSizeZero;
 
     const int layerCount = MELInputStreamReadInt(inputStream);
-    map.layers = MELLayerListMakeWithInitialCapacity(layerCount);
+    map.super.layers = MELLayerListMakeWithInitialCapacity(layerCount);
     for (int index = 0; index < layerCount; index++) {
         MELLayer layer = self->class->readLayer(self, project, inputStream);
-        MELLayerListPush(&map.layers, layer);
+        MELLayerListPush(&map.super.layers, layer);
 
         int32_t layerWidth = layer.size.width / MELFloatMax(layer.scrollRate.x, 1.0f);
         int32_t layerHeight = layer.size.height / MELFloatMax(layer.scrollRate.y, 1.0f);
-        map.size = MELIntSizeMake(layerWidth > map.size.width ? layerWidth : map.size.width, layerHeight > map.size.height ? layerHeight : map.size.height);
+        map.super.size = MELIntSizeMake(layerWidth > map.super.size.width ? layerWidth : map.super.size.width, layerHeight > map.super.size.height ? layerHeight : map.super.size.height);
     }
 
     return map;
@@ -516,7 +516,7 @@ void MELMmkProjectFormatWriteMap(MELProjectFormat * _Nonnull self, MELProject pr
         int32_t index = -1;
         MELMutableMapList maps = project.mapGroups.count == 1 ? project.mapGroups.memory[0].maps : MELMutableMapListEmpty;
         for (unsigned int mapIndex = 0; index < maps.count; mapIndex++) {
-            if (maps.memory[mapIndex].layers.memory == map.layers.memory) {
+            if (maps.memory[mapIndex].super.layers.memory == map.super.layers.memory) {
                 index = mapIndex;
                 break;
             }
@@ -529,16 +529,16 @@ void MELMmkProjectFormatWriteMap(MELProjectFormat * _Nonnull self, MELProject pr
     }
     
     // Background color.
-    self->class->writeColor(self, project, outputStream, MELColorToMELUInt8Color(map.backgroundColor));
+    self->class->writeColor(self, project, outputStream, MELColorToMELUInt8Color(map.super.backgroundColor));
     
     // Palette.
     MELMmkProjectFormatWritePaletteAsReference(self, project, outputStream, map.palette);
 
     // Layers.
-    MELOutputStreamWriteInt(outputStream, (int32_t) map.layers.count);
+    MELOutputStreamWriteInt(outputStream, (int32_t) map.super.layers.count);
     
-    for (unsigned int index = 0; index < map.layers.count; index++) {
-        self->class->writeLayer(self, project, outputStream, map.layers.memory[index]);
+    for (unsigned int index = 0; index < map.super.layers.count; index++) {
+        self->class->writeLayer(self, project, outputStream, map.super.layers.memory[index]);
     }
 }
 

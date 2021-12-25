@@ -18,9 +18,7 @@
 #include "map.h"
 
 typedef struct {
-    MELIntSize size;
-    MELColor backgroundColor;
-    MELList(MELLayer) layers;
+    MELMap super;
     MELPalette * _Nonnull palette;
     char * _Nullable name;
 } MELMutableMap;
@@ -45,7 +43,5 @@ MELMutableMap MELMutableMapMakeWithMutableMap(MELMutableMap other);
  * @param self Instance to deinitialize.
  */
 void MELMutableMapDeinit(MELMutableMap * _Nonnull self);
-
-MELMap MELMutableMapToMELMap(MELMutableMap self);
 
 #endif /* mutablemap_h */

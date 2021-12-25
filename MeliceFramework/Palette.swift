@@ -37,6 +37,6 @@ public extension MELPaletteRef {
     }
 
     func paint(map: MELMutableMap, areaToRender: MELIntSize) -> UnsafeMutablePointer<UInt8>? {
-        return self.pointee.class.pointee.paintMap(self, MELMutableMapToMELMap(map), areaToRender)
+        return self.pointee.class.pointee.paintMap(self, map.super, areaToRender)
     }
 }

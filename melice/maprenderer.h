@@ -12,6 +12,7 @@
 #include "melstd.h"
 
 #include "map.h"
+#include "mutablemap.h"
 #include "textureatlas.h"
 #include "surfacearray.h"
 #include "point.h"
@@ -36,6 +37,7 @@ typedef struct {
  */
 MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap map, MELTextureAtlas atlas);
 MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnull renderer, MELMap map, MELTextureAtlas atlas);
+MELMapRenderer MELMapRendererMakeWithRendererAndMutableMapAndAtlas(MELRenderer * _Nonnull renderer, MELMutableMap mutableMap, MELTextureAtlas atlas);
 
 MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap map, MELColorPalette colorPalette);
 
