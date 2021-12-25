@@ -25,10 +25,42 @@ MELIntSize MELIntSizeMake(int32_t width, int32_t height) {
     };
 }
 
+MELBoolean MELSizeEquals(MELSize lhs, MELSize rhs) {
+    return lhs.width == rhs.width && lhs.height == rhs.height;
+}
+
 MELBoolean MELIntSizeEquals(MELIntSize lhs, MELIntSize rhs) {
     return lhs.width == rhs.width && lhs.height == rhs.height;
 }
 
 MELSize MELSizeAdd(MELSize lhs, MELSize rhs) {
     return (MELSize) {lhs.width + rhs.width, lhs.height + rhs.height};
+}
+
+MELIntSize MELIntSizeAdd(MELIntSize lhs, MELIntSize rhs) {
+    return (MELIntSize) {lhs.width + rhs.width, lhs.height + rhs.height};
+}
+
+MELSize MELSizeSubstract(MELSize lhs, MELSize rhs) {
+    return (MELSize) {lhs.width - rhs.width, lhs.height - rhs.height};
+}
+
+MELIntSize MELIntSizeSubstract(MELIntSize lhs, MELIntSize rhs) {
+    return (MELIntSize) {lhs.width - rhs.width, lhs.height - rhs.height};
+}
+
+MELSize MELSizeMultiply(MELSize lhs, MELSize rhs) {
+    return (MELSize) {lhs.width * rhs.width, lhs.height * rhs.height};
+}
+
+MELIntSize MELIntSizeMultiply(MELIntSize lhs, MELIntSize rhs) {
+    return (MELIntSize) {lhs.width * rhs.width, lhs.height * rhs.height};
+}
+
+MELSize MELSizeDivide(MELSize lhs, MELSize rhs) {
+    return (MELSize) {lhs.width / rhs.width, lhs.height / rhs.height};
+}
+
+MELIntSize MELIntSizeDivide(MELIntSize lhs, MELIntSize rhs) {
+    return (MELIntSize) {lhs.width / rhs.width, lhs.height / rhs.height};
 }

@@ -56,8 +56,26 @@ MELIntSize MELIntSizeMake(int32_t width, int32_t height);
  * @param rhs Right operand.
  * @return true if the sizes are equals, false otherwise.
  */
+MELBoolean MELSizeEquals(MELSize lhs, MELSize rhs);
+/**
+ * Compares the two given sizes.
+ *
+ * @param lhs Left operand.
+ * @param rhs Right operand.
+ * @return true if the sizes are equals, false otherwise.
+ */
 MELBoolean MELIntSizeEquals(MELIntSize lhs, MELIntSize rhs);
 
 MELSize MELSizeAdd(MELSize lhs, MELSize rhs);
+MELIntSize MELIntSizeAdd(MELIntSize lhs, MELIntSize rhs);
+
+MELSize MELSizeSubstract(MELSize lhs, MELSize rhs);
+MELIntSize MELIntSizeSubstract(MELIntSize lhs, MELIntSize rhs);
+
+MELSize MELSizeMultiply(MELSize lhs, MELSize rhs);
+MELIntSize MELIntSizeMultiply(MELIntSize lhs, MELIntSize rhs);
+
+MELSize MELSizeDivide(MELSize lhs, MELSize rhs);
+MELIntSize MELIntSizeDivide(MELIntSize lhs, MELIntSize rhs);
 
 #endif /* size_h */
