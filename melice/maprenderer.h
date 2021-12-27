@@ -18,6 +18,7 @@
 #include "point.h"
 #include "renderer.h"
 #include "colorpalette.h"
+#include "primitives.h"
 
 #define MELTileSize 32
 
@@ -65,6 +66,8 @@ void MELMapRendererDraw(MELMapRenderer self);
  * @param translation Translation to apply.
  */
 void MELMapRendererDrawTranslated(MELMapRenderer self, MELPoint translation);
+
+void MELMapRendererDrawTranslatedShowing(MELMapRenderer self, MELPoint translation, MELBooleanList visibilities);
 
 /**
  * Apply the given translation and draw the layers in the given range.

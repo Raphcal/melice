@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol MELList: RandomAccessCollection where Index == Int {
+public protocol MELList: RandomAccessCollection, CustomDebugStringConvertible where Index == Int {
     static var empty: Self { get }
 
     var memory: UnsafeMutablePointer<Element>? { get }
@@ -21,6 +21,17 @@ public protocol MELList: RandomAccessCollection where Index == Int {
 public extension MELList {
     var startIndex: Int { return 0 }
     var endIndex: Int { return count }
+
+    var debugDescription: String {
+        if count == 0 {
+            return "[]"
+        }
+        var value = "[\(self[0])"
+        for index in 1 ..< count {
+            value += ", \(self[index])"
+        }
+        return value + "]"
+    }
 
     subscript(index: Int) -> Iterator.Element {
         get { return memory![index] }
@@ -90,4 +101,29 @@ extension MELSpriteInstanceList: MELList {
 extension MELDecoratorRefList: MELList {
     public typealias Element = MELDecoratorRef?
     public static let empty = MELDecoratorRefListEmpty
+}
+extension MELBooleanList: EquatableMELList {
+    public typealias Element = MELBoolean
+    public static let empty = MELBooleanListEmpty
+
+    public subscript(index: Int) -> Iterator.Element {
+        get { return MELBooleanListGet(self, index) }
+        set(newValue) { MELBooleanListSet(&self, index, newValue) }
+    }
+}
+extension MELByteList: EquatableMELList {
+    public typealias Element = MELByte
+    public static let empty = MELByteListEmpty
+}
+extension GLfloatList: EquatableMELList {
+    public typealias Element = GLfloat
+    public static let empty = GLfloatListEmpty
+}
+extension GLubyteList: EquatableMELList {
+    public typealias Element = GLubyte
+    public static let empty = GLubyteListEmpty
+}
+extension GLintList: EquatableMELList {
+    public typealias Element = GLint
+    public static let empty = GLintListEmpty
 }

@@ -11,6 +11,7 @@ MELListImplement(GLfloat);
 MELListImplement(GLubyte);
 MELListImplement(GLint);
 MELListImplement(MELByte);
+MELListImplement(MELBoolean);
 
 void * _Nullable MELArrayCopy(const void * restrict _Nullable source, size_t size) {
     if (source == NULL || size == 0) {

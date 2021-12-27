@@ -117,6 +117,23 @@ void MELMapRendererDrawTranslated(MELMapRenderer self, MELPoint translation) {
     MELMapRendererDrawRangeTranslated(self, translation, 0, (unsigned int) self.map.layers.count);
 }
 
+void MELMapRendererDrawTranslatedShowing(MELMapRenderer self, MELPoint translation, MELBooleanList visibilities) {
+    MELRendererRefBindTexture(self.renderer, &self.atlas.texture);
+
+    assert(visibilities.count == self.map.layers.count);
+
+    MELSurfaceArray *layerSurfaces = self.layerSurfaces;
+    MELLayer *layers = self.map.layers.memory;
+    for (unsigned int index = 0; index < self.map.layers.count; index++) {
+        if (visibilities.memory[index]) {
+            MELRendererRefTranslateToTopLeft(self.renderer, MELPointMultiply(translation, layers[index].scrollRate));
+
+            MELSurfaceArray layerSurface = layerSurfaces[index];
+            MELRendererRefDrawWithVertexPointerAndTexCoordPointer(self.renderer, MELCoordinatesByVertex, (GLfloat *) layerSurface.vertex.memory, MELCoordinatesByTexture, (GLfloat *) layerSurface.texture.memory, layerSurface.count);
+        }
+    }
+}
+
 void MELMapRendererDrawRangeTranslated(MELMapRenderer self, MELPoint translation, unsigned int fromLayer, unsigned int toLayer) {
     MELRendererRefBindTexture(self.renderer, &self.atlas.texture);
 

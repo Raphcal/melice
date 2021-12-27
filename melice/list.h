@@ -45,6 +45,7 @@ void type##ListGrow(type##List * _Nonnull self, size_t size);\
 void type##ListEnsureCapacity(type##List * _Nonnull self, size_t required);\
 void type##ListPush(type##List * _Nonnull self, type element);\
 type type##ListPop(type##List * _Nonnull self);\
+type type##ListGet(type##List self, size_t index);\
 type type##ListSet(type##List * _Nonnull self, size_t index, type element);\
 void type##ListAddAll(type##List * _Nonnull self, type##List other);\
 void type##ListInsert(type##List * _Nonnull self, size_t index, type element);\
@@ -116,6 +117,9 @@ void type##ListPush(type##List * _Nonnull self, type element) {\
 }\
 type type##ListPop(type##List * _Nonnull self) {\
     return self->memory[--self->count];\
+}\
+type type##ListGet(type##List self, size_t index) {\
+    return self.memory[index];\
 }\
 type type##ListSet(type##List * _Nonnull self, size_t index, type element) {\
     if (index >= self->count) { \
