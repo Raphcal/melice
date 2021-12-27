@@ -7,6 +7,10 @@
 
 import Foundation
 
+#if os(iOS)
+import UIKit
+#endif
+
 extension MELPoint: Equatable {
     /// Compares the two given point.
     /// - returns: `true` if the points are the same, `false` otherwise.

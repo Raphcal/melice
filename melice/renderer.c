@@ -111,9 +111,11 @@ void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceA
     if (surfaceArray.color.count != 0) {
         glColorPointer(MELCoordinatesByColor, GL_UNSIGNED_BYTE, 0, surfaceArray.color.memory);
     }
+#if GL_VERSION_2_1
     if (surfaceArray.index.count != 0) {
         glIndexPointer(GL_INT, 0, surfaceArray.index.memory);
     }
+#endif
     glDrawArrays(GL_TRIANGLE_STRIP, 0, surfaceArray.count);
 }
 
@@ -161,6 +163,7 @@ void MELRendererRefSetDrawMode(MELRenderer * _Nonnull self, MELDrawMode drawMode
         glEnableClientState(GL_COLOR_ARRAY);
     }
 
+#if GL_VERSION_2_1
     const MELBoolean indexIsEnabled = currentDrawMode & MELDrawModeIndex;
     const MELBoolean wantIndexToBeEnabled = drawMode & MELDrawModeIndex;
     if (indexIsEnabled && !wantIndexToBeEnabled) {
@@ -168,6 +171,7 @@ void MELRendererRefSetDrawMode(MELRenderer * _Nonnull self, MELDrawMode drawMode
     } else if (!indexIsEnabled && wantIndexToBeEnabled) {
         glEnableClientState(GL_INDEX_ARRAY);
     }
+#endif
 
     self->drawMode = drawMode;
 }
