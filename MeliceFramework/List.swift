@@ -110,6 +110,27 @@ extension MELBooleanList: EquatableMELList {
         get { return MELBooleanListGet(self, index) }
         set(newValue) { MELBooleanListSet(&self, index, newValue) }
     }
+
+    public init(_ array: [MELBoolean]) {
+        self.init(memory: nil, count: 0, capacity: 0)
+        if !array.isEmpty {
+            MELBooleanListEnsureCapacity(&self, array.count)
+            self.count = array.count
+            for index in 0 ..< array.count {
+                self[index] = array[index]
+            }
+        }
+    }
+
+    public mutating func mutateAndSet(_ value: MELBoolean, at index: Int) {
+        var newSelf = MELBooleanListMakeWithList(self)
+        newSelf[index] = value
+        var oldSelf = self
+        self = newSelf
+        DispatchQueue.main.async {
+            MELBooleanListDeinit(&oldSelf)
+        }
+    }
 }
 extension MELByteList: EquatableMELList {
     public typealias Element = MELByte
