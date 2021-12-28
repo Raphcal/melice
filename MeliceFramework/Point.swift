@@ -109,6 +109,10 @@ extension MELIntPoint: AdditiveArithmetic {
     public static func - (lhs: MELIntPoint, rhs: MELIntPoint) -> MELIntPoint {
         return MELIntPointSubstract(lhs, rhs)
     }
+
+    public static func / (lhs: MELIntPoint, rhs: MELIntSize) -> MELIntPoint {
+        return MELIntPoint(x: lhs.x / rhs.width, y: lhs.y / rhs.height)
+    }
 }
 
 public extension MELIntPoint {

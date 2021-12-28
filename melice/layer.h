@@ -67,4 +67,10 @@ void MELLayerResize(MELLayer * _Nonnull self, MELIntSize newSize);
 
 void MELLayerRendererToSurfaceArray(MELLayer self, MELSurfaceArray * _Nonnull destination, MELTextureAtlas textureAtlas);
 
+void MELLayerCopyRectangleFromOtherLayer(MELLayer self, MELIntPoint targetTopLeft, const MELLayer source, MELIntRectangle areaToCopy);
+
+void MELLayerMergeRectangleFromOtherLayer(MELLayer self, MELIntPoint targetTopLeft, const MELLayer source, MELIntRectangle areaToMerge);
+
+void MELLayerClearRectangle(MELLayer self, MELIntRectangle areaToClear);
+
 #endif /* layer_h */

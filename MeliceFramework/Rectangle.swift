@@ -13,8 +13,21 @@ public extension MELRectangle {
     }
 }
 
+extension MELRectangle: Equatable {
+    public static func == (lhs: MELRectangle, rhs: MELRectangle) -> Bool {
+        return MELRectangleEquals(lhs, rhs)
+    }
+}
+
 public extension MELIntRectangle {
     init(x: Int32, y: Int32, width: Int32, height: Int32) {
         self.init(origin: MELIntPoint(x: x, y: y), size: MELIntSize(width: width, height: height))
     }
 }
+
+extension MELIntRectangle: Equatable {
+    public static func == (lhs: MELIntRectangle, rhs: MELIntRectangle) -> Bool {
+        return MELIntRectangleEquals(lhs, rhs)
+    }
+}
+

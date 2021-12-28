@@ -113,3 +113,40 @@ void MELLayerRendererToSurfaceArray(MELLayer self, MELSurfaceArray * _Nonnull de
         }
     }
 }
+
+void MELLayerCopyRectangleFromOtherLayer(MELLayer self, MELIntPoint targetTopLeft, const MELLayer source, MELIntRectangle areaToCopy) {
+    int32_t *targetRow = self.tiles + targetTopLeft.x + targetTopLeft.y * self.size.width;
+    int32_t *sourceRow = source.tiles + areaToCopy.origin.x + areaToCopy.origin.y * source.size.width;
+    size_t copySize = sizeof(int32_t) * areaToCopy.size.width;
+    for (int32_t y = 0; y < areaToCopy.size.height; y++) {
+        memcpy(targetRow, sourceRow, copySize);
+        targetRow += self.size.width;
+        sourceRow += self.size.width;
+    }
+}
+
+void MELLayerMergeRectangleFromOtherLayer(MELLayer self, MELIntPoint targetTopLeft, const MELLayer source, MELIntRectangle areaToMerge) {
+    int32_t *targetRow = self.tiles + targetTopLeft.x + targetTopLeft.y * self.size.width;
+    int32_t *sourceRow = source.tiles + areaToMerge.origin.x + areaToMerge.origin.y * source.size.width;
+    int32_t count = areaToMerge.size.width * areaToMerge.size.height;
+    int32_t x, y, tile;
+    for (int32_t index = 0; index < count; index++) {
+        x = index % areaToMerge.size.width;
+        y = index / areaToMerge.size.width;
+        tile = sourceRow[x + y * source.size.width];
+        if (tile != -1) {
+            targetRow[x + y * self.size.width] = tile;
+        }
+    }
+}
+
+void MELLayerClearRectangle(MELLayer self, MELIntRectangle areaToClear) {
+    int32_t *row = self.tiles + areaToClear.origin.x + areaToClear.origin.y * self.size.width;
+    int32_t count = areaToClear.size.width * areaToClear.size.height;
+    int32_t x, y;
+    for (int32_t index = 0; index < count; index++) {
+        x = index % areaToClear.size.width;
+        y = index / areaToClear.size.width;
+        row[x + y * self.size.width] = -1;
+    }
+}

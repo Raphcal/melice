@@ -114,6 +114,7 @@ GLfloat MELRectangleOriginIsCenterGetTop(MELRectangle self);
  */
 GLfloat MELRectangleOriginIsCenterGetBottom(MELRectangle self);
 
+MELBoolean MELRectangleEquals(MELRectangle lhs, MELRectangle rhs);
 MELBoolean MELIntRectangleEquals(MELIntRectangle lhs, MELIntRectangle rhs);
 
 MELQuadrilateral MELRectangleRotate(MELRectangle self, GLfloat rotation);

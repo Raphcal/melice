@@ -72,6 +72,13 @@ GLfloat MELRectangleOriginIsCenterGetBottom(MELRectangle self) {
     return self.origin.y + self.size.height / 2;
 }
 
+MELBoolean MELRectangleEquals(MELRectangle lhs, MELRectangle rhs) {
+    return lhs.origin.x == rhs.origin.x &&
+        lhs.origin.y == rhs.origin.y &&
+        lhs.size.width == rhs.size.width &&
+        lhs.size.height == rhs.size.height;
+}
+
 MELBoolean MELIntRectangleEquals(MELIntRectangle lhs, MELIntRectangle rhs) {
     return lhs.origin.x == rhs.origin.x &&
         lhs.origin.y == rhs.origin.y &&
