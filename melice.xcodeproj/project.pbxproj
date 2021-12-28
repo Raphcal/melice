@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641FB72D277B46E3006DD7C3 /* drawmode.h in Headers */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		641FB72E277B46E3006DD7C3 /* drawmode.h in Headers */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		641FB72F277B5DA5006DD7C3 /* imagepaletteimage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64F5D14E27600084000C3967 /* imagepaletteimage.h */; };
+		641FB730277B5DA5006DD7C3 /* drawmode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; };
+		641FB731277B5DC9006DD7C3 /* imagepaletteimage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64F5D14E27600084000C3967 /* imagepaletteimage.h */; };
+		641FB732277B5DC9006DD7C3 /* drawmode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; };
+		641FB733277B5DD4006DD7C3 /* drawmode.h in Headers */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6421EA1E2614681200952E74 /* melice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; };
 		6421EA1F2614681200952E74 /* melstd.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; };
 		6421EA202614681200952E74 /* point.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; };
@@ -613,6 +620,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				641FB72F277B5DA5006DD7C3 /* imagepaletteimage.h in CopyFiles */,
+				641FB730277B5DA5006DD7C3 /* drawmode.h in CopyFiles */,
 				643EEC8A275D5FA20039FDAB /* mapgroup.h in CopyFiles */,
 				643EEC732757CF470039FDAB /* atlaspalette.h in CopyFiles */,
 				643EEC41275574690039FDAB /* keyvaluetable.h in CopyFiles */,
@@ -697,6 +706,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				641FB731277B5DC9006DD7C3 /* imagepaletteimage.h in CopyFiles */,
+				641FB732277B5DC9006DD7C3 /* drawmode.h in CopyFiles */,
 				643EEC8B275D5FB40039FDAB /* mapgroup.h in CopyFiles */,
 				643EEC722757CF380039FDAB /* atlaspalette.h in CopyFiles */,
 				643EEC43275574850039FDAB /* keyvaluetable.h in CopyFiles */,
@@ -778,6 +789,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		641FB72C277B46E3006DD7C3 /* drawmode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawmode.h; sourceTree = "<group>"; };
 		6421E8D52614480000952E74 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		642B298B25FD340C00183D42 /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		642B299325FD342100183D42 /* melice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melice.h; sourceTree = "<group>"; };
@@ -1239,6 +1251,7 @@
 				644872562726B86600DEE2C1 /* bitmap.c */,
 				642B2A3F25FD448B00183D42 /* color.h */,
 				642B2A4825FD448B00183D42 /* color.c */,
+				641FB72C277B46E3006DD7C3 /* drawmode.h */,
 				6460F0022746E5010040F95A /* packmap.h */,
 				6460F0032746E5010040F95A /* packmap.c */,
 				642B2A3D25FD448B00183D42 /* renderer.h */,
@@ -1558,6 +1571,7 @@
 				6460F00D274BAC5C0040F95A /* outputstream.h in Headers */,
 				643EEC6E2757ABD30039FDAB /* atlaspalette.h in Headers */,
 				643EEC85275D50B70039FDAB /* mapgroup.h in Headers */,
+				641FB72D277B46E3006DD7C3 /* drawmode.h in Headers */,
 				642B2AC225FD4A6900183D42 /* surfacearray.h in Headers */,
 				642B29D625FD444600183D42 /* random.h in Headers */,
 			);
@@ -1643,6 +1657,7 @@
 				643EECF3275E6A6C0039FDAB /* primitives.h in Headers */,
 				64F5D1722760F81D000C3967 /* imagepaletteimage.h in Headers */,
 				643EECF4275E6A6C0039FDAB /* random.h in Headers */,
+				641FB733277B5DD4006DD7C3 /* drawmode.h in Headers */,
 				643EECF5275E6A6C0039FDAB /* miniz.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1724,6 +1739,7 @@
 				6460F00E274BAC5C0040F95A /* outputstream.h in Headers */,
 				643EEC6F2757ABD30039FDAB /* atlaspalette.h in Headers */,
 				643EEC86275D50B70039FDAB /* mapgroup.h in Headers */,
+				641FB72E277B46E3006DD7C3 /* drawmode.h in Headers */,
 				64CB6708271F514300663A2E /* random.h in Headers */,
 				64CB6709271F514300663A2E /* meltime.h in Headers */,
 			);

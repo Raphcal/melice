@@ -84,7 +84,6 @@ MELSurface MELSurfaceArrayAvailableSurface(MELSurfaceArray * _Nonnull self) {
     if (self->pool.count > 0) {
         return MELListPop(self->pool);
     }
-    // TODO: Optimiser le code
     MELList(GLfloat) *vertex = &self->vertex;
     MELList(GLfloat) *texture = &self->texture;
     MELList(GLubyte) *color = &self->color;

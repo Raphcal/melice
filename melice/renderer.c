@@ -95,24 +95,24 @@ void MELRendererRefDrawWithVertexPointerTexCoordPointerAndColorPointer(MELRender
 }
 
 void MELRendererDrawWithSurfaceArray(MELSurfaceArray surfaceArray) {
-    MELRendererRefDrawWithSurfaceArray(&defaultRenderer, surfaceArray);
+    MELRendererRefDrawWithSurfaceArray(&defaultRenderer, surfaceArray, MELDrawModeTexture);
 }
 
 uint8_t MELRendererDrawModeMake(MELBoolean enableTexture, MELBoolean enableColor, MELBoolean enableIndex) {
     return (enableTexture == true) | ((enableColor == true) << 1) | ((enableIndex == true) << 2);
 }
 
-void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceArray surfaceArray) {
-    MELRendererRefSetDrawMode(self, MELRendererDrawModeMake(surfaceArray.texture.count != 0, surfaceArray.color.count != 0, surfaceArray.index.count != 0));
+void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceArray surfaceArray, MELDrawMode drawMode) {
+    MELRendererRefSetDrawMode(self, drawMode);
     glVertexPointer(MELCoordinatesByVertex, GL_FLOAT, 0, surfaceArray.vertex.memory);
-    if (surfaceArray.texture.count != 0) {
+    if (drawMode & MELDrawModeTexture) {
         glTexCoordPointer(MELCoordinatesByTexture, GL_FLOAT, 0, surfaceArray.texture.memory);
     }
-    if (surfaceArray.color.count != 0) {
+    if (drawMode & MELDrawModeColor) {
         glColorPointer(MELCoordinatesByColor, GL_UNSIGNED_BYTE, 0, surfaceArray.color.memory);
     }
 #if GL_VERSION_2_1
-    if (surfaceArray.index.count != 0) {
+    if (drawMode & MELDrawModeIndex) {
         glIndexPointer(GL_INT, 0, surfaceArray.index.memory);
     }
 #endif

@@ -17,14 +17,7 @@
 #include "point.h"
 #include "rectangle.h"
 #include "size.h"
-
-typedef enum {
-    MELDrawModeUnset = 0,
-    MELDrawModeTexture = 1,
-    MELDrawModeColor = 2,
-    MELDrawModeTextureAndColor = 3,
-    MELDrawModeIndex = 4
-} MELDrawMode;
+#include "drawmode.h"
 
 typedef struct {
     MELPoint lastTranslation;
@@ -182,8 +175,9 @@ void MELRendererDrawWithSurfaceArray(MELSurfaceArray surfaceArray);
  *
  * @param self Renderer instance.
  * @param surfaceArray Surfaces to draw.
+ * @param drawMode Mode to use.
  */
-void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceArray surfaceArray);
+void MELRendererRefDrawWithSurfaceArray(MELRenderer * _Nonnull self, MELSurfaceArray surfaceArray, MELDrawMode drawMode);
 
 /**
  * Clear the screen with the given color.

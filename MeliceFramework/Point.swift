@@ -72,6 +72,9 @@ extension MELPoint: AdditiveArithmetic {
     public static func * (lhs: MELPoint, rhs: GLfloat) -> MELPoint {
         return MELPointMultiplyByValue(lhs, rhs)
     }
+    public static func * (lhs: MELPoint, rhs: MELSize) -> MELPoint {
+        return MELPoint(x: lhs.x * rhs.width, y: lhs.y * rhs.height)
+    }
     /// Divides the given points.
     /// - returns: A point whose coordinates are `lhs.x / rhs.x` and `lhs.y / rhs.y`.
     public static func / (lhs: MELPoint, rhs: MELPoint) -> MELPoint {
@@ -79,6 +82,9 @@ extension MELPoint: AdditiveArithmetic {
     }
     public static func / (lhs: MELPoint, rhs: MELIntSize) -> MELPoint {
         return MELPoint(x: lhs.x / GLfloat(rhs.width), y: lhs.y / GLfloat(rhs.height))
+    }
+    public static func / (lhs: MELPoint, rhs: MELSize) -> MELPoint {
+        return MELPoint(x: lhs.x / rhs.width, y: lhs.y / rhs.height)
     }
 }
 
