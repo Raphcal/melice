@@ -110,3 +110,27 @@ MELQuadrilateral MELRectangleRotateWithPivot(MELRectangle self, GLfloat rotation
     }
     return MELQuadrilateralMake(vertices[0], vertices[1], vertices[2], vertices[3]);
 }
+
+MELBoolean MELRectangleContainsPoint(MELRectangle self, MELPoint point) {
+    return point.x >= self.origin.x &&
+        point.x < self.origin.x + self.size.width &&
+        point.y >= self.origin.y &&
+        point.y < self.origin.y + self.size.height;
+}
+MELBoolean MELIntRectangleContainsPoint(MELIntRectangle self, MELIntPoint point) {
+    return point.x >= self.origin.x &&
+        point.x < self.origin.x + self.size.width &&
+        point.y >= self.origin.y &&
+        point.y < self.origin.y + self.size.height;
+}
+
+MELBoolean MELRectangleIntersectsWithRectangle(MELRectangle self, MELRectangle other) {
+    const MELBoolean x = fabsf(self.origin.x + self.size.width / 2 - (other.origin.x + other.size.width / 2)) <= (self.size.width + other.size.width) / 2;
+    const MELBoolean y = fabsf(self.origin.y + self.size.height / 2 - (other.origin.y + other.size.height / 2)) <= (self.size.height + other.size.height) / 2;
+    return x && y;
+}
+MELBoolean MELIntRectangleIntersectsWithRectangle(MELIntRectangle self, MELIntRectangle other) {
+    const MELBoolean x = abs(self.origin.x + self.size.width / 2 - (other.origin.x + other.size.width / 2)) <= (self.size.width + other.size.width) / 2;
+    const MELBoolean y = abs(self.origin.y + self.size.height / 2 - (other.origin.y + other.size.height / 2)) <= (self.size.height + other.size.height) / 2;
+    return x && y;
+}

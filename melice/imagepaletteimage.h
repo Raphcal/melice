@@ -21,6 +21,7 @@ typedef struct {
 
 MELListDefine(MELImagePaletteImage);
 
+MELImagePaletteImage MELImagePaletteImageMakeWithSize(MELIntSize size);
 MELImagePaletteImage MELImagePaletteImageMakeWithImagePaletteImage(MELImagePaletteImage other, size_t tileCount);
 
 void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self);

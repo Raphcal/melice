@@ -14,6 +14,8 @@
 		641FB731277B5DC9006DD7C3 /* imagepaletteimage.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64F5D14E27600084000C3967 /* imagepaletteimage.h */; };
 		641FB732277B5DC9006DD7C3 /* drawmode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; };
 		641FB733277B5DD4006DD7C3 /* drawmode.h in Headers */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		641FB736277C4F9F006DD7C3 /* SurfaceArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641FB735277C4F9F006DD7C3 /* SurfaceArray.swift */; };
+		641FB738277C52F4006DD7C3 /* ImagePaletteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641FB737277C52F4006DD7C3 /* ImagePaletteImage.swift */; };
 		6421EA1E2614681200952E74 /* melice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; };
 		6421EA1F2614681200952E74 /* melstd.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; };
 		6421EA202614681200952E74 /* point.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; };
@@ -790,6 +792,8 @@
 
 /* Begin PBXFileReference section */
 		641FB72C277B46E3006DD7C3 /* drawmode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawmode.h; sourceTree = "<group>"; };
+		641FB735277C4F9F006DD7C3 /* SurfaceArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceArray.swift; sourceTree = "<group>"; };
+		641FB737277C52F4006DD7C3 /* ImagePaletteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePaletteImage.swift; sourceTree = "<group>"; };
 		6421E8D52614480000952E74 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		642B298B25FD340C00183D42 /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		642B299325FD342100183D42 /* melice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melice.h; sourceTree = "<group>"; };
@@ -1006,6 +1010,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		641FB734277C4F90006DD7C3 /* Surface */ = {
+			isa = PBXGroup;
+			children = (
+				641FB735277C4F9F006DD7C3 /* SurfaceArray.swift */,
+			);
+			name = Surface;
+			sourceTree = "<group>";
+		};
 		6421E77C2613A84300952E74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1370,6 +1382,7 @@
 				64F5D1752760FB86000C3967 /* Map */,
 				64F5D17B276105DC000C3967 /* Project */,
 				645260572614FB2300BB78AC /* Scene */,
+				641FB734277C4F90006DD7C3 /* Surface */,
 				64F5D1782760FDC0000C3967 /* Util */,
 				645260402614F88D00BB78AC /* MeliceFramework.h */,
 				645260412614F88D00BB78AC /* Info.plist */,
@@ -1469,6 +1482,7 @@
 				64F5D1762760FBBB000C3967 /* Layer.swift */,
 				64F5D18027610A4D000C3967 /* MutableMap.swift */,
 				64F5D18227610A69000C3967 /* Palette.swift */,
+				641FB737277C52F4006DD7C3 /* ImagePaletteImage.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -2002,6 +2016,7 @@
 				643EECF7275E8D7D0039FDAB /* quadrilateral.c in Sources */,
 				643EECF8275E8D7D0039FDAB /* rectangle.c in Sources */,
 				643EECF9275E8D7D0039FDAB /* size.c in Sources */,
+				641FB738277C52F4006DD7C3 /* ImagePaletteImage.swift in Sources */,
 				643EECFA275E8D7D0039FDAB /* buttonstate.c in Sources */,
 				64F5D18127610A4D000C3967 /* MutableMap.swift in Sources */,
 				643EECFB275E8D7D0039FDAB /* buttonmapping.c in Sources */,
@@ -2071,6 +2086,7 @@
 				64F5D1772760FBBB000C3967 /* Layer.swift in Sources */,
 				643EED31275E8D7E0039FDAB /* hashmap.c in Sources */,
 				643EED32275E8D7E0039FDAB /* melmath.c in Sources */,
+				641FB736277C4F9F006DD7C3 /* SurfaceArray.swift in Sources */,
 				643EED33275E8D7E0039FDAB /* melstring.c in Sources */,
 				643EED34275E8D7E0039FDAB /* meltime.c in Sources */,
 				643EED35275E8D7E0039FDAB /* operation.c in Sources */,

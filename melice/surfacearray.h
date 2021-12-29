@@ -50,6 +50,8 @@ void MELSurfaceArrayAppendTexturedQuad(MELSurfaceArray * _Nonnull self, MELRecta
 
 void MELSurfaceArrayAppendColoredQuad(MELSurfaceArray * _Nonnull self, MELRectangle vertices, MELUInt8Color color);
 
+void MELSurfaceArrayAppendTexturedColoredQuad(MELSurfaceArray * _Nonnull self, MELRectangle vertices, int tile, MELTextureAtlas atlas, MELUInt8Color color);
+
 /**
  * Fill the entire memory of the given surface with zeroes.
  * Cursor value is untouched.

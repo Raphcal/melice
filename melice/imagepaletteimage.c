@@ -11,6 +11,14 @@
 
 MELListImplement(MELImagePaletteImage);
 
+MELImagePaletteImage MELImagePaletteImageMakeWithSize(MELIntSize size) {
+    MELImagePaletteImage self;
+    self.tiles = malloc(sizeof(int32_t) * size.width * size.height);
+    self.size = size;
+    self.decorators = MELDecoratorRefListEmpty;
+    return self;
+}
+
 MELImagePaletteImage MELImagePaletteImageMakeWithImagePaletteImage(MELImagePaletteImage other, size_t tileCount) {
     MELImagePaletteImage self = other;
     self.tiles = MELArrayCopy(other.tiles, sizeof(int) * tileCount);

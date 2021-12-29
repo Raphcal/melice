@@ -71,6 +71,20 @@ void MELSurfaceArrayAppendColoredQuad(MELSurfaceArray * _Nonnull self, MELRectan
     MELListAppendColor(colors, color);
 }
 
+void MELSurfaceArrayAppendTexturedColoredQuad(MELSurfaceArray * _Nonnull self, MELRectangle vertices, int tile, MELTextureAtlas atlas, MELUInt8Color color) {
+    assert(tile >= 0 && tile < atlas.frameCount);
+    self->count += MELVertexesByQuad;
+    MELListAppendRectangle(&self->vertex, MELRectangleMake(vertices.origin.x, -vertices.origin.y, vertices.size.width, -vertices.size.height));
+    MELListAppendRectangle(&self->texture, atlas.frames[tile]);
+    MELList(GLubyte) *colors = &self->color;
+    MELListAppendColor(colors, color);
+    MELListAppendColor(colors, color);
+    MELListAppendColor(colors, color);
+    MELListAppendColor(colors, color);
+    MELListAppendColor(colors, color);
+    MELListAppendColor(colors, color);
+}
+
 void MELSurfaceArrayClear(MELSurfaceArray * _Nonnull self) {
     self->count = 0;
     self->vertex.count = 0;

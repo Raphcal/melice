@@ -16,6 +16,7 @@
 #include "textureatlas.h"
 #include "spriteinstance.h"
 #include "list.h"
+#include "imagepaletteimage.h"
 
 typedef struct {
     char * _Nullable name;
@@ -31,6 +32,8 @@ MELListDefine(MELLayer);
 MELLayer MELLayerMakeWithSize(MELIntSize size);
 
 MELLayer MELLayerMakeWithLayer(MELLayer other);
+
+MELLayer MELLayerMakeWithImagePaletteImage(MELImagePaletteImage image);
 
 /**
  * Returns a layer with the content of the given input stream.

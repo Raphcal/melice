@@ -121,4 +121,10 @@ MELQuadrilateral MELRectangleRotate(MELRectangle self, GLfloat rotation);
 
 MELQuadrilateral MELRectangleRotateWithPivot(MELRectangle self, GLfloat rotation, MELPoint pivot);
 
+MELBoolean MELRectangleContainsPoint(MELRectangle self, MELPoint point);
+MELBoolean MELIntRectangleContainsPoint(MELIntRectangle self, MELIntPoint point);
+
+MELBoolean MELRectangleIntersectsWithRectangle(MELRectangle self, MELRectangle other);
+MELBoolean MELIntRectangleIntersectsWithRectangle(MELIntRectangle self, MELIntRectangle other);
+
 #endif /* rectangle_h */

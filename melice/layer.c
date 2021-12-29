@@ -44,6 +44,13 @@ MELLayer MELLayerMakeWithInputStream(MELInputStream * _Nonnull inputStream) {
     return self;
 }
 
+MELLayer MELLayerMakeWithImagePaletteImage(MELImagePaletteImage image) {
+    MELLayer self;
+    self.size = image.size;
+    self.tiles = image.tiles;
+    return self;
+}
+
 void MELLayerDeinit(MELLayer * _Nonnull self) {
     free(self->name);
     self->name = NULL;
