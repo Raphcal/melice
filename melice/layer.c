@@ -128,7 +128,7 @@ void MELLayerCopyRectangleFromOtherLayer(MELLayer self, MELIntPoint targetTopLef
     for (int32_t y = 0; y < areaToCopy.size.height; y++) {
         memcpy(targetRow, sourceRow, copySize);
         targetRow += self.size.width;
-        sourceRow += self.size.width;
+        sourceRow += source.size.width;
     }
 }
 

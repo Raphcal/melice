@@ -16,6 +16,7 @@
 		641FB733277B5DD4006DD7C3 /* drawmode.h in Headers */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		641FB736277C4F9F006DD7C3 /* SurfaceArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641FB735277C4F9F006DD7C3 /* SurfaceArray.swift */; };
 		641FB738277C52F4006DD7C3 /* ImagePaletteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641FB737277C52F4006DD7C3 /* ImagePaletteImage.swift */; };
+		641FB73A277D0828006DD7C3 /* DrawMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641FB739277D0828006DD7C3 /* DrawMode.swift */; };
 		6421EA1E2614681200952E74 /* melice.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; };
 		6421EA1F2614681200952E74 /* melstd.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; };
 		6421EA202614681200952E74 /* point.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; };
@@ -794,6 +795,7 @@
 		641FB72C277B46E3006DD7C3 /* drawmode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawmode.h; sourceTree = "<group>"; };
 		641FB735277C4F9F006DD7C3 /* SurfaceArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceArray.swift; sourceTree = "<group>"; };
 		641FB737277C52F4006DD7C3 /* ImagePaletteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePaletteImage.swift; sourceTree = "<group>"; };
+		641FB739277D0828006DD7C3 /* DrawMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawMode.swift; sourceTree = "<group>"; };
 		6421E8D52614480000952E74 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		642B298B25FD340C00183D42 /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		642B299325FD342100183D42 /* melice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melice.h; sourceTree = "<group>"; };
@@ -1014,6 +1016,7 @@
 			isa = PBXGroup;
 			children = (
 				641FB735277C4F9F006DD7C3 /* SurfaceArray.swift */,
+				641FB739277D0828006DD7C3 /* DrawMode.swift */,
 			);
 			name = Surface;
 			sourceTree = "<group>";
@@ -2036,6 +2039,7 @@
 				643EED07275E8D7D0039FDAB /* maprenderer.c in Sources */,
 				643EED08275E8D7D0039FDAB /* palette.c in Sources */,
 				64F5D16E2760F6AD000C3967 /* Quadrilateral.swift in Sources */,
+				641FB73A277D0828006DD7C3 /* DrawMode.swift in Sources */,
 				643EED09275E8D7D0039FDAB /* colorpalette.c in Sources */,
 				643EED0A275E8D7D0039FDAB /* imagepalette.c in Sources */,
 				643EED0B275E8D7D0039FDAB /* atlaspalette.c in Sources */,

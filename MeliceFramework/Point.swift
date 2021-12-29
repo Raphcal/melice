@@ -117,6 +117,7 @@ extension MELIntPoint: AdditiveArithmetic {
     public static func + (lhs: MELIntPoint, rhs: MELIntPoint) -> MELIntPoint {
         return MELIntPointAdd(lhs, rhs)
     }
+
     /// Substracts the given points.
     /// - returns: A point whose coordinates are `lhs.x - rhs.x` and `lhs.y - rhs.y`.
     public static func - (lhs: MELIntPoint, rhs: MELIntPoint) -> MELIntPoint {
@@ -145,5 +146,9 @@ public extension MELIntPoint {
 
     init(_ point: CGPoint) {
         self.init(x: Int32(point.x), y: Int32(point.y))
+    }
+
+    static func += (lhs: inout MELIntPoint, rhs: MELPoint) {
+        lhs = MELIntPoint(x: lhs.x + Int32(rhs.x), y: lhs.y + Int32(rhs.y))
     }
 }
