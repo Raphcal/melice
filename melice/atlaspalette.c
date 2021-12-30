@@ -74,11 +74,12 @@ MELIntRectangle * _Nonnull MELAtlasPaletteTileAtIndex(MELAtlasPalette * _Nonnull
 }
 
 const MELPaletteClass MELAtlasPaletteClass = {
-    (MELPaletteRef(*)(MELPaletteRef)) &MELAtlasPaletteRefMakeWithColorPaletteRef,
-    (void(*)(MELPalette *)) &MELAtlasPaletteDeinit,
-    (uint8_t *(*)(MELPalette *, unsigned int)) &MELAtlasPalettePaintTile,
-    (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELAtlasPalettePaintTileToBuffer,
-    (uint8_t *(*)(MELPalette *, MELMap, MELIntSize)) &MELAtlasPalettePaintMap,
-    (void *(*)(MELPalette *, unsigned int)) &MELAtlasPaletteTileAtIndex
+    .initWithPaletteRef = (MELPaletteRef(*)(MELPaletteRef)) &MELAtlasPaletteRefMakeWithColorPaletteRef,
+    .deinit = (void(*)(MELPalette *)) &MELAtlasPaletteDeinit,
+    .paintTile = (uint8_t *(*)(MELPalette *, unsigned int)) &MELAtlasPalettePaintTile,
+    .paintTileToBuffer = (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELAtlasPalettePaintTileToBuffer,
+    .paintImage =  NULL,
+    .paintMap = (uint8_t *(*)(MELPalette *, MELMap, MELIntSize)) &MELAtlasPalettePaintMap,
+    .tileAtIndex = (void *(*)(MELPalette *, unsigned int)) &MELAtlasPaletteTileAtIndex
 };
 

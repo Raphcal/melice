@@ -12,14 +12,15 @@
 #include "list.h"
 
 typedef uintptr_t MELPointer;
-
 typedef uint8_t MELByte;
+typedef void * MELRef;
 
 MELListDefine(GLfloat);
 MELListDefine(GLubyte);
 MELListDefine(GLint);
 MELListDefine(MELByte);
 MELListDefine(MELBoolean);
+MELListDefine(MELRef);
 
 void * _Nullable MELArrayCopy(const void * restrict _Nullable source, size_t size);
 

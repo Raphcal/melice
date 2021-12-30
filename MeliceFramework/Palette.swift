@@ -39,4 +39,8 @@ public extension MELPaletteRef {
     func paint(map: MELMutableMap, areaToRender: MELIntSize) -> UnsafeMutablePointer<UInt8>? {
         return self.pointee.class.pointee.paintMap(self, map.super, areaToRender)
     }
+
+    func tileRef(at index: UInt32) -> MELRef {
+        return self.pointee.class.pointee.tileAtIndex(self, index)
+    }
 }

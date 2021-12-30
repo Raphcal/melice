@@ -21,6 +21,8 @@ typedef struct {
 
 MELListDefine(MELImagePaletteImage);
 
+extern const MELImagePaletteImage MELImagePaletteImageEmpty;
+
 MELImagePaletteImage MELImagePaletteImageMakeWithSize(MELIntSize size);
 MELImagePaletteImage MELImagePaletteImageMakeWithImagePaletteImage(MELImagePaletteImage other, size_t tileCount);
 

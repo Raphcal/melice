@@ -14,10 +14,13 @@
 #include "animationdefinition.h"
 #include "inputstream.h"
 #include "list.h"
+#include "palette.h"
+#include "imagepaletteimage.h"
 
 typedef struct {
     char * _Nullable name;
     uint32_t type;
+    MELPaletteRef palette;
     MELAnimationDefinitionList animations;
     char * _Nullable motionName;
     char * _Nullable loadScript;
@@ -32,5 +35,7 @@ MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Non
 MELList(MELSpriteDefinition) MELSpriteDefinitionListMakeWithInputStream(MELInputStream * _Nonnull inputStream);
 
 void MELSpriteDefinitionDeinit(MELSpriteDefinition * _Nonnull self);
+
+MELImagePaletteImage * _Nullable MELSpriteDefinitionFirstNonEmptyImage(MELSpriteDefinition self);
 
 #endif /* spritedefinition_h */

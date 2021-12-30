@@ -22,6 +22,8 @@ typedef struct {
     MELImagePaletteImage * _Nullable images;
 } MELImagePalette;
 
+extern const MELImagePalette MELImagePaletteEmpty;
+
 MELImagePalette MELImagePaletteMakeWithColorPalette(MELColorPalette * _Nonnull colorPalette);
 
 /**

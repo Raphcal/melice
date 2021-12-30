@@ -90,9 +90,18 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
     MELMapGroupListPush(&project.mapGroups, MELMapGroupEmpty);
 
     // Loading palettes.
+    MELBoolean hasDefaultColorPalette = false;
     const int paletteCount = MELInputStreamReadInt(inputStream);
     for (int index = 0; index < paletteCount; index++) {
-        MELPaletteRefListPush(&project.palettes, self->class->readPalette(self, &project, inputStream));
+        MELPaletteRef palette = self->class->readPalette(self, &project, inputStream);
+        MELPaletteRefListPush(&project.palettes, palette);
+
+        hasDefaultColorPalette = hasDefaultColorPalette || (palette->name != NULL && !strcmp(palette->name, "Default color palette"));
+    }
+    if (!hasDefaultColorPalette) {
+        MELColorPalette *defaultColorPalette = malloc(sizeof(MELColorPalette));
+        *defaultColorPalette = MELColorPaletteMakeDefault();
+        MELPaletteRefListPush(&project.palettes, &defaultColorPalette->super);
     }
 
     // Loading maps.
@@ -575,7 +584,22 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
         height = width;
     }
 
-    MELSpriteDefinition spriteDefinition = {name, type, MELAnimationDefinitionListEmpty, scriptFile, loadScript};
+    MELPaletteRef defaultColorPalette = NULL;
+    for (size_t index = 0; index < project->palettes.count; index++) {
+        MELPaletteRef palette = project->palettes.memory[index];
+        if (palette->name != NULL && !strcmp(palette->name, "Default color palette")) {
+            defaultColorPalette = palette;
+            break;
+        }
+    }
+
+    MELSpriteDefinition spriteDefinition;
+    spriteDefinition.name = name;
+    spriteDefinition.type = type;
+    spriteDefinition.palette = defaultColorPalette;
+    spriteDefinition.animations = MELAnimationDefinitionListEmpty;
+    spriteDefinition.motionName = scriptFile;
+    spriteDefinition.loadScript = loadScript;
 
     const int animationCount = MELInputStreamReadInt(inputStream);
     MELAnimationDefinitionListEnsureCapacity(&spriteDefinition.animations, animationCount);

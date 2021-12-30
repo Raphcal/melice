@@ -33,4 +33,6 @@ MELUInt32Color MELColorPaletteAlphaPremultipliedColorForTile(MELColorPalette sel
 
 int MELColorPaletteTileForColor(MELColorPalette self, MELUInt32Color color);
 
+uint8_t * _Nullable MELColorPalettePaintImage(MELColorPalette * _Nonnull self, MELImagePaletteImage image);
+
 #endif /* colorpalette_h */

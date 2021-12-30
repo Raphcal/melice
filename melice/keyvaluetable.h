@@ -46,7 +46,7 @@ K##V##TableEntryList K##V##TableEntries(K##V##Table * _Nonnull self);
 
 // Implementation macro
 
-#define MELKeyValueTableImplement(K, V) const K##V##Table K##V##TableEmpty = {{NULL, 0, 0}, 0};\
+#define MELKeyValueTableImplement(K, V) const K##V##Table K##V##TableEmpty = {};\
 \
 MELListImplement(K##V##TableBucket);\
 MELListImplement(K##V##TableEntry);\

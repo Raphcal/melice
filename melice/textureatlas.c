@@ -73,6 +73,28 @@ MELTextureAtlas MELTextureAtlasMakeWithInputStreamAndTexture(MELInputStream * _N
     return self;
 }
 
+MELTextureAtlas MELTextureAtlasMakeWithPackMapAndRefList(MELPackMap packMap, MELRefList content) {
+    MELTextureAtlas self;
+    self.texture = MELTextureMakeWithPackMap(packMap);
+    self.frameCount = (int) content.count;
+    self.sources = malloc(sizeof(MELIntRectangle) * content.count);
+    self.frames = malloc(sizeof(MELRectangle) * content.count);
+
+    MELIntSize textureSize = self.texture.size;
+
+    for (unsigned int index = 0; index < content.count; index++) {
+        MELIntRectangle source;
+        if (MELPointerMELIntRectangleTableGet(packMap.origins, (MELPointer) content.memory[index], &source)) {
+            self.sources[index] = source;
+            self.frames[index] = MELRectangleMake((GLfloat)source.origin.x / textureSize.width, (GLfloat)source.origin.y / textureSize.height, (GLfloat)source.size.width / textureSize.width, (GLfloat)source.size.height / textureSize.height);
+        }
+    }
+
+    MELPackMapDeinit(&packMap);
+
+    return self;
+}
+
 MELTextureAtlas MELTextureAtlasMakeWithPalette(MELPalette * _Nonnull palette) {
     assert(palette != NULL);
 
@@ -81,15 +103,17 @@ MELTextureAtlas MELTextureAtlasMakeWithPalette(MELPalette * _Nonnull palette) {
     MELPackMap packMap = MELPackMapMakeWithElements(elements);
     MELPackMapElementListDeinit(&elements);
 
+    const uint32_t count = palette->count;
+
     MELTextureAtlas self;
     self.texture = MELTextureMakeWithPackMap(packMap);
-    self.frameCount = (int) palette->count;
-    self.sources = malloc(sizeof(MELIntRectangle) * palette->count);
-    self.frames = malloc(sizeof(MELRectangle) * palette->count);
+    self.frameCount = (int) count;
+    self.sources = malloc(sizeof(MELIntRectangle) * count);
+    self.frames = malloc(sizeof(MELRectangle) * count);
 
     MELIntSize textureSize = self.texture.size;
 
-    for (unsigned int index = 0; index < packMap.elements.count; index++) {
+    for (unsigned int index = 0; index < count; index++) {
         MELIntRectangle source = MELPackMapFrameForPaletteTile(packMap, palette, index);
         self.sources[index] = source;
         self.frames[index] = MELRectangleMake((GLfloat)source.origin.x / textureSize.width, (GLfloat)source.origin.y / textureSize.height, (GLfloat)source.size.width / textureSize.width, (GLfloat)source.size.height / textureSize.height);

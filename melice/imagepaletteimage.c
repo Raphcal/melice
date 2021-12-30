@@ -11,6 +11,8 @@
 
 MELListImplement(MELImagePaletteImage);
 
+const MELImagePaletteImage MELImagePaletteImageEmpty = {};
+
 MELImagePaletteImage MELImagePaletteImageMakeWithSize(MELIntSize size) {
     MELImagePaletteImage self;
     self.tiles = malloc(sizeof(int32_t) * size.width * size.height);

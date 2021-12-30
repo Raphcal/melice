@@ -38,10 +38,14 @@ MELTexture MELTextureMakeWithPackMap(MELPackMap packMap) {
     MELPackMapElementList elements = packMap.elements;
     for (unsigned int index = 0; index < elements.count; index++) {
         MELPackMapElement element = elements.memory[index];
-        MELIntPoint origin = MELIntPointZero;
-        MELPointerMELIntPointTableGet(packMap.origins, (MELPointer) element.value, &origin);
-        for (unsigned int y = 0; y < element.size.height; y++) {
-            memcpy(pixels + origin.x + (origin.y + y) * size.width, element.pixels + y * element.size.width, element.size.width * sizeof(MELUInt32Color));
+        MELIntRectangle rectangle = MELIntRectangleZero;
+        MELPointerMELIntRectangleTableGet(packMap.origins, (MELPointer) element.value, &rectangle);
+        MELIntPoint origin = rectangle.origin;
+        if ((element.offset.x == 0 || origin.x > 0) && (element.offset.y == 0 || origin.y > 0)) {
+            origin = MELIntPointMake(origin.x - element.offset.x, origin.y - element.offset.y);
+            for (unsigned int y = 0; y < element.size.height; y++) {
+                memcpy(pixels + origin.x + (origin.y + y) * size.width, element.pixels + y * element.size.width, element.size.width * sizeof(MELUInt32Color));
+            }
         }
     }
     return (MELTexture) {NULL, pixels, size, 0};

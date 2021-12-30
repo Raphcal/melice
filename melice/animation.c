@@ -20,10 +20,7 @@ MELAnimation MELAnimationMake(const MELAnimationClass * _Nonnull class, MELAnima
         class,
         definition,
         0,
-        {
-            0,
-            MELIntRectangleZero
-        },
+        {},
         1
     };
 }

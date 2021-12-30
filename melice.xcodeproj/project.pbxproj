@@ -178,9 +178,7 @@
 		642B2ACA25FD4A6900183D42 /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4325FD448B00183D42 /* texture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B2AD325FD4E9800183D42 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
 		643EEC41275574690039FDAB /* keyvaluetable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; };
-		643EEC42275574690039FDAB /* pointerintpointtable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; };
 		643EEC43275574850039FDAB /* keyvaluetable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; };
-		643EEC44275574850039FDAB /* pointerintpointtable.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; };
 		643EEC6E2757ABD30039FDAB /* atlaspalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 643EEC6C2757ABD30039FDAB /* atlaspalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643EEC6F2757ABD30039FDAB /* atlaspalette.h in Headers */ = {isa = PBXBuildFile; fileRef = 643EEC6C2757ABD30039FDAB /* atlaspalette.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643EEC702757ABD30039FDAB /* atlaspalette.c in Sources */ = {isa = PBXBuildFile; fileRef = 643EEC6D2757ABD30039FDAB /* atlaspalette.c */; };
@@ -258,7 +256,6 @@
 		643EECE9275E6A6B0039FDAB /* textureatlas.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A4425FD448B00183D42 /* textureatlas.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643EECEA275E6A6B0039FDAB /* dictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 64718A1B273AAB0100547977 /* dictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643EECEB275E6A6B0039FDAB /* keyvaluetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		643EECEC275E6A6B0039FDAB /* pointerintpointtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643EECED275E6A6B0039FDAB /* hashmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A825FD410200183D42 /* hashmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643EECEE275E6A6B0039FDAB /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A925FD410200183D42 /* list.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		643EECEF275E6A6C0039FDAB /* melmath.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29AB25FD410200183D42 /* melmath.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -326,7 +323,6 @@
 		643EED2D275E8D7E0039FDAB /* surfacememory.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A3A25FD448B00183D42 /* surfacememory.c */; };
 		643EED2E275E8D7E0039FDAB /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2AD225FD4E9800183D42 /* texture.c */; };
 		643EED2F275E8D7E0039FDAB /* textureatlas.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B2A3E25FD448B00183D42 /* textureatlas.c */; };
-		643EED30275E8D7E0039FDAB /* pointerintpointtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0E1275414C90040F95A /* pointerintpointtable.c */; };
 		643EED31275E8D7E0039FDAB /* hashmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29AD25FD410200183D42 /* hashmap.c */; };
 		643EED32275E8D7E0039FDAB /* melmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 642B29A525FD410200183D42 /* melmath.c */; };
 		643EED33275E8D7E0039FDAB /* melstring.c in Sources */ = {isa = PBXBuildFile; fileRef = 64718A22273AAE5300547977 /* melstring.c */; };
@@ -358,10 +354,6 @@
 		6460F014274C40750040F95A /* packmap.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6460F0022746E5010040F95A /* packmap.h */; };
 		6460F0DE275411330040F95A /* keyvaluetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6460F0DF275411340040F95A /* keyvaluetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0DD275411330040F95A /* keyvaluetable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6460F0E2275414C90040F95A /* pointerintpointtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6460F0E3275414C90040F95A /* pointerintpointtable.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0E0275414C90040F95A /* pointerintpointtable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6460F0E4275414C90040F95A /* pointerintpointtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0E1275414C90040F95A /* pointerintpointtable.c */; };
-		6460F0E5275414C90040F95A /* pointerintpointtable.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0E1275414C90040F95A /* pointerintpointtable.c */; };
 		647189E927386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		647189EA27386C9400547977 /* mmkprojectformat.h in Headers */ = {isa = PBXBuildFile; fileRef = 647189E727386C9400547977 /* mmkprojectformat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		647189EB27386C9400547977 /* mmkprojectformat.c in Sources */ = {isa = PBXBuildFile; fileRef = 647189E827386C9400547977 /* mmkprojectformat.c */; };
@@ -386,6 +378,12 @@
 		64749399272C2ABA004F3D97 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 64749395272C2ABA004F3D97 /* primitives.c */; };
 		6474939A272C2B95004F3D97 /* primitives.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; };
 		6474939B272C2BA1004F3D97 /* primitives.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; };
+		64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64B43097277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
+		64B43098277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
+		64B43099277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
 		64CB66D1271F514100663A2E /* melice.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CB66D2271F514100663A2E /* melstd.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CB66D3271F514100663A2E /* point.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -628,7 +626,6 @@
 				643EEC8A275D5FA20039FDAB /* mapgroup.h in CopyFiles */,
 				643EEC732757CF470039FDAB /* atlaspalette.h in CopyFiles */,
 				643EEC41275574690039FDAB /* keyvaluetable.h in CopyFiles */,
-				643EEC42275574690039FDAB /* pointerintpointtable.h in CopyFiles */,
 				6460F011274C40580040F95A /* outputstream.h in CopyFiles */,
 				6460F012274C40580040F95A /* packmap.h in CopyFiles */,
 				64EEAA4927426CD400776662 /* colorpalette.h in CopyFiles */,
@@ -714,7 +711,6 @@
 				643EEC8B275D5FB40039FDAB /* mapgroup.h in CopyFiles */,
 				643EEC722757CF380039FDAB /* atlaspalette.h in CopyFiles */,
 				643EEC43275574850039FDAB /* keyvaluetable.h in CopyFiles */,
-				643EEC44275574850039FDAB /* pointerintpointtable.h in CopyFiles */,
 				6460F013274C40750040F95A /* outputstream.h in CopyFiles */,
 				6460F014274C40750040F95A /* packmap.h in CopyFiles */,
 				64EEAA5127426CE600776662 /* colorpalette.h in CopyFiles */,
@@ -940,8 +936,6 @@
 		6460F00B274BAC5C0040F95A /* outputstream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = outputstream.h; sourceTree = "<group>"; };
 		6460F00C274BAC5C0040F95A /* outputstream.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = outputstream.c; sourceTree = "<group>"; };
 		6460F0DD275411330040F95A /* keyvaluetable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = keyvaluetable.h; sourceTree = "<group>"; };
-		6460F0E0275414C90040F95A /* pointerintpointtable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintpointtable.h; sourceTree = "<group>"; };
-		6460F0E1275414C90040F95A /* pointerintpointtable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintpointtable.c; sourceTree = "<group>"; };
 		647189E727386C9400547977 /* mmkprojectformat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mmkprojectformat.h; sourceTree = "<group>"; };
 		647189E827386C9400547977 /* mmkprojectformat.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = mmkprojectformat.c; sourceTree = "<group>"; };
 		647189FE27390F2900547977 /* miniz.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = miniz.c; sourceTree = "<group>"; };
@@ -956,6 +950,8 @@
 		6474938E272C1470004F3D97 /* mutablemap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mutablemap.h; sourceTree = "<group>"; };
 		64749394272C2ABA004F3D97 /* primitives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primitives.h; sourceTree = "<group>"; };
 		64749395272C2ABA004F3D97 /* primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
+		64B43092277FA406004185E3 /* pointerintrectangletable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintrectangletable.h; sourceTree = "<group>"; };
+		64B43093277FA406004185E3 /* pointerintrectangletable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintrectangletable.c; sourceTree = "<group>"; };
 		64CB66C5271F504E00663A2E /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D00E5F272DD7D200C8A675 /* palette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = palette.h; sourceTree = "<group>"; };
 		64D00E65272F37A500C8A675 /* decorator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = decorator.h; sourceTree = "<group>"; };
@@ -1423,8 +1419,8 @@
 			isa = PBXGroup;
 			children = (
 				6460F0DD275411330040F95A /* keyvaluetable.h */,
-				6460F0E0275414C90040F95A /* pointerintpointtable.h */,
-				6460F0E1275414C90040F95A /* pointerintpointtable.c */,
+				64B43092277FA406004185E3 /* pointerintrectangletable.h */,
+				64B43093277FA406004185E3 /* pointerintrectangletable.c */,
 			);
 			name = keyvaluetable;
 			sourceTree = "<group>";
@@ -1583,10 +1579,10 @@
 				644872572726B86600DEE2C1 /* bitmap.h in Headers */,
 				642B2AA625FD49E500183D42 /* rotatedhitbox.h in Headers */,
 				642B2AB125FD4A0300183D42 /* spriteinstance.h in Headers */,
-				6460F0E2275414C90040F95A /* pointerintpointtable.h in Headers */,
 				6460F0DE275411330040F95A /* keyvaluetable.h in Headers */,
 				6460F00D274BAC5C0040F95A /* outputstream.h in Headers */,
 				643EEC6E2757ABD30039FDAB /* atlaspalette.h in Headers */,
+				64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */,
 				643EEC85275D50B70039FDAB /* mapgroup.h in Headers */,
 				641FB72D277B46E3006DD7C3 /* drawmode.h in Headers */,
 				642B2AC225FD4A6900183D42 /* surfacearray.h in Headers */,
@@ -1664,7 +1660,6 @@
 				643EECE9275E6A6B0039FDAB /* textureatlas.h in Headers */,
 				643EECEA275E6A6B0039FDAB /* dictionary.h in Headers */,
 				643EECEB275E6A6B0039FDAB /* keyvaluetable.h in Headers */,
-				643EECEC275E6A6B0039FDAB /* pointerintpointtable.h in Headers */,
 				643EECED275E6A6B0039FDAB /* hashmap.h in Headers */,
 				643EECEE275E6A6B0039FDAB /* list.h in Headers */,
 				643EECEF275E6A6C0039FDAB /* melmath.h in Headers */,
@@ -1675,6 +1670,7 @@
 				64F5D1722760F81D000C3967 /* imagepaletteimage.h in Headers */,
 				643EECF4275E6A6C0039FDAB /* random.h in Headers */,
 				641FB733277B5DD4006DD7C3 /* drawmode.h in Headers */,
+				64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */,
 				643EECF5275E6A6C0039FDAB /* miniz.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1700,6 +1696,7 @@
 				64CB66DD271F514100663A2E /* inputsourcetype.h in Headers */,
 				64CB66DE271F514100663A2E /* inputstream.h in Headers */,
 				64CB66E0271F514200663A2E /* map.h in Headers */,
+				64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */,
 				64CB66E1271F514200663A2E /* maprenderer.h in Headers */,
 				64CB66E2271F514200663A2E /* layer.h in Headers */,
 				64CB66E3271F514200663A2E /* director.h in Headers */,
@@ -1752,7 +1749,6 @@
 				64CB6706271F514300663A2E /* melmath.h in Headers */,
 				64CB6707271F514300663A2E /* operation.h in Headers */,
 				6460F0DF275411340040F95A /* keyvaluetable.h in Headers */,
-				6460F0E3275414C90040F95A /* pointerintpointtable.h in Headers */,
 				6460F00E274BAC5C0040F95A /* outputstream.h in Headers */,
 				643EEC6F2757ABD30039FDAB /* atlaspalette.h in Headers */,
 				643EEC86275D50B70039FDAB /* mapgroup.h in Headers */,
@@ -1986,6 +1982,7 @@
 				642B2A4D25FD44AB00183D42 /* quadrilateral.c in Sources */,
 				6460F00F274BAC5C0040F95A /* outputstream.c in Sources */,
 				642B2AB325FD4A0300183D42 /* spritemanager.c in Sources */,
+				64B43097277FA406004185E3 /* pointerintrectangletable.c in Sources */,
 				643EEC87275D50B70039FDAB /* mapgroup.c in Sources */,
 				643EEC702757ABD30039FDAB /* atlaspalette.c in Sources */,
 				64718A0227390F2A00547977 /* miniz.c in Sources */,
@@ -2003,7 +2000,6 @@
 				642B2AAF25FD4A0300183D42 /* spriteinstance.c in Sources */,
 				642B2A9725FD49D500183D42 /* spritedefinition.c in Sources */,
 				647189EB27386C9400547977 /* mmkprojectformat.c in Sources */,
-				6460F0E4275414C90040F95A /* pointerintpointtable.c in Sources */,
 				64D00E752730940600C8A675 /* colorpalette.c in Sources */,
 				642B29C825FD43DC00183D42 /* operation.c in Sources */,
 				642B2A4A25FD44AB00183D42 /* rectangle.c in Sources */,
@@ -2032,6 +2028,7 @@
 				643EED02275E8D7D0039FDAB /* decorator.c in Sources */,
 				643EED03275E8D7D0039FDAB /* layer.c in Sources */,
 				643EED04275E8D7D0039FDAB /* map.c in Sources */,
+				64B43099277FA406004185E3 /* pointerintrectangletable.c in Sources */,
 				64464C1C27625D610038B044 /* Size.swift in Sources */,
 				643EED05275E8D7D0039FDAB /* mutablemap.c in Sources */,
 				643EED06275E8D7D0039FDAB /* mapgroup.c in Sources */,
@@ -2086,7 +2083,6 @@
 				643EED2E275E8D7E0039FDAB /* texture.c in Sources */,
 				64F5D17D27610662000C3967 /* ProjectFormat.swift in Sources */,
 				643EED2F275E8D7E0039FDAB /* textureatlas.c in Sources */,
-				643EED30275E8D7E0039FDAB /* pointerintpointtable.c in Sources */,
 				64F5D1772760FBBB000C3967 /* Layer.swift in Sources */,
 				643EED31275E8D7E0039FDAB /* hashmap.c in Sources */,
 				643EED32275E8D7E0039FDAB /* melmath.c in Sources */,
@@ -2157,6 +2153,7 @@
 				64CB672B271F51E300663A2E /* nomotion.c in Sources */,
 				64CB672C271F51E300663A2E /* direction.c in Sources */,
 				64CB672D271F51E300663A2E /* sprite.c in Sources */,
+				64B43098277FA406004185E3 /* pointerintrectangletable.c in Sources */,
 				64CB672E271F51E300663A2E /* spriteinstance.c in Sources */,
 				64CB672F271F51E300663A2E /* spritemanager.c in Sources */,
 				64CB6730271F51E300663A2E /* color.c in Sources */,
@@ -2169,7 +2166,6 @@
 				64CB6737271F51E400663A2E /* textureatlas.c in Sources */,
 				64CB6738271F51E400663A2E /* hashmap.c in Sources */,
 				64CB6739271F51E400663A2E /* melmath.c in Sources */,
-				6460F0E5275414C90040F95A /* pointerintpointtable.c in Sources */,
 				64CB673A271F51E400663A2E /* operation.c in Sources */,
 				64749399272C2ABA004F3D97 /* primitives.c in Sources */,
 				64CB673B271F51E400663A2E /* random.c in Sources */,

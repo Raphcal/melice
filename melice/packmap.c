@@ -7,6 +7,7 @@
 
 #include "packmap.h"
 
+#include <assert.h>
 #include "primitives.h"
 
 #define PADDING 1
@@ -33,7 +34,7 @@ int MELPackMapElementCompare(const MELPackMapElement *lhs, const  MELPackMapElem
 #pragma mark - MELPackMap
 
 MELPackMap MELPackMapMakeWithElements(MELPackMapElementList elements) {
-    MELPackMap self = {MELIntSizeMake(64, 64), MELPackMapElementListMakeWithList(elements), MELPointerMELIntPointTableEmpty, MELPackMapRowListEmpty, 0};
+    MELPackMap self = {MELIntSizeMake(64, 64), MELPackMapElementListMakeWithList(elements), MELPointerMELIntRectangleTableEmpty, MELPackMapRowListEmpty, 0};
     qsort(self.elements.memory, self.elements.count, sizeof(MELPackMapElement), (int(*)(const void *, const void *)) &MELPackMapElementCompare);
     for (size_t index = 0; index < self.elements.count; index++) {
         MELPackMapAddElement(&self, self.elements.memory[index]);
@@ -44,18 +45,16 @@ MELPackMap MELPackMapMakeWithElements(MELPackMapElementList elements) {
 void MELPackMapDeinit(MELPackMap * _Nonnull self) {
     self->size = MELIntSizeZero;
     MELPackMapElementListDeinitWithDeinitFunction(&self->elements, &MELPackMapElementDeinit);
-    MELPointerMELIntPointTableDeinit(&self->origins);
+    MELPointerMELIntRectangleTableDeinit(&self->origins);
     MELPackMapRowListDeinitWithDeinitFunction(&self->rows, &MELPackMapRowDeinit);
     self->takenHeight = 0;
 }
 
 MELIntRectangle MELPackMapFrameForPaletteTile(MELPackMap self, MELPalette * _Nonnull palette, unsigned int tileIndex) {
     void *tile = palette->class->tileAtIndex(palette, tileIndex);
-    MELIntPoint origin;
-    if (MELPointerMELIntPointTableGet(self.origins, (MELPointer) tile, &origin)) {
-        origin.x += PADDING;
-        origin.y += PADDING;
-        return MELIntRectangleMakeWithOriginAndSize(origin, palette->tileSize);
+    MELIntRectangle rectangle;
+    if (MELPointerMELIntRectangleTableGet(self.origins, (MELPointer) tile, &rectangle)) {
+        return rectangle;
     } else {
         return MELIntRectangleZero;
     }
@@ -74,7 +73,8 @@ void MELPackMapAddElement(MELPackMap * _Nonnull self, MELPackMapElement element)
                 MELPackMapRowAddElement(row, element);
 
                 MELIntPoint origin = MELIntPointMake(frame.origin.x + row->cells.memory[row->cells.count - 1].x, frame.origin.y);
-                MELPointerMELIntPointTablePut(&self->origins, (MELPointer) element.value, origin);
+                MELIntRectangle rectangle = MELIntRectangleMake(origin.x + element.offset.x, origin.y + element.offset.y, element.size.width - element.offset.x * 2, element.size.height  - element.offset.y * 2);
+                MELPointerMELIntRectangleTablePut(&self->origins, (MELPointer) element.value, rectangle);
 
                 if (MELPackMapRowIsLastElementLargerThanHeight(row, element.size.height)) {
                     row->frame.size.height = element.size.height;
@@ -88,7 +88,8 @@ void MELPackMapAddElement(MELPackMap * _Nonnull self, MELPackMapElement element)
             MELPackMapRowListPush(&self->rows, MELPackMapRowMakeWithFirstElement(self, element, origin));
             self->takenHeight += element.size.height;
 
-            MELPointerMELIntPointTablePut(&self->origins, (MELPointer) element.value, origin);
+            MELIntRectangle rectangle = MELIntRectangleMake(origin.x + element.offset.x, origin.y + element.offset.y, element.size.width - element.offset.x * 2, element.size.height  - element.offset.y * 2);
+            MELPointerMELIntRectangleTablePut(&self->origins, (MELPointer) element.value, rectangle);
             return;
         } else {
             MELPackMapGrow(self);
@@ -189,6 +190,19 @@ MELPackMapElement MELPackMapElementMakeWithPaletteTile(MELPaletteRef palette, un
     return MELPackMapElementMake(palette->class->tileAtIndex(palette, tileIndex), pixels, size, offset);
 }
 
+MELPackMapElement MELPackMapElementMakeWithSpriteDefinitionRef(MELSpriteDefinition * _Nonnull spriteDefinition) {
+    if (spriteDefinition->palette == NULL) {
+        return MELPackMapElementEmpty;
+    }
+    MELImagePaletteImage *image = MELSpriteDefinitionFirstNonEmptyImage(*spriteDefinition);
+    if (image != NULL) {
+        uint8_t *pixels = spriteDefinition->palette->class->paintImage(spriteDefinition->palette, *image);
+        return MELPackMapElementMake(spriteDefinition, (uint32_t *) pixels, image->size, MELIntPointZero);
+    } else {
+        return MELPackMapElementEmpty;
+    }
+}
+
 int MELPackMapElementCompare(const MELPackMapElement *lhs, const  MELPackMapElement *rhs) {
     return rhs->size.height - lhs->size.height;
 }
@@ -205,6 +219,15 @@ void MELPackMapElementListPushPalette(MELPackMapElementList * _Nonnull self, MEL
     }
 }
 
-void MELPackMapElementListPushSpriteDefinition(MELPackMapElementList * _Nonnull self, MELSpriteDefinition spriteDefinition) {
-    // TODO: Implement MELPackMapElementListPushSpriteDefinition.
+void MELPackMapElementListPushOneFrameOfEachSpriteDefinitionFromList(MELPackMapElementList * _Nonnull self, MELSpriteDefinitionList spriteDeinitionList) {
+    for (size_t index = 0; index < spriteDeinitionList.count; index++) {
+        MELPackMapElement element = MELPackMapElementMakeWithSpriteDefinitionRef(spriteDeinitionList.memory + index);
+        if (element.value != NULL) {
+            MELPackMapElementListPush(self, element);
+        }
+    }
+}
+
+void MELPackMapElementListPushSpriteDefinitionList(MELPackMapElementList * _Nonnull self, MELSpriteDefinitionList spriteDefinitionList) {
+    // TODO: Implement MELPackMapElementListPushSpriteDefinitionList.
 }

@@ -379,7 +379,21 @@ void MELColorPalettePaintTileToBuffer(MELColorPalette * _Nonnull self, unsigned 
     }
 }
 
+uint8_t * _Nullable MELColorPalettePaintImage(MELColorPalette * _Nonnull self, MELImagePaletteImage image) {
+    MELColorPalette colorPalette = *self;
+
+    MELUInt32Color *pixels = malloc(MELPaletteByteCount(image.size, MELIntSizeMake(1, 1)));
+
+    const int *tiles = image.tiles;
+    const size_t count = image.size.width * image.size.height;
+    for (size_t index = 0; index < count; index++) {
+        pixels[index] = MELColorPaletteColorForTile(colorPalette, tiles[index]);
+    }
+    return (uint8_t *) pixels;
+}
+
 uint8_t * _Nullable MELColorPalettePaintMap(MELColorPalette * _Nonnull self, MELMap map, MELIntSize areaToRender) {
+    // FIXME: This method does not paint the given map!
     const MELIntSize tileSize = self->super.tileSize;
 
     MELIntSize imageSize = MELIntSizeMake(areaToRender.width * tileSize.width, areaToRender.height * tileSize.height);
@@ -403,10 +417,11 @@ MELUInt8RGBColor * _Nonnull MELColorPaletteTileAtIndex(MELColorPalette * _Nonnul
 }
 
 const MELPaletteClass MELColorPaletteClass = {
-    (MELPaletteRef(*)(MELPaletteRef)) &MELColorPaletteRefMakeWithColorPaletteRef,
-    (void(*)(MELPalette *)) &MELColorPaletteDeinit,
-    (uint8_t *(*)(MELPalette *, unsigned int)) &MELColorPalettePaintTile,
-    (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELColorPalettePaintTileToBuffer,
-    (uint8_t *(*)(MELPalette *, MELMap, MELIntSize)) &MELColorPalettePaintMap,
-    (void *(*)(MELPalette *, unsigned int)) &MELColorPaletteTileAtIndex
+    .initWithPaletteRef = (MELPaletteRef(*)(MELPaletteRef)) &MELColorPaletteRefMakeWithColorPaletteRef,
+    .deinit = (void(*)(MELPalette *)) &MELColorPaletteDeinit,
+    .paintTile = (uint8_t *(*)(MELPalette *, unsigned int)) &MELColorPalettePaintTile,
+    .paintTileToBuffer = (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELColorPalettePaintTileToBuffer,
+    .paintImage = (uint8_t *(*)(MELPalette *, MELImagePaletteImage))&MELColorPalettePaintImage,
+    .paintMap = (uint8_t *(*)(MELPalette *, MELMap, MELIntSize)) &MELColorPalettePaintMap,
+    .tileAtIndex = (void *(*)(MELPalette *, unsigned int)) &MELColorPaletteTileAtIndex
 };

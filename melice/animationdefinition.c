@@ -90,3 +90,17 @@ void MELAnimationDefinitionDeinit(MELAnimationDefinition *_Nonnull self) {
 	self->type = MELAnimationTypeNone;
     self->isScrolling = false;
 }
+
+MELImagePaletteImage * _Nullable MELAnimationDefinitionFirstNonEmptyImage(MELAnimationDefinition self) {
+    if (self.images == NULL) {
+        return NULL;
+    }
+    for (unsigned int index = 0; index < self.frameCount; index++) {
+        MELImagePaletteImage *image = self.images + index;
+        if (!MELImagePaletteImageIsEmpty(*image)) {
+            return image;
+        }
+    }
+    return NULL;
+}
+

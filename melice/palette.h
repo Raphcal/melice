@@ -17,6 +17,7 @@
 #include "list.h"
 #include "map.h"
 #include "textureatlas.h"
+#include "imagepaletteimage.h"
 
 typedef struct melpalette MELPalette;
 typedef MELPalette * _Nullable MELPaletteRef;
@@ -43,7 +44,15 @@ typedef struct {
      */
     uint8_t * _Nullable (* _Nonnull paintTile)(MELPalette * _Nonnull self, unsigned int tileIndex);
 
+    /**
+     * Paint the given tile to the given buffer.
+     */
     void (* _Nonnull paintTileToBuffer)(MELPalette * _Nonnull self, unsigned int tileIndex, MELIntPoint topLeft, MELUInt32Color * _Nonnull buffer, MELIntSize bufferSize);
+
+    /**
+     * Allocates a byte array and paints the given image using this palette.
+     */
+    uint8_t * _Nullable (* _Nullable paintImage)(MELPalette * _Nonnull self, MELImagePaletteImage image);
 
     /**
      * Allocates a byte array and paints the given area of the given map with palette's preferred tile size.

@@ -59,9 +59,27 @@ void MELSpriteDefinitionDeinit(MELSpriteDefinition *_Nonnull self) {
 	free(self->name);
 	self->name = NULL;
 	self->type = 0;
+    self->palette = NULL;
     MELAnimationDefinitionListDeinitWithDeinitFunction(&self->animations, &MELAnimationDefinitionDeinit);
 	free(self->motionName);
 	self->motionName = NULL;
     free(self->loadScript);
     self->loadScript = NULL;
+}
+
+MELImagePaletteImage * _Nullable MELSpriteDefinitionFirstNonEmptyImage(MELSpriteDefinition self) {
+    MELImagePaletteImage *image = NULL;
+    MELAnimationDefinitionList animations = self.animations;
+    for (unsigned int index = 0; index < animations.count; index++) {
+        MELAnimationDefinition *animationDefinition = animations.memory + index;
+        MELImagePaletteImage *animationImage = MELAnimationDefinitionFirstNonEmptyImage(*animationDefinition);
+        if (animationImage != NULL) {
+            if (!strcmp(animationDefinition->name, "stand")) {
+                return animationImage;
+            } else if (image == NULL) {
+                image = animationImage;
+            }
+        }
+    }
+    return image;
 }

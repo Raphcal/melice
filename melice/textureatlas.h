@@ -13,6 +13,7 @@
 #include "texture.h"
 #include "rectangle.h"
 #include "inputstream.h"
+#include "primitives.h"
 
 #define MELTileSize 32
 
@@ -53,6 +54,8 @@ MELTextureAtlas MELTextureAtlasMakeWithPath(const char * _Nonnull path);
  * @return An atlas.
  */
 MELTextureAtlas MELTextureAtlasMakeWithInputStreamAndTexture(MELInputStream * _Nonnull inputStream, MELTexture texture);
+
+MELTextureAtlas MELTextureAtlasMakeWithPackMapAndRefList(MELPackMap packMap, MELRefList content);
 
 /**
  * Returns an atlas by generating a texture using PackMap from every tile in the given palette.

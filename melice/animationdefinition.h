@@ -73,4 +73,6 @@ MELTimeInterval MELAnimationDefinitionDuration(MELAnimationDefinition self);
  */
 void MELAnimationDefinitionDeinit(MELAnimationDefinition * _Nonnull self);
 
+MELImagePaletteImage * _Nullable MELAnimationDefinitionFirstNonEmptyImage(MELAnimationDefinition self);
+
 #endif /* animationdefinition_h */
