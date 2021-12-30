@@ -32,3 +32,7 @@ void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self) {
     self->size = MELIntSizeZero;
     MELDecoratorRefListDeinitWithDeinitFunction(&self->decorators, &MELDecoratorRefDeinit);
 }
+
+MELBoolean MELImagePaletteImageIsEmpty(MELImagePaletteImage self) {
+    return self.tiles == NULL || MELInt32ArrayIsFilledWithValue(self.tiles, self.size.width * self.size.height, -1);
+}

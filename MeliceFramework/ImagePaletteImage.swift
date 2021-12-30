@@ -14,6 +14,12 @@ public extension MELImagePaletteImage {
         return size.width * size.height
     }
 
+    var isEmpty: MELBoolean {
+        get {
+            return MELImagePaletteImageIsEmpty(self)
+        }
+    }
+
     subscript(x: Int, y: Int) -> Int32 {
         get {
             assert(indexIsValid(x: x, y: y), "Index \(x)x\(y) is out of bounds")

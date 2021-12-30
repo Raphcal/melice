@@ -30,6 +30,12 @@ extension MELLayer: Equatable, Hashable {
 public extension MELLayer {
     static let empty = MELLayer()
 
+    var isEmpty: MELBoolean {
+        get {
+            return MELLayerIsEmpty(self)
+        }
+    }
+
     init(_ imagePaletteImage: MELImagePaletteImage) {
         self = MELLayerMakeWithImagePaletteImage(imagePaletteImage)
     }

@@ -21,3 +21,21 @@ void * _Nullable MELArrayCopy(const void * restrict _Nullable source, size_t siz
     memcpy(copy, source, size);
     return copy;
 }
+
+MELBoolean MELInt32ArrayIsFilledWithValue(const int32_t * _Nonnull self, size_t count, int32_t value) {
+    for (size_t index = 0; index < count; index++) {
+        if (self[index] != value) {
+            return false;
+        }
+    }
+    return true;
+}
+
+MELBoolean MELUInt32ArrayIsFilledWithValue(const uint32_t * _Nonnull self, size_t count, uint32_t value) {
+    for (size_t index = 0; index < count; index++) {
+        if (self[index] != value) {
+            return false;
+        }
+    }
+    return true;
+}

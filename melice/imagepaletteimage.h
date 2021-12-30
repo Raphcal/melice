@@ -26,4 +26,6 @@ MELImagePaletteImage MELImagePaletteImageMakeWithImagePaletteImage(MELImagePalet
 
 void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self);
 
+MELBoolean MELImagePaletteImageIsEmpty(MELImagePaletteImage self);
+
 #endif /* imagepaletteimage_h */

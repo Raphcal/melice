@@ -76,4 +76,6 @@ void MELLayerMergeRectangleFromOtherLayer(MELLayer self, MELIntPoint targetTopLe
 
 void MELLayerClearRectangle(MELLayer self, MELIntRectangle areaToClear);
 
+MELBoolean MELLayerIsEmpty(MELLayer self);
+
 #endif /* layer_h */

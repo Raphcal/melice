@@ -157,3 +157,7 @@ void MELLayerClearRectangle(MELLayer self, MELIntRectangle areaToClear) {
         row[x + y * self.size.width] = -1;
     }
 }
+
+MELBoolean MELLayerIsEmpty(MELLayer self) {
+    return self.tiles == NULL || MELInt32ArrayIsFilledWithValue(self.tiles, self.tileCount, -1);
+}

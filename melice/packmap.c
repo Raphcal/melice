@@ -7,6 +7,8 @@
 
 #include "packmap.h"
 
+#include "primitives.h"
+
 #define PADDING 1
 
 MELListImplement(MELPackMapElement);
@@ -165,14 +167,7 @@ MELPackMapElement MELPackMapElementMakeWithPaletteTile(MELPaletteRef palette, un
     MELUInt32Color *pixels = calloc(sizeof(MELUInt32Color), pixelCount);
     palette->class->paintTileToBuffer(palette, tileIndex, offset, pixels, size);
 
-    MELBoolean isEmpty = true;
-    for (unsigned int index = 0; index < pixelCount; index++) {
-        if (pixels[index]) {
-            isEmpty = false;
-            break;
-        }
-    }
-    if (isEmpty) {
+    if (MELUInt32ArrayIsFilledWithValue(pixels, pixelCount, 0)) {
         free(pixels);
         return MELPackMapElementEmpty;
     }
