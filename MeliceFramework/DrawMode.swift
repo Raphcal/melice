@@ -7,13 +7,9 @@
 
 import Foundation
 
-public extension MELDrawMode {
-    static let unset = MELDrawModeUnset
-    static let texture = MELDrawModeTexture
-    static let color = MELDrawModeColor
-    static let index = MELDrawModeIndex
-    static let textureAndColor = MELDrawModeTextureAndColor
-    static let textureAndIndex = MELDrawModeTextureAndIndex
-    static let colorAndIndex = MELDrawModeColorAndIndex
-    static let textureColorAndIndex = MELDrawModeTextureColorAndIndex
+extension MELDrawMode: OptionSet {
+    public static let unset = MELDrawModeUnset
+    public static let texture = MELDrawModeTexture
+    public static let color = MELDrawModeColor
+    public static let index = MELDrawModeIndex
 }

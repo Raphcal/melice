@@ -42,6 +42,6 @@ public extension MELMutableMap {
     }
 
     func locationInLayer(_ location: MELIntPoint, layerIndex: Int, camera: MELPoint) -> MELIntPoint {
-        return MELIntPoint((location + camera * layers[layerIndex].scrollRate) / self.palette.tileSize)
+        return MELIntPoint((location + camera * layers[layerIndex].scrollRate) / palette.tileSize)
     }
 }

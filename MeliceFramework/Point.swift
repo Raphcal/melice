@@ -77,6 +77,16 @@ extension MELPoint: AdditiveArithmetic {
     public static func * (lhs: MELPoint, rhs: MELPoint) -> MELPoint {
         return MELPointMultiply(lhs, rhs)
     }
+    /// Multiplies the given points.
+    /// - returns: A point whose coordinates are `lhs.x * rhs.x` and `lhs.y * rhs.y`.
+    public static func * (lhs: MELPoint, rhs: MELIntPoint) -> MELPoint {
+        return MELPoint(x: lhs.x * GLfloat(rhs.x), y: lhs.y * GLfloat(rhs.y))
+    }
+    /// Multiplies the given points.
+    /// - returns: A point whose coordinates are `lhs.x * rhs.x` and `lhs.y * rhs.y`.
+    public static func * (lhs: MELIntPoint, rhs: MELPoint) -> MELPoint {
+        return MELPoint(x: GLfloat(lhs.x) * rhs.x, y: GLfloat(lhs.y) * rhs.y)
+    }
     /// Multiplies the coordinates of the given points by the given value.
     /// - returns: A point whose coordinates are `lhs.x * rhs` and `lhs.y * rhs`.
     public static func * (lhs: MELPoint, rhs: GLfloat) -> MELPoint {
@@ -92,6 +102,12 @@ extension MELPoint: AdditiveArithmetic {
     /// - returns: A point whose coordinates are `lhs.x / rhs.x` and `lhs.y / rhs.y`.
     public static func / (lhs: MELPoint, rhs: MELPoint) -> MELPoint {
         return MELPointDivide(lhs, rhs)
+    }
+    public static func / (lhs: MELPoint, rhs: MELIntPoint) -> MELPoint {
+        return MELPoint(x: lhs.x / GLfloat(rhs.x), y: lhs.y / GLfloat(rhs.y))
+    }
+    public static func / (lhs: MELIntPoint, rhs: MELPoint) -> MELPoint {
+        return MELPoint(x: GLfloat(lhs.x) / rhs.x, y: GLfloat(lhs.y) / rhs.y)
     }
     public static func / (lhs: MELPoint, rhs: MELIntSize) -> MELPoint {
         return MELPoint(x: lhs.x / GLfloat(rhs.width), y: lhs.y / GLfloat(rhs.height))
@@ -124,6 +140,9 @@ extension MELIntPoint: AdditiveArithmetic {
         return MELIntPointSubstract(lhs, rhs)
     }
 
+    public static func * (lhs: MELIntPoint, rhs: MELIntPoint) -> MELIntPoint {
+        return MELIntPoint(x: lhs.x * rhs.x, y: lhs.y * rhs.y)
+    }
     public static func * (lhs: MELIntPoint, rhs: MELSize) -> MELIntPoint {
         return MELIntPoint(x: Int32(GLfloat(lhs.x) * rhs.width), y: Int32(GLfloat(lhs.y) * rhs.height))
     }
@@ -131,6 +150,9 @@ extension MELIntPoint: AdditiveArithmetic {
         return MELIntPoint(x: lhs.x * rhs.width, y: lhs.y * rhs.height)
     }
 
+    public static func / (lhs: MELIntPoint, rhs: MELIntPoint) -> MELIntPoint {
+        return MELIntPoint(x: lhs.x / rhs.x, y: lhs.y / rhs.y)
+    }
     public static func / (lhs: MELIntPoint, rhs: MELSize) -> MELIntPoint {
         return MELIntPoint(x: Int32(GLfloat(lhs.x) / rhs.width), y: Int32(GLfloat(lhs.y) / rhs.height))
     }
