@@ -36,6 +36,25 @@ MELRectangle MELRectangleMakeWithOriginAndSize(MELPoint origin, MELSize size) {
     };
 }
 
+MELRectangle MELRectangleMakeWithPoints(MELPoint a, MELPoint b) {
+    MELRectangle self;
+    if (a.x < b.x) {
+        self.origin.x = a.x;
+        self.size.width = b.x - a.x;
+    } else {
+        self.origin.x = b.x;
+        self.size.width = a.x - b.x;
+    }
+    if (a.y < b.y) {
+        self.origin.y = a.y;
+        self.size.height = b.y - a.y;
+    } else {
+        self.origin.y = b.y;
+        self.size.height = a.y - b.y;
+    }
+    return self;
+}
+
 MELIntRectangle MELIntRectangleMake(int32_t x, int32_t y, int32_t width, int32_t height) {
     return (MELIntRectangle) {
         {
@@ -54,6 +73,25 @@ MELIntRectangle MELIntRectangleMakeWithOriginAndSize(MELIntPoint origin, MELIntS
         origin,
         size
     };
+}
+
+MELIntRectangle MELIntRectangleMakeWithPoints(MELIntPoint a, MELIntPoint b) {
+    MELIntRectangle self;
+    if (a.x < b.x) {
+        self.origin.x = a.x;
+        self.size.width = b.x - a.x;
+    } else {
+        self.origin.x = b.x;
+        self.size.width = a.x - b.x;
+    }
+    if (a.y < b.y) {
+        self.origin.y = a.y;
+        self.size.height = b.y - a.y;
+    } else {
+        self.origin.y = b.y;
+        self.size.height = a.y - b.y;
+    }
+    return self;
 }
 
 GLfloat MELRectangleOriginIsCenterGetLeft(MELRectangle self) {

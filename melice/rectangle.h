@@ -63,6 +63,15 @@ MELRectangle MELRectangleMake(GLfloat x, GLfloat y, GLfloat width, GLfloat heigh
 MELRectangle MELRectangleMakeWithOriginAndSize(MELPoint origin, MELSize size);
 
 /**
+ * Returns a rectangle whose origin is top-left based and the width and height are calculated by the given points.
+ *
+ * @param a First point defining the rectangle.
+ * @param b Second point defining the rectangle.
+ * @return A rectangle.
+ */
+MELRectangle MELRectangleMakeWithPoints(MELPoint a, MELPoint b);
+
+/**
  * Returns a rectangle with the given origin and size.
  *
  * @param x Horizontal coordinate.
@@ -81,6 +90,15 @@ MELIntRectangle MELIntRectangleMake(int32_t x, int32_t y, int32_t width, int32_t
  * @return A rectangle.
  */
 MELIntRectangle MELIntRectangleMakeWithOriginAndSize(MELIntPoint origin, MELIntSize size);
+
+/**
+ * Returns a rectangle whose origin is top-left based and the width and height are calculated by the given points.
+ *
+ * @param a First point defining the rectangle.
+ * @param b Second point defining the rectangle.
+ * @return A rectangle.
+ */
+MELIntRectangle MELIntRectangleMakeWithPoints(MELIntPoint a, MELIntPoint b);
 
 /**
  * Returns the minimum X coordinate of a rectangle whose center is its origin.
