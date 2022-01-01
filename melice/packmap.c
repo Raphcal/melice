@@ -196,7 +196,7 @@ MELPackMapElement MELPackMapElementMakeWithSpriteDefinitionRef(MELSpriteDefiniti
     }
     MELImagePaletteImage *image = MELSpriteDefinitionFirstNonEmptyImage(*spriteDefinition);
     if (image != NULL) {
-        uint8_t *pixels = spriteDefinition->palette->class->paintImage(spriteDefinition->palette, *image);
+        uint8_t *pixels = spriteDefinition->palette->class->paintImage(spriteDefinition->palette, *image, true);
         return MELPackMapElementMake(spriteDefinition, (uint32_t *) pixels, image->size, MELIntPointZero);
     } else {
         return MELPackMapElementEmpty;

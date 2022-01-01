@@ -36,6 +36,8 @@ void MELImagePaletteDeinit(MELImagePalette * _Nonnull self) {
     for (uint32_t index = 0; index < self->super.count; index++) {
         MELImagePaletteImageDeinit(self->images + index);
     }
+    free(self->images);
+    self->images = NULL;
 }
 
 MELImagePalette * _Nonnull MELImagePaletteRefMakeWithMELImagePaletteRef(MELImagePalette * _Nonnull other) {
@@ -57,7 +59,7 @@ uint8_t * _Nullable MELImagePalettePaintTile(MELImagePalette * _Nonnull self, un
         fprintf(stderr, "Tile index out of bounds 0..<%d: %d", self->super.count, tileIndex);
         return NULL;
     }
-    return MELColorPalettePaintImage(self->colorPalette, self->images[tileIndex]);
+    return MELColorPalettePaintImage(self->colorPalette, self->images[tileIndex], false);
 }
 
 void MELImagePalettePaintTileToBuffer(MELImagePalette * _Nonnull self, unsigned int tileIndex, MELIntPoint topLeft, MELUInt32Color * _Nonnull buffer, MELIntSize bufferSize) {

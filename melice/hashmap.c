@@ -51,13 +51,14 @@ void MELHashMapGrowAndRehash(MELHashMap * _Nonnull self) {
     memset(newBuckets.memory, 0, sizeof(MELHashMapBucketList) * newBuckets.capacity);
     newBuckets.count = oldBuckets.count;
     for (size_t bucketIndex = 0; bucketIndex < oldBuckets.capacity; bucketIndex++) {
-        MELHashMapBucket bucket = oldBuckets.memory[bucketIndex];
-        for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {
-            MELHashMapEntry entry = bucket.entries.memory[entryIndex];
+        MELHashMapBucket oldBucket = oldBuckets.memory[bucketIndex];
+        for (size_t entryIndex = 0; entryIndex < oldBucket.entries.count; entryIndex++) {
+            MELHashMapEntry entry = oldBucket.entries.memory[entryIndex];
 
             size_t newBucketIndex = entry.hash % newBuckets.capacity;
             MELHashMapEntryListPush(&newBuckets.memory[newBucketIndex].entries, entry);
         }
+        MELHashMapEntryListDeinit(&oldBucket.entries);
     }
     self->buckets = newBuckets;
     MELHashMapBucketListDeinit(&oldBuckets);

@@ -124,6 +124,8 @@ void MELTextureUnload(MELTexture * _Nonnull self) {
 void MELTextureDeinit(MELTexture * _Nonnull self) {
     free(self->path);
     self->path = NULL;
+    free(self->pixels);
+    self->pixels = NULL;
     self->size = MELIntSizeZero;
     if (self->name != 0) {
         glDeleteTextures(1, &self->name);

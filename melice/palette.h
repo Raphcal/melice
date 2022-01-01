@@ -52,7 +52,7 @@ typedef struct {
     /**
      * Allocates a byte array and paints the given image using this palette.
      */
-    uint8_t * _Nullable (* _Nullable paintImage)(MELPalette * _Nonnull self, MELImagePaletteImage image);
+    uint8_t * _Nullable (* _Nullable paintImage)(MELPalette * _Nonnull self, MELImagePaletteImage image, MELBoolean premultiplyAlpha);
 
     /**
      * Allocates a byte array and paints the given area of the given map with palette's preferred tile size.

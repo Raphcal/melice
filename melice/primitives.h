@@ -13,7 +13,7 @@
 
 typedef uintptr_t MELPointer;
 typedef uint8_t MELByte;
-typedef void * MELRef;
+typedef void * _Nonnull MELRef;
 
 MELListDefine(GLfloat);
 MELListDefine(GLubyte);

@@ -73,13 +73,14 @@ void K##V##TableGrowAndRehash(K##V##Table * _Nonnull self) {\
     memset(newBuckets.memory, 0, sizeof(K##V##TableBucketList) * newBuckets.capacity);\
     newBuckets.count = oldBuckets.count;\
     for (size_t bucketIndex = 0; bucketIndex < oldBuckets.capacity; bucketIndex++) {\
-        K##V##TableBucket bucket = oldBuckets.memory[bucketIndex];\
-        for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {\
-            K##V##TableEntry entry = bucket.entries.memory[entryIndex];\
+        K##V##TableBucket oldBucket = oldBuckets.memory[bucketIndex];\
+        for (size_t entryIndex = 0; entryIndex < oldBucket.entries.count; entryIndex++) {\
+            K##V##TableEntry entry = oldBucket.entries.memory[entryIndex];\
 \
             size_t newBucketIndex = entry.key % newBuckets.capacity;\
             K##V##TableEntryListPush(&newBuckets.memory[newBucketIndex].entries, entry);\
         }\
+        K##V##TableEntryListDeinit(&oldBucket.entries);\
     }\
     self->buckets = newBuckets;\
     K##V##TableBucketListDeinit(&oldBuckets);\

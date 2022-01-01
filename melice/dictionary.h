@@ -80,13 +80,14 @@ void type##DictionaryGrowAndRehash(type##Dictionary * _Nonnull self) {\
     memset(newBuckets.memory, 0, sizeof(type##DictionaryBucketList) * newBuckets.capacity);\
     newBuckets.count = oldBuckets.count;\
     for (size_t bucketIndex = 0; bucketIndex < oldBuckets.capacity; bucketIndex++) {\
-        type##DictionaryBucket bucket = oldBuckets.memory[bucketIndex];\
-        for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {\
-            type##DictionaryEntry entry = bucket.entries.memory[entryIndex];\
+        type##DictionaryBucket oldBucket = oldBuckets.memory[bucketIndex];\
+        for (size_t entryIndex = 0; entryIndex < oldBucket.entries.count; entryIndex++) {\
+            type##DictionaryEntry entry = oldBucket.entries.memory[entryIndex];\
 \
             size_t newBucketIndex = entry.hash % newBuckets.capacity;\
             type##DictionaryEntryListPush(&newBuckets.memory[newBucketIndex].entries, entry);\
         }\
+        type##DictionaryEntryListDeinit(&oldBucket.entries);\
     }\
     self->buckets = newBuckets;\
     type##DictionaryBucketListDeinit(&oldBuckets);\
