@@ -315,19 +315,21 @@ MELPaletteRef MELMmkProjectFormatReadBufferedImagePalette(MELInputStream * _Nonn
 }
 
 MELPaletteRef MELMmkProjectFormatReadPalette(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
+    MELPaletteRef palette = NULL;
     char *paletteClass = MELInputStreamReadString(inputStream);
     if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.AlphaColorPalette") == 0) {
-        return &self->class->readColorPalette(self, project, inputStream)->super;
+        palette = &self->class->readColorPalette(self, project, inputStream)->super;
     } else if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.EditableImagePalette") == 0) {
-        return &self->class->readImagePalette(self, project, inputStream)->super;
+        palette = &self->class->readImagePalette(self, project, inputStream)->super;
     } else if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.PaletteReference") == 0) {
-        return self->class->readPaletteReference(self, project, inputStream);
+        palette = self->class->readPaletteReference(self, project, inputStream);
     } else if (strcmp(paletteClass, "fr.rca.mapmaker.model.palette.ImagePalette") == 0) {
-        return MELMmkProjectFormatReadBufferedImagePalette(inputStream);
+        palette = MELMmkProjectFormatReadBufferedImagePalette(inputStream);
     } else {
         fprintf(stderr, "Unsupported palette class: %s\n", paletteClass);
-        return NULL;
     }
+    free(paletteClass);
+    return palette;
 }
 
 void MELMmkProjectFormatWritePalette(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELPaletteRef palette) {

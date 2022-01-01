@@ -145,7 +145,9 @@ char * _Nullable MELUTF8StringMakeWithUTF16String(uint16_t * _Nullable source) {
         return NULL;
     }
     MELCodePointList codePoints = MELCodePointListMakeWithUTF16String(source);
-    return MELUTF8StringMakeWithCodePoints(codePoints);
+    char *utf8String = MELUTF8StringMakeWithCodePoints(codePoints);
+    MELCodePointListDeinit(&codePoints);
+    return utf8String;
 }
 
 uint16_t * _Nullable MELUTF16StringMakeWithCodePoints(MELCodePointList codePoints) {

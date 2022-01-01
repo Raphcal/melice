@@ -90,8 +90,6 @@ MELTextureAtlas MELTextureAtlasMakeWithPackMapAndRefList(MELPackMap packMap, MEL
         }
     }
 
-    MELPackMapDeinit(&packMap);
-
     return self;
 }
 

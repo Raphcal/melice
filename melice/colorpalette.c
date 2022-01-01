@@ -379,15 +379,21 @@ void MELColorPalettePaintTileToBuffer(MELColorPalette * _Nonnull self, unsigned 
     }
 }
 
-uint8_t * _Nullable MELColorPalettePaintImage(MELColorPalette * _Nonnull self, MELImagePaletteImage image) {
+uint8_t * _Nullable MELColorPalettePaintImage(MELColorPalette * _Nonnull self, MELImagePaletteImage image, MELBoolean premultiplyAlpha) {
     MELColorPalette colorPalette = *self;
 
     MELUInt32Color *pixels = malloc(MELPaletteByteCount(image.size, MELIntSizeMake(1, 1)));
 
     const int *tiles = image.tiles;
     const size_t count = image.size.width * image.size.height;
-    for (size_t index = 0; index < count; index++) {
-        pixels[index] = MELColorPaletteColorForTile(colorPalette, tiles[index]);
+    if (!premultiplyAlpha) {
+        for (size_t index = 0; index < count; index++) {
+            pixels[index] = MELColorPaletteColorForTile(colorPalette, tiles[index]);
+        }
+    } else {
+        for (size_t index = 0; index < count; index++) {
+            pixels[index] = MELColorPaletteAlphaPremultipliedColorForTile(colorPalette, tiles[index]);
+        }
     }
     return (uint8_t *) pixels;
 }
@@ -421,7 +427,7 @@ const MELPaletteClass MELColorPaletteClass = {
     .deinit = (void(*)(MELPalette *)) &MELColorPaletteDeinit,
     .paintTile = (uint8_t *(*)(MELPalette *, unsigned int)) &MELColorPalettePaintTile,
     .paintTileToBuffer = (void(*)(MELPalette *, unsigned int, MELIntPoint, MELUInt32Color *, MELIntSize))&MELColorPalettePaintTileToBuffer,
-    .paintImage = (uint8_t *(*)(MELPalette *, MELImagePaletteImage))&MELColorPalettePaintImage,
+    .paintImage = (uint8_t *(*)(MELPalette *, MELImagePaletteImage, MELBoolean premultiplyAlpha))&MELColorPalettePaintImage,
     .paintMap = (uint8_t *(*)(MELPalette *, MELMap, MELIntSize)) &MELColorPalettePaintMap,
     .tileAtIndex = (void *(*)(MELPalette *, unsigned int)) &MELColorPaletteTileAtIndex
 };
