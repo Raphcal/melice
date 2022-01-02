@@ -19,6 +19,7 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
     MELMapRenderer self;
     self.renderer = renderer;
     self.map = map;
+    self.tileSize = MELIntSizeMake(MELTileSize, MELTileSize);
     self.atlas = atlas;
 
     MELSurfaceArray *layerSurfaces = calloc(map.layers.count, sizeof(MELSurfaceArray));
@@ -46,12 +47,17 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
 }
 
 MELMapRenderer MELMapRendererMakeWithRendererAndMutableMapAndAtlas(MELRenderer * _Nonnull renderer, MELMutableMap mutableMap, MELTextureAtlas atlas) {
-    return MELMapRendererMakeWithRendererAndMapAndAtlas(renderer, mutableMap.super, atlas);
+    MELMapRenderer self = MELMapRendererMakeWithRendererAndMapAndAtlas(renderer, mutableMap.super, atlas);
+    self.tileSize = mutableMap.palette->tileSize;
+    self.firstSpriteDefinitionIndex = mutableMap.palette->count;
+    return self;
 }
 
 MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap map, MELColorPalette colorPalette) {
     MELMapRenderer self;
     self.map = map;
+    self.tileSize = colorPalette.super.tileSize;
+    self.firstSpriteDefinitionIndex = colorPalette.super.count;
 
     MELSurfaceArray *layerSurfaces = calloc(map.layers.count, sizeof(MELSurfaceArray));
     for (int index = 0; index < map.layers.count; index++) {
@@ -103,8 +109,14 @@ void MELMapRendererUpdate(MELMapRenderer self) {
             if (tile >= 0) {
                 GLfloat x = tileIndex % layer.size.width;
                 GLfloat y = tileIndex / layer.size.width;
-                MELSurfaceArrayAppendTexturedQuad(layerSurface, MELRectangleMake(x * MELTileSize, y * MELTileSize, MELTileSize, MELTileSize), tile, self.atlas);
+                MELSurfaceArrayAppendTexturedQuad(layerSurface, MELRectangleMake(x * self.tileSize.width, y * self.tileSize.height, self.tileSize.width, self.tileSize.height), tile, self.atlas);
             }
+        }
+
+        for (int spriteIndex = 0; spriteIndex < layer.sprites.count; spriteIndex++) {
+            MELSpriteInstance sprite = layer.sprites.memory[spriteIndex];
+            MELIntRectangle source = self.atlas.sources[self.firstSpriteDefinitionIndex + sprite.definitionIndex];
+            MELSurfaceArrayAppendTexturedQuad(layerSurface, MELRectangleMakeWithOriginAndSize(sprite.topLeft, MELSizeMake(source.size.width, source.size.height)), self.firstSpriteDefinitionIndex + sprite.definitionIndex, self.atlas);
         }
     }
 }

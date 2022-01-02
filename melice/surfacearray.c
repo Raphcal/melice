@@ -85,6 +85,16 @@ void MELSurfaceArrayAppendTexturedColoredQuad(MELSurfaceArray * _Nonnull self, M
     MELListAppendColor(colors, color);
 }
 
+void MELSurfaceArrayAppendTilesWithAlpha(MELSurfaceArray * _Nonnull self, int32_t * _Nonnull tiles, MELIntSize size, MELIntSize tileSize, uint8_t alpha, MELTextureAtlas atlas) {
+    const size_t count = size.width * size.height;
+    for (size_t index = 0; index < count; index++) {
+        int32_t tile = tiles[index];
+        if (tile >= 0) {
+            MELSurfaceArrayAppendTexturedColoredQuad(self, MELRectangleMake((index % size.width) * tileSize.width, (index / size.width) * tileSize.height, tileSize.width, tileSize.height), tile, atlas, MELUInt8ColorMake(alpha, alpha, alpha, alpha));
+        }
+    }
+}
+
 void MELSurfaceArrayClear(MELSurfaceArray * _Nonnull self) {
     self->count = 0;
     self->vertex.count = 0;

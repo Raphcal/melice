@@ -16,6 +16,7 @@
 #include "rectangle.h"
 #include "list.h"
 #include "primitives.h"
+#include "spriteinstance.h"
 
 typedef struct melsurfacearray {
     MELList(GLfloat) vertex;
@@ -51,6 +52,8 @@ void MELSurfaceArrayAppendTexturedQuad(MELSurfaceArray * _Nonnull self, MELRecta
 void MELSurfaceArrayAppendColoredQuad(MELSurfaceArray * _Nonnull self, MELRectangle vertices, MELUInt8Color color);
 
 void MELSurfaceArrayAppendTexturedColoredQuad(MELSurfaceArray * _Nonnull self, MELRectangle vertices, int tile, MELTextureAtlas atlas, MELUInt8Color color);
+
+void MELSurfaceArrayAppendTilesWithAlpha(MELSurfaceArray * _Nonnull self, int32_t * _Nonnull tiles, MELIntSize size, MELIntSize tileSize, uint8_t alpha, MELTextureAtlas atlas);
 
 /**
  * Fill the entire memory of the given surface with zeroes.

@@ -16,6 +16,7 @@
 #include "textureatlas.h"
 #include "surfacearray.h"
 #include "point.h"
+#include "size.h"
 #include "renderer.h"
 #include "colorpalette.h"
 #include "primitives.h"
@@ -25,8 +26,10 @@
 typedef struct {
     MELRenderer * _Nonnull renderer;
     MELMap map;
+    MELIntSize tileSize;
     MELTextureAtlas atlas;
     MELSurfaceArray * _Nullable layerSurfaces;
+    unsigned int firstSpriteDefinitionIndex;
 } MELMapRenderer;
 
 /**
