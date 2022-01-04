@@ -378,6 +378,7 @@
 		64749399272C2ABA004F3D97 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 64749395272C2ABA004F3D97 /* primitives.c */; };
 		6474939A272C2B95004F3D97 /* primitives.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; };
 		6474939B272C2BA1004F3D97 /* primitives.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; };
+		648589D827839BD500650C98 /* SpriteDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648589D727839BD500650C98 /* SpriteDefinition.swift */; };
 		64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -950,6 +951,7 @@
 		6474938E272C1470004F3D97 /* mutablemap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mutablemap.h; sourceTree = "<group>"; };
 		64749394272C2ABA004F3D97 /* primitives.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primitives.h; sourceTree = "<group>"; };
 		64749395272C2ABA004F3D97 /* primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
+		648589D727839BD500650C98 /* SpriteDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteDefinition.swift; sourceTree = "<group>"; };
 		64B43092277FA406004185E3 /* pointerintrectangletable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintrectangletable.h; sourceTree = "<group>"; };
 		64B43093277FA406004185E3 /* pointerintrectangletable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintrectangletable.c; sourceTree = "<group>"; };
 		64CB66C5271F504E00663A2E /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1381,6 +1383,7 @@
 				64F5D1752760FB86000C3967 /* Map */,
 				64F5D17B276105DC000C3967 /* Project */,
 				645260572614FB2300BB78AC /* Scene */,
+				648589D627839BBF00650C98 /* Sprite */,
 				641FB734277C4F90006DD7C3 /* Surface */,
 				64F5D1782760FDC0000C3967 /* Util */,
 				645260402614F88D00BB78AC /* MeliceFramework.h */,
@@ -1442,6 +1445,14 @@
 				64718A0027390F2900547977 /* readme.md */,
 			);
 			path = miniz;
+			sourceTree = "<group>";
+		};
+		648589D627839BBF00650C98 /* Sprite */ = {
+			isa = PBXGroup;
+			children = (
+				648589D727839BD500650C98 /* SpriteDefinition.swift */,
+			);
+			name = Sprite;
 			sourceTree = "<group>";
 		};
 		64D00E822731D84400C8A675 /* project */ = {
@@ -2016,6 +2027,7 @@
 				643EECF8275E8D7D0039FDAB /* rectangle.c in Sources */,
 				643EECF9275E8D7D0039FDAB /* size.c in Sources */,
 				641FB738277C52F4006DD7C3 /* ImagePaletteImage.swift in Sources */,
+				648589D827839BD500650C98 /* SpriteDefinition.swift in Sources */,
 				643EECFA275E8D7D0039FDAB /* buttonstate.c in Sources */,
 				64F5D18127610A4D000C3967 /* MutableMap.swift in Sources */,
 				643EECFB275E8D7D0039FDAB /* buttonmapping.c in Sources */,
