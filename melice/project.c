@@ -16,7 +16,7 @@
 MELProject MELProjectMakeWithEmptyMap(void) {
     MELProject self = {
         MELPaletteRefListMakeWithInitialCapacity(2),
-        MELMapGroupListMakeWithInitialCapacity(1)
+        MELMapGroupEmpty
     };
 
     // Default color palette.
@@ -33,9 +33,7 @@ MELProject MELProjectMakeWithEmptyMap(void) {
     MELMutableMap map = MELMutableMapMakeWithSizeAndPalette(DEFAULT_MAP_SIZE, self.palettes.memory[1]);
 
     // Map groups.
-    MELMapGroup mapGroup = MELMapGroupEmpty;
-    MELMutableMapListPush(&mapGroup.maps, map);
-    MELMapGroupListPush(&self.mapGroups, mapGroup);
+    MELMutableMapListPush(&self.root.maps, map);
 
     return self;
 }
@@ -43,12 +41,12 @@ MELProject MELProjectMakeWithEmptyMap(void) {
 MELProject MELProjectMakeWithProject(MELProject other) {
     MELProject self = {
         MELPaletteRefListMakeWithListAndCopyFunction(other.palettes, &MELPaletteRefMakeWithPaletteRef),
-        MELMapGroupListMakeWithListAndCopyFunction(other.mapGroups, &MELMapGroupMakeWithMapGroup)
+        MELMapGroupMakeWithMapGroup(other.root)
     };
     return self;
 }
 
 void MELProjectDeinit(MELProject * _Nonnull self) {
     MELPaletteRefListDeinitWithDeinitFunction(&self->palettes, &MELPaletteRefDeinit);
-    MELMapGroupListDeinitWithDeinitFunction(&self->mapGroups, &MELMapGroupDeinit);
+    MELMapGroupDeinit(&self->root);
 }

@@ -16,7 +16,7 @@
 
 typedef struct {
     MELList(MELPaletteRef) palettes;
-    MELList(MELMapGroup) mapGroups;
+    MELMapGroup root;
 } MELProject;
 
 MELProject MELProjectMakeWithEmptyMap(void);

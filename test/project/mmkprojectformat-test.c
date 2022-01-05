@@ -20,7 +20,7 @@ void debugProject(MELProject project) {
     for (size_t index = 0; index < project.palettes.count; index++) {
         printf("- palette %s (%dx%d)\n", project.palettes.memory[index]->name, project.palettes.memory[index]->tileSize.width, project.palettes.memory[index]->tileSize.height);
     }
-    MELMapGroup mapGroup = project.mapGroups.memory[0];
+    MELMapGroup mapGroup = project.root;
     printf("%zu map(s)\n", mapGroup.maps.count);
     for (size_t index = 0; index < mapGroup.maps.count; index++) {
         MELMutableMap map = mapGroup.maps.memory[index];
@@ -54,10 +54,9 @@ void testOpenProjet(void) {
     MELBoolean openSuccess = mmkFormat.class->openProject(&mmkFormat, &inputStream, &project);
     assert(openSuccess);
 
-    assert(project.mapGroups.count == 1);
-    assert(project.mapGroups.memory[0].maps.count == 2);
+    assert(project.root.maps.count == 2);
 
-    MELMutableMap firstMap = project.mapGroups.memory[0].maps.memory[0];
+    MELMutableMap firstMap = project.root.maps.memory[0];
     assert(MELColorToUInt32Color(firstMap.super.backgroundColor) == (uint32_t)0xff0099cc);
     assert(firstMap.super.layers.count == 2);
 

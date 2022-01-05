@@ -85,9 +85,7 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
 
     self->version = version;
 
-    MELProject project = {MELPaletteRefListEmpty, MELMapGroupListEmpty};
-
-    MELMapGroupListPush(&project.mapGroups, MELMapGroupEmpty);
+    MELProject project = {MELPaletteRefListEmpty, MELMapGroupEmpty};
 
     // Loading palettes.
     MELBoolean hasDefaultColorPalette = false;
@@ -107,20 +105,20 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
     // Loading maps.
     const int mapCount = MELInputStreamReadInt(inputStream);
     for (int index = 0; index < mapCount; index++) {
-        MELMutableMapListPush(&project.mapGroups.memory[0].maps, self->class->readMap(self, &project, inputStream));
+        MELMutableMapListPush(&project.root.maps, self->class->readMap(self, &project, inputStream));
     }
 
     if (version >= 3) {
         // Loading sprites.
         const int spriteCount = MELInputStreamReadInt(inputStream);
         for (int index = 0; index < spriteCount; index++) {
-            MELSpriteDefinitionListPush(&project.mapGroups.memory[0].sprites, self->class->readSpriteDefinition(self, &project, inputStream));
+            MELSpriteDefinitionListPush(&project.root.sprites, self->class->readSpriteDefinition(self, &project, inputStream));
         }
 
         // Loading sprite instances.
         const MELPoint defaultScrollRate = MELPointMake(1, 1);
         for (int mapIndex = 0; mapIndex < mapCount; mapIndex++) {
-            MELLayerList * _Nonnull layers = &project.mapGroups.memory[0].maps.memory[mapIndex].super.layers;
+            MELLayerList * _Nonnull layers = &project.root.maps.memory[mapIndex].super.layers;
             MELLayer * _Nullable layer = NULL;
             for (int layerIndex = 0; layerIndex < layers->count; layerIndex++) {
                 if (strcmp(layers->memory[layerIndex].name, "Piste") == 0) {
@@ -176,23 +174,22 @@ void writeProject(MELProjectFormat * _Nonnull self, MELOutputStream * _Nonnull o
     }
 
     // Writing maps.
-    MELMutableMapList maps = project.mapGroups.count == 1 ? project.mapGroups.memory[0].maps : MELMutableMapListEmpty;
-    MELOutputStreamWriteInt(outputStream, (int32_t) maps.count);
-    for (unsigned int index = 0; index < maps.count; index++) {
-        self->class->writeMap(self, project, outputStream, maps.memory[index]);
+    MELOutputStreamWriteInt(outputStream, (int32_t) project.root.maps.count);
+    for (unsigned int index = 0; index < project.root.maps.count; index++) {
+        self->class->writeMap(self, project, outputStream, project.root.maps.memory[index]);
     }
 
     if (self->version >= 3) {
         // Writing sprites definitions.
-        MELSpriteDefinitionList sprites = project.mapGroups.count == 1 ? project.mapGroups.memory[0].sprites : MELSpriteDefinitionListEmpty;
+        MELSpriteDefinitionList sprites = project.root.sprites;
         MELOutputStreamWriteInt(outputStream, (int32_t) sprites.count);
         for (unsigned int index = 0; index < sprites.count; index++) {
             self->class->writeSpriteDefinition(self, project, outputStream, sprites.memory[index]);
         }
         
         // Writing sprites instances.
-        for (unsigned int mapIndex = 0; mapIndex < maps.count; mapIndex++) {
-            const MELMutableMap map = maps.memory[mapIndex];
+        for (unsigned int mapIndex = 0; mapIndex < project.root.maps.count; mapIndex++) {
+            const MELMutableMap map = project.root.maps.memory[mapIndex];
             MELSpriteInstanceList instances = MELSpriteInstanceListEmpty;
             for (unsigned int layerIndex = 0; layerIndex < map.super.layers.count; layerIndex++) {
                 MELSpriteInstanceListAddAll(&instances, map.super.layers.memory[layerIndex].sprites);
@@ -525,9 +522,8 @@ MELMutableMap MELMmkProjectFormatReadMap(MELProjectFormat * _Nonnull self, MELPr
 void MELMmkProjectFormatWriteMap(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELMutableMap map) {
     if (self->version >= 7) {
         int32_t index = -1;
-        MELMutableMapList maps = project.mapGroups.count == 1 ? project.mapGroups.memory[0].maps : MELMutableMapListEmpty;
-        for (unsigned int mapIndex = 0; index < maps.count; mapIndex++) {
-            if (maps.memory[mapIndex].super.layers.memory == map.super.layers.memory) {
+        for (unsigned int mapIndex = 0; index < project.root.maps.count; mapIndex++) {
+            if (project.root.maps.memory[mapIndex].super.layers.memory == map.super.layers.memory) {
                 index = mapIndex;
                 break;
             }
