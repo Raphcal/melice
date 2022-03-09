@@ -380,6 +380,7 @@
 		6474939B272C2BA1004F3D97 /* primitives.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; };
 		648589D827839BD500650C98 /* SpriteDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648589D727839BD500650C98 /* SpriteDefinition.swift */; };
 		648589E32784DAC900650C98 /* SpriteInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648589E22784DAC900650C98 /* SpriteInstance.swift */; };
+		648B2634278E2DA9009195C5 /* MapGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648B2633278E2DA9009195C5 /* MapGroup.swift */; };
 		64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -954,6 +955,7 @@
 		64749395272C2ABA004F3D97 /* primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
 		648589D727839BD500650C98 /* SpriteDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteDefinition.swift; sourceTree = "<group>"; };
 		648589E22784DAC900650C98 /* SpriteInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteInstance.swift; sourceTree = "<group>"; };
+		648B2633278E2DA9009195C5 /* MapGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapGroup.swift; sourceTree = "<group>"; };
 		64B43092277FA406004185E3 /* pointerintrectangletable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintrectangletable.h; sourceTree = "<group>"; };
 		64B43093277FA406004185E3 /* pointerintrectangletable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintrectangletable.c; sourceTree = "<group>"; };
 		64CB66C5271F504E00663A2E /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1493,6 +1495,7 @@
 			isa = PBXGroup;
 			children = (
 				64F5D1762760FBBB000C3967 /* Layer.swift */,
+				648B2633278E2DA9009195C5 /* MapGroup.swift */,
 				64F5D18027610A4D000C3967 /* MutableMap.swift */,
 				64F5D18227610A69000C3967 /* Palette.swift */,
 				641FB737277C52F4006DD7C3 /* ImagePaletteImage.swift */,
@@ -2083,6 +2086,7 @@
 				643EED1F275E8D7E0039FDAB /* statichitbox.c in Sources */,
 				643EED20275E8D7E0039FDAB /* motion.c in Sources */,
 				643EED21275E8D7E0039FDAB /* nomotion.c in Sources */,
+				648B2634278E2DA9009195C5 /* MapGroup.swift in Sources */,
 				643EED22275E8D7E0039FDAB /* direction.c in Sources */,
 				643EED23275E8D7E0039FDAB /* sprite.c in Sources */,
 				64F5D1692760F6AD000C3967 /* Point.swift in Sources */,
@@ -2250,7 +2254,10 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DGL_SILENCE_DEPRECATION=1";
+				OTHER_CFLAGS = (
+					"-DGL_SILENCE_DEPRECATION=1",
+					"-DGLES_SILENCE_DEPRECATION=1",
+				);
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -2306,7 +2313,10 @@
 				MODULEMAP_FILE = "$(SRCROOT)/melice/module.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				OTHER_CFLAGS = "-DGL_SILENCE_DEPRECATION=1";
+				OTHER_CFLAGS = (
+					"-DGL_SILENCE_DEPRECATION=1",
+					"-DGLES_SILENCE_DEPRECATION=1",
+				);
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
@@ -2397,6 +2407,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MODULEMAP_FILE = "";
+				OTHER_SWIFT_FLAGS = "-DGL_SILENCE_DEPRECATION -DGLES_SILENCE_DEPRECATION";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -2433,6 +2444,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MODULEMAP_FILE = "";
+				OTHER_SWIFT_FLAGS = "-DGL_SILENCE_DEPRECATION -DGLES_SILENCE_DEPRECATION";
 				PRODUCT_BUNDLE_IDENTIFIER = fr.rca.meliceframework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

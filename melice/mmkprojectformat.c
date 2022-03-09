@@ -85,7 +85,8 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
 
     self->version = version;
 
-    MELProject project = {MELPaletteRefListEmpty, MELMapGroupEmpty};
+    MELProject project;
+    project.root = MELMapGroupMakeEmpty();
 
     // Loading palettes.
     MELBoolean hasDefaultColorPalette = false;
@@ -494,6 +495,7 @@ void MELMmkProjectFormatWriteLayer(MELProjectFormat * _Nonnull self, MELProject 
 
 MELMutableMap MELMmkProjectFormatReadMap(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
     MELMutableMap map;
+    uuid_generate(map.uuid);
     if (self->version >= 7) {
         /* index */ MELInputStreamReadInt(inputStream);
     }

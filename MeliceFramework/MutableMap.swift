@@ -11,6 +11,12 @@ extension MELMutableMap: Named {
     public static var defaultName = "Map"
 }
 
+extension MELMutableMap: Identifiable {
+    public var id: UUID {
+        UUID(uuid: self.uuid)
+    }
+}
+
 extension MELMutableMap: Hashable {
     public static func == (lhs: MELMutableMap, rhs: MELMutableMap) -> Bool {
         return lhs.hashValue == rhs.hashValue

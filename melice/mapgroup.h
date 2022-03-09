@@ -23,9 +23,10 @@ typedef struct melmapgroup {
     MELList(MELMutableMap) maps;
     MELList(MELSpriteDefinition) sprites;
     MELMapGroupList children;
+    uuid_t uuid;
 } MELMapGroup;
 
-extern const MELMapGroup MELMapGroupEmpty;
+MELMapGroup MELMapGroupMakeEmpty(void);
 
 MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other);
 

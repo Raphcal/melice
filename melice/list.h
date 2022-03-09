@@ -56,6 +56,10 @@ type type##ListRemove(type##List * _Nonnull self, size_t index);
 #define MELListDefineIndexOf(type) \
 int type##ListIndexOf(type##List self, type entry);
 
+#define MELListDefineGetSetByUUID(type) \
+MELBoolean type##ListGetByUUID(type##List self, uuid_t uuid, type * _Nullable element);\
+void type##ListSetByUUID(type##List self, uuid_t uuid, type element);\
+MELBoolean type##ListFirstIndexWithUUID(type##List self, uuid_t uuid, size_t * _Nullable elementIndex);
 
 #pragma mark - Implementation
 
@@ -170,6 +174,34 @@ int type##ListIndexOf(type##List self, type entry) {\
         }\
     }\
     return -1;\
+}
+
+#define MELListImplementGetSetByUUID(type) \
+MELBoolean type##ListGetByUUID(type##List self, uuid_t uuid, type * _Nullable element) {\
+    for (size_t index = 0; index < self.count; index++) {\
+        if (!uuid_compare(self.memory[index].uuid, uuid)) {\
+            *element = self.memory[index];\
+            return true;\
+        }\
+    }\
+    return false;\
+}\
+void type##ListSetByUUID(type##List self, uuid_t uuid, type element) {\
+    for (size_t index = 0; index < self.count; index++) {\
+        if (!uuid_compare(self.memory[index].uuid, uuid)) {\
+            self.memory[index] = element;\
+            return;\
+        }\
+    }\
+}\
+MELBoolean type##ListFirstIndexWithUUID(type##List self, uuid_t uuid, size_t * _Nullable elementIndex) {\
+    for (size_t index = 0; index < self.count; index++) {\
+        if (!uuid_compare(self.memory[index].uuid, uuid)) {\
+            *elementIndex = index;\
+            return true;\
+        }\
+    }\
+    return false;\
 }
 
 /**

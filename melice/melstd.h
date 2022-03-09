@@ -15,6 +15,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
+#include <uuid/uuid.h>
+
 #ifdef __MACH__
 #define GL_SILENCE_DEPRECATION 1
 #include <TargetConditionals.h>

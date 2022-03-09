@@ -9,7 +9,11 @@
 
 MELListImplement(MELMapGroup);
 
-const MELMapGroup MELMapGroupEmpty = {NULL, {NULL, 0, 0}, {NULL, 0, 0}, {NULL, 0, 0}};
+MELMapGroup MELMapGroupMakeEmpty(void) {
+    MELMapGroup self;
+    uuid_generate(self.uuid);
+    return self;
+}
 
 MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other) {
     MELMapGroup self;
@@ -17,6 +21,7 @@ MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other) {
     self.maps = MELMutableMapListMakeWithListAndCopyFunction(other.maps, &MELMutableMapMakeWithMutableMap);
     self.sprites = MELSpriteDefinitionListMakeWithListAndCopyFunction(other.sprites, &MELSpriteDefinitionMakeWithSpriteDefinition);
     self.children = MELMapGroupListMakeWithListAndCopyFunction(other.children, &MELMapGroupMakeWithMapGroup);
+    uuid_generate(self.uuid);
     return self;
 }
 
@@ -26,4 +31,5 @@ void MELMapGroupDeinit(MELMapGroup * _Nonnull self) {
     MELMutableMapListDeinitWithDeinitFunction(&self->maps, &MELMutableMapDeinit);
     MELSpriteDefinitionListDeinitWithDeinitFunction(&self->sprites, &MELSpriteDefinitionDeinit);
     MELMapGroupListDeinitWithDeinitFunction(&self->children, &MELMapGroupDeinit);
+    uuid_clear(self->uuid);
 }

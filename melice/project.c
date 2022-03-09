@@ -14,10 +14,8 @@
 #define DEFAULT_MAP_SIZE ((MELIntSize){20,15})
 
 MELProject MELProjectMakeWithEmptyMap(void) {
-    MELProject self = {
-        MELPaletteRefListMakeWithInitialCapacity(2),
-        MELMapGroupEmpty
-    };
+    MELProject self;
+    self.palettes = MELPaletteRefListMakeWithInitialCapacity(2);
 
     // Default color palette.
     MELColorPalette *defaultColorPalette = malloc(sizeof(MELColorPalette));
@@ -33,7 +31,9 @@ MELProject MELProjectMakeWithEmptyMap(void) {
     MELMutableMap map = MELMutableMapMakeWithSizeAndPalette(DEFAULT_MAP_SIZE, self.palettes.memory[1]);
 
     // Map groups.
-    MELMutableMapListPush(&self.root.maps, map);
+    MELMapGroup root = MELMapGroupMakeEmpty();
+    MELMutableMapListPush(&root.maps, map);
+    self.root = root;
 
     return self;
 }

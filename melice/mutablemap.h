@@ -21,9 +21,13 @@ typedef struct {
     MELMap super;
     MELPalette * _Nonnull palette;
     char * _Nullable name;
+    uuid_t uuid;
 } MELMutableMap;
 
 MELListDefine(MELMutableMap);
+MELListDefineGetSetByUUID(MELMutableMap);
+
+extern const MELMutableMap MELMutableMapEmpty;
 
 MELMutableMap MELMutableMapMakeWithSizeAndPalette(MELIntSize size, MELPalette * _Nonnull palette);
 

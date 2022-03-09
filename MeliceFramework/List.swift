@@ -85,6 +85,27 @@ extension MELMapGroupList: MELList {
 extension MELMutableMapList: MELList {
     public typealias Element = MELMutableMap
     public static let empty = MELMutableMapListEmpty
+
+    public subscript(mapId: UUID) -> MELMutableMap {
+        get {
+            var uuid = mapId.uuid
+            return withUnsafeMutablePointer(to: &uuid) { uuid in
+                uuid.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<uuid_t>.size) { uuid in
+                    var map = MELMutableMapEmpty
+                    MELMutableMapListGetByUUID(self, uuid, &map)
+                    return map
+                }
+            }
+        }
+        set(newValue) {
+            var uuid = mapId.uuid
+            let _ = withUnsafeMutablePointer(to: &uuid) { uuid in
+                uuid.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<uuid_t>.size) { uuid in
+                    MELMutableMapListSetByUUID(self, uuid, newValue)
+                }
+            }
+        }
+    }
 }
 extension MELPaletteRefList: MELList {
     public typealias Element = MELPaletteRef?
