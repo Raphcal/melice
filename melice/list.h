@@ -24,6 +24,8 @@ size_t count; \
 size_t capacity; \
 } type##List;
 
+#pragma mark - Definition
+
 #define MELListDefine(type) /** List of type */ typedef struct mellist_##type { \
     /** Content of the list. */ \
     type * _Nullable memory; \
@@ -53,6 +55,9 @@ type type##ListRemove(type##List * _Nonnull self, size_t index);
 
 #define MELListDefineIndexOf(type) \
 int type##ListIndexOf(type##List self, type entry);
+
+
+#pragma mark - Implementation
 
 #define MELListImplement(type) const type##List type##ListEmpty = { NULL, 0, 0 };\
 type##List type##ListMake(void) {\
@@ -159,7 +164,7 @@ type type##ListRemove(type##List * _Nonnull self, size_t index) {\
 
 #define MELListImplementIndexOf(type) \
 int type##ListIndexOf(type##List self, type entry) {\
-    for (unsigned int index = 0; index < self.count; index++) {\
+    for (size_t index = 0; index < self.count; index++) {\
         if (self.memory[index] == entry) {\
             return index;\
         }\

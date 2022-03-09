@@ -11,6 +11,9 @@ public extension MELSize {
     init(_ size: MELIntSize) {
         self.init(width: GLfloat(size.width), height: GLfloat(size.height))
     }
+    init(_ size: CGSize) {
+        self.init(width: GLfloat(size.width), height: GLfloat(size.height))
+    }
 }
 
 extension MELSize: AdditiveArithmetic {
