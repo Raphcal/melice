@@ -13,8 +13,10 @@ void MELSingleFrameAnimationStart(MELAnimation * _Nonnull self) {
 }
 
 const MELAnimationClass MELSingleFrameAnimationClass = {
-    MELAnimationClassDefaults,
-    .start = &MELSingleFrameAnimationStart
+    .start = &MELSingleFrameAnimationStart,
+    .update = &MELAnimationUpdate,
+    .draw = &MELAnimationDraw,
+    .transitionToAnimation = &MELAnimationTransitionToAnimation
 };
 
 MELAnimation MELSingleFrameAnimationMake(MELAnimationDefinition * _Nonnull definition) {

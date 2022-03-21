@@ -13,8 +13,10 @@ void MELNoAnimationDraw(MELAnimation * _Nonnull self, MELSprite * _Nonnull sprit
 }
 
 const MELAnimationClass MELNoAnimationClass = {
-    MELAnimationClassDefaults,
-    .draw = &MELNoAnimationDraw
+    .draw = &MELNoAnimationDraw,
+    .update = &MELAnimationUpdate,
+    .start = &MELAnimationStart,
+    .transitionToAnimation = &MELAnimationTransitionToAnimation
 };
 
 MELAnimation * _Nonnull MELNoAnimationAlloc(MELAnimationDefinition * _Nullable definition) {

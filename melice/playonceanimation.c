@@ -33,9 +33,10 @@ void MELPlayOnceAnimationUpdate(MELPlayOnceAnimation * _Nonnull self, MELTimeInt
 }
 
 const MELAnimationClass MELPlayOnceAnimationClass = {
-    MELAnimationClassDefaults,
     .start = (void (*)(MELAnimation *)) &MELPlayOnceAnimationStart,
-    .update = (void (*)(MELAnimation *, MELTimeInterval)) &MELPlayOnceAnimationUpdate
+    .update = (void (*)(MELAnimation *, MELTimeInterval)) &MELPlayOnceAnimationUpdate,
+    .draw = &MELAnimationDraw,
+    .transitionToAnimation = &MELAnimationTransitionToAnimation
 };
 
 MELAnimation * _Nonnull MELPlayOnceAnimationAlloc(MELAnimationDefinition * _Nonnull definition, MELPlayOnceAnimationOnEnd onEnd) {

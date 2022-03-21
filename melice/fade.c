@@ -18,11 +18,12 @@ void MELFadeReload(MELScene * _Nonnull self) {
 MELFade MELFadeMake(void (* _Nullable willAppear)(MELFade * _Nonnull self), void (* _Nullable update)(MELFade * _Nonnull self, MELTimeInterval timeSinceLastUpdate), void (* _Nullable draw)(MELFade * _Nonnull self)) {
     return (MELFade) {
         (MELScene) {
-            MELSceneDefaults,
             .reload = &MELFadeReload,
             .willAppear = (void (*)(MELScene *)) willAppear,
             .update = (void (*)(MELScene *, MELTimeInterval)) update,
-            .draw = (void (*)(MELScene *)) draw
+            .draw = (void (*)(MELScene *)) draw,
+            .load = &MELSceneNoop,
+            .unload = &MELSceneNoop
         },
         NULL,
         NULL

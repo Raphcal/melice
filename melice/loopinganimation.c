@@ -26,9 +26,10 @@ void MELLoopingAnimationUpdate(MELLoopingAnimation * _Nonnull self, MELTimeInter
 }
 
 const MELAnimationClass MELLoopingAnimationClass = {
-    MELAnimationClassDefaults,
     .start = (void (*)(MELAnimation *)) &MELLoopingAnimationStart,
-    .update = (void (*)(MELAnimation *, MELTimeInterval)) &MELLoopingAnimationUpdate
+    .update = (void (*)(MELAnimation *, MELTimeInterval)) &MELLoopingAnimationUpdate,
+    .draw = &MELAnimationDraw,
+    .transitionToAnimation = &MELAnimationTransitionToAnimation
 };
 
 MELAnimation * _Nonnull MELLoopingAnimationAlloc(MELAnimationDefinition * _Nonnull definition) {

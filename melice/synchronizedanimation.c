@@ -28,9 +28,10 @@ void MELSynchronizedLoopingAnimationUpdate(MELAnimation * _Nonnull self, MELTime
 }
 
 const MELAnimationClass MELSynchronizedLoopingAnimationClass = {
-    MELAnimationClassDefaults,
     .start = &MELSynchronizedLoopingAnimationStart,
-    .update = &MELSynchronizedLoopingAnimationUpdate
+    .update = &MELSynchronizedLoopingAnimationUpdate,
+    .draw = &MELAnimationDraw,
+    .transitionToAnimation = &MELAnimationTransitionToAnimation
 };
 
 MELAnimation * _Nonnull MELSynchronizedLoopingAnimationAlloc(MELAnimationDefinition * _Nonnull definition) {
