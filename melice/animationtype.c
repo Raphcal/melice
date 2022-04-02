@@ -9,12 +9,12 @@
 #include "animationtype.h"
 
 MELAnimationType MELAnimationTypeForFrameCountAndLooping(int frameCount, MELBoolean looping) {
-    if (looping) {
+    if (frameCount == 1) {
+        return MELAnimationTypeSingleFrame;
+    } else if (looping) {
         return MELAnimationTypeLooping;
     } else if (frameCount > 1) {
         return MELAnimationTypePlayOnce;
-    } else if (frameCount == 1) {
-        return MELAnimationTypeSingleFrame;
     } else {
         return MELAnimationTypeNone;
     }
