@@ -24,6 +24,7 @@ typedef struct {
     int tileCount;
     int32_t * _Nullable tiles;
     MELPoint scrollRate;
+    MELBoolean isSolid;
     MELSpriteInstanceList sprites;
 } MELLayer;
 

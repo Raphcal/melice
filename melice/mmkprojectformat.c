@@ -12,7 +12,7 @@
 #include "melstring.h"
 #include "melmath.h"
 
-#define LAST_SUPPORTED_VERSION 11
+#define LAST_SUPPORTED_VERSION 12
 #define DATA_ENTRY "data"
 
 const MELProjectFormat MELMmkProjectFormat = {&MELMmkProjectFormatClass, NULL, LAST_SUPPORTED_VERSION};
@@ -445,7 +445,7 @@ MELImagePaletteImage MELMmkProjectFormatReadImagePaletteImage(MELProjectFormat *
 }
 
 void MELMmkProjectFormatWriteImagePaletteImage(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELImagePaletteImage image) {
-    MELLayer layer = (MELLayer) {NULL, image.size, image.size.width * image.size.height, image.tiles, MELPointZero, MELSpriteInstanceListEmpty};
+    MELLayer layer = (MELLayer) {NULL, image.size, image.size.width * image.size.height, image.tiles, MELPointZero, false, MELSpriteInstanceListEmpty};
     self->class->writeLayer(self, project, outputStream, layer);
 }
 
@@ -478,10 +478,17 @@ MELLayer MELMmkProjectFormatReadLayer(MELProjectFormat * _Nonnull self, MELProje
 
     MELPoint scrollRate = self->class->readScrollRate(self, project, inputStream);
 
+    MELBoolean isSolid;
+    if (self->version >= 12) {
+        isSolid = MELInputStreamReadBoolean(inputStream);
+    } else {
+        isSolid = name[0] == 'P';
+    }
+
     int32_t count;
     int32_t *tiles = MELInputStreamReadIntArray(inputStream, &count);
 
-    return (MELLayer) {name, MELIntSizeMake(width, height), count, tiles, scrollRate, MELSpriteInstanceListEmpty};
+    return (MELLayer) {name, MELIntSizeMake(width, height), count, tiles, scrollRate, isSolid, MELSpriteInstanceListEmpty};
 }
 
 void MELMmkProjectFormatWriteLayer(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELLayer layer) {

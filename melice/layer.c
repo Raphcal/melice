@@ -16,7 +16,7 @@ MELListImplement(MELLayer);
 
 MELLayer MELLayerMakeWithSize(MELIntSize size) {
     const int tileCount = size.width * size.height;
-    MELLayer self = {NULL, size, tileCount, calloc(tileCount, sizeof(int32_t)), MELPointMake(1, 1), MELSpriteInstanceListEmpty};
+    MELLayer self = {NULL, size, tileCount, calloc(tileCount, sizeof(int32_t)), MELPointMake(1, 1), false, MELSpriteInstanceListEmpty};
     for (unsigned int tile = 0; tile < tileCount; tile++) {
         self.tiles[tile] = -1;
     }
@@ -27,6 +27,7 @@ MELLayer MELLayerMakeWithLayer(MELLayer other) {
     MELLayer self = other;
     self.name = MELStringCopy(other.name);
     self.tiles = MELArrayCopy(other.tiles, sizeof(int32_t) * other.tileCount);
+    self.isSolid = other.isSolid;
     self.sprites = MELSpriteInstanceListMakeWithListAndCopyFunction(other.sprites, &MELSpriteInstanceMakeWithSpriteInstance);
     return self;
 }
