@@ -380,6 +380,7 @@
 		6474939B272C2BA1004F3D97 /* primitives.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; };
 		648589D827839BD500650C98 /* SpriteDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648589D727839BD500650C98 /* SpriteDefinition.swift */; };
 		648589E32784DAC900650C98 /* SpriteInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648589E22784DAC900650C98 /* SpriteInstance.swift */; };
+		64985A6127FB7EC800B5EEB7 /* MmkbProjectFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */; };
 		64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -954,6 +955,7 @@
 		64749395272C2ABA004F3D97 /* primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
 		648589D727839BD500650C98 /* SpriteDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteDefinition.swift; sourceTree = "<group>"; };
 		648589E22784DAC900650C98 /* SpriteInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteInstance.swift; sourceTree = "<group>"; };
+		64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MmkbProjectFormat.swift; sourceTree = "<group>"; };
 		64B43092277FA406004185E3 /* pointerintrectangletable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintrectangletable.h; sourceTree = "<group>"; };
 		64B43093277FA406004185E3 /* pointerintrectangletable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintrectangletable.c; sourceTree = "<group>"; };
 		64CB66C5271F504E00663A2E /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1513,6 +1515,7 @@
 			isa = PBXGroup;
 			children = (
 				64F5D17C27610662000C3967 /* ProjectFormat.swift */,
+				64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */,
 			);
 			name = Project;
 			sourceTree = "<group>";
@@ -2086,6 +2089,7 @@
 				643EED22275E8D7E0039FDAB /* direction.c in Sources */,
 				643EED23275E8D7E0039FDAB /* sprite.c in Sources */,
 				64F5D1692760F6AD000C3967 /* Point.swift in Sources */,
+				64985A6127FB7EC800B5EEB7 /* MmkbProjectFormat.swift in Sources */,
 				643EED24275E8D7E0039FDAB /* spriteinstance.c in Sources */,
 				643EED25275E8D7E0039FDAB /* spritemanager.c in Sources */,
 				643EED26275E8D7E0039FDAB /* bitmap.c in Sources */,
