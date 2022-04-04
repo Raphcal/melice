@@ -22,6 +22,8 @@ typedef struct {
 } MELColorPalette;
 
 MELColorPalette MELColorPaletteMakeDefault(void);
+MELPalette * _Nonnull MELPaletteRefAllocDefaultColorPalette(void);
+
 MELColorPalette MELColorPaletteMakeWithColorCount(size_t colorCount);
 MELColorPalette MELColorPaletteMakeWithUInt32ColorList(MELUInt32ColorList colors);
 void MELColorPaletteDeinit(MELColorPalette * _Nonnull self);

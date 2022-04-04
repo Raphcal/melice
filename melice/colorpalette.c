@@ -281,6 +281,12 @@ MELColorPalette MELColorPaletteMakeDefault(void) {
     return self;
 }
 
+MELPalette * _Nonnull MELPaletteRefAllocDefaultColorPalette(void) {
+    MELColorPalette *self = malloc(sizeof(MELColorPalette));
+    *self = MELColorPaletteMakeDefault();
+    return &self->super;
+}
+
 MELColorPalette MELColorPaletteMakeWithColorCount(size_t colorCount) {
     return (MELColorPalette) {
         {&MELColorPaletteClass, NULL, MELIntSizeMake(1, 1), 6, (uint32_t) colorCount},

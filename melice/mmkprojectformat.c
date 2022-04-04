@@ -97,9 +97,7 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
         hasDefaultColorPalette = hasDefaultColorPalette || (palette->name != NULL && !strcmp(palette->name, "Default color palette"));
     }
     if (!hasDefaultColorPalette) {
-        MELColorPalette *defaultColorPalette = malloc(sizeof(MELColorPalette));
-        *defaultColorPalette = MELColorPaletteMakeDefault();
-        MELPaletteRefListPush(&project.palettes, &defaultColorPalette->super);
+        MELPaletteRefListPush(&project.palettes, MELPaletteRefAllocDefaultColorPalette());
     }
 
     // Loading maps.
@@ -690,6 +688,7 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
         if (direction == 0) {
             animationDefinition.frameCount = frameCount;
             animationDefinition.images = frameCount > 0 ? malloc(sizeof(MELImagePaletteImage) * frameCount) : NULL;
+            animationDefinition.type = MELAnimationTypeForFrameCountAndLooping(frameCount, isLooping);
         }
 
         for (int frameIndex = 0; frameIndex < frameCount; frameIndex++) {
