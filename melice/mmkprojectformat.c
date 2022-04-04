@@ -494,6 +494,9 @@ void MELMmkProjectFormatWriteLayer(MELProjectFormat * _Nonnull self, MELProject 
     MELOutputStreamWriteInt(outputStream, layer.size.width);
     MELOutputStreamWriteInt(outputStream, layer.size.height);
     self->class->writeScrollRate(self, project, outputStream, layer.scrollRate);
+    if (self->version >= 12) {
+        MELOutputStreamWriteBoolean(outputStream, layer.isSolid);
+    }
     MELOutputStreamWriteIntArray(outputStream, layer.tiles, layer.tileCount);
 }
 

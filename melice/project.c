@@ -16,7 +16,8 @@
 MELProject MELProjectMakeWithEmptyMap(void) {
     MELProject self = {
         MELPaletteRefListMakeWithInitialCapacity(2),
-        MELMapGroupEmpty
+        MELMapGroupEmpty,
+        MELStringListEmpty
     };
 
     // Default color palette.
@@ -41,7 +42,8 @@ MELProject MELProjectMakeWithEmptyMap(void) {
 MELProject MELProjectMakeWithProject(MELProject other) {
     MELProject self = {
         MELPaletteRefListMakeWithListAndCopyFunction(other.palettes, &MELPaletteRefMakeWithPaletteRef),
-        MELMapGroupMakeWithMapGroup(other.root)
+        MELMapGroupMakeWithMapGroup(other.root),
+        MELStringListMakeWithListAndCopyFunction(other.animationNames, &MELStringCopy)
     };
     return self;
 }
@@ -49,4 +51,5 @@ MELProject MELProjectMakeWithProject(MELProject other) {
 void MELProjectDeinit(MELProject * _Nonnull self) {
     MELPaletteRefListDeinitWithDeinitFunction(&self->palettes, &MELPaletteRefDeinit);
     MELMapGroupDeinit(&self->root);
+    MELStringListDeinitWithDeinitFunction(&self->animationNames, &MELStringDeinit);
 }

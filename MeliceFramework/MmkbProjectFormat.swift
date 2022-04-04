@@ -8,6 +8,10 @@
 import Foundation
 
 public struct MELMmkbProjectFormat {
+    static let defaultAnimationNames = [
+        "stand", "walk", "run", "skid", "jump", "fall", "shaky", "bounce", "duck", "raise", "appear", "disappear", "attack", "hurt", "die"
+    ]
+
     public static func project(fileWrappers files: [String: FileWrapper]) throws -> MELProject {
         guard let infoPlist = files["Info.plist"]?.regularFileContents
         else {
@@ -90,6 +94,15 @@ public struct MELMmkbProjectFormat {
             }
         }
 
+        let animationNames = projectInfo["animation-names"] as? [String] ?? defaultAnimationNames
+        var animationNameList = MELStringListMakeWithInitialCapacity(animationNames.count)
+        for animationName in animationNames {
+            animationName.withCString { cString in
+                let mutableCString = UnsafeMutablePointer(mutating: cString)
+                MELStringListPush(&animationNameList, mutableCString)
+            }
+        }
+
         return project
     }
 
@@ -98,6 +111,13 @@ public struct MELMmkbProjectFormat {
         var info = [String: Any]()
 
         var format = MELMmkProjectFormat
+        info["version"] = format.version
+
+        info["animation-names"] = project.animationNames.map { animationName in
+            animationName != nil ? String(cString: animationName!) : ""
+        }
+        info["next-map"] = project.root.maps.count
+
         var outputStream = MELOutputStreamInit()
 
         // Palettes

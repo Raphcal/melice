@@ -22,7 +22,12 @@ MELPaletteRef MELPaletteRefMakeWithPaletteRef(MELPaletteRef other) {
     if (other == NULL) {
         return NULL;
     }
-    return other->class->initWithPaletteRef(other);
+    MELPaletteRef self = other->class->initWithPaletteRef(other);
+    self->name = MELStringCopy(other->name);
+    self->tileSize = other->tileSize;
+    self->columns = other->columns;
+    self->count = other->count;
+    return self;
 }
 
 void MELPaletteRefDeinit(MELPaletteRef * _Nonnull self) {

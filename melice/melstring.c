@@ -12,6 +12,12 @@
 MELListImplement(MELChar);
 MELListImplement(MELChar16);
 MELListImplement(MELCodePoint);
+MELListImplement(MELString);
+
+void MELStringDeinit(MELString * _Nonnull self) {
+    free(*self);
+    *self = NULL;
+}
 
 MELBoolean MELStringEquals(const char * _Nonnull lhs, const char * _Nonnull rhs) {
     return !strcmp(lhs, rhs);
@@ -24,7 +30,7 @@ uint64_t MELStringHash(const char * _Nonnull key) {
     return hash;
 }
 
-char * _Nonnull MELStringCopy(const char * _Nullable source) {
+MELString MELStringCopy(const MELString restrict source) {
     return source != NULL ? strdup(source) : NULL;
 }
 
@@ -41,7 +47,7 @@ MELBoolean isTrailedByCountUTF8Wagon(char * _Nonnull source, unsigned int from, 
     return true;
 }
 
-MELCodePointList MELCodePointListMakeWithUTF8String(char * _Nullable source) {
+MELCodePointList MELCodePointListMakeWithUTF8String(MELString source) {
     if (source == NULL) {
         return MELCodePointListEmpty;
     }
@@ -173,7 +179,7 @@ uint16_t * _Nullable MELUTF16StringMakeWithCodePoints(MELCodePointList codePoint
     return realloc(characters.memory, characters.count * sizeof(uint16_t));
 }
 
-uint16_t * _Nullable MELUTF16StringMakeWithUTF8String(char * _Nullable source) {
+uint16_t * _Nullable MELUTF16StringMakeWithUTF8String(MELString source) {
     if (source == NULL) {
         return NULL;
     }

@@ -164,7 +164,7 @@ type type##ListRemove(type##List * _Nonnull self, size_t index) {\
 
 #define MELListImplementIndexOf(type) \
 int type##ListIndexOf(type##List self, type entry) {\
-    for (size_t index = 0; index < self.count; index++) {\
+    for (int index = 0; index < self.count; index++) {\
         if (self.memory[index] == entry) {\
             return index;\
         }\

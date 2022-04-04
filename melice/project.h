@@ -13,10 +13,12 @@
 #include "list.h"
 #include "palette.h"
 #include "mapgroup.h"
+#include "melstring.h"
 
 typedef struct {
     MELList(MELPaletteRef) palettes;
     MELMapGroup root;
+    MELStringList animationNames;
 } MELProject;
 
 MELProject MELProjectMakeWithEmptyMap(void);

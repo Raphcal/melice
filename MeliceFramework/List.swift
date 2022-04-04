@@ -102,6 +102,10 @@ extension MELDecoratorRefList: MELList {
     public typealias Element = MELDecoratorRef?
     public static let empty = MELDecoratorRefListEmpty
 }
+extension MELStringList: MELList {
+    public typealias Element = MELString?
+    public static let empty = MELStringListEmpty
+}
 extension MELBooleanList: EquatableMELList {
     public typealias Element = MELBoolean
     public static let empty = MELBooleanListEmpty

@@ -21,19 +21,24 @@ MELListDefine(MELChar16);
 typedef uint32_t MELCodePoint;
 MELListDefine(MELCodePoint);
 
+typedef char * _Nullable MELString;
+MELListDefine(MELString);
+
 MELBoolean MELStringEquals(const char * _Nonnull lhs, const char * _Nonnull rhs);
 
 uint64_t MELStringHash(const char * _Nonnull key);
 
-char * _Nullable MELStringCopy(const char * restrict _Nullable source);
+MELString MELStringCopy(const MELString restrict source);
 
-MELCodePointList MELCodePointListMakeWithUTF8String(char * _Nullable source);
+void MELStringDeinit(MELString * _Nonnull self);
+
+MELCodePointList MELCodePointListMakeWithUTF8String(MELString source);
 MELCodePointList MELCodePointListMakeWithUTF16String(uint16_t * _Nullable source);
 
 char * _Nullable MELUTF8StringMakeWithCodePoints(MELCodePointList codePoints);
 char * _Nullable MELUTF8StringMakeWithUTF16String(uint16_t * _Nullable source);
 
 uint16_t * _Nullable MELUTF16StringMakeWithCodePoints(MELCodePointList codePoints);
-uint16_t * _Nullable MELUTF16StringMakeWithUTF8String(char * _Nullable source);
+uint16_t * _Nullable MELUTF16StringMakeWithUTF8String(MELString source);
 
 #endif /* melstring_h */
