@@ -21,10 +21,7 @@ MELAnimationDefinition MELAnimationDefinitionMakeWithAnimationDefinition(MELAnim
         self.images = calloc(other.frameCount, sizeof(MELImagePaletteImage));
         for (unsigned int index = 0; index < other.frameCount; index++) {
             MELImagePaletteImage image = other.images[index];
-            MELSizeDecorator *size = MELDecoratorRefListGetSizeDecorator(image.decorators);
-            if (size) {
-                self.images[index] = MELImagePaletteImageMakeWithImagePaletteImage(image, size->size.width * size->size.height);
-            }
+            self.images[index] = MELImagePaletteImageMakeWithImagePaletteImage(image, image.size.width * image.size.height);
         }
     }
     return self;
