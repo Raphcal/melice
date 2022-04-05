@@ -6,11 +6,21 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
 enum ProjectFormatError: Error {
     case openOperationNotSupported
     case saveOperationNotSupported
     case unableToOpenProject
+}
+
+extension UTType {
+    public static var mapMakerProject: UTType {
+        UTType(exportedAs: "fr.rca.mapmaker.map.mmk")
+    }
+    public static var mapMakerProjectBundle: UTType {
+        UTType(exportedAs: "fr.rca.mapmaker.map.mmkb")
+    }
 }
 
 extension MELProjectFormat {
