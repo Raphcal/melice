@@ -15,9 +15,20 @@ const MELRenderer MELRendererZero = {{0, 0}, NULL, MELDrawModeUnset, {{-1, -1}, 
 MELRenderer defaultRenderer = {{0, 0}, NULL, MELDrawModeUnset, {{-1, -1}, {2, 2}}};
 
 void MELRendererClearState(void) {
-    defaultRenderer.lastTranslation = MELPointMake(0, 0);
-    defaultRenderer.lastTexture = NULL;
-    defaultRenderer.drawMode = MELDrawModeUnset;
+    MELRendererRefClearState(&defaultRenderer);
+}
+
+void MELRendererRefClearState(MELRenderer * _Nonnull self) {
+    self->lastTranslation = MELPointMake(0, 0);
+    self->lastTexture = NULL;
+    self->drawMode = MELDrawModeUnset;
+
+    glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
+#if GL_VERSION_2_1
+    glDisableClientState(GL_INDEX_ARRAY);
+#endif
 }
 
 void MELRendererInit(void) {

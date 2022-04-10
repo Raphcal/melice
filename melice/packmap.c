@@ -219,9 +219,9 @@ void MELPackMapElementListPushPalette(MELPackMapElementList * _Nonnull self, MEL
     }
 }
 
-void MELPackMapElementListPushOneFrameOfEachSpriteDefinitionFromList(MELPackMapElementList * _Nonnull self, MELSpriteDefinitionList spriteDeinitionList) {
-    for (size_t index = 0; index < spriteDeinitionList.count; index++) {
-        MELPackMapElement element = MELPackMapElementMakeWithSpriteDefinitionRef(spriteDeinitionList.memory + index);
+void MELPackMapElementListPushOneFrameOfEachSpriteDefinitionFromList(MELPackMapElementList * _Nonnull self, MELSpriteDefinitionList spriteDefinitionList) {
+    for (size_t index = 0; index < spriteDefinitionList.count; index++) {
+        MELPackMapElement element = MELPackMapElementMakeWithSpriteDefinitionRef(spriteDefinitionList.memory + index);
         if (element.value != NULL) {
             MELPackMapElementListPush(self, element);
         }
@@ -229,5 +229,23 @@ void MELPackMapElementListPushOneFrameOfEachSpriteDefinitionFromList(MELPackMapE
 }
 
 void MELPackMapElementListPushSpriteDefinitionList(MELPackMapElementList * _Nonnull self, MELSpriteDefinitionList spriteDefinitionList) {
-    // TODO: Implement MELPackMapElementListPushSpriteDefinitionList.
+    for (size_t index = 0; index < spriteDefinitionList.count; index++) {
+        const MELSpriteDefinition definition = spriteDefinitionList.memory[index];
+
+        for (size_t animationIndex = 0; animationIndex < definition.animations.count; animationIndex++) {
+            MELAnimationDefinition *animation = definition.animations.memory + animationIndex;
+
+            const size_t frameCount = animation->frameCount;
+            if (animation->frames == NULL) {
+                animation->frames = calloc(frameCount, sizeof(MELAnimationFrame));
+            }
+            for (size_t frameIndex = 0; frameIndex < frameCount; index++) {
+                animation->frames[frameIndex] = MELAnimationFrameMake(self->count, MELIntRectangleZero);
+                const MELImagePaletteImage image = animation->images[frameIndex];
+                const uint8_t *pixels = definition.palette->class->paintImage(definition.palette, image, true);
+                const MELPackMapElement element = MELPackMapElementMake(animation->images + frameIndex, (uint32_t *) pixels, image.size, MELIntPointZero);
+                MELPackMapElementListPush(self, element);
+            }
+        }
+    }
 }
