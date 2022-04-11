@@ -39,3 +39,25 @@ void MELPaletteRefDeinit(MELPaletteRef * _Nonnull self) {
 size_t MELPaletteByteCount(MELIntSize tileSize, MELIntSize imageSize) {
     return sizeof(MELUInt32Color) * tileSize.width * imageSize.width * tileSize.height * imageSize.height;
 }
+
+MELBoolean MELPaletteRefEquals(MELPaletteRef lhs, MELPaletteRef rhs) {
+    if (lhs == NULL) {
+        return rhs == NULL;
+    }
+    if (rhs == NULL) {
+        return false;
+    }
+    if (lhs->class != rhs->class) {
+        return false;
+    }
+    if (lhs->count != rhs->count) {
+        return false;
+    }
+    if (lhs->name == NULL) {
+        return rhs->name == NULL;
+    }
+    if (rhs->name == NULL) {
+        return false;
+    }
+    return MELStringEquals(lhs->name, rhs->name);
+}

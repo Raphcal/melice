@@ -37,6 +37,8 @@ typedef struct {
     MELIntRectangle * _Nullable sources;
 } MELTextureAtlas;
 
+extern const MELTextureAtlas MELTextureAtlasEmpty;
+
 /**
  * Returns an atlas by loading the texture and the atlas whose name starts with the given path.
  * The texture is expected to be named `path + ".bmp"` and the atlas to be named `path + ".atlas"`.

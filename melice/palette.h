@@ -108,4 +108,6 @@ size_t MELPaletteByteCount(MELIntSize tileSize, MELIntSize imageSize);
  */
 MELTextureAtlas MELPaletteToTextureAtlas(MELPalette * _Nonnull self);
 
+MELBoolean MELPaletteRefEquals(MELPaletteRef lhs, MELPaletteRef rhs);
+
 #endif /* palette_h */

@@ -98,6 +98,10 @@ extension MELSpriteInstanceList: MELList {
     public typealias Element = MELSpriteInstance
     public static let empty = MELSpriteInstanceListEmpty
 }
+extension MELAnimationDefinitionList: MELList {
+    public typealias Element = MELAnimationDefinition
+    public static let empty = MELAnimationDefinitionListEmpty
+}
 extension MELDecoratorRefList: MELList {
     public typealias Element = MELDecoratorRef?
     public static let empty = MELDecoratorRefListEmpty

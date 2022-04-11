@@ -23,6 +23,8 @@ typedef struct {
     char * _Nullable name;
 } MELMutableMap;
 
+extern const MELMutableMap MELMutableMapEmpty;
+
 MELListDefine(MELMutableMap);
 
 MELMutableMap MELMutableMapMakeWithSizeAndPalette(MELIntSize size, MELPalette * _Nonnull palette);

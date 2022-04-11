@@ -10,20 +10,18 @@
 
 #include "motion.h"
 
+const MELSpriteManager MELSpriteManagerEmpty = {};
+
 MELSpriteManager MELSpriteManagerMake(MELList(MELSpriteDefinition) definitions, MELTextureAtlas atlas, MELSurfaceArray *_Nonnull layerSurfaces, unsigned int groupCount, int * _Nullable groupForType) {
 	MELSpriteManager self;
 	self.definitions = definitions;
 	self.atlas = atlas;
 	self.layerSurfaces = layerSurfaces;
-	self.sprites = (MELList(MELSpriteRef)) MELListMake(MELSpriteRef);
-	self.removalPending = (MELList(MELSpriteRef)) MELListMake(MELSpriteRef);
+    self.sprites = MELSpriteRefListEmpty;
+	self.removalPending = MELSpriteRefListEmpty;
 	self.groupCount = groupCount;
 	if (groupCount > 0) {
-		MELList(MELSpriteRef) *groups = malloc(sizeof(MELList(MELSpriteRef)) * groupCount);
-		for (unsigned int index = 0; index < groupCount; index++) {
-			groups[index] = (MELList(MELSpriteRef)) MELListMake(MELSpriteRef);
-		}
-		self.groups = groups;
+        self.groups = calloc(groupCount, sizeof(MELSpriteRefList));
 	} else {
 		self.groups = NULL;
 	}

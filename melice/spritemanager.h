@@ -34,6 +34,8 @@ struct melspritemanager {
     int * _Nullable groupForType;
 };
 
+extern const MELSpriteManager MELSpriteManagerEmpty;
+
 MELSpriteManager MELSpriteManagerMake(MELList(MELSpriteDefinition) definitions, MELTextureAtlas atlas, MELSurfaceArray * _Nonnull layerSurfaces, unsigned int groupCount, int * _Nullable groupForType);
 
 MELSpriteManager * _Nonnull MELSpriteManagerAlloc(MELList(MELSpriteDefinition) definitions, MELTextureAtlas atlas, MELSurfaceArray * _Nonnull layerSurfaces, unsigned int groupCount, int * _Nullable groupForType);

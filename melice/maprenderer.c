@@ -11,6 +11,8 @@
 #include <assert.h>
 #include "renderer.h"
 
+const MELMapRenderer MELMapRendererEmpty = {};
+
 MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap map, MELTextureAtlas atlas) {
     return MELMapRendererMakeWithRendererAndMapAndAtlas(MELRendererGetDefault(), map, atlas);
 }

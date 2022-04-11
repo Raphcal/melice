@@ -21,6 +21,8 @@
 #define TEXTURE_EXTENSION ".bmp"
 #define TEXTURE_EXTENSION_LENGTH 4
 
+const MELTextureAtlas MELTextureAtlasEmpty = {};
+
 MELTextureAtlas MELTextureAtlasMakeWithPath(const char * _Nonnull path) {
     MELFileManager *fileManager = MELFileManagerGetSharedInstance();
     size_t pathLength = strlen(path);

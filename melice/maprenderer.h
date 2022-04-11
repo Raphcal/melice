@@ -32,6 +32,8 @@ typedef struct {
     unsigned int firstSpriteDefinitionIndex;
 } MELMapRenderer;
 
+extern const MELMapRenderer MELMapRendererEmpty;
+
 /**
  * Returns a map renderer with the given map.
  * Surfaces are allocated for this renderer. This is probably not what you want if you need to display sprites relatives to a layer.

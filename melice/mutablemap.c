@@ -11,6 +11,8 @@
 
 MELListImplement(MELMutableMap);
 
+const MELMutableMap MELMutableMapEmpty = {};
+
 MELMutableMap MELMutableMapMakeWithSizeAndPalette(MELIntSize size, MELPalette * _Nonnull palette) {
     MELMutableMap self = {{size, {1,1,1,1}, MELLayerListMakeWithInitialCapacity(1)}, palette, NULL};
     MELLayerListPush(&self.super.layers, MELLayerMakeWithSize(size));

@@ -21,7 +21,7 @@ MELListImplement(MELSpriteRef);
 MELSprite * _Nonnull MELSpriteAlloc(MELSpriteManager * _Nonnull manager, MELSpriteDefinition definition, unsigned int layer) {
     MELSprite *self = malloc(sizeof(MELSprite));
 
-    MELAnimation *animation = MELAnimationAlloc(definition.animations.memory + 0);
+    MELAnimation *animation = MELAnimationAlloc(definition.animations.memory);
     animation->class->start(animation);
     
     MELRectangle frame = MELRectangleZero;
@@ -118,6 +118,7 @@ void MELSpriteRemove(MELSprite * _Nonnull self) {
     MELSpriteSetHitbox(self, MELStaticHitboxAllocate(MELRectangleZero));
 
     MELSpriteManager *spriteManager = self->parent;
+    
     MELListRemoveElement(spriteManager->sprites, self);
     MELListPush(spriteManager->removalPending, self);
     
