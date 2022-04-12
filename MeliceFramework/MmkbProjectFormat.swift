@@ -36,6 +36,14 @@ public struct MELMmkbProjectFormat {
         format.version = UInt32(versionNumber)
         var project = MELProject()
 
+        let animationNames = projectInfo["animation-names"] as? [String] ?? defaultAnimationNames
+        project.animationNames = MELStringListMakeWithInitialCapacity(animationNames.count)
+        for animationName in animationNames {
+            animationName.withCString { cString in
+                MELStringListPush(&project.animationNames, MELStringCopy(cString))
+            }
+        }
+
         var hasDefaultColorPalette = false
         for palette in palettes {
             if let data = files[palette]?.regularFileContents {
@@ -91,15 +99,6 @@ public struct MELMmkbProjectFormat {
                 MELInputStreamDeinit(&inputStream)
 
                 MELSpriteDefinitionListPush(&project.root.sprites, spriteDefinition)
-            }
-        }
-
-        let animationNames = projectInfo["animation-names"] as? [String] ?? defaultAnimationNames
-        var animationNameList = MELStringListMakeWithInitialCapacity(animationNames.count)
-        for animationName in animationNames {
-            animationName.withCString { cString in
-                let mutableCString = UnsafeMutablePointer(mutating: cString)
-                MELStringListPush(&animationNameList, mutableCString)
             }
         }
 

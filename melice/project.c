@@ -13,11 +13,31 @@
 
 #define DEFAULT_MAP_SIZE ((MELIntSize){20,15})
 
+static const unsigned int defaultAnimationNameCount = 15;
+
+static const char defaultAnimationNames[defaultAnimationNameCount][10] = {
+    "stand", "walk", "run", "skid", "jump", "fall", "shaky", "bounce", "duck", "raise", "appear", "disappear", "attack", "hurt", "die"
+};
+
+MELProject MELProjectMake(void) {
+    MELProject self = {
+        MELPaletteRefListEmpty,
+        MELMapGroupEmpty,
+        MELStringListMakeWithInitialCapacity(defaultAnimationNameCount)
+    };
+
+    // Animation names.
+    for (int index = 0; index < defaultAnimationNameCount; index++) {
+        MELStringListPush(&self.animationNames, MELStringCopy(defaultAnimationNames[index]));
+    }
+    return self;
+}
+
 MELProject MELProjectMakeWithEmptyMap(void) {
     MELProject self = {
         MELPaletteRefListMakeWithInitialCapacity(2),
         MELMapGroupEmpty,
-        MELStringListEmpty
+        MELStringListMakeWithInitialCapacity(defaultAnimationNameCount)
     };
 
     // Default color palette.
@@ -36,6 +56,11 @@ MELProject MELProjectMakeWithEmptyMap(void) {
     // Map groups.
     MELMutableMapListPush(&self.root.maps, map);
 
+    // Animation names.
+    for (int index = 0; index < defaultAnimationNameCount; index++) {
+        MELStringListPush(&self.animationNames, MELStringCopy((const MELString) defaultAnimationNames[index]));
+    }
+
     return self;
 }
 
@@ -43,7 +68,7 @@ MELProject MELProjectMakeWithProject(MELProject other) {
     MELProject self = {
         MELPaletteRefListMakeWithListAndCopyFunction(other.palettes, &MELPaletteRefMakeWithPaletteRef),
         MELMapGroupMakeWithMapGroup(other.root),
-        MELStringListMakeWithListAndCopyFunction(other.animationNames, &MELStringCopy)
+        MELStringListMakeWithListAndCopyFunction(other.animationNames, (MELString (* _Nonnull)(MELString)) &MELStringCopy)
     };
     return self;
 }

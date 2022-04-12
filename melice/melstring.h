@@ -23,12 +23,13 @@ MELListDefine(MELCodePoint);
 
 typedef char * _Nullable MELString;
 MELListDefine(MELString);
+MELListDefineIndexOf(MELString);
 
 MELBoolean MELStringEquals(const char * _Nonnull lhs, const char * _Nonnull rhs);
 
 uint64_t MELStringHash(const char * _Nonnull key);
 
-MELString MELStringCopy(const MELString restrict source);
+MELString MELStringCopy(const char * _Nullable restrict source);
 
 void MELStringDeinit(MELString * _Nonnull self);
 

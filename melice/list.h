@@ -172,6 +172,16 @@ int type##ListIndexOf(type##List self, type entry) {\
     return -1;\
 }
 
+#define MELListImplementIndexOfWithEqualsFunction(type, equals) \
+int type##ListIndexOf(type##List self, type entry) {\
+    for (int index = 0; index < self.count; index++) {\
+        if (equals(self.memory[index], entry)) {\
+            return index;\
+        }\
+    }\
+    return -1;\
+}
+
 /**
  * Returns an empty list with the given initial capacity.
  *

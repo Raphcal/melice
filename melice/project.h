@@ -21,6 +21,7 @@ typedef struct {
     MELStringList animationNames;
 } MELProject;
 
+MELProject MELProjectMake(void);
 MELProject MELProjectMakeWithEmptyMap(void);
 MELProject MELProjectMakeWithProject(MELProject other);
 void MELProjectDeinit(MELProject * _Nonnull self);

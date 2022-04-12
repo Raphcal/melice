@@ -13,6 +13,7 @@ MELListImplement(MELChar);
 MELListImplement(MELChar16);
 MELListImplement(MELCodePoint);
 MELListImplement(MELString);
+MELListImplementIndexOfWithEqualsFunction(MELString, MELStringEquals);
 
 void MELStringDeinit(MELString * _Nonnull self) {
     free(*self);
@@ -30,7 +31,7 @@ uint64_t MELStringHash(const char * _Nonnull key) {
     return hash;
 }
 
-MELString MELStringCopy(const MELString restrict source) {
+MELString MELStringCopy(const char * _Nullable restrict source) {
     return source != NULL ? strdup(source) : NULL;
 }
 

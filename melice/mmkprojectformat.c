@@ -85,7 +85,7 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
 
     self->version = version;
 
-    MELProject project = {MELPaletteRefListEmpty, MELMapGroupEmpty};
+    MELProject project = MELProjectMake();
 
     // Loading palettes.
     MELBoolean hasDefaultColorPalette = false;
@@ -607,10 +607,15 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
     spriteDefinition.motionName = scriptFile;
     spriteDefinition.loadScript = loadScript;
 
+    MELAnimationDefinitionListEnsureCapacity(&spriteDefinition.animations, project->animationNames.count);
+    memset(spriteDefinition.animations.memory, 0, sizeof(MELAnimationDefinition) * spriteDefinition.animations.capacity);
+    spriteDefinition.animations.count = spriteDefinition.animations.capacity;
+
     const int animationCount = MELInputStreamReadInt(inputStream);
-    MELAnimationDefinitionListEnsureCapacity(&spriteDefinition.animations, animationCount);
     for (int animation = 0; animation < animationCount; animation++) {
-        MELAnimationDefinitionListPush(&spriteDefinition.animations, self->class->readAnimationDefinition(self, project, inputStream));
+        MELAnimationDefinition animationDefinition = self->class->readAnimationDefinition(self, project, inputStream);
+        int index = MELStringListIndexOf(project->animationNames, animationDefinition.name);
+        spriteDefinition.animations.memory[index] = animationDefinition;
     }
 
     return spriteDefinition;

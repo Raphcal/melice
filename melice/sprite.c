@@ -23,7 +23,7 @@ MELSprite * _Nonnull MELSpriteAlloc(MELSpriteManager * _Nonnull manager, MELSpri
 
     MELAnimation *animation = MELAnimationAlloc(definition.animations.memory);
     animation->class->start(animation);
-    
+
     MELRectangle frame = MELRectangleZero;
     MELIntSize size = manager->atlas.sources[animation->frame.atlasIndex].size;
     frame.size = MELSizeMake((GLfloat)size.width, (GLfloat)size.height);
