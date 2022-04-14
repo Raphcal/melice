@@ -59,3 +59,7 @@ int64_t MELInt64Max(int64_t lhs, int64_t rhs) {
 GLfloat MELDegreesToRadians(GLfloat degrees) {
     return degrees * M_PI / 180;
 }
+
+GLfloat MELEaseInOut(GLfloat from, GLfloat to, GLfloat value) {
+    return powf(sinf(MEL_PI / 2 * fminf(fmaxf(value - from, 0) / (to - from), 1)), 2);
+}

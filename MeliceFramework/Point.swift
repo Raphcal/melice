@@ -20,6 +20,10 @@ extension MELPoint: Equatable {
 }
 
 public extension MELPoint {
+    init(_ point: MELIntPoint) {
+        self.init(x: GLfloat(point.x), y: GLfloat(point.y))
+    }
+
     init(_ point: CGPoint) {
         self.init(x: GLfloat(point.x), y: GLfloat(point.y))
     }

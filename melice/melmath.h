@@ -11,6 +11,11 @@
 
 #include "melstd.h"
 
+#define MEL_E    2.71828182845904523536028747135266250f  // e
+#define MEL_PI   3.14159265358979323846264338327950288f  // π
+#define MEL_PI_2 1.57079632679489661923132169163975144f  // π / 2
+#define MEL_PI_4 0.785398163397448309615660845819875721f // π / 4
+
 /**
  * Returns the minimum value between lhs and rhs.
  *
@@ -95,5 +100,6 @@ int64_t MELInt64Max(int64_t lhs, int64_t rhs);
  */
 GLfloat MELDegreesToRadians(GLfloat degrees);
 
+GLfloat MELEaseInOut(GLfloat from, GLfloat to, GLfloat value);
 
 #endif /* melmath_h */

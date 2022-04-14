@@ -24,4 +24,8 @@ extern const GLfloat MELDirectionValues[];
 extern const MELDirection MELDirectionReverses[];
 extern const MELAxe MELDirectionAxes[];
 
+GLfloat MELDirectionValueOf(MELDirection self);
+MELDirection MELDirectionReverseOf(MELDirection self);
+MELAxe MELDirectionAxeOf(MELDirection self);
+
 #endif /* direction_h */

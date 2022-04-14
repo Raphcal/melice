@@ -13,3 +13,15 @@ const GLfloat MELDirectionValues[] = { -1, 1, -1, 1 };
 const MELDirection MELDirectionReverses[] = { MELDirectionRight, MELDirectionLeft, MELDirectionDown, MELDirectionUp };
 
 const MELAxe MELDirectionAxes[] = { MELAxeHorizontal, MELAxeHorizontal, MELAxeVertical, MELAxeVertical };
+
+GLfloat MELDirectionValueOf(MELDirection self) {
+    return MELDirectionValues[self];
+}
+
+MELDirection MELDirectionReverseOf(MELDirection self) {
+    return MELDirectionReverses[self];
+}
+
+MELAxe MELDirectionAxeOf(MELDirection self) {
+    return MELDirectionAxes[self];
+}
