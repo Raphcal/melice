@@ -81,6 +81,9 @@ void MELTextureLoad(MELTexture * _Nonnull self) {
     error = glGetError();
     if (error != GL_NO_ERROR) {
         printf("glGenTextures: error %d\n", error);
+        if (self->name != 0) {
+            MELTextureUnload(self);
+        }
         return;
     }
 

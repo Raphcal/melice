@@ -672,12 +672,11 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
     animationDefinition.name = MELInputStreamReadString(inputStream);
     animationDefinition.frequency = MELInputStreamReadInt(inputStream);
 
-    MELAnimationType type = MELAnimationTypePlayOnce;
+    MELAnimationType type = MELAnimationTypeNone;
     MELBoolean isLooping = false;
     MELBoolean isScrolling = false;
     if (self->version >= 4) {
         isLooping = MELInputStreamReadBoolean(inputStream);
-        type = MELAnimationTypeLooping;
     }
     if (self->version >= 9) {
         isScrolling = MELInputStreamReadBoolean(inputStream);
