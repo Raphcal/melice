@@ -28,6 +28,7 @@ MELUInt32Color * _Nullable MELBitmapLoad(const char * _Nonnull path, MELIntSize 
 
 void MELBitmapSave(const char * _Nonnull path, MELUInt32Color * _Nonnull pixels, MELIntSize size);
 void MELBitmapSaveWithPremultiplication(const char * _Nonnull path, MELUInt32Color * _Nonnull pixels, MELIntSize size, MELBoolean applyPremultiplication);
+void MELBitmapSaveToOutputStreamWithPremultiplication(MELOutputStream * _Nonnull outputStream, MELUInt32Color * _Nonnull pixels, MELIntSize size, MELBoolean applyPremultiplication);
 
 uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSize tileCount, size_t * _Nullable byteCount, MELIntSize * _Nullable outTileSize);
 

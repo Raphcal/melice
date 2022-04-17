@@ -599,6 +599,9 @@
 		64EEAA5727426CE700776662 /* melstring.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; };
 		64EEAA59274280B500776662 /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
 		64EEAA5A274280B500776662 /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
+		64F35E3E280CAC9F00A5A620 /* flip.h in Headers */ = {isa = PBXBuildFile; fileRef = 64F35E3D280CABEC00A5A620 /* flip.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64F35E3F280CACAD00A5A620 /* flip.h in Headers */ = {isa = PBXBuildFile; fileRef = 64F35E3D280CABEC00A5A620 /* flip.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64F35E40280CACBE00A5A620 /* flip.h in Headers */ = {isa = PBXBuildFile; fileRef = 64F35E3D280CABEC00A5A620 /* flip.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64F5D15027600084000C3967 /* imagepaletteimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 64F5D14E27600084000C3967 /* imagepaletteimage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64F5D15127600084000C3967 /* imagepaletteimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 64F5D14E27600084000C3967 /* imagepaletteimage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64F5D15227600084000C3967 /* imagepaletteimage.c in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D14F27600084000C3967 /* imagepaletteimage.c */; };
@@ -977,6 +980,7 @@
 		64D24D8D276A7FB30088D3B8 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		64EEAA4627418C7500776662 /* melstring-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "melstring-test.c"; sourceTree = "<group>"; };
 		64EEAA58274280B500776662 /* decorator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = decorator.c; sourceTree = "<group>"; };
+		64F35E3D280CABEC00A5A620 /* flip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = flip.h; sourceTree = "<group>"; };
 		64F5D14E27600084000C3967 /* imagepaletteimage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = imagepaletteimage.h; sourceTree = "<group>"; };
 		64F5D14F27600084000C3967 /* imagepaletteimage.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = imagepaletteimage.c; sourceTree = "<group>"; };
 		64F5D15E2760EF19000C3967 /* packmap-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "packmap-test.c"; sourceTree = "<group>"; };
@@ -1273,6 +1277,7 @@
 				642B2A3F25FD448B00183D42 /* color.h */,
 				642B2A4825FD448B00183D42 /* color.c */,
 				641FB72C277B46E3006DD7C3 /* drawmode.h */,
+				64F35E3D280CABEC00A5A620 /* flip.h */,
 				6460F0022746E5010040F95A /* packmap.h */,
 				6460F0032746E5010040F95A /* packmap.c */,
 				642B2A3D25FD448B00183D42 /* renderer.h */,
@@ -1609,6 +1614,7 @@
 				643EEC85275D50B70039FDAB /* mapgroup.h in Headers */,
 				641FB72D277B46E3006DD7C3 /* drawmode.h in Headers */,
 				642B2AC225FD4A6900183D42 /* surfacearray.h in Headers */,
+				64F35E3F280CACAD00A5A620 /* flip.h in Headers */,
 				642B29D625FD444600183D42 /* random.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1694,6 +1700,7 @@
 				643EECF4275E6A6C0039FDAB /* random.h in Headers */,
 				641FB733277B5DD4006DD7C3 /* drawmode.h in Headers */,
 				64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */,
+				64F35E3E280CAC9F00A5A620 /* flip.h in Headers */,
 				643EECF5275E6A6C0039FDAB /* miniz.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1777,6 +1784,7 @@
 				643EEC86275D50B70039FDAB /* mapgroup.h in Headers */,
 				641FB72E277B46E3006DD7C3 /* drawmode.h in Headers */,
 				64CB6708271F514300663A2E /* random.h in Headers */,
+				64F35E40280CACBE00A5A620 /* flip.h in Headers */,
 				64CB6709271F514300663A2E /* meltime.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

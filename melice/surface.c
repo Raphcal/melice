@@ -45,6 +45,20 @@ void MELSurfaceSetTexture(MELSurface self, int tile, MELTextureAtlas atlas) {
     assert(tile >= 0 && tile < atlas.frameCount);
     MELSurfaceMemoryAppendRectangle(self.parent->texture.memory + self.texture, atlas.frames[tile]);
 }
+void MELSurfaceSetTextureFlipped(MELSurface self, int tile, MELTextureAtlas atlas, MELFlip flip) {
+    assert(tile >= 0 && tile < atlas.frameCount);
+    MELRectangle frame = atlas.frames[tile];
+    if (flip & MELFlipHorizontal) {
+        frame.origin.x += frame.size.width;
+        frame.size.width = -frame.size.width;
+    }
+    if (flip & MELFlipVertical) {
+        frame.origin.y += frame.size.height;
+        frame.size.height = -frame.size.height;
+    }
+    MELSurfaceMemoryAppendRectangle(self.parent->texture.memory + self.texture, frame);
+}
+
 
 void MELSurfaceSetColor(MELSurface self, MELUInt8Color color) {
     GLubyte *colorPointer = self.parent->color.memory + self.color;

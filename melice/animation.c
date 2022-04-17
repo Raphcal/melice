@@ -34,7 +34,7 @@ void MELAnimationStart(MELAnimation * _Nonnull self) {
 }
 
 void MELAnimationDraw(MELAnimation * _Nonnull self, MELSprite * _Nonnull sprite) {
-    MELSurfaceSetTexture(sprite->surface, sprite->animation->frame.atlasIndex, sprite->parent->atlas);
+    MELSurfaceSetTextureFlipped(sprite->surface, sprite->animation->frame.atlasIndex, sprite->parent->atlas, MELDirectionFlip[sprite->direction]);
 }
 
 MELAnimation MELAnimationTransitionToAnimation(MELAnimation * _Nonnull self, MELAnimation nextAnimation) {

@@ -62,6 +62,8 @@
 #import "nomotion.h"
 #import "bitmap.h"
 #import "color.h"
+#import "drawmode.h"
+#import "flip.h"
 #import "packmap.h"
 #import "referencepool.h"
 #import "renderer.h"

@@ -14,6 +14,8 @@ const MELDirection MELDirectionReverses[] = { MELDirectionRight, MELDirectionLef
 
 const MELAxe MELDirectionAxes[] = { MELAxeHorizontal, MELAxeHorizontal, MELAxeVertical, MELAxeVertical };
 
+const MELFlip MELDirectionFlip[] = {MELFlipHorizontal, MELFlipNone, MELFlipVertical, MELFlipNone};
+
 GLfloat MELDirectionValueOf(MELDirection self) {
     return MELDirectionValues[self];
 }

@@ -23,6 +23,7 @@ typedef enum {
 extern const GLfloat MELDirectionValues[];
 extern const MELDirection MELDirectionReverses[];
 extern const MELAxe MELDirectionAxes[];
+extern const MELFlip MELDirectionFlip[];
 
 GLfloat MELDirectionValueOf(MELDirection self);
 MELDirection MELDirectionReverseOf(MELDirection self);

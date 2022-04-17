@@ -15,6 +15,7 @@
 #include "textureatlas.h"
 #include "rectangle.h"
 #include "quadrilateral.h"
+#include "flip.h"
 #include "list.h"
 
 #define MELVertexesByQuad 6
@@ -51,6 +52,7 @@ void MELSurfaceSetVerticesWithRectangle(MELSurface self, MELRectangle vertices);
 void MELSurfaceSetVerticesWithQuadrilateral(MELSurface self, MELQuadrilateral quadrilateral);
 
 void MELSurfaceSetTexture(MELSurface self, int tile, MELTextureAtlas atlas);
+void MELSurfaceSetTextureFlipped(MELSurface self, int tile, MELTextureAtlas atlas, MELFlip flip);
 
 void MELSurfaceSetColor(MELSurface self, MELUInt8Color color);
 

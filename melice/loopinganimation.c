@@ -9,7 +9,7 @@
 #include "loopinganimation.h"
 
 void MELLoopingAnimationStart(MELLoopingAnimation * _Nonnull self) {
-    MELAnimationSetFrameIndex((MELAnimation *)self, 0);
+    MELAnimationSetFrameIndex(&self->super, 0);
     self->time = 0;
 }
 
@@ -38,5 +38,6 @@ MELAnimation * _Nonnull MELLoopingAnimationAlloc(MELAnimationDefinition * _Nonnu
         MELAnimationMake(&MELLoopingAnimationClass, definition),
         0
     };
+    MELAnimationSetFrameIndex(&self->super, 0);
     return (MELAnimation *)self;
 }
