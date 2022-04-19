@@ -380,6 +380,8 @@
 		6474939B272C2BA1004F3D97 /* primitives.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64749394272C2ABA004F3D97 /* primitives.h */; };
 		648589D827839BD500650C98 /* SpriteDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648589D727839BD500650C98 /* SpriteDefinition.swift */; };
 		648589E32784DAC900650C98 /* SpriteInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648589E22784DAC900650C98 /* SpriteInstance.swift */; };
+		648DA2C4280EA5D2002E4435 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648DA2C3280EA5D2002E4435 /* Sprite.swift */; };
+		648DA2C6280EA6E7002E4435 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648DA2C5280EA6E7002E4435 /* Animation.swift */; };
 		64985A6127FB7EC800B5EEB7 /* MmkbProjectFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */; };
 		64A1CE4F280846900086D752 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1CE4E280846900086D752 /* Direction.swift */; };
 		64A1CE522808B5270086D752 /* AnimationDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1CE512808B5270086D752 /* AnimationDefinition.swift */; };
@@ -960,6 +962,8 @@
 		64749395272C2ABA004F3D97 /* primitives.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = primitives.c; sourceTree = "<group>"; };
 		648589D727839BD500650C98 /* SpriteDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteDefinition.swift; sourceTree = "<group>"; };
 		648589E22784DAC900650C98 /* SpriteInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteInstance.swift; sourceTree = "<group>"; };
+		648DA2C3280EA5D2002E4435 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
+		648DA2C5280EA6E7002E4435 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MmkbProjectFormat.swift; sourceTree = "<group>"; };
 		64A1CE4E280846900086D752 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		64A1CE512808B5270086D752 /* AnimationDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDefinition.swift; sourceTree = "<group>"; };
@@ -1463,7 +1467,9 @@
 		648589D627839BBF00650C98 /* Sprite */ = {
 			isa = PBXGroup;
 			children = (
+				648DA2C5280EA6E7002E4435 /* Animation.swift */,
 				64A1CE512808B5270086D752 /* AnimationDefinition.swift */,
+				648DA2C3280EA5D2002E4435 /* Sprite.swift */,
 				648589D727839BD500650C98 /* SpriteDefinition.swift */,
 				648589E22784DAC900650C98 /* SpriteInstance.swift */,
 				64A1CE4E280846900086D752 /* Direction.swift */,
@@ -2052,7 +2058,9 @@
 				64F5D18127610A4D000C3967 /* MutableMap.swift in Sources */,
 				643EECFB275E8D7D0039FDAB /* buttonmapping.c in Sources */,
 				643EECFC275E8D7D0039FDAB /* filemanager.c in Sources */,
+				648DA2C4280EA5D2002E4435 /* Sprite.swift in Sources */,
 				643EECFD275E8D7D0039FDAB /* gamecontroller.c in Sources */,
+				648DA2C6280EA6E7002E4435 /* Animation.swift in Sources */,
 				643EECFE275E8D7D0039FDAB /* gamecontrollerlistener.c in Sources */,
 				643EECFF275E8D7D0039FDAB /* inputsource.c in Sources */,
 				643EED00275E8D7D0039FDAB /* inputstream.c in Sources */,

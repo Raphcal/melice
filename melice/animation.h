@@ -21,6 +21,11 @@
 typedef struct melanimation MELAnimation;
 
 /**
+ * Pointer to an animation.
+ */
+typedef MELAnimation * _Nonnull MELAnimationRef;
+
+/**
  * Class of an animation.
  */
 typedef struct {
