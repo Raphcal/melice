@@ -46,3 +46,20 @@ public extension MELStringDictionary {
         return MELStringDictionaryContainsKey(self, key)
     }
 }
+
+extension MELStringDictionary: MutableCollection {
+    public typealias Index = String
+
+    public func index(after i: String) -> String {
+        let givenKeyIndex = Int(MELConstStringListIndexOf(self.keys, i))
+        return String(utf8String: self.keys[givenKeyIndex + 1])!
+    }
+
+    public var startIndex: String {
+        String(utf8String: self.keys[0])!
+    }
+
+    public var endIndex: String {
+        String(utf8String: self.keys[self.keys.count])!
+    }
+}
