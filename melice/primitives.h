@@ -10,6 +10,7 @@
 
 #include "melstd.h"
 #include "list.h"
+#include "dictionary.h"
 
 typedef uintptr_t MELPointer;
 typedef uint8_t MELByte;
@@ -21,6 +22,10 @@ MELListDefine(GLint);
 MELListDefine(MELByte);
 MELListDefine(MELBoolean);
 MELListDefine(MELRef);
+
+typedef const char * _Nonnull MELNonnullString;
+MELListDefine(MELNonnullString);
+MELDictionaryDefine(MELNonnullString);
 
 void * _Nullable MELArrayCopy(const void * restrict _Nullable source, size_t size);
 

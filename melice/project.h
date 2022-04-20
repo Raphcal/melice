@@ -14,11 +14,13 @@
 #include "palette.h"
 #include "mapgroup.h"
 #include "melstring.h"
+#include "primitives.h"
 
 typedef struct {
     MELList(MELPaletteRef) palettes;
     MELMapGroup root;
     MELStringList animationNames;
+    MELNonnullStringDictionary scripts;
 } MELProject;
 
 MELProject MELProjectMake(void);

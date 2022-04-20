@@ -391,6 +391,7 @@
 		64B43097277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
 		64B43098277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
 		64B43099277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
+		64C3547C280F570E00D843C2 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C3547B280F570E00D843C2 /* Dictionary.swift */; };
 		64CB66D1271F514100663A2E /* melice.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CB66D2271F514100663A2E /* melstd.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CB66D3271F514100663A2E /* point.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -969,6 +970,7 @@
 		64A1CE512808B5270086D752 /* AnimationDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDefinition.swift; sourceTree = "<group>"; };
 		64B43092277FA406004185E3 /* pointerintrectangletable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintrectangletable.h; sourceTree = "<group>"; };
 		64B43093277FA406004185E3 /* pointerintrectangletable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintrectangletable.c; sourceTree = "<group>"; };
+		64C3547B280F570E00D843C2 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		64CB66C5271F504E00663A2E /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D00E5F272DD7D200C8A675 /* palette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = palette.h; sourceTree = "<group>"; };
 		64D00E65272F37A500C8A675 /* decorator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = decorator.h; sourceTree = "<group>"; };
@@ -1524,6 +1526,7 @@
 			children = (
 				64F5D1792760FDE1000C3967 /* Named.swift */,
 				64F5D17E276109C7000C3967 /* List.swift */,
+				64C3547B280F570E00D843C2 /* Dictionary.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -2129,6 +2132,7 @@
 				64F5D1772760FBBB000C3967 /* Layer.swift in Sources */,
 				643EED31275E8D7E0039FDAB /* hashmap.c in Sources */,
 				643EED32275E8D7E0039FDAB /* melmath.c in Sources */,
+				64C3547C280F570E00D843C2 /* Dictionary.swift in Sources */,
 				641FB736277C4F9F006DD7C3 /* SurfaceArray.swift in Sources */,
 				643EED33275E8D7E0039FDAB /* melstring.c in Sources */,
 				643EED34275E8D7E0039FDAB /* meltime.c in Sources */,

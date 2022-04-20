@@ -44,6 +44,16 @@ public struct MELMmkbProjectFormat {
             }
         }
 
+        if let scripts = projectInfo["scripts"] as? [String] {
+            for index in 0 ..< scripts.count {
+                if let file = files["script\(index).txt"],
+                   let data = file.regularFileContents,
+                   let content = String(data: data, encoding: .utf8) {
+                    MELNonnullStringDictionaryPut(&project.scripts, scripts[index], content)
+                }
+            }
+        }
+
         var hasDefaultColorPalette = false
         for palette in palettes {
             if let data = files[palette]?.regularFileContents {
@@ -112,9 +122,11 @@ public struct MELMmkbProjectFormat {
         var format = MELMmkProjectFormat
         info["version"] = format.version
 
+        // Animations
         info["animation-names"] = project.animationNames.map { animationName in
             animationName != nil ? String(cString: animationName!) : ""
         }
+
         info["next-map"] = project.root.maps.count
 
         var outputStream = MELOutputStreamInit()
@@ -172,6 +184,18 @@ public struct MELMmkbProjectFormat {
         info["sprites"] = sprites
 
         MELOutputStreamDeinit(&outputStream)
+
+        // Scripts
+        var scripts = [String]()
+        for key in project.scripts.keys {
+            if let key = key,
+               let keyAsString = String(utf8String: key),
+               let scriptData = project.scripts[keyAsString]?.data(using: .utf8) {
+                fileWrappers["script\(scripts.count).txt"] = .init(regularFileWithContents: scriptData)
+                scripts.append(keyAsString)
+            }
+        }
+        info["scripts"] = scripts
 
         fileWrappers["Info.plist"] = .init(regularFileWithContents: try PropertyListSerialization.data(fromPropertyList: info, format: .xml, options: 0))
         return .init(directoryWithFileWrappers: fileWrappers)

@@ -14,6 +14,9 @@ MELListImplement(MELByte);
 MELListImplement(MELBoolean);
 MELListImplement(MELRef);
 
+MELListImplement(MELNonnullString);
+MELDictionaryImplement(MELNonnullString, strdup, free);
+
 void * _Nullable MELArrayCopy(const void * restrict _Nullable source, size_t size) {
     if (source == NULL || size == 0) {
         return NULL;
