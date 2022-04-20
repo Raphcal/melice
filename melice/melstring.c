@@ -14,6 +14,8 @@ MELListImplement(MELChar16);
 MELListImplement(MELCodePoint);
 MELListImplement(MELString);
 MELListImplementIndexOfWithEqualsFunction(MELString, MELStringEquals);
+MELListImplement(MELConstString);
+MELListImplementIndexOfWithEqualsFunction(MELConstString, MELStringEquals);
 
 void MELStringDeinit(MELString * _Nonnull self) {
     free(*self);

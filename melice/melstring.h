@@ -25,6 +25,10 @@ typedef char * _Nullable MELString;
 MELListDefine(MELString);
 MELListDefineIndexOf(MELString);
 
+typedef const char * _Nonnull MELConstString;
+MELListDefine(MELConstString);
+MELListDefineIndexOf(MELConstString);
+
 MELBoolean MELStringEquals(const char * _Nonnull lhs, const char * _Nonnull rhs);
 
 uint64_t MELStringHash(const char * _Nonnull key);

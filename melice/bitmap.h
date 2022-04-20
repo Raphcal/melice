@@ -14,6 +14,7 @@
 #include "color.h"
 #include "map.h"
 #include "textureatlas.h"
+#include "outputstream.h"
 
 MELIntSize MELBitmapReadSize(const char * _Nonnull path);
 

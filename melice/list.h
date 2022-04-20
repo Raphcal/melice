@@ -175,7 +175,8 @@ int type##ListIndexOf(type##List self, type entry) {\
 #define MELListImplementIndexOfWithEqualsFunction(type, equals) \
 int type##ListIndexOf(type##List self, type entry) {\
     for (int index = 0; index < self.count; index++) {\
-        if (equals(self.memory[index], entry)) {\
+        type value = self.memory[index];\
+        if (value == entry || equals(value, entry)) {\
             return index;\
         }\
     }\

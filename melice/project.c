@@ -23,7 +23,8 @@ MELProject MELProjectMake(void) {
     MELProject self = {
         MELPaletteRefListEmpty,
         MELMapGroupEmpty,
-        MELStringListMakeWithInitialCapacity(defaultAnimationNameCount)
+        MELStringListMakeWithInitialCapacity(defaultAnimationNameCount),
+        MELStringDictionaryEmpty
     };
 
     // Animation names.
@@ -37,7 +38,8 @@ MELProject MELProjectMakeWithEmptyMap(void) {
     MELProject self = {
         MELPaletteRefListMakeWithInitialCapacity(2),
         MELMapGroupEmpty,
-        MELStringListMakeWithInitialCapacity(defaultAnimationNameCount)
+        MELStringListMakeWithInitialCapacity(defaultAnimationNameCount),
+        MELStringDictionaryEmpty
     };
 
     // Default color palette.
@@ -68,7 +70,8 @@ MELProject MELProjectMakeWithProject(MELProject other) {
     MELProject self = {
         MELPaletteRefListMakeWithListAndCopyFunction(other.palettes, &MELPaletteRefMakeWithPaletteRef),
         MELMapGroupMakeWithMapGroup(other.root),
-        MELStringListMakeWithListAndCopyFunction(other.animationNames, (MELString (* _Nonnull)(MELString)) &MELStringCopy)
+        MELStringListMakeWithListAndCopyFunction(other.animationNames, (MELString (* _Nonnull)(MELString)) &MELStringCopy),
+        MELStringDictionaryMakeWithDictionary(other.scripts)
     };
     return self;
 }
@@ -77,4 +80,5 @@ void MELProjectDeinit(MELProject * _Nonnull self) {
     MELPaletteRefListDeinitWithDeinitFunction(&self->palettes, &MELPaletteRefDeinit);
     MELMapGroupDeinit(&self->root);
     MELStringListDeinitWithDeinitFunction(&self->animationNames, &MELStringDeinit);
+    MELStringDictionaryDeinit(&self->scripts);
 }

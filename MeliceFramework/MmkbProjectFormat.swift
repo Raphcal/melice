@@ -36,6 +36,7 @@ public struct MELMmkbProjectFormat {
         format.version = UInt32(versionNumber)
         var project = MELProject()
 
+        // Animation names
         let animationNames = projectInfo["animation-names"] as? [String] ?? defaultAnimationNames
         project.animationNames = MELStringListMakeWithInitialCapacity(animationNames.count)
         for animationName in animationNames {
@@ -44,6 +45,18 @@ public struct MELMmkbProjectFormat {
             }
         }
 
+        // Scripts
+        if let scripts = projectInfo["scripts"] as? [String] {
+            for index in 0 ..< scripts.count {
+                if let file = files["script\(index).txt"],
+                   let data = file.regularFileContents,
+                   let content = String(data: data, encoding: .utf8) {
+                    project.scripts[scripts[index]] = content
+                }
+            }
+        }
+
+        // Palettes
         var hasDefaultColorPalette = false
         for palette in palettes {
             if let data = files[palette]?.regularFileContents {
@@ -63,6 +76,8 @@ public struct MELMmkbProjectFormat {
             let defaultColorPalette = MELPaletteRefAllocDefaultColorPalette()
             MELPaletteRefListPush(&project.palettes, defaultColorPalette)
         }
+
+        // Maps and sprite instances
         for mapAndInstances in maps {
             if let mapFilename = mapAndInstances["map"],
                let mapData = files[mapFilename]?.regularFileContents,
@@ -90,6 +105,8 @@ public struct MELMmkbProjectFormat {
                 MELMutableMapListPush(&project.root.maps, map)
             }
         }
+
+        // Sprites
         for sprite in sprites {
             if let data = files[sprite]?.regularFileContents {
                 let mutableData = NSMutableData(data: data)
@@ -97,6 +114,11 @@ public struct MELMmkbProjectFormat {
 
                 let spriteDefinition = format.class.pointee.readSpriteDefinition!(&format, &project, &inputStream)
                 MELInputStreamDeinit(&inputStream)
+
+                if let motionName = spriteDefinition.motionName,
+                   !project.scripts.contains(key: motionName) {
+                    project.scripts[motionName] = ""
+                }
 
                 MELSpriteDefinitionListPush(&project.root.sprites, spriteDefinition)
             }
@@ -132,7 +154,7 @@ public struct MELMmkbProjectFormat {
         }
         info["palettes"] = palettes
 
-        // Cartes et instances
+        // Maps and sprite instances
         var maps = [[String: String]]()
         for index in 0 ..< project.root.maps.count {
             var mapAndInstances = [String: String]()
@@ -172,6 +194,17 @@ public struct MELMmkbProjectFormat {
         info["sprites"] = sprites
 
         MELOutputStreamDeinit(&outputStream)
+
+        // Scripts
+        var scripts = [String]()
+        for key in project.scripts.keys {
+            if let key = String(utf8String: key),
+               let scriptData = project.scripts[key]?.data(using: .utf8) {
+                fileWrappers["script\(scripts.count).txt"] = .init(regularFileWithContents: scriptData)
+                scripts.append(key)
+            }
+        }
+        info["scripts"] = scripts
 
         fileWrappers["Info.plist"] = .init(regularFileWithContents: try PropertyListSerialization.data(fromPropertyList: info, format: .xml, options: 0))
         return .init(directoryWithFileWrappers: fileWrappers)

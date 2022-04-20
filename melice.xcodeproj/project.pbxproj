@@ -382,6 +382,7 @@
 		648589E32784DAC900650C98 /* SpriteInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648589E22784DAC900650C98 /* SpriteInstance.swift */; };
 		648DA2C4280EA5D2002E4435 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648DA2C3280EA5D2002E4435 /* Sprite.swift */; };
 		648DA2C6280EA6E7002E4435 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648DA2C5280EA6E7002E4435 /* Animation.swift */; };
+		6491F44C2810583F00226603 /* stringdictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = 64C3547E281006D000D843C2 /* stringdictionary.c */; };
 		64985A6127FB7EC800B5EEB7 /* MmkbProjectFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */; };
 		64A1CE4F280846900086D752 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1CE4E280846900086D752 /* Direction.swift */; };
 		64A1CE522808B5270086D752 /* AnimationDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1CE512808B5270086D752 /* AnimationDefinition.swift */; };
@@ -391,6 +392,12 @@
 		64B43097277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
 		64B43098277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
 		64B43099277FA406004185E3 /* pointerintrectangletable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64B43093277FA406004185E3 /* pointerintrectangletable.c */; };
+		64C3547F281006D000D843C2 /* stringdictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C3547D281006D000D843C2 /* stringdictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64C35480281006D000D843C2 /* stringdictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C3547D281006D000D843C2 /* stringdictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64C35481281006D000D843C2 /* stringdictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C3547D281006D000D843C2 /* stringdictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64C35482281006D000D843C2 /* stringdictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = 64C3547E281006D000D843C2 /* stringdictionary.c */; };
+		64C35483281006D000D843C2 /* stringdictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = 64C3547E281006D000D843C2 /* stringdictionary.c */; };
+		64C3548628103AA800D843C2 /* StringDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C3548528103AA800D843C2 /* StringDictionary.swift */; };
 		64CB66D1271F514100663A2E /* melice.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CB66D2271F514100663A2E /* melstd.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64CB66D3271F514100663A2E /* point.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B2A2A25FD448B00183D42 /* point.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -969,6 +976,9 @@
 		64A1CE512808B5270086D752 /* AnimationDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDefinition.swift; sourceTree = "<group>"; };
 		64B43092277FA406004185E3 /* pointerintrectangletable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintrectangletable.h; sourceTree = "<group>"; };
 		64B43093277FA406004185E3 /* pointerintrectangletable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintrectangletable.c; sourceTree = "<group>"; };
+		64C3547D281006D000D843C2 /* stringdictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stringdictionary.h; sourceTree = "<group>"; };
+		64C3547E281006D000D843C2 /* stringdictionary.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stringdictionary.c; sourceTree = "<group>"; };
+		64C3548528103AA800D843C2 /* StringDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDictionary.swift; sourceTree = "<group>"; };
 		64CB66C5271F504E00663A2E /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		64D00E5F272DD7D200C8A675 /* palette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = palette.h; sourceTree = "<group>"; };
 		64D00E65272F37A500C8A675 /* decorator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = decorator.h; sourceTree = "<group>"; };
@@ -1104,6 +1114,8 @@
 				64749395272C2ABA004F3D97 /* primitives.c */,
 				642B29AE25FD410200183D42 /* random.h */,
 				642B29A725FD410200183D42 /* random.c */,
+				64C3547D281006D000D843C2 /* stringdictionary.h */,
+				64C3547E281006D000D843C2 /* stringdictionary.c */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -1524,6 +1536,7 @@
 			children = (
 				64F5D1792760FDE1000C3967 /* Named.swift */,
 				64F5D17E276109C7000C3967 /* List.swift */,
+				64C3548528103AA800D843C2 /* StringDictionary.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -1594,6 +1607,7 @@
 				642B2A9325FD49C100183D42 /* synchronizedanimation.h in Headers */,
 				642B2ABC25FD4A6900183D42 /* renderer.h in Headers */,
 				642B2A6025FD451F00183D42 /* gamecontroller.h in Headers */,
+				64C3547F281006D000D843C2 /* stringdictionary.h in Headers */,
 				642B2A6E25FD462F00183D42 /* director.h in Headers */,
 				642B2A4925FD44AB00183D42 /* rectangle.h in Headers */,
 				642B2AC325FD4A6900183D42 /* surfacememory.h in Headers */,
@@ -1634,6 +1648,7 @@
 				643EECAC275E6A6B0039FDAB /* melstd.h in Headers */,
 				643EECAD275E6A6B0039FDAB /* point.h in Headers */,
 				643EECAE275E6A6B0039FDAB /* quadrilateral.h in Headers */,
+				64C35481281006D000D843C2 /* stringdictionary.h in Headers */,
 				643EECAF275E6A6B0039FDAB /* rectangle.h in Headers */,
 				643EECB0275E6A6B0039FDAB /* size.h in Headers */,
 				643EECB1275E6A6B0039FDAB /* buttonstate.h in Headers */,
@@ -1766,6 +1781,7 @@
 				64CB66FD271F514200663A2E /* renderer.h in Headers */,
 				64CB66FE271F514200663A2E /* referencepool.h in Headers */,
 				64CB66FF271F514200663A2E /* surface.h in Headers */,
+				64C35480281006D000D843C2 /* stringdictionary.h in Headers */,
 				64CB6700271F514200663A2E /* surfacearray.h in Headers */,
 				64CB6701271F514200663A2E /* surfacememory.h in Headers */,
 				64D00E60272DD7DF00C8A675 /* palette.h in Headers */,
@@ -1987,6 +2003,7 @@
 				642B2AD325FD4E9800183D42 /* texture.c in Sources */,
 				642B2A8725FD49C100183D42 /* singleframeanimation.c in Sources */,
 				642B2ABF25FD4A6900183D42 /* surfacememory.c in Sources */,
+				64C35482281006D000D843C2 /* stringdictionary.c in Sources */,
 				642B2A8625FD49C100183D42 /* animationframe.c in Sources */,
 				64F5D15227600084000C3967 /* imagepaletteimage.c in Sources */,
 				64EEAA59274280B500776662 /* decorator.c in Sources */,
@@ -2048,6 +2065,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6491F44C2810583F00226603 /* stringdictionary.c in Sources */,
 				643EECF6275E8D7D0039FDAB /* point.c in Sources */,
 				643EECF7275E8D7D0039FDAB /* quadrilateral.c in Sources */,
 				643EECF8275E8D7D0039FDAB /* rectangle.c in Sources */,
@@ -2075,6 +2093,7 @@
 				64F5D18327610A69000C3967 /* Palette.swift in Sources */,
 				643EED07275E8D7D0039FDAB /* maprenderer.c in Sources */,
 				643EED08275E8D7D0039FDAB /* palette.c in Sources */,
+				64C3548628103AA800D843C2 /* StringDictionary.swift in Sources */,
 				64F5D16E2760F6AD000C3967 /* Quadrilateral.swift in Sources */,
 				641FB73A277D0828006DD7C3 /* DrawMode.swift in Sources */,
 				643EED09275E8D7D0039FDAB /* colorpalette.c in Sources */,
@@ -2187,6 +2206,7 @@
 				64CB6726271F51E300663A2E /* rotatedhitbox.c in Sources */,
 				64D00E852731D85500C8A675 /* project.c in Sources */,
 				64CB6727271F51E300663A2E /* simplespritehitbox.c in Sources */,
+				64C35483281006D000D843C2 /* stringdictionary.c in Sources */,
 				64D00E762730940600C8A675 /* colorpalette.c in Sources */,
 				64CB6728271F51E300663A2E /* spritehitbox.c in Sources */,
 				6460F0072746E5010040F95A /* packmap.c in Sources */,

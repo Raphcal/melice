@@ -81,5 +81,6 @@
 #import "operation.h"
 #import "random.h"
 #import "meltime.h"
+#import "stringdictionary.h"
 
 #endif /* melice_h */

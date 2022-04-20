@@ -240,7 +240,7 @@ void MELPackMapElementListPushSpriteDefinitionList(MELPackMapElementList * _Nonn
                 animation->frames = calloc(frameCount, sizeof(MELAnimationFrame));
             }
             for (size_t frameIndex = 0; frameIndex < frameCount; frameIndex++) {
-                animation->frames[frameIndex] = MELAnimationFrameMake(self->count, MELIntRectangleZero);
+                animation->frames[frameIndex] = MELAnimationFrameMake((int) self->count, MELIntRectangleZero);
                 const MELImagePaletteImage image = animation->images[frameIndex];
                 const uint8_t *pixels = definition.palette->class->paintImage(definition.palette, image, true);
                 const MELPackMapElement element = MELPackMapElementMake(animation->images + frameIndex, (uint32_t *) pixels, image.size, MELIntPointZero);
