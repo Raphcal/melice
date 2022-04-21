@@ -105,7 +105,7 @@ type type##DictionaryPut(type##Dictionary * _Nonnull self, const char * _Nonnull
             type##DictionaryEntry entry = bucket.entries.memory[entryIndex];\
             if (entry.hash == hash && (entry.key == key || MELStringEquals(entry.key, key))) {\
                 type oldValue = entry.value;\
-                entry.value = value;\
+                bucket.entries.memory[entryIndex].value = value;\
                 return oldValue;\
             }\
         }\

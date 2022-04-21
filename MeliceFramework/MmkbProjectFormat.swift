@@ -115,7 +115,7 @@ public struct MELMmkbProjectFormat {
                 let spriteDefinition = format.class.pointee.readSpriteDefinition!(&format, &project, &inputStream)
                 MELInputStreamDeinit(&inputStream)
 
-                if let motionName = spriteDefinition.motionName,
+                if let motionName = spriteDefinition.motionName, strlen(motionName) > 0,
                    !project.scripts.contains(key: motionName) {
                     project.scripts[motionName] = ""
                 }

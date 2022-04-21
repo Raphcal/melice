@@ -105,7 +105,7 @@ void MELSurfaceArrayClear(MELSurfaceArray * _Nonnull self) {
 }
 
 MELSurface MELSurfaceArrayAvailableSurface(MELSurfaceArray * _Nonnull self) {
-    if (self->pool.count > 0) {
+    if (self->pool.count > 0 && self->pool.capacity > 0) {
         return MELListPop(self->pool);
     }
     MELList(GLfloat) *vertex = &self->vertex;

@@ -103,7 +103,7 @@ MELBoolean K##V##TablePutAndGetOldValue(K##V##Table * _Nonnull self, K key, V va
                 if (oldValue) {\
                     *oldValue = entry.value;\
                 }\
-                entry.value = value;\
+                bucket.entries.memory[entryIndex].value = value;\
                 return true;\
             }\
         }\

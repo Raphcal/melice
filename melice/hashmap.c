@@ -76,7 +76,7 @@ void * _Nullable MELHashMapPut(MELHashMap * _Nonnull self, void * _Nonnull key, 
             MELHashMapEntry entry = bucket.entries.memory[entryIndex];
             if (entry.hash == hash && (entry.key == key || self->equals(entry.key, key))) {
                 void * _Nullable oldValue = entry.value;
-                entry.value = value;
+                bucket.entries.memory[entryIndex].value = value;
                 return oldValue;
             }
         }

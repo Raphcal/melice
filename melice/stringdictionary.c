@@ -103,7 +103,7 @@ char * _Nullable MELStringDictionaryPut(MELStringDictionary * _Nonnull self, con
             MELStringDictionaryEntry entry = bucket.entries.memory[entryIndex];
             if (entry.hash == hash && (entry.key == key || MELStringEquals(entry.key, key))) {
                 MELString oldValue = entry.value;
-                entry.value = strdup(value);
+                bucket.entries.memory[entryIndex].value = strdup(value);
                 return oldValue;
             }
         }
