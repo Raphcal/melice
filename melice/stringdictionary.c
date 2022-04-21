@@ -35,10 +35,13 @@ MELStringDictionaryBucket MELStringDictionaryBucketMakeWithBucket(MELStringDicti
 MELStringDictionary MELStringDictionaryMakeWithDictionary(MELStringDictionary other) {
     MELStringDictionary self;
     self.count = other.count;
-    self.buckets = MELStringDictionaryBucketListMakeWithListAndCopyFunction(other.buckets, &MELStringDictionaryBucketMakeWithBucket);
+    self.buckets = MELStringDictionaryBucketListMakeWithInitialCapacity(other.buckets.capacity);
+    for (size_t bucketIndex = 0; bucketIndex < self.buckets.capacity; bucketIndex++) {
+        self.buckets.memory[bucketIndex] = MELStringDictionaryBucketMakeWithBucket(other.buckets.memory[bucketIndex]);
+    }
     self.keys = MELConstStringListMakeWithInitialCapacity(other.keys.count);
     // Adding copied keys to key list to have the same references.
-    for (size_t bucketIndex = 0; bucketIndex < self.buckets.count; bucketIndex++) {
+    for (size_t bucketIndex = 0; bucketIndex < self.buckets.capacity; bucketIndex++) {
         MELStringDictionaryBucket bucket = self.buckets.memory[bucketIndex];
         for (size_t entryIndex = 0; entryIndex < bucket.entries.count; entryIndex++) {
             MELStringDictionaryEntry entry = bucket.entries.memory[entryIndex];

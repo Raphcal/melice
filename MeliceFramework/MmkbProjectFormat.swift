@@ -199,7 +199,7 @@ public struct MELMmkbProjectFormat {
         var scripts = [String]()
         for key in project.scripts.keys {
             if let key = String(utf8String: key),
-               let scriptData = project.scripts[key]?.data(using: .utf8) {
+               let scriptData = project.scripts.data(for: key) {
                 fileWrappers["script\(scripts.count).txt"] = .init(regularFileWithContents: scriptData)
                 scripts.append(key)
             }

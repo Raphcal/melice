@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol MELList: RandomAccessCollection, CustomDebugStringConvertible where Index == Int {
+public protocol MELList: RandomAccessCollection, MutableCollection, CustomDebugStringConvertible where Index == Int {
     static var empty: Self { get }
 
     var memory: UnsafeMutablePointer<Element>? { get }

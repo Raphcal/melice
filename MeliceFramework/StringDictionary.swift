@@ -45,6 +45,14 @@ public extension MELStringDictionary {
     func contains(key: UnsafePointer<CChar>) -> Bool {
         return MELStringDictionaryContainsKey(self, key)
     }
+
+    func data(for key: String) -> Data? {
+        if let value = MELStringDictionaryGet(self, key) {
+            return Data(bytes: value, count: strlen(value) + 1)
+        } else {
+            return nil
+        }
+    }
 }
 
 extension MELStringDictionary: MutableCollection {
