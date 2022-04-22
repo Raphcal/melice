@@ -28,6 +28,14 @@ public extension MELPoint {
         self.init(x: GLfloat(point.x), y: GLfloat(point.y))
     }
 
+    init(_ size: MELSize) {
+        self.init(x: size.width, y: size.height)
+    }
+
+    init(_ size: MELIntSize) {
+        self.init(x: GLfloat(size.width), y: GLfloat(size.height))
+    }
+
     /// Returns the distance between the two points.
     /// - parameter other: An other point.
     /// - returns: The distance between the points.
@@ -118,6 +126,9 @@ extension MELPoint: AdditiveArithmetic {
     }
     public static func / (lhs: MELPoint, rhs: MELSize) -> MELPoint {
         return MELPoint(x: lhs.x / rhs.width, y: lhs.y / rhs.height)
+    }
+    public static func / (lhs: MELPoint, rhs: GLfloat) -> MELPoint {
+        return MELPointDivideByValue(lhs, rhs)
     }
 }
 
