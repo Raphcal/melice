@@ -530,7 +530,7 @@ MELMutableMap MELMmkProjectFormatReadMap(MELProjectFormat * _Nonnull self, MELPr
 void MELMmkProjectFormatWriteMap(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELMutableMap map) {
     if (self->version >= 7) {
         int32_t index = -1;
-        for (unsigned int mapIndex = 0; index < project.root.maps.count; mapIndex++) {
+        for (unsigned int mapIndex = 0; mapIndex < project.root.maps.count; mapIndex++) {
             if (project.root.maps.memory[mapIndex].super.layers.memory == map.super.layers.memory) {
                 index = mapIndex;
                 break;

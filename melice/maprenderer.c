@@ -89,10 +89,12 @@ MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap map, MELColorPale
 void MELMapRendererDeinit(MELMapRenderer * _Nonnull self) {
     const size_t layerCount = self->map.layers.count;
     MELSurfaceArray *layerSurfaces = self->layerSurfaces;
-    for (unsigned int index = 0; index < layerCount; index++) {
-        MELSurfaceArrayDeinit(layerSurfaces + index);
+    if (layerSurfaces != NULL) {
+        for (unsigned int index = 0; index < layerCount; index++) {
+            MELSurfaceArrayDeinit(layerSurfaces + index);
+        }
+        free(layerSurfaces);
     }
-    free(layerSurfaces);
     self->layerSurfaces = NULL;
 }
 
