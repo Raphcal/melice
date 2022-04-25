@@ -60,6 +60,18 @@ GLfloat MELDegreesToRadians(GLfloat degrees) {
     return degrees * M_PI / 180;
 }
 
+GLfloat MELDifferenceBetweenAngles(GLfloat lhs, GLfloat rhs) {
+    const GLfloat difference = rhs - lhs;
+
+    if (difference < -MEL_PI) {
+        return difference + MEL_PI * 2;
+    } else if (difference > MEL_PI) {
+        return difference - MEL_PI * 2;
+    } else {
+        return difference;
+    }
+}
+
 GLfloat MELEaseInOut(GLfloat from, GLfloat to, GLfloat value) {
     return powf(sinf(MEL_PI / 2 * fminf(fmaxf(value - from, 0) / (to - from), 1)), 2);
 }

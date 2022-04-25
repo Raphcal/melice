@@ -100,6 +100,8 @@ int64_t MELInt64Max(int64_t lhs, int64_t rhs);
  */
 GLfloat MELDegreesToRadians(GLfloat degrees);
 
+GLfloat MELDifferenceBetweenAngles(GLfloat lhs, GLfloat rhs);
+
 GLfloat MELEaseInOut(GLfloat from, GLfloat to, GLfloat value);
 
 #endif /* melmath_h */
