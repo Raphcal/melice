@@ -57,6 +57,8 @@ void MELSpriteRefDeinit(MELSpriteRef *_Nonnull self);
 
 MELSprite * _Nonnull MELSpriteAlloc(MELSpriteManager * _Nonnull manager, MELSpriteDefinition definition, unsigned int layer);
 
+MELSprite * _Nonnull MELSpriteAllocStandalone(MELSpriteDefinition definition);
+
 void MELSpriteSetFrame(MELSprite * _Nonnull self, MELRectangle frame);
 
 void MELSpriteSetFrameOrigin(MELSprite * _Nonnull self, MELPoint origin);
