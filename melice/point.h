@@ -99,6 +99,13 @@ MELIntPoint MELIntPointAdd(MELIntPoint lhs, MELIntPoint rhs);
 MELPoint MELPointAddSize(MELPoint point, MELSize size);
 
 /**
+ * Adds the given value to the given point.
+ *
+ * @return A point whose coordinates are `point.x + value` and `point.y + value`.
+ */
+MELPoint MELPointAddValue(MELPoint point, GLfloat value);
+
+/**
  * Substracts the given points.
  *
  * @return A point whose coordinates are lhs.x - rhs.x and lhs.y - rhs.y.
@@ -118,6 +125,13 @@ MELIntPoint MELIntPointSubstract(MELIntPoint lhs, MELIntPoint rhs);
  * @return A point whose coordinates are `point.x - size.width` and `point.y - size.height`.
  */
 MELPoint MELPointSubstractSize(MELPoint point, MELSize size);
+
+/**
+ * Substracts the given value to the given point.
+ *
+ * @return A point whose coordinates are `point.x - value` and `point.y - value`.
+ */
+MELPoint MELPointSubstractValue(MELPoint point, GLfloat value);
 
 /**
  * Multiplies the given points.

@@ -58,6 +58,13 @@ MELPoint MELPointAddSize(MELPoint point, MELSize size) {
     };
 }
 
+MELPoint MELPointAddValue(MELPoint point, GLfloat value) {
+    return (MELPoint) {
+        point.x + value,
+        point.y + value
+    };
+}
+
 MELPoint MELPointSubstract(MELPoint lhs, MELPoint rhs) {
     return (MELPoint) {
         lhs.x - rhs.x,
@@ -76,6 +83,13 @@ MELPoint MELPointSubstractSize(MELPoint point, MELSize size) {
     return (MELPoint) {
         point.x - size.width,
         point.y - size.height
+    };
+}
+
+MELPoint MELPointSubstractValue(MELPoint point, GLfloat value) {
+    return (MELPoint) {
+        point.x - value,
+        point.y - value
     };
 }
 
