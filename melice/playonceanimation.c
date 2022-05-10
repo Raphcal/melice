@@ -8,16 +8,18 @@
 
 #include "playonceanimation.h"
 
+#include "meltime.h"
+
 void MELPlayOnceAnimationStart(MELPlayOnceAnimation * _Nonnull self) {
     MELAnimationSetFrameIndex((MELAnimation *)self, 0);
-    self->startDate = time(NULL);
+    self->startDate = MELMilliTime();
 }
 
 void MELPlayOnceAnimationUpdate(MELPlayOnceAnimation * _Nonnull self, MELTimeInterval timeSinceLastUpdate) {
-    const time_t timeSinceStart = time(NULL) - self->startDate;
+    const time_t timeSinceStart = MELMilliTime() - self->startDate;
     const MELTimeInterval framesPerSecond = MELAnimationFramesPerSecond((MELAnimation *)self);
     const int frame = (int)(timeSinceStart / 1000.0 * framesPerSecond);
-    
+
     const int frameCount = self->super.definition->frameCount;
     if (frame < frameCount) {
         MELAnimationSetFrameIndex((MELAnimation *)self, frame);

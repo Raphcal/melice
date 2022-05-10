@@ -112,6 +112,9 @@ void MELSpriteSetAnimation(MELSprite * _Nonnull self, MELAnimation * _Nullable a
     // No call to deinit, animations can be freed directly.
     free(self->animation);
     self->animation = animation;
+    if (animation != NULL) {
+        animation->class->start(animation);
+    }
 }
 
 void MELSpriteUpdate(MELSprite * _Nonnull self, MELTimeInterval timeSinceLastUpdate) {

@@ -12,8 +12,15 @@
 int64_t MELNanoTime(void) {
     struct timeval time;
     gettimeofday(&time, NULL);
-    return (time.tv_sec % 1000) * 1000000000L + time.tv_usec * 1000;
+    return (time.tv_sec % 100000000L) * 1000000000L + time.tv_usec * 1000;
 }
+
+int64_t MELMilliTime(void) {
+    struct timeval time;
+    gettimeofday(&time, NULL);
+    return time.tv_sec * 1000L + time.tv_usec / 1000L;
+}
+
 #else
 int64_t MELNanoTime(void) {
 	FILETIME    file_time;
@@ -28,7 +35,22 @@ int64_t MELNanoTime(void) {
 	int64_t tv_sec = ((ularge.QuadPart - 116444736000000000) / 10000000L);
 	int64_t tv_usec = system_time.wMilliseconds * 1000;
 
-	return (tv_sec % 1000) * 1000000000L + tv_usec * 1000;
+	return (tv_sec % 100000000L) * 1000000000L + tv_usec * 1000;
+}
+
+int64_t MELMilliTime(void) {
+    FILETIME    file_time;
+    SYSTEMTIME  system_time;
+    ULARGE_INTEGER ularge;
+
+    GetSystemTime(&system_time);
+    SystemTimeToFileTime(&system_time, &file_time);
+    ularge.LowPart = file_time.dwLowDateTime;
+    ularge.HighPart = file_time.dwHighDateTime;
+
+    int64_t tv_sec = ((ularge.QuadPart - 116444736000000000) / 10000000L);
+
+    return tv_sec * 1000L + system_time.wMilliseconds;
 }
 
 NTSTATUS(__stdcall *NtDelayExecution)(BOOL Alertable, PLARGE_INTEGER DelayInterval) = NULL;

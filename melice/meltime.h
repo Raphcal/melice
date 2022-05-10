@@ -19,6 +19,13 @@ int nanosleep(const struct timespec *rqtp, struct timespec *rmtp);
 #endif
 
 /**
+ * Returns the time in milliseconds.
+ *
+ * @return The time in milliseconds.
+ */
+int64_t MELMilliTime(void);
+
+/**
  * Returns the time in nanoseconds.
  *
  * @return The time in nanoseconds.

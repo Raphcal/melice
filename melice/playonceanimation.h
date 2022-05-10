@@ -11,7 +11,6 @@
 
 #include "melstd.h"
 
-#include <time.h>
 #include "animation.h"
 #include "animationdefinition.h"
 
