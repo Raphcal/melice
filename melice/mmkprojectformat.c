@@ -94,7 +94,7 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
         MELPaletteRef palette = self->class->readPalette(self, &project, inputStream);
         MELPaletteRefListPush(&project.palettes, palette);
 
-        hasDefaultColorPalette = hasDefaultColorPalette || (palette->name != NULL && !strcmp(palette->name, "Default color palette"));
+        hasDefaultColorPalette = hasDefaultColorPalette || (MELPaletteIsColorPalette(palette) && palette->count == 256);
     }
     if (!hasDefaultColorPalette) {
         MELPaletteRefListPush(&project.palettes, MELPaletteRefAllocDefaultColorPalette());

@@ -428,6 +428,10 @@ MELUInt8RGBColor * _Nonnull MELColorPaletteTileAtIndex(MELColorPalette * _Nonnul
     return self->colors + tileIndex % MASK;
 }
 
+MELBoolean MELPaletteIsColorPalette(MELPalette * _Nullable self) {
+    return self != NULL && self->class == &MELColorPaletteClass;
+}
+
 const MELPaletteClass MELColorPaletteClass = {
     .initWithPaletteRef = (MELPaletteRef(*)(MELPaletteRef)) &MELColorPaletteRefMakeWithColorPaletteRef,
     .deinit = (void(*)(MELPalette *)) &MELColorPaletteDeinit,

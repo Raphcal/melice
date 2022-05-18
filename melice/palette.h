@@ -110,4 +110,7 @@ MELTextureAtlas MELPaletteToTextureAtlas(MELPalette * _Nonnull self);
 
 MELBoolean MELPaletteRefEquals(MELPaletteRef lhs, MELPaletteRef rhs);
 
+MELBoolean MELPaletteIsColorPalette(MELPalette * _Nullable self);
+MELBoolean MELPaletteIsImagePalette(MELPalette * _Nullable self);
+
 #endif /* palette_h */

@@ -115,6 +115,10 @@ MELImagePaletteImage * _Nonnull MELImagePaletteTileAtIndex(MELImagePalette * _No
     return self->images + tileIndex;
 }
 
+MELBoolean MELPaletteIsImagePalette(MELPalette * _Nullable self) {
+    return self != NULL && self->class == &MELImagePaletteClass;
+}
+
 const MELPaletteClass MELImagePaletteClass = {
     .initWithPaletteRef = (MELPaletteRef(*)(MELPaletteRef)) &MELImagePaletteRefMakeWithMELImagePaletteRef,
     .deinit = (void(*)(MELPalette *)) &MELImagePaletteDeinit,

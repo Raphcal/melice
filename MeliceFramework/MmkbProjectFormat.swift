@@ -68,7 +68,7 @@ public struct MELMmkbProjectFormat {
 
                 if let palette = palette {
                     MELPaletteRefListPush(&project.palettes, palette)
-                    hasDefaultColorPalette = hasDefaultColorPalette || palette.name == "Default color palette"
+                    hasDefaultColorPalette = hasDefaultColorPalette || (MELPaletteIsColorPalette(palette) && palette.count == 256)
                 }
             }
         }
