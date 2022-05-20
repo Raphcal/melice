@@ -36,12 +36,14 @@ MELMapGroup MELMapGroupMakeWithMapGroupAndProject(MELMapGroup other, MELProject 
         }
         self.maps.memory[index] = map;
     }
+    self.maps.count = other.maps.count;
     MELMutableMapListMakeWithListAndCopyFunction(other.maps, &MELMutableMapMakeWithMutableMap);
     self.sprites = MELSpriteDefinitionListMakeWithListAndCopyFunction(other.sprites, &MELSpriteDefinitionMakeWithSpriteDefinition);
     self.children = MELMapGroupListMakeWithInitialCapacity(other.children.count);
     for (unsigned int index = 0; index < other.children.count; index++) {
         self.children.memory[index] = MELMapGroupMakeWithMapGroupAndProject(other.children.memory[index], sourceProject, targetProject);
     }
+    self.children.count = other.children.count;
     return self;
 }
 

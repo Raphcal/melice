@@ -668,10 +668,19 @@ void MELMmkProjectFormatWriteSpriteDefinition(MELProjectFormat * _Nonnull self, 
     // Script
     MELOutputStreamWriteNullableString(outputStream, spriteDefinition.loadScript);
     MELOutputStreamWriteNullableString(outputStream, spriteDefinition.motionName);
-    
-    MELOutputStreamWriteInt(outputStream, (int32_t) spriteDefinition.animations.count);
+
+    int32_t count = 0;
     for (unsigned int index = 0; index < spriteDefinition.animations.count; index++) {
-        self->class->writeAnimationDefinition(self, project, outputStream, spriteDefinition.animations.memory[index]);
+        if (spriteDefinition.animations.memory[index].name != NULL) {
+            count++;
+        }
+    }
+
+    MELOutputStreamWriteInt(outputStream, count);
+    for (unsigned int index = 0; index < spriteDefinition.animations.count; index++) {
+        if (spriteDefinition.animations.memory[index].name != NULL) {
+            self->class->writeAnimationDefinition(self, project, outputStream, spriteDefinition.animations.memory[index]);
+        }
     }
 }
 
