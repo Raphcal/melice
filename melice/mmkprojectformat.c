@@ -345,6 +345,7 @@ void MELMmkProjectFormatWritePaletteAsReference(MELProjectFormat * _Nonnull self
             return;
         }
     }
+    fprintf(stderr, "Unable to find index of given palette\n");
     MELMmkProjectFormatWritePalette(self, project, outputStream, palette);
 }
 
@@ -538,20 +539,20 @@ void MELMmkProjectFormatWriteMap(MELProjectFormat * _Nonnull self, MELProject pr
         }
         MELOutputStreamWriteInt(outputStream, index);
     }
-    
+
     if (self->version >= 6) {
         MELOutputStreamWriteNullableString(outputStream, map.name);
     }
-    
+
     // Background color.
     self->class->writeColor(self, project, outputStream, MELColorToMELUInt8Color(map.super.backgroundColor));
-    
+
     // Palette.
     MELMmkProjectFormatWritePaletteAsReference(self, project, outputStream, map.palette);
 
     // Layers.
     MELOutputStreamWriteInt(outputStream, (int32_t) map.super.layers.count);
-    
+
     for (unsigned int index = 0; index < map.super.layers.count; index++) {
         self->class->writeLayer(self, project, outputStream, map.super.layers.memory[index]);
     }
@@ -615,7 +616,11 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
     for (int animation = 0; animation < animationCount; animation++) {
         MELAnimationDefinition animationDefinition = self->class->readAnimationDefinition(self, project, inputStream);
         int index = MELStringListIndexOf(project->animationNames, animationDefinition.name);
-        spriteDefinition.animations.memory[index] = animationDefinition;
+        if (index >= 0) {
+            spriteDefinition.animations.memory[index] = animationDefinition;
+        } else {
+            fprintf(stderr, "Unable to load animation %d because name %s was not found in animationNames.\n", animation, animationDefinition.name);
+        }
     }
 
     return spriteDefinition;
