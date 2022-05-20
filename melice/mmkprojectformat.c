@@ -61,6 +61,10 @@ MELBoolean openFileOrArchiveAtPath(const char * _Nonnull path, MELInputStream * 
     return true;
 }
 
+MELBoolean isDefaultColorPalette(MELPaletteRef palette) {
+    return MELPaletteIsColorPalette(palette) && palette->count == 256;
+}
+
 MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELInputStream * _Nonnull inputStream, MELProject * _Nonnull outProject) {
     uint16_t header[5];
     MELInputStreamRead(inputStream, header, sizeof(uint16_t) * 4);
@@ -94,7 +98,7 @@ MELBoolean MELMmkProjectFormatOpenProject(MELProjectFormat * _Nonnull self, MELI
         MELPaletteRef palette = self->class->readPalette(self, &project, inputStream);
         MELPaletteRefListPush(&project.palettes, palette);
 
-        hasDefaultColorPalette = hasDefaultColorPalette || (MELPaletteIsColorPalette(palette) && palette->count == 256);
+        hasDefaultColorPalette = hasDefaultColorPalette || isDefaultColorPalette(palette);
     }
     if (!hasDefaultColorPalette) {
         MELPaletteRefListPush(&project.palettes, MELPaletteRefAllocDefaultColorPalette());
@@ -593,7 +597,7 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
     MELPaletteRef defaultColorPalette = NULL;
     for (size_t index = 0; index < project->palettes.count; index++) {
         MELPaletteRef palette = project->palettes.memory[index];
-        if (palette->name != NULL && !strcmp(palette->name, "Default color palette")) {
+        if (isDefaultColorPalette(palette)) {
             defaultColorPalette = palette;
             break;
         }

@@ -14,7 +14,7 @@
 #define defaultColorCount 256
 #define defaultAlphaLevelCount 8
 
-const MELUInt8RGBColor defaultColors[] = {
+static const MELUInt8RGBColor defaultColors[] = {
     {0, 0, 6},
     {232, 250, 255},
     {235, 233, 248},
@@ -272,7 +272,16 @@ const MELUInt8RGBColor defaultColors[] = {
     {74, 0, 0},
     {255, 255, 255}
 };
-const uint8_t defaultAlphaLevels[] = {255, 224, 192, 160, 128, 96, 64, 32};
+static const uint8_t defaultAlphaLevels[] = {255, 224, 192, 160, 128, 96, 64, 32};
+
+static const MELColorPalette MELColorPaletteDefault = {
+    {&MELColorPaletteClass, "Default color palette", {1, 1}, 6, defaultColorCount},
+    (MELUInt8RGBColor *) defaultColors,
+    (uint8_t *) defaultAlphaLevels,
+    defaultAlphaLevelCount
+};
+
+const MELPaletteRef MELPaletteDefaultColorPalette = (MELPaletteRef) &MELColorPaletteDefault;
 
 MELColorPalette MELColorPaletteMakeDefault(void) {
     MELColorPalette self = {{&MELColorPaletteClass, strdup("Default color palette"), {1, 1}, 6, defaultColorCount}, NULL, NULL, defaultAlphaLevelCount};

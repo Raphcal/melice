@@ -191,12 +191,14 @@ MELPackMapElement MELPackMapElementMakeWithPaletteTile(MELPaletteRef palette, un
 }
 
 MELPackMapElement MELPackMapElementMakeWithSpriteDefinitionRef(MELSpriteDefinition * _Nonnull spriteDefinition) {
-    if (spriteDefinition->palette == NULL) {
-        return MELPackMapElementEmpty;
+    MELPaletteRef palette = spriteDefinition->palette;
+    if (palette == NULL) {
+        fprintf(stderr, "No palette found for sprite definition '%s', using default palette.\n", spriteDefinition->name);
+        palette = MELPaletteDefaultColorPalette;
     }
     MELImagePaletteImage *image = MELSpriteDefinitionFirstNonEmptyImage(*spriteDefinition);
     if (image != NULL) {
-        uint8_t *pixels = spriteDefinition->palette->class->paintImage(spriteDefinition->palette, *image, true);
+        uint8_t *pixels = palette->class->paintImage(palette, *image, true);
         return MELPackMapElementMake(spriteDefinition, (uint32_t *) pixels, image->size, MELIntPointZero);
     } else {
         return MELPackMapElementEmpty;

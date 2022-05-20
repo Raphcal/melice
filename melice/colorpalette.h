@@ -13,6 +13,7 @@
 #include "palette.h"
 
 extern const MELPaletteClass MELColorPaletteClass;
+extern const MELPaletteRef MELPaletteDefaultColorPalette;
 
 typedef struct {
     MELPalette super;
