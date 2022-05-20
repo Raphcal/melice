@@ -16,7 +16,7 @@
 #include "melstring.h"
 #include "stringdictionary.h"
 
-typedef struct {
+typedef struct melproject {
     MELList(MELPaletteRef) palettes;
     MELMapGroup root;
     MELStringList animationNames;

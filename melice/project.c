@@ -67,12 +67,12 @@ MELProject MELProjectMakeWithEmptyMap(void) {
 }
 
 MELProject MELProjectMakeWithProject(MELProject other) {
-    MELProject self = {
-        MELPaletteRefListMakeWithListAndCopyFunction(other.palettes, &MELPaletteRefMakeWithPaletteRef),
-        MELMapGroupMakeWithMapGroup(other.root),
-        MELStringListMakeWithListAndCopyFunction(other.animationNames, (MELString (* _Nonnull)(MELString)) &MELStringCopy),
-        MELStringDictionaryMakeWithDictionary(other.scripts)
-    };
+    MELProject self = {};
+    self.palettes = MELPaletteRefListMakeWithListAndCopyFunction(other.palettes, &MELPaletteRefMakeWithPaletteRef);
+    self.animationNames = MELStringListMakeWithListAndCopyFunction(other.animationNames, (MELString (* _Nonnull)(MELString)) &MELStringCopy);
+    self.scripts = MELStringDictionaryMakeWithDictionary(other.scripts);
+
+    self.root = MELMapGroupMakeWithMapGroupAndProject(other.root, other, self);
     return self;
 }
 

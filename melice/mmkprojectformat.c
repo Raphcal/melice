@@ -338,15 +338,14 @@ void MELMmkProjectFormatWritePalette(MELProjectFormat * _Nonnull self, MELProjec
 }
 
 void MELMmkProjectFormatWritePaletteAsReference(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELPaletteRef palette) {
-    for (unsigned int index = 0; index < project.palettes.count; index++) {
-        if (palette == project.palettes.memory[index]) {
-            MELOutputStreamWriteString(outputStream, "fr.rca.mapmaker.model.palette.PaletteReference");
-            self->class->writePaletteReference(self, project, outputStream, index);
-            return;
-        }
+    const int index = MELPaletteRefListIndexOf(project.palettes, palette);
+    if (index >= 0) {
+        MELOutputStreamWriteString(outputStream, "fr.rca.mapmaker.model.palette.PaletteReference");
+        self->class->writePaletteReference(self, project, outputStream, index);
+    } else {
+        fprintf(stderr, "Unable to find index of given palette.\n");
+        MELMmkProjectFormatWritePalette(self, project, outputStream, palette);
     }
-    fprintf(stderr, "Unable to find index of given palette\n");
-    MELMmkProjectFormatWritePalette(self, project, outputStream, palette);
 }
 
 MELColorPalette * _Nullable MELMmkProjectFormatReadColorPalette(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
@@ -619,7 +618,7 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
         if (index >= 0) {
             spriteDefinition.animations.memory[index] = animationDefinition;
         } else {
-            fprintf(stderr, "Unable to load animation %d because name %s was not found in animationNames.\n", animation, animationDefinition.name);
+            fprintf(stderr, "Unable to load animation %d named '%s' of sprite '%s': name was not found in animationNames.\n", animation, animationDefinition.name, spriteDefinition.name);
         }
     }
 

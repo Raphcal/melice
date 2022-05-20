@@ -85,6 +85,7 @@ typedef struct melpalette {
 } MELPalette;
 
 MELListDefine(MELPaletteRef);
+MELListDefineIndexOf(MELPaletteRef);
 
 void MELPaletteDeinit(MELPalette * _Nonnull self);
 

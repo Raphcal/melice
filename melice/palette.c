@@ -8,6 +8,7 @@
 #include "palette.h"
 
 MELListImplement(MELPaletteRef);
+MELListImplementIndexOf(MELPaletteRef);
 
 void MELPaletteDeinit(MELPalette * _Nonnull self) {
     self->class->deinit(self);

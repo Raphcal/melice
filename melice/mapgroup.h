@@ -14,6 +14,7 @@
 #include "mutablemap.h"
 #include "spritedefinition.h"
 
+typedef struct melproject MELProject;
 typedef struct melmapgroup MELMapGroup;
 
 MELListDefine(MELMapGroup);
@@ -27,7 +28,27 @@ typedef struct melmapgroup {
 
 extern const MELMapGroup MELMapGroupEmpty;
 
+/**
+ * Creates a new map group by copying the content of the given map group.
+ * Palettes are not copied, copied maps will use the same palettes than the given maps.
+ *
+ * @param other Map group to copy.
+ * @returns A new map group.
+ * @deprecated Replaced by MELMapGroupMakeWithMapGroupAndProject.
+ */
 MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other);
+
+/**
+ * Creates a new map group by copying the content of the given map group.
+ * Palettes wil be changed to use the one from `targetProject`.
+ *
+ * @param other Map group to copy.
+ * @param sourceProject Project being copied.
+ * @param targetProject Project copy.
+ * @returns A new map group.
+ * @deprecated Replaced by MELMapGroupMakeWithMapGroupAndProject.
+ */
+MELMapGroup MELMapGroupMakeWithMapGroupAndProject(MELMapGroup other, MELProject sourceProject, MELProject targetProject);
 
 void MELMapGroupDeinit(MELMapGroup * _Nonnull self);
 
