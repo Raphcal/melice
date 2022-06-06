@@ -46,8 +46,11 @@ public extension MELLayer {
             return self.tiles![x + y * Int(self.size.width)]
         }
         set(newValue) {
-            assert(indexIsValid(x: x, y: y), "Index \(x)x\(y) is out of bounds")
-            self.tiles![x + y * Int(self.size.width)] = newValue
+            if indexIsValid(x: x, y: y) {
+                self.tiles![x + y * Int(self.size.width)] = newValue
+            } else {
+                NSLog("Index \(x)x\(y) is out of bounds")
+            }
         }
     }
     subscript(point: MELIntPoint) -> Int32 {
