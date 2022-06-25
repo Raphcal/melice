@@ -9,6 +9,7 @@
 
 #include <assert.h>
 #include "primitives.h"
+#include "colorpalette.h"
 
 #define PADDING 1
 

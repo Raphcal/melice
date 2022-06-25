@@ -17,6 +17,7 @@
 typedef enum {
     MELDecoratorTypeHitbox,
     MELDecoratorTypeFunction,
+    MELDecoratorTypeYFunction,
     MELDecoratorTypeFlag,
     MELDecoratorTypeSize,
 } MELDecoratorType;
@@ -53,6 +54,7 @@ MELDecoratorRef MELDecoratorRefListForType(MELDecoratorRefList self, MELDecorato
 MELFunctionDecorator * _Nonnull MELFunctionDecoratorRefMakeWithFunctionDecoratorRef(MELFunctionDecorator * _Nonnull other);
 void MELFunctionDecoratorDeinit(MELFunctionDecorator * _Nonnull self);
 MELFunctionDecorator * _Nullable MELDecoratorRefListGetFunctionDecorator(MELDecoratorRefList self);
+MELFunctionDecorator * _Nullable MELDecoratorRefListGetYFunctionDecorator(MELDecoratorRefList self);
 
 MELHitboxDecorator * _Nonnull MELHitboxDecoratorRefMakeWithHitboxDecoratorRef(MELHitboxDecorator * _Nonnull other);
 void MELHitboxDecoratorDeinit(MELHitboxDecorator * _Nonnull self);

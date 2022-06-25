@@ -12,7 +12,7 @@
 #include "melstring.h"
 #include "melmath.h"
 
-#define LAST_SUPPORTED_VERSION 12
+#define LAST_SUPPORTED_VERSION 13
 #define DATA_ENTRY "data"
 
 const MELProjectFormat MELMmkProjectFormat = {&MELMmkProjectFormatClass, NULL, LAST_SUPPORTED_VERSION};
@@ -402,6 +402,14 @@ MELImagePalette * _Nullable MELMmkProjectFormatReadImagePalette(MELProjectFormat
                 MELDecoratorRefListPush(&image.decorators, &functionDecorator->super);
             }
         }
+        if (self->version >= 13) {
+            char *function = MELInputStreamReadNullableString(inputStream);
+            if (function != NULL) {
+                MELFunctionDecorator *yFunctionDecorator = malloc(sizeof(MELFunctionDecorator));
+                *yFunctionDecorator = (MELFunctionDecorator) {{MELDecoratorTypeYFunction}, function};
+                MELDecoratorRefListPush(&image.decorators, &yFunctionDecorator->super);
+            }
+        }
 
         imagePalette.images[index] = image;
     }
@@ -427,14 +435,13 @@ void MELMmkProjectFormatWriteImagePalette(MELProjectFormat * _Nonnull self, MELP
         self->class->writeImagePaletteImage(self, project, outputStream, image);
 
         if (self->version >= 3) {
-            char *function = NULL;
-            for (unsigned int decoratorIndex = 0; decoratorIndex < image.decorators.count; decoratorIndex++) {
-                if (image.decorators.memory[decoratorIndex]->type == MELDecoratorTypeFunction) {
-                    MELFunctionDecorator *functionDecorator = (MELFunctionDecorator *) image.decorators.memory[decoratorIndex];
-                    function = functionDecorator->function;
-                    break;
-                }
-            }
+            MELFunctionDecorator *functionDecorator = MELDecoratorRefListGetFunctionDecorator(image.decorators);
+            char *function = functionDecorator != NULL ? functionDecorator->function : NULL;
+            MELOutputStreamWriteNullableString(outputStream, function);
+        }
+        if (self->version >= 13) {
+            MELFunctionDecorator *yFunctionDecorator = MELDecoratorRefListGetYFunctionDecorator(image.decorators);
+            char *function = yFunctionDecorator != NULL ? yFunctionDecorator->function : NULL;
             MELOutputStreamWriteNullableString(outputStream, function);
         }
     }

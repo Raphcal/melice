@@ -14,6 +14,7 @@ MELListImplement(MELDecoratorRef);
 void MELDecoratorDeinit(MELDecorator * _Nonnull self) {
     switch (self->type) {
         case MELDecoratorTypeFunction:
+        case MELDecoratorTypeYFunction:
             MELFunctionDecoratorDeinit((MELFunctionDecorator *) self);
             break;
         case MELDecoratorTypeHitbox:
@@ -38,6 +39,7 @@ MELDecoratorRef MELDecoratorRefMakeWithDecoratorRef(MELDecoratorRef other) {
         case MELDecoratorTypeFunction:
             return &MELFunctionDecoratorRefMakeWithFunctionDecoratorRef((MELFunctionDecorator *) other)->super;
         case MELDecoratorTypeHitbox:
+        case MELDecoratorTypeYFunction:
             return &MELHitboxDecoratorRefMakeWithHitboxDecoratorRef((MELHitboxDecorator *) other)->super;
         case MELDecoratorTypeSize:
             return &MELSizeDecoratorRefMakeWithSizeDecoratorRef((MELSizeDecorator *) other)->super;
@@ -66,6 +68,10 @@ MELDecoratorRef MELDecoratorRefListForType(MELDecoratorRefList self, MELDecorato
 
 MELFunctionDecorator * _Nullable MELDecoratorRefListGetFunctionDecorator(MELDecoratorRefList self) {
     return (MELFunctionDecorator *)MELDecoratorRefListForType(self, MELDecoratorTypeFunction);
+}
+
+MELFunctionDecorator * _Nullable MELDecoratorRefListGetYFunctionDecorator(MELDecoratorRefList self) {
+    return (MELFunctionDecorator *)MELDecoratorRefListForType(self, MELDecoratorTypeYFunction);
 }
 
 void MELFunctionDecoratorDeinit(MELFunctionDecorator * _Nonnull self) {
