@@ -37,9 +37,9 @@ MELDecoratorRef MELDecoratorRefMakeWithDecoratorRef(MELDecoratorRef other) {
     }
     switch (other->type) {
         case MELDecoratorTypeFunction:
+        case MELDecoratorTypeYFunction:
             return &MELFunctionDecoratorRefMakeWithFunctionDecoratorRef((MELFunctionDecorator *) other)->super;
         case MELDecoratorTypeHitbox:
-        case MELDecoratorTypeYFunction:
             return &MELHitboxDecoratorRefMakeWithHitboxDecoratorRef((MELHitboxDecorator *) other)->super;
         case MELDecoratorTypeSize:
             return &MELSizeDecoratorRefMakeWithSizeDecoratorRef((MELSizeDecorator *) other)->super;
