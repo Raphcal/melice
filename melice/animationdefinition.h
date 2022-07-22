@@ -16,6 +16,7 @@
 #include "imagepaletteimage.h"
 #include "inputstream.h"
 #include "list.h"
+#include "degreeanimationdefinitionframestable.h"
 
 /**
  * Definition of an animation.
@@ -25,16 +26,25 @@ typedef struct {
      * Name of the definition.
      */
     char * _Nullable name;
+
+    MELDegreesMELAnimationDefinitionFramesTable framesByDirection;
+
     /**
      * Number of frames in this animation.
+     *
+     * @deprecated Replaced by framesByDirection.
      */
 	unsigned int frameCount;
     /**
      * Frames.
+     *
+     * @deprecated Replaced by framesByDirection.
      */
     MELAnimationFrame * _Nullable frames;
     /**
      * Frames as editable images.
+     *
+     * @deprecated Replaced by framesByDirection.
      */
     MELImagePaletteImage * _Nullable images;
     /**

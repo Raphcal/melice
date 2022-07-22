@@ -636,6 +636,7 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
     return spriteDefinition;
 }
 
+// TODO: Read and store the sprite size instead of guessing it ?
 MELIntSize guessSpriteSize(MELSpriteDefinition spriteDefinition) {
     MELIntSize size = MELIntSizeZero;
     for (unsigned int index = 0; index < spriteDefinition.animations.count; index++) {
@@ -708,6 +709,8 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
     animationDefinition.type = type;
     animationDefinition.isScrolling = isScrolling;
 
+    animationDefinition.framesByDirection = MELDegreesMELAnimationDefinitionFramesTableEmpty;
+
     animationDefinition.frameCount = 0;
     animationDefinition.frames = NULL;
     animationDefinition.images = NULL;
@@ -716,31 +719,33 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
     for (int i = 0; i < directionCount; i++) {
         const double direction = MELInputStreamReadDouble(inputStream);
         const int frameCount = MELInputStreamReadInt(inputStream);
+
+        MELAnimationDefinitionFrames directionFrames;
+        directionFrames.frameCount = frameCount;
+        directionFrames.images = frameCount > 0 ? malloc(sizeof(MELImagePaletteImage) * frameCount) : NULL;
+
         if (direction == 0) {
             animationDefinition.frameCount = frameCount;
-            animationDefinition.images = frameCount > 0 ? malloc(sizeof(MELImagePaletteImage) * frameCount) : NULL;
+            animationDefinition.images = directionFrames.images;
             animationDefinition.type = MELAnimationTypeForFrameCountAndLooping(frameCount, isLooping);
         }
 
         for (int frameIndex = 0; frameIndex < frameCount; frameIndex++) {
             MELImagePaletteImage frame = self->class->readImagePaletteImage(self, project, inputStream);
-            MELHitboxDecorator hitboxDecorator = (MELHitboxDecorator){{MELDecoratorTypeHitbox}, MELIntRectangleZero};
 
             if (self->version >= 8) {
+                MELHitboxDecorator hitboxDecorator;
+                hitboxDecorator.super.type = MELDecoratorTypeHitbox;
                 hitboxDecorator.hitbox = self->class->readRectangle(self, project, inputStream);
-            }
 
-            if (direction == 0) {
-                if (self->version >= 8) {
-                    MELHitboxDecorator *hitboxDecoratorRef = malloc(sizeof(MELHitboxDecorator));
-                    *hitboxDecoratorRef = hitboxDecorator;
-                    MELDecoratorRefListPush(&frame.decorators, &hitboxDecoratorRef->super);
-                }
-                animationDefinition.images[frameIndex] = frame;
-            } else {
-                MELImagePaletteImageDeinit(&frame);
+                MELHitboxDecorator *hitboxDecoratorRef = malloc(sizeof(MELHitboxDecorator));
+                *hitboxDecoratorRef = hitboxDecorator;
+                MELDecoratorRefListPush(&frame.decorators, &hitboxDecoratorRef->super);
             }
+            directionFrames.images[frameIndex] = frame;
         }
+
+        MELDegreesMELAnimationDefinitionFramesTablePut(&animationDefinition.framesByDirection, MELDegreesForSimplifiedAngle(direction), directionFrames);
     }
 
     return animationDefinition;
@@ -756,25 +761,25 @@ void MELMmkProjectFormatWriteAnimationDefinition(MELProjectFormat * _Nonnull sel
         MELOutputStreamWriteBoolean(outputStream, animationDefinition.isScrolling);
     }
 
-    if (animationDefinition.images == NULL || animationDefinition.frameCount == 0) {
-        MELOutputStreamWriteInt(outputStream, /** directions.count */ 0);
-        return;
-    }
+    MELDegreesMELAnimationDefinitionFramesTableEntryList directions = MELDegreesMELAnimationDefinitionFramesTableEntries(&animationDefinition.framesByDirection);
+    MELOutputStreamWriteInt(outputStream, (int) directions.count);
 
-    MELOutputStreamWriteInt(outputStream, /** directions.count */ 1);
-    MELOutputStreamWriteDouble(outputStream, /* direction */ 0.0);
+    for (size_t index = 0; index < directions.count; index++) {
+        MELDegreesMELAnimationDefinitionFramesTableEntry entry = directions.memory[index];
+        MELOutputStreamWriteDouble(outputStream, MELSimplifiedAngleForDegrees(entry.key));
 
-    MELOutputStreamWriteInt(outputStream, animationDefinition.frameCount);
-    for (unsigned int index = 0; index < animationDefinition.frameCount; index++) {
-        MELImagePaletteImage image = animationDefinition.images[index];
-        self->class->writeImagePaletteImage(self, project, outputStream, image);
+        MELOutputStreamWriteInt(outputStream, entry.value.frameCount);
+        for (unsigned int index = 0; index < entry.value.frameCount; index++) {
+            MELImagePaletteImage image = entry.value.images[index];
+            self->class->writeImagePaletteImage(self, project, outputStream, image);
 
-        if (self->version >= 8) {
-            MELHitboxDecorator *hitboxPlugin = (MELHitboxDecorator *) MELDecoratorRefListForType(image.decorators, MELDecoratorTypeHitbox);
-            if (hitboxPlugin != NULL) {
-                self->class->writeRectangle(self, project, outputStream, hitboxPlugin->hitbox);
-            } else {
-                MELOutputStreamWriteBoolean(outputStream, false);
+            if (self->version >= 8) {
+                MELHitboxDecorator *hitboxPlugin = (MELHitboxDecorator *) MELDecoratorRefListForType(image.decorators, MELDecoratorTypeHitbox);
+                if (hitboxPlugin != NULL) {
+                    self->class->writeRectangle(self, project, outputStream, hitboxPlugin->hitbox);
+                } else {
+                    MELOutputStreamWriteBoolean(outputStream, false);
+                }
             }
         }
     }

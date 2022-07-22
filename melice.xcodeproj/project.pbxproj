@@ -386,6 +386,18 @@
 		64985A6127FB7EC800B5EEB7 /* MmkbProjectFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */; };
 		64A1CE4F280846900086D752 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1CE4E280846900086D752 /* Direction.swift */; };
 		64A1CE522808B5270086D752 /* AnimationDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A1CE512808B5270086D752 /* AnimationDefinition.swift */; };
+		64A3D3A3288A848200B894D7 /* animationdefinitionframes.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A3D3A1288A848200B894D7 /* animationdefinitionframes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64A3D3A4288A848200B894D7 /* animationdefinitionframes.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A3D3A1288A848200B894D7 /* animationdefinitionframes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64A3D3A5288A848200B894D7 /* animationdefinitionframes.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3A2288A848200B894D7 /* animationdefinitionframes.c */; };
+		64A3D3A6288A848200B894D7 /* animationdefinitionframes.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3A2288A848200B894D7 /* animationdefinitionframes.c */; };
+		64A3D3A7288A848700B894D7 /* animationdefinitionframes.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3A2288A848200B894D7 /* animationdefinitionframes.c */; };
+		64A3D3A8288A848A00B894D7 /* animationdefinitionframes.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A3D3A1288A848200B894D7 /* animationdefinitionframes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64A3D3AB288A84ED00B894D7 /* degreeanimationdefinitionframestable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A3D3A9288A84ED00B894D7 /* degreeanimationdefinitionframestable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64A3D3AC288A84ED00B894D7 /* degreeanimationdefinitionframestable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A3D3A9288A84ED00B894D7 /* degreeanimationdefinitionframestable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64A3D3AD288A84ED00B894D7 /* degreeanimationdefinitionframestable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A3D3A9288A84ED00B894D7 /* degreeanimationdefinitionframestable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64A3D3AE288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */; };
+		64A3D3AF288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */; };
+		64A3D3B0288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */; };
 		64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -974,6 +986,10 @@
 		64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MmkbProjectFormat.swift; sourceTree = "<group>"; };
 		64A1CE4E280846900086D752 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		64A1CE512808B5270086D752 /* AnimationDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDefinition.swift; sourceTree = "<group>"; };
+		64A3D3A1288A848200B894D7 /* animationdefinitionframes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = animationdefinitionframes.h; sourceTree = "<group>"; };
+		64A3D3A2288A848200B894D7 /* animationdefinitionframes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = animationdefinitionframes.c; sourceTree = "<group>"; };
+		64A3D3A9288A84ED00B894D7 /* degreeanimationdefinitionframestable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = degreeanimationdefinitionframestable.h; sourceTree = "<group>"; };
+		64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = degreeanimationdefinitionframestable.c; sourceTree = "<group>"; };
 		64B43092277FA406004185E3 /* pointerintrectangletable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintrectangletable.h; sourceTree = "<group>"; };
 		64B43093277FA406004185E3 /* pointerintrectangletable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintrectangletable.c; sourceTree = "<group>"; };
 		64C3547D281006D000D843C2 /* stringdictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stringdictionary.h; sourceTree = "<group>"; };
@@ -1234,6 +1250,8 @@
 			children = (
 				642B2A1625FD448A00183D42 /* animationdefinition.h */,
 				642B2A1925FD448A00183D42 /* animationdefinition.c */,
+				64A3D3A1288A848200B894D7 /* animationdefinitionframes.h */,
+				64A3D3A2288A848200B894D7 /* animationdefinitionframes.c */,
 				642B2A1825FD448A00183D42 /* spritedefinition.h */,
 				642B2A1725FD448A00183D42 /* spritedefinition.c */,
 			);
@@ -1453,6 +1471,8 @@
 				6460F0DD275411330040F95A /* keyvaluetable.h */,
 				64B43092277FA406004185E3 /* pointerintrectangletable.h */,
 				64B43093277FA406004185E3 /* pointerintrectangletable.c */,
+				64A3D3A9288A84ED00B894D7 /* degreeanimationdefinitionframestable.h */,
+				64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */,
 			);
 			name = keyvaluetable;
 			sourceTree = "<group>";
@@ -1618,6 +1638,7 @@
 				64718A1D273AAB0100547977 /* dictionary.h in Headers */,
 				64D00E61272DD7E000C8A675 /* palette.h in Headers */,
 				64D00E792730943000C8A675 /* imagepalette.h in Headers */,
+				64A3D3AB288A84ED00B894D7 /* degreeanimationdefinitionframestable.h in Headers */,
 				647189E927386C9400547977 /* mmkprojectformat.h in Headers */,
 				64D00E8E2731DDF900C8A675 /* projectformat.h in Headers */,
 				64D00E872731D87F00C8A675 /* project.h in Headers */,
@@ -1629,6 +1650,7 @@
 				642B2AB125FD4A0300183D42 /* spriteinstance.h in Headers */,
 				6460F0DE275411330040F95A /* keyvaluetable.h in Headers */,
 				6460F00D274BAC5C0040F95A /* outputstream.h in Headers */,
+				64A3D3A3288A848200B894D7 /* animationdefinitionframes.h in Headers */,
 				643EEC6E2757ABD30039FDAB /* atlaspalette.h in Headers */,
 				64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */,
 				643EEC85275D50B70039FDAB /* mapgroup.h in Headers */,
@@ -1680,6 +1702,7 @@
 				643EECCB275E6A6B0039FDAB /* animationframe.h in Headers */,
 				643EECCC275E6A6B0039FDAB /* animationtype.h in Headers */,
 				643EECCD275E6A6B0039FDAB /* loopinganimation.h in Headers */,
+				64A3D3A8288A848A00B894D7 /* animationdefinitionframes.h in Headers */,
 				643EECCE275E6A6B0039FDAB /* noanimation.h in Headers */,
 				643EECCF275E6A6B0039FDAB /* playonceanimation.h in Headers */,
 				643EECD0275E6A6B0039FDAB /* singleframeanimation.h in Headers */,
@@ -1704,6 +1727,7 @@
 				643EECE3275E6A6B0039FDAB /* renderer.h in Headers */,
 				643EECE4275E6A6B0039FDAB /* referencepool.h in Headers */,
 				643EECE5275E6A6B0039FDAB /* surface.h in Headers */,
+				64A3D3AD288A84ED00B894D7 /* degreeanimationdefinitionframestable.h in Headers */,
 				643EECE6275E6A6B0039FDAB /* surfacearray.h in Headers */,
 				643EECE7275E6A6B0039FDAB /* surfacememory.h in Headers */,
 				643EECE8275E6A6B0039FDAB /* texture.h in Headers */,
@@ -1746,6 +1770,7 @@
 				64CB66DC271F514100663A2E /* inputsource.h in Headers */,
 				64CB66DD271F514100663A2E /* inputsourcetype.h in Headers */,
 				64CB66DE271F514100663A2E /* inputstream.h in Headers */,
+				64A3D3AC288A84ED00B894D7 /* degreeanimationdefinitionframestable.h in Headers */,
 				64CB66E0271F514200663A2E /* map.h in Headers */,
 				64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */,
 				64CB66E1271F514200663A2E /* maprenderer.h in Headers */,
@@ -1754,6 +1779,7 @@
 				64CB66E4271F514200663A2E /* fade.h in Headers */,
 				64CB66E5271F514200663A2E /* scene.h in Headers */,
 				64CB66E6271F514200663A2E /* animation.h in Headers */,
+				64A3D3A4288A848200B894D7 /* animationdefinitionframes.h in Headers */,
 				64CB66E7271F514200663A2E /* animationframe.h in Headers */,
 				6460F0052746E5010040F95A /* packmap.h in Headers */,
 				64CB66E8271F514200663A2E /* animationtype.h in Headers */,
@@ -2006,6 +2032,7 @@
 				64C35482281006D000D843C2 /* stringdictionary.c in Sources */,
 				642B2A8625FD49C100183D42 /* animationframe.c in Sources */,
 				64F5D15227600084000C3967 /* imagepaletteimage.c in Sources */,
+				64A3D3A5288A848200B894D7 /* animationdefinitionframes.c in Sources */,
 				64EEAA59274280B500776662 /* decorator.c in Sources */,
 				642B2A9F25FD49E500183D42 /* rotatedhitbox.c in Sources */,
 				64D00E842731D85500C8A675 /* project.c in Sources */,
@@ -2047,6 +2074,7 @@
 				642B2AC525FD4A6900183D42 /* surfacearray.c in Sources */,
 				64749398272C2ABA004F3D97 /* primitives.c in Sources */,
 				642B29D425FD443B00183D42 /* random.c in Sources */,
+				64A3D3AE288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */,
 				642B2A9E25FD49E500183D42 /* statichitbox.c in Sources */,
 				644872592726B86700DEE2C1 /* bitmap.c in Sources */,
 				642B2A6125FD451F00183D42 /* gamecontrollerlistener.c in Sources */,
@@ -2126,6 +2154,7 @@
 				643EED1E275E8D7E0039FDAB /* spritehitbox.c in Sources */,
 				64F5D1732760FA49000C3967 /* imagepaletteimage.c in Sources */,
 				643EED1F275E8D7E0039FDAB /* statichitbox.c in Sources */,
+				64A3D3B0288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */,
 				643EED20275E8D7E0039FDAB /* motion.c in Sources */,
 				643EED21275E8D7E0039FDAB /* nomotion.c in Sources */,
 				643EED22275E8D7E0039FDAB /* direction.c in Sources */,
@@ -2134,6 +2163,7 @@
 				64985A6127FB7EC800B5EEB7 /* MmkbProjectFormat.swift in Sources */,
 				643EED24275E8D7E0039FDAB /* spriteinstance.c in Sources */,
 				643EED25275E8D7E0039FDAB /* spritemanager.c in Sources */,
+				64A3D3A7288A848700B894D7 /* animationdefinitionframes.c in Sources */,
 				643EED26275E8D7E0039FDAB /* bitmap.c in Sources */,
 				643EED27275E8D7E0039FDAB /* color.c in Sources */,
 				643EED28275E8D7E0039FDAB /* packmap.c in Sources */,
@@ -2199,6 +2229,7 @@
 				64CB6722271F51E300663A2E /* synchronizedanimation.c in Sources */,
 				647189EC27386C9400547977 /* mmkprojectformat.c in Sources */,
 				64EEAA5A274280B500776662 /* decorator.c in Sources */,
+				64A3D3AF288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */,
 				64CB6723271F51E300663A2E /* animationdefinition.c in Sources */,
 				64CB6724271F51E300663A2E /* spritedefinition.c in Sources */,
 				64718A26273AAE5300547977 /* melstring.c in Sources */,
@@ -2232,6 +2263,7 @@
 				64CB6739271F51E400663A2E /* melmath.c in Sources */,
 				64CB673A271F51E400663A2E /* operation.c in Sources */,
 				64749399272C2ABA004F3D97 /* primitives.c in Sources */,
+				64A3D3A6288A848200B894D7 /* animationdefinitionframes.c in Sources */,
 				64CB673B271F51E400663A2E /* random.c in Sources */,
 				64CB673C271F51E400663A2E /* meltime.c in Sources */,
 			);

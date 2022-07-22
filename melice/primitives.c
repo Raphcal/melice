@@ -7,6 +7,8 @@
 
 #include "primitives.h"
 
+#include "melmath.h"
+
 MELListImplement(GLfloat);
 MELListImplement(GLubyte);
 MELListImplement(GLint);
@@ -39,4 +41,32 @@ MELBoolean MELUInt32ArrayIsFilledWithValue(const uint32_t * _Nonnull self, size_
         }
     }
     return true;
+}
+
+MELDegrees MELDegreesForSimplifiedAngle(double simplifiedAngle) {
+    switch ((int)(simplifiedAngle * 100)) {
+        case 0:
+            return 0;
+        case 78:
+            return 45;
+        case 157:
+            return 90;
+        case 235:
+            return 135;
+        case 314:
+            return 180;
+        case 392:
+            return 225;
+        case 471:
+            return 270;
+        case 549:
+            return 315;
+        default:
+            fprintf(stderr, "Unsupported simplified angle: %f\n", simplifiedAngle);
+            return 0;
+    }
+}
+
+double MELSimplifiedAngleForDegrees(MELDegrees degrees) {
+    return ((int)(MELDegreesToRadians(degrees) * 100.0)) / 100.0;
 }

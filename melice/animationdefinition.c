@@ -16,6 +16,7 @@ MELListImplement(MELAnimationDefinition);
 MELAnimationDefinition MELAnimationDefinitionMakeWithAnimationDefinition(MELAnimationDefinition other) {
     MELAnimationDefinition self = other;
     self.name = MELStringCopy(other.name);
+    self.framesByDirection = MELDegreesMELAnimationDefinitionFramesTableMakeWithTable(other.framesByDirection);
     self.frames = MELArrayCopy(other.frames, sizeof(MELAnimationFrame) * other.frameCount);
     if (other.images) {
         self.images = calloc(other.frameCount, sizeof(MELImagePaletteImage));
@@ -43,7 +44,8 @@ MELAnimationDefinition MELAnimationDefinitionMakeWithInputStream(MELInputStream 
     
     for (int32_t direction = 0; direction < directionCount; direction++) {
         const double key = MELInputStreamReadDouble(inputStream);
-        
+        // TODO: Gérer les directions.
+
         // Frames
         const int32_t frameCount = MELInputStreamReadInt(inputStream);
         MELAnimationFrame * _Nonnull frames = calloc(frameCount, sizeof(MELAnimationFrame));
@@ -78,6 +80,7 @@ MELTimeInterval MELAnimationDefinitionDuration(MELAnimationDefinition self) {
 void MELAnimationDefinitionDeinit(MELAnimationDefinition *_Nonnull self) {
 	free(self->name);
 	self->name = NULL;
+    MELDegreesMELAnimationDefinitionFramesTableDeinit(&self->framesByDirection);
 	free(self->frames);
 	self->frames = NULL;
     free(self->images);
