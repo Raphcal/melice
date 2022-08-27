@@ -693,7 +693,7 @@ void MELMmkProjectFormatWriteSpriteDefinition(MELProjectFormat * _Nonnull self, 
 }
 
 MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
-    MELAnimationDefinition animationDefinition;
+    MELAnimationDefinition animationDefinition = {};
     animationDefinition.name = MELInputStreamReadString(inputStream);
     animationDefinition.frequency = MELInputStreamReadInt(inputStream);
 
