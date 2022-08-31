@@ -91,7 +91,8 @@ void K##V##TablePut(K##V##Table * _Nonnull self, K key, V value) {\
 }\
 \
 MELBoolean K##V##TablePutAndGetOldValue(K##V##Table * _Nonnull self, K key, V value, V * _Nullable oldValue) {\
-    if (self->buckets.capacity == 0 || self->buckets.memory == NULL) {\
+    if (self->buckets.memory == NULL) {\
+        self->buckets.capacity = 0;\
         K##V##TableGrowAndRehash(self);\
     }\
     const size_t bucketIndex = key % self->buckets.capacity;\
