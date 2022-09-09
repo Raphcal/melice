@@ -165,7 +165,7 @@ type type##ListRemove(type##List * _Nonnull self, size_t index) {\
 
 #define MELListImplementIndexOf(type) \
 int type##ListIndexOf(type##List self, type entry) {\
-    for (unsigned int index = 0; index < self.count; index++) {\
+    for (int index = 0; index < self.count; index++) {\
         if (self.memory[index] == entry) {\
             return index;\
         }\
@@ -173,8 +173,8 @@ int type##ListIndexOf(type##List self, type entry) {\
     return -1;\
 }\
 int type##ListRemoveEntry(type##List * _Nonnull self, type entry) {\
-    const unsigned int count = self->count;\
-    for (unsigned int index = 0; index < count; index++) {\
+    const size_t count = self->count;\
+    for (int index = 0; index < count; index++) {\
         if (self->memory[index] == entry) {\
             memmove(self->memory + index, self->memory + index + 1, ((self->count--) - index - 1) * sizeof(type));\
             return index;\
@@ -185,7 +185,7 @@ int type##ListRemoveEntry(type##List * _Nonnull self, type entry) {\
 
 #define MELListImplementIndexOfWithEqualsFunction(type, equals) \
 int type##ListIndexOf(type##List self, type entry) {\
-    for (unsigned int index = 0; index < self.count; index++) {\
+    for (int index = 0; index < self.count; index++) {\
         type value = self.memory[index];\
         if (value == entry || equals(value, entry)) {\
             return index;\
@@ -194,8 +194,8 @@ int type##ListIndexOf(type##List self, type entry) {\
     return -1;\
 }\
 int type##ListRemoveEntry(type##List * _Nonnull self, type entry) {\
-    const unsigned int count = self->count;\
-    for (unsigned int index = 0; index < self.count; index++) {\
+    const size_t count = self->count;\
+    for (int index = 0; index < count; index++) {\
         type value = self->memory[index];\
         if (value == entry || equals(value, entry)) {\
             memmove(self->memory + index, self->memory + index + 1, ((self->count--) - index - 1) * sizeof(type));\

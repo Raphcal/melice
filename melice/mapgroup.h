@@ -36,7 +36,7 @@ extern const MELMapGroup MELMapGroupEmpty;
  * @returns A new map group.
  * @deprecated Replaced by MELMapGroupMakeWithMapGroupAndProject.
  */
-MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other);
+__attribute__((deprecated)) MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other);
 
 /**
  * Creates a new map group by copying the content of the given map group.
@@ -46,7 +46,6 @@ MELMapGroup MELMapGroupMakeWithMapGroup(MELMapGroup other);
  * @param sourceProject Project being copied.
  * @param targetProject Project copy.
  * @returns A new map group.
- * @deprecated Replaced by MELMapGroupMakeWithMapGroupAndProject.
  */
 MELMapGroup MELMapGroupMakeWithMapGroupAndProject(MELMapGroup other, MELProject sourceProject, MELProject targetProject);
 
