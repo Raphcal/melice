@@ -10,7 +10,7 @@
 #include "primitives.h"
 
 MELAnimationDefinitionFrames MELAnimationDefinitionFramesMakeWithAnimationDefinitionFrames(MELAnimationDefinitionFrames other) {
-    MELAnimationDefinitionFrames self;
+    MELAnimationDefinitionFrames self = {};
     self.frameCount = other.frameCount;
     if (other.frameCount > 0) {
         self.frames = MELArrayCopy(other.frames, sizeof(MELAnimationFrame) * other.frameCount);

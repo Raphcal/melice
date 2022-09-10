@@ -16,5 +16,6 @@ MELDegreesMELAnimationDefinitionFramesTable MELDegreesMELAnimationDefinitionFram
         MELDegreesMELAnimationDefinitionFramesTableEntry entry = entries.memory[index];
         MELDegreesMELAnimationDefinitionFramesTablePut(&self, entry.key, MELAnimationDefinitionFramesMakeWithAnimationDefinitionFrames(entry.value));
     }
+    MELDegreesMELAnimationDefinitionFramesTableEntryListDeinit(&entries);
     return self;
 }

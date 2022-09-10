@@ -720,7 +720,7 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
         const double direction = MELInputStreamReadDouble(inputStream);
         const int frameCount = MELInputStreamReadInt(inputStream);
 
-        MELAnimationDefinitionFrames directionFrames;
+        MELAnimationDefinitionFrames directionFrames = {};
         directionFrames.frameCount = frameCount;
         directionFrames.images = frameCount > 0 ? malloc(sizeof(MELImagePaletteImage) * frameCount) : NULL;
 
@@ -783,6 +783,8 @@ void MELMmkProjectFormatWriteAnimationDefinition(MELProjectFormat * _Nonnull sel
             }
         }
     }
+
+    MELDegreesMELAnimationDefinitionFramesTableEntryListDeinit(&directions);
 }
 
 MELSpriteInstance MELMmkProjectFormatReadSpriteInstance(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
