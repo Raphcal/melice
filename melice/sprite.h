@@ -27,8 +27,7 @@ typedef struct melspritemanager MELSpriteManager;
 typedef struct melsprite {
     MELSpriteManager * _Nullable parent;
     MELSpriteDefinition definition;
-    int type;
-    
+
     MELRectangle frame;
     MELDirection direction;
     

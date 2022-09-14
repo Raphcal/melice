@@ -16,10 +16,11 @@
 #include "list.h"
 #include "palette.h"
 #include "imagepaletteimage.h"
+#include "spritetype.h"
 
 typedef struct {
     char * _Nullable name;
-    uint32_t type;
+    MELSpriteType type;
     MELPaletteRef palette;
     MELAnimationDefinitionList animations;
     char * _Nullable motionName;

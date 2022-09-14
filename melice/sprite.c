@@ -33,7 +33,6 @@ MELSprite * _Nonnull MELSpriteAlloc(MELSpriteManager * _Nonnull manager, MELSpri
     *self = (MELSprite) {
         /* parent */ manager,
         /* definition */ definition,
-        /* type */ 0,
         /* frame */ frame,
         /* direction */ MELDirectionRight,
         /* layer */ layer,
@@ -136,7 +135,7 @@ void MELSpriteRemove(MELSprite * _Nonnull self) {
     MELListPush(spriteManager->removalPending, self);
     
     const int *groupForType = spriteManager->groupForType;
-    const int group = groupForType != NULL ? groupForType[self->type] : -1;
+    const int group = groupForType != NULL ? groupForType[self->definition.type] : -1;
     if (group >= 0 && group < spriteManager->groupCount) {
         MELListRemoveElement(spriteManager->groups[group], self);
     }

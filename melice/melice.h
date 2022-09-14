@@ -43,6 +43,7 @@
 #import "sprite.h"
 #import "spriteinstance.h"
 #import "spritemanager.h"
+#import "spritetype.h"
 #import "animation.h"
 #import "animationframe.h"
 #import "animationtype.h"

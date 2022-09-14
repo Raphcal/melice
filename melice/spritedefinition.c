@@ -28,7 +28,7 @@ MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Non
     self.name = MELInputStreamReadNullableString(inputStream);
     /* width */ MELInputStreamReadInt(inputStream);
     /* height */ MELInputStreamReadInt(inputStream);
-    self.type = MELInputStreamReadInt(inputStream);
+    self.type = (MELSpriteType) MELInputStreamReadInt(inputStream);
     self.motionName = MELInputStreamReadNullableString(inputStream);
     self.loadScript = NULL;
     
@@ -58,7 +58,7 @@ MELList(MELSpriteDefinition) MELSpriteDefinitionListMakeWithInputStream(MELInput
 void MELSpriteDefinitionDeinit(MELSpriteDefinition *_Nonnull self) {
 	free(self->name);
 	self->name = NULL;
-	self->type = 0;
+	self->type = MELSpriteTypeDecor;
     self->palette = NULL;
     MELAnimationDefinitionListDeinitWithDeinitFunction(&self->animations, &MELAnimationDefinitionDeinit);
 	free(self->motionName);
