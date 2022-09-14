@@ -72,6 +72,9 @@
 		6421EA542614681200952E74 /* operation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AC25FD410200183D42 /* operation.h */; };
 		6421EA552614681200952E74 /* random.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29AE25FD410200183D42 /* random.h */; };
 		6421EA562614681200952E74 /* meltime.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 642B29A425FD410200183D42 /* meltime.h */; };
+		6428EF4E28D2753E00071B9B /* spritetype.h in Headers */ = {isa = PBXBuildFile; fileRef = 6428EF4D28D2753E00071B9B /* spritetype.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6428EF4F28D2753E00071B9B /* spritetype.h in Headers */ = {isa = PBXBuildFile; fileRef = 6428EF4D28D2753E00071B9B /* spritetype.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6428EF5028D2753E00071B9B /* spritetype.h in Headers */ = {isa = PBXBuildFile; fileRef = 6428EF4D28D2753E00071B9B /* spritetype.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B299525FD342100183D42 /* melice.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299325FD342100183D42 /* melice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B299B25FD34A000183D42 /* melstd.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B299A25FD348900183D42 /* melstd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		642B29B025FD419700183D42 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = 642B29A925FD410200183D42 /* list.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -822,6 +825,7 @@
 		641FB737277C52F4006DD7C3 /* ImagePaletteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePaletteImage.swift; sourceTree = "<group>"; };
 		641FB739277D0828006DD7C3 /* DrawMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawMode.swift; sourceTree = "<group>"; };
 		6421E8D52614480000952E74 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		6428EF4D28D2753E00071B9B /* spritetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spritetype.h; sourceTree = "<group>"; };
 		642B298B25FD340C00183D42 /* libmelice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmelice.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		642B299325FD342100183D42 /* melice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melice.h; sourceTree = "<group>"; };
 		642B299A25FD348900183D42 /* melstd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = melstd.h; sourceTree = "<group>"; };
@@ -1207,6 +1211,7 @@
 				642B29FA25FD448A00183D42 /* spriteinstance.c */,
 				642B2A2625FD448B00183D42 /* spritemanager.h */,
 				642B29FB25FD448A00183D42 /* spritemanager.c */,
+				6428EF4D28D2753E00071B9B /* spritetype.h */,
 			);
 			name = sprite;
 			sourceTree = "<group>";
@@ -1632,6 +1637,7 @@
 				642B2A4925FD44AB00183D42 /* rectangle.h in Headers */,
 				642B2AC325FD4A6900183D42 /* surfacememory.h in Headers */,
 				642B2AC725FD4A6900183D42 /* surface.h in Headers */,
+				6428EF4E28D2753E00071B9B /* spritetype.h in Headers */,
 				642B2A5625FD451F00183D42 /* inputsource.h in Headers */,
 				642B2AC625FD4A6900183D42 /* textureatlas.h in Headers */,
 				642B2AA325FD49E500183D42 /* statichitbox.h in Headers */,
@@ -1689,6 +1695,7 @@
 				643EECBE275E6A6B0039FDAB /* mapgroup.h in Headers */,
 				643EECBF275E6A6B0039FDAB /* maprenderer.h in Headers */,
 				643EECC0275E6A6B0039FDAB /* palette.h in Headers */,
+				6428EF5028D2753E00071B9B /* spritetype.h in Headers */,
 				643EECC1275E6A6B0039FDAB /* colorpalette.h in Headers */,
 				643EECC2275E6A6B0039FDAB /* imagepalette.h in Headers */,
 				643EECC3275E6A6B0039FDAB /* atlaspalette.h in Headers */,
@@ -1772,6 +1779,7 @@
 				64CB66DE271F514100663A2E /* inputstream.h in Headers */,
 				64A3D3AC288A84ED00B894D7 /* degreeanimationdefinitionframestable.h in Headers */,
 				64CB66E0271F514200663A2E /* map.h in Headers */,
+				6428EF4F28D2753E00071B9B /* spritetype.h in Headers */,
 				64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */,
 				64CB66E1271F514200663A2E /* maprenderer.h in Headers */,
 				64CB66E2271F514200663A2E /* layer.h in Headers */,
