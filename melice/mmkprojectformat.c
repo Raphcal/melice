@@ -12,7 +12,7 @@
 #include "melstring.h"
 #include "melmath.h"
 
-#define LAST_SUPPORTED_VERSION 13
+#define LAST_SUPPORTED_VERSION 14
 #define DATA_ENTRY "data"
 
 const MELProjectFormat MELMmkProjectFormat = {&MELMmkProjectFormatClass, NULL, LAST_SUPPORTED_VERSION};
@@ -802,7 +802,11 @@ MELSpriteInstance MELMmkProjectFormatReadSpriteInstance(MELProjectFormat * _Nonn
         script = NULL;
     }
 
-    return MELSpriteInstanceMake(index, MELPointMake((GLfloat)x, (GLfloat)y), unique, script);
+    const int32_t zIndex = self->version >= 14
+        ? MELInputStreamReadInt(inputStream)
+        : 0;
+
+    return MELSpriteInstanceMake(index, MELPointMake((GLfloat)x, (GLfloat)y), zIndex, unique, script);
 }
 
 void MELMmkProjectFormatWriteSpriteInstance(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELSpriteInstance spriteInstance) {

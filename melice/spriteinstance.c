@@ -10,13 +10,14 @@
 
 MELListImplement(MELSpriteInstance);
 
-MELSpriteInstance MELSpriteInstanceMake(int32_t definitionIndex, MELPoint topLeft, MELBoolean isUnique, char * _Nullable initializationScript) {
+MELSpriteInstance MELSpriteInstanceMake(int32_t definitionIndex, MELPoint topLeft, int32_t zIndex, MELBoolean isUnique, char * _Nullable initializationScript) {
     return (MELSpriteInstance) {
-        definitionIndex,
-        topLeft,
-        isUnique,
-        {NULL, 0},
-        initializationScript
+        .definitionIndex = definitionIndex,
+        .topLeft = topLeft,
+        .zIndex = zIndex,
+        .isUnique = isUnique,
+        .initializationOperation = {NULL, 0},
+        .initializationScript = initializationScript
     };
 }
 

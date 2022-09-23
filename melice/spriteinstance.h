@@ -19,6 +19,7 @@
 typedef struct {
     int32_t definitionIndex;
     MELPoint topLeft;
+    int32_t zIndex;
     MELBoolean isUnique;
     MELOperation initializationOperation;
     char * _Nullable initializationScript;
@@ -26,7 +27,7 @@ typedef struct {
 
 MELListDefine(MELSpriteInstance);
 
-MELSpriteInstance MELSpriteInstanceMake(int32_t definitionIndex, MELPoint topLeft, MELBoolean isUnique, char * _Nullable initializationScript);
+MELSpriteInstance MELSpriteInstanceMake(int32_t definitionIndex, MELPoint topLeft, int32_t zIndex, MELBoolean isUnique, char * _Nullable initializationScript);
 MELSpriteInstance MELSpriteInstanceMakeWithSpriteInstance(MELSpriteInstance other);
 MELSpriteInstance MELSpriteInstanceMakeWithInputStream(MELInputStream * _Nonnull inputStream);
 
