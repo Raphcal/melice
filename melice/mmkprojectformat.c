@@ -818,6 +818,10 @@ void MELMmkProjectFormatWriteSpriteInstance(MELProjectFormat * _Nonnull self, ME
         MELOutputStreamWriteBoolean(outputStream, spriteInstance.isUnique);
         MELOutputStreamWriteNullableString(outputStream, spriteInstance.initializationScript);
     }
+
+    if (self->version >= 14) {
+        MELOutputStreamWriteInt(outputStream, spriteInstance.zIndex);
+    }
 }
 
 const MELProjectFormatClass MELMmkProjectFormatClass = {

@@ -286,13 +286,16 @@ uint8_t * _Nullable MELBitmapDrawMap(MELMap map, MELTextureAtlas atlas, MELIntSi
         const int y = pixel / imageSize.width;
         const int tileX = x / tileSize.width;
         const int tileY = y / tileSize.height;
-        const int tileIndex = tileX + tileY * map.size.width;
 
         const int xInsideTile = x % tileSize.width;
         const int yInsideTile = y % tileSize.height;
 
         for (int layerIndex = 0; layerIndex < map.layers.count; layerIndex++) {
             const MELLayer layer = map.layers.memory[layerIndex];
+            if (tileX >= layer.size.width || tileY >= layer.size.height) {
+                continue;
+            }
+            const int tileIndex = tileX + tileY * layer.size.width;
             const int tile = layer.tiles[tileIndex];
             if (tile != -1) {
                 const MELIntRectangle tileFrame = atlas.sources[tile];

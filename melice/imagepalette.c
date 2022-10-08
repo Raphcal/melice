@@ -89,7 +89,6 @@ uint8_t * _Nullable MELImagePalettePaintMap(MELImagePalette * _Nonnull self, MEL
         const int y = index / totalSize.width;
         const int tileX = x / tileSize.width;
         const int tileY = y / tileSize.height;
-        const int tileIndex = tileX + tileY * map.size.width;
 
         const int xInsideTile = x % tileSize.width;
         const int yInsideTile = y % tileSize.height;
@@ -98,6 +97,10 @@ uint8_t * _Nullable MELImagePalettePaintMap(MELImagePalette * _Nonnull self, MEL
         MELUInt8Color color = MELColorToMELUInt8Color(map.backgroundColor);
         for (int layerIndex = 0; layerIndex < map.layers.count; layerIndex++) {
             const MELLayer layer = map.layers.memory[layerIndex];
+            if (tileX >= layer.size.width || tileY >= layer.size.height) {
+                continue;
+            }
+            const int tileIndex = tileX + tileY * layer.size.width;
             const int tile = layer.tiles[tileIndex];
             if (tile != -1) {
                 MELImagePaletteImage image = self->images[tile];
