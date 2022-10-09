@@ -123,6 +123,8 @@ void MELLayerRendererToSurfaceArray(MELLayer self, MELSurfaceArray * _Nonnull de
 }
 
 void MELLayerCopyRectangleFromOtherLayer(MELLayer self, MELIntPoint targetTopLeft, const MELLayer source, MELIntRectangle areaToCopy) {
+    areaToCopy.size.width = MELFloatBound(0, areaToCopy.size.width, source.size.width - areaToCopy.origin.x);
+    areaToCopy.size.height = MELFloatBound(0, areaToCopy.size.height, source.size.height - areaToCopy.origin.y);
     int32_t *targetRow = self.tiles + targetTopLeft.x + targetTopLeft.y * self.size.width;
     int32_t *sourceRow = source.tiles + areaToCopy.origin.x + areaToCopy.origin.y * source.size.width;
     size_t copySize = sizeof(int32_t) * areaToCopy.size.width;
