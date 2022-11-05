@@ -168,6 +168,7 @@ void MELBitmapSaveWithPremultiplication(const char * _Nonnull path, MELUInt32Col
 }
 
 void MELBitmapSaveToOutputStreamWithPremultiplication(MELOutputStream * _Nonnull outputStream, MELUInt32Color * _Nonnull pixels, MELIntSize size, MELBoolean applyPremultiplication) {
+    // BITMAPFILEHEADER
     // Magic
     MELOutputStreamWriteByte(outputStream, 'B');
     MELOutputStreamWriteByte(outputStream, 'M');
@@ -178,6 +179,7 @@ void MELBitmapSaveToOutputStreamWithPremultiplication(MELOutputStream * _Nonnull
     // Content start position
     MELOutputStreamWriteInt(outputStream, BITMAP_HEADER_LENGTH + BITMAP_V4_HEADER_LENGTH);
 
+    // BITMAPV4HEADER
     // DIB header length
     MELOutputStreamWriteInt(outputStream, BITMAP_V4_HEADER_LENGTH);
     // Image size

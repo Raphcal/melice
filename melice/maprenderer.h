@@ -25,7 +25,7 @@
 
 typedef struct {
     MELRenderer * _Nonnull renderer;
-    MELMap map;
+    MELMap * _Nonnull map;
     MELIntSize tileSize;
     MELTextureAtlas atlas;
     MELSurfaceArray * _Nullable layerSurfaces;
@@ -41,11 +41,11 @@ extern const MELMapRenderer MELMapRendererEmpty;
  * @param map Map to display.
  * @return A renderer.
  */
-MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap map, MELTextureAtlas atlas);
-MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnull renderer, MELMap map, MELTextureAtlas atlas);
-MELMapRenderer MELMapRendererMakeWithRendererAndMutableMapAndAtlas(MELRenderer * _Nonnull renderer, MELMutableMap mutableMap, MELTextureAtlas atlas);
+MELMapRenderer MELMapRendererMakeWithMapAndAtlas(MELMap * _Nonnull map, MELTextureAtlas atlas);
+MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnull renderer, MELMap * _Nonnull map, MELTextureAtlas atlas);
+MELMapRenderer MELMapRendererMakeWithRendererAndMutableMapAndAtlas(MELRenderer * _Nonnull renderer, MELMutableMap * _Nonnull mutableMap, MELTextureAtlas atlas);
 
-MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap map, MELColorPalette colorPalette);
+MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap * _Nonnull map, MELColorPalette colorPalette);
 
 /**
  * Deinitialize and free the resources used by the given map renderer.
