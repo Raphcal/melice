@@ -61,7 +61,15 @@ typedef struct {
      * @return The next animation.
      */
     MELAnimation (* _Nonnull transitionToAnimation)(MELAnimation * _Nonnull self, MELAnimation nextAnimation);
-    
+
+    /**
+     * Write the animation type and its current state to the given `outputStream`.
+     *
+     * @param self Animation instance.
+     * @param outputStream Stream to write to.
+     */
+    void (* _Nullable save)(MELAnimation * _Nonnull self, MELOutputStream * _Nonnull outputStream);
+
 } MELAnimationClass;
 
 struct melanimation {
@@ -79,7 +87,7 @@ struct melanimation {
     /**
      * Index of the current frame.
      */
-    int frameIndex;
+    unsigned int frameIndex;
     
     /**
      * Current frame.
@@ -93,32 +101,23 @@ struct melanimation {
 
 };
 
-#define MELAnimationClassDefaults .update = &MELAnimationUpdate, .draw = &MELAnimationDraw, .start = &MELAnimationStart, .transitionToAnimation = &MELAnimationTransitionToAnimation
-
-/**
- * Returns an animation class with the given virtual functions.
- *
- * @param update Function called to update the animation.
- * @param draw Function called to draw the current animation frame.
- * @param start Function called to start the animation.
- * @param transitionToAnimation Function called to return the next animation to use.
- * @return An animation class.
- */
-#define MELAnimationClassMake(update, draw, start, transitionToAnimation) ((MELAnimationClass) {update, draw, start, transitionToAnimation})
-
 MELAnimation MELAnimationMake(const MELAnimationClass * _Nonnull class, MELAnimationDefinition * _Nullable definition);
 
 MELAnimation * _Nonnull MELAnimationAlloc(MELAnimationDefinition * _Nullable definition);
 
+void MELAnimationDealloc(MELAnimation * _Nullable self);
+
 /**
  * Default update function.
  */
+void MELAnimationNoopUpdate(MELAnimation * _Nonnull self, MELTimeInterval timeSinceLastUpdate);
+
 void MELAnimationUpdate(MELAnimation * _Nonnull self, MELTimeInterval timeSinceLastUpdate);
 
 /**
  * Default start function.
  */
-void MELAnimationStart(MELAnimation * _Nonnull self);
+void MELAnimationNoopStart(MELAnimation * _Nonnull self);
 
 /**
  * Default draw function.
@@ -138,5 +137,7 @@ MELAnimation MELAnimationTransitionToAnimation(MELAnimation * _Nonnull self, MEL
 MELTimeInterval MELAnimationFramesPerSecond(MELAnimation * _Nonnull self);
 
 void MELAnimationSetFrameIndex(MELAnimation * _Nonnull self, int index);
+
+MELBoolean MELAnimationIsLastFrame(const MELAnimation * restrict _Nonnull self);
 
 #endif /* animation_h */

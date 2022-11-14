@@ -42,6 +42,8 @@ MELSpriteManager * _Nonnull MELSpriteManagerAlloc(MELList(MELSpriteDefinition) d
 
 void MELSpriteManagerDeinit(MELSpriteManager * _Nonnull self);
 
+void MELSpriteManagerRemoveAllSprites(MELSpriteManager * _Nonnull self);
+
 void MELSpriteManagerUpdate(MELSpriteManager * _Nonnull self, MELTimeInterval timeSinceLastUpdate);
 
 /*

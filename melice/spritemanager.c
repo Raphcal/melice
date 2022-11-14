@@ -53,6 +53,17 @@ void MELSpriteManagerDeinit(MELSpriteManager *_Nonnull self) {
     self->groupForType = NULL;
 }
 
+void MELSpriteManagerRemoveAllSprites(MELSpriteManager * _Nonnull self) {
+    MELSpriteRefList sprites = self->sprites;
+    for (int index = 0; index < sprites.count; index++) {
+        MELSprite *sprite = sprites.memory[index];
+        MELSpriteDeinit(sprite);
+        free(sprite);
+    }
+    self->sprites.count = 0;
+    self->removalPending.count = 0;
+}
+
 void MELSpriteManagerCommitRemoval(MELSpriteManager * _Nonnull self) {
     MELList(MELSpriteRef) removalPending = self->removalPending;
     for (int index = 0; index < removalPending.count; index++) {

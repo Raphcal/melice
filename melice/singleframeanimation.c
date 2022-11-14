@@ -14,7 +14,7 @@ void MELSingleFrameAnimationStart(MELAnimation * _Nonnull self) {
 
 const MELAnimationClass MELSingleFrameAnimationClass = {
     .start = &MELSingleFrameAnimationStart,
-    .update = &MELAnimationUpdate,
+    .update = &MELAnimationNoopUpdate,
     .draw = &MELAnimationDraw,
     .transitionToAnimation = &MELAnimationTransitionToAnimation
 };

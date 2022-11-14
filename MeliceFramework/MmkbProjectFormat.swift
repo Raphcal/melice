@@ -8,7 +8,7 @@
 import Foundation
 
 public struct MELMmkbProjectFormat {
-    static let defaultAnimationNames = [
+    public static let defaultAnimationNames = [
         "stand", "walk", "run", "skid", "jump", "fall", "shaky", "bounce", "duck", "raise", "appear", "disappear", "attack", "hurt", "die"
     ]
 

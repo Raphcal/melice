@@ -17,19 +17,23 @@
 
 MELAnimation MELAnimationMake(const MELAnimationClass * _Nonnull class, MELAnimationDefinition * _Nullable definition) {
     return (MELAnimation) {
-        class,
-        definition,
-        0,
-        {},
-        1
+        .class = class,
+        .definition = definition,
+        .frameIndex = 0,
+        .frame = {},
+        .speed = 1
     };
 }
 
 void MELAnimationUpdate(MELAnimation * _Nonnull self, MELTimeInterval timeSinceLastUpdate) {
+    self->class->update(self, timeSinceLastUpdate);
+}
+
+void MELAnimationNoopUpdate(MELAnimation * _Nonnull self, MELTimeInterval timeSinceLastUpdate) {
     // Noop
 }
 
-void MELAnimationStart(MELAnimation * _Nonnull self) {
+void MELAnimationNoopStart(MELAnimation * _Nonnull self) {
     // Noop
 }
 
@@ -63,4 +67,12 @@ MELAnimation * _Nonnull MELAnimationAlloc(MELAnimationDefinition * _Nullable def
         default:
             return MELNoAnimationAlloc(definition);
     }
+}
+
+MELBoolean MELAnimationIsLastFrame(const MELAnimation * restrict _Nonnull self) {
+    return self->frameIndex == self->definition->frameCount - 1;
+}
+
+void MELAnimationDealloc(MELAnimation * _Nullable self) {
+    free(self);
 }

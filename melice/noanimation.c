@@ -14,8 +14,8 @@ void MELNoAnimationDraw(MELAnimation * _Nonnull self, MELSprite * _Nonnull sprit
 
 const MELAnimationClass MELNoAnimationClass = {
     .draw = &MELNoAnimationDraw,
-    .update = &MELAnimationUpdate,
-    .start = &MELAnimationStart,
+    .update = &MELAnimationNoopUpdate,
+    .start = &MELAnimationNoopStart,
     .transitionToAnimation = &MELAnimationTransitionToAnimation
 };
 
