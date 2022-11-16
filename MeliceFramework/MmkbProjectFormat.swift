@@ -197,9 +197,10 @@ public struct MELMmkbProjectFormat {
 
         // Scripts
         var scripts = [String]()
-        for key in project.scripts.keys {
-            if let key = String(utf8String: key),
-               let scriptData = project.scripts.data(for: key),
+        for key in project.scripts.keys
+            .compactMap({ String(utf8String: $0) })
+            .sorted() {
+            if let scriptData = project.scripts.data(for: key),
                scriptData.count > 1 {
                 fileWrappers["script\(scripts.count).txt"] = .init(regularFileWithContents: scriptData)
                 scripts.append(key)
