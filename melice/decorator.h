@@ -16,6 +16,7 @@
 
 typedef enum {
     MELDecoratorTypeHitbox,
+    MELDecoratorTypeSecondaryHitbox,
     MELDecoratorTypeFunction,
     MELDecoratorTypeYFunction,
     MELDecoratorTypeFlag,

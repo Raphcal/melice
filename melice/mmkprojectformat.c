@@ -12,7 +12,7 @@
 #include "melstring.h"
 #include "melmath.h"
 
-#define LAST_SUPPORTED_VERSION 14
+#define LAST_SUPPORTED_VERSION 15
 #define DATA_ENTRY "data"
 
 const MELProjectFormat MELMmkProjectFormat = {&MELMmkProjectFormatClass, NULL, LAST_SUPPORTED_VERSION};
@@ -742,6 +742,15 @@ MELAnimationDefinition MELMmkProjectFormatReadAnimationDefinition(MELProjectForm
                 *hitboxDecoratorRef = hitboxDecorator;
                 MELDecoratorRefListPush(&frame.decorators, &hitboxDecoratorRef->super);
             }
+            if (self->version >= 15) {
+                MELHitboxDecorator hitboxDecorator;
+                hitboxDecorator.super.type = MELDecoratorTypeSecondaryHitbox;
+                hitboxDecorator.hitbox = self->class->readRectangle(self, project, inputStream);
+
+                MELHitboxDecorator *hitboxDecoratorRef = malloc(sizeof(MELHitboxDecorator));
+                *hitboxDecoratorRef = hitboxDecorator;
+                MELDecoratorRefListPush(&frame.decorators, &hitboxDecoratorRef->super);
+            }
             directionFrames.images[frameIndex] = frame;
         }
 
@@ -775,6 +784,14 @@ void MELMmkProjectFormatWriteAnimationDefinition(MELProjectFormat * _Nonnull sel
 
             if (self->version >= 8) {
                 MELHitboxDecorator *hitboxPlugin = (MELHitboxDecorator *) MELDecoratorRefListForType(image.decorators, MELDecoratorTypeHitbox);
+                if (hitboxPlugin != NULL) {
+                    self->class->writeRectangle(self, project, outputStream, hitboxPlugin->hitbox);
+                } else {
+                    MELOutputStreamWriteBoolean(outputStream, false);
+                }
+            }
+            if (self->version >= 15) {
+                MELHitboxDecorator *hitboxPlugin = (MELHitboxDecorator *) MELDecoratorRefListForType(image.decorators, MELDecoratorTypeSecondaryHitbox);
                 if (hitboxPlugin != NULL) {
                     self->class->writeRectangle(self, project, outputStream, hitboxPlugin->hitbox);
                 } else {
