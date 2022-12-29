@@ -108,6 +108,9 @@ void MELSpriteSetHitbox(MELSprite * _Nonnull self, MELHitbox * _Nullable hitbox)
 }
 
 void MELSpriteSetAnimation(MELSprite * _Nonnull self, MELAnimation * _Nullable animation) {
+    if (self->animation == animation) {
+        return;
+    }
     // No call to deinit, animations can be freed directly.
     free(self->animation);
     self->animation = animation;
