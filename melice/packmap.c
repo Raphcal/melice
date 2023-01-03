@@ -30,13 +30,13 @@ MELBoolean MELPackMapRowIsLastElementLargerThanHeight(MELPackMapRow * _Nonnull s
 
 MELPackMapCell MELPackMapCellMake(int32_t x, MELPackMapElement element);
 
-int MELPackMapElementCompare(const MELPackMapElement *lhs, const  MELPackMapElement *rhs);
+int MELPackMapElementCompare(const void *lhs, const void *rhs);
 
 #pragma mark - MELPackMap
 
 MELPackMap MELPackMapMakeWithElements(MELPackMapElementList elements) {
     MELPackMap self = {MELIntSizeMake(64, 64), MELPackMapElementListMakeWithList(elements), MELPointerMELIntRectangleTableEmpty, MELPackMapRowListEmpty, 0};
-    qsort(self.elements.memory, self.elements.count, sizeof(MELPackMapElement), (int(*)(const void *, const void *)) &MELPackMapElementCompare);
+    qsort(self.elements.memory, self.elements.count, sizeof(MELPackMapElement), MELPackMapElementCompare);
     for (size_t index = 0; index < self.elements.count; index++) {
         MELPackMapAddElement(&self, self.elements.memory[index]);
     }
@@ -206,8 +206,10 @@ MELPackMapElement MELPackMapElementMakeWithSpriteDefinitionRef(MELSpriteDefiniti
     }
 }
 
-int MELPackMapElementCompare(const MELPackMapElement *lhs, const  MELPackMapElement *rhs) {
-    return rhs->size.height - lhs->size.height;
+int MELPackMapElementCompare(const void *lhs, const void *rhs) {
+    const MELPackMapElement *leftElement = lhs;
+    const MELPackMapElement *rightElement = rhs;
+    return rightElement->size.height - leftElement->size.height;
 }
 
 #pragma mark - MELPackMapElementList

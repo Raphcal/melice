@@ -79,8 +79,8 @@ MELTextureAtlas MELTextureAtlasMakeWithPackMapAndRefList(MELPackMap packMap, MEL
     MELTextureAtlas self;
     self.texture = MELTextureMakeWithPackMap(packMap);
     self.frameCount = (int) content.count;
-    self.sources = malloc(sizeof(MELIntRectangle) * content.count);
-    self.frames = malloc(sizeof(MELRectangle) * content.count);
+    self.sources = calloc(content.count, sizeof(MELIntRectangle));
+    self.frames = calloc(content.count, sizeof(MELRectangle));
 
     MELIntSize textureSize = self.texture.size;
 
