@@ -14,21 +14,25 @@ MELListImplement(MELImagePaletteImage);
 const MELImagePaletteImage MELImagePaletteImageEmpty = {};
 
 MELImagePaletteImage MELImagePaletteImageMakeWithSize(MELIntSize size) {
-    MELImagePaletteImage self;
-    self.tiles = malloc(sizeof(int32_t) * size.width * size.height);
-    self.size = size;
-    self.decorators = MELDecoratorRefListEmpty;
-    return self;
+    return (MELImagePaletteImage) {
+        .tiles = malloc(sizeof(int32_t) * size.width * size.height),
+        .size = size,
+        .decorators = MELDecoratorRefListEmpty,
+    };
 }
 
 MELImagePaletteImage MELImagePaletteImageMakeWithImagePaletteImage(MELImagePaletteImage other, size_t tileCount) {
-    MELImagePaletteImage self = other;
-    self.tiles = MELArrayCopy(other.tiles, sizeof(int) * tileCount);
-    self.decorators = MELDecoratorRefListMakeWithListAndCopyFunction(other.decorators, &MELDecoratorRefMakeWithDecoratorRef);
-    return self;
+    return (MELImagePaletteImage) {
+        .name = MELStringCopy(other.name),
+        .tiles = MELArrayCopy(other.tiles, sizeof(int) * tileCount),
+        .size = other.size,
+        .decorators = MELDecoratorRefListMakeWithListAndCopyFunction(other.decorators, &MELDecoratorRefMakeWithDecoratorRef),
+    };
 }
 
 void MELImagePaletteImageDeinit(MELImagePaletteImage * _Nonnull self) {
+    free(self->name);
+    self->name = NULL;
     free(self->tiles);
     self->tiles = NULL;
     self->size = MELIntSizeZero;

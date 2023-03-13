@@ -299,7 +299,11 @@ MELPaletteRef MELMmkProjectFormatReadBufferedImagePalette(MELInputStream * _Nonn
 
     const int imageTileCount = tileSize.width * tileSize.height;
     for (unsigned int imageIndex = 0; imageIndex < imageCount; imageIndex++) {
-        MELImagePaletteImage image = (MELImagePaletteImage) {malloc(sizeof(int) * imageTileCount), tileSize, MELDecoratorRefListEmpty};
+        MELImagePaletteImage image = (MELImagePaletteImage) {
+            .tiles = malloc(sizeof(int) * imageTileCount),
+            .size = tileSize,
+            .decorators = MELDecoratorRefListEmpty
+        };
         const int imageX = imageIndex / tileCount.width;
         const int imageY = imageIndex % tileCount.width;
         int *row = atlas + imageX * tileSize.width + imageY * tileSize.height * tileCount.width;
@@ -360,7 +364,11 @@ MELColorPalette * _Nullable MELMmkProjectFormatReadColorPalette(MELProjectFormat
     MELUInt8Color color;
     for (int index = 0; index < count; index++) {
         color = self->class->readColor(self, project, inputStream);
-        colorPalette.colors[index] = (MELUInt8RGBColor) {color.red, color.green, color.blue};
+        colorPalette.colors[index] = (MELUInt8RGBColor) {
+            .red = color.red,
+            .green = color.green,
+            .blue = color.blue,
+        };
     }
 
     MELColorPalette *result = malloc(sizeof(MELColorPalette));
@@ -374,7 +382,12 @@ void MELMmkProjectFormatWriteColorPalette(MELProjectFormat * _Nonnull self, MELP
     MELOutputStreamWriteInt(outputStream, colorPalette->super.count);
     for (unsigned int index = 0; index < colorPalette->super.count; index++) {
         const MELUInt8RGBColor color = colors[index];
-        const MELUInt8Color rgba = (MELUInt8Color) {color.red, color.green, color.blue, 0xFF};
+        const MELUInt8Color rgba = (MELUInt8Color) {
+            .red = color.red,
+            .green = color.green,
+            .blue = color.blue,
+            .alpha = 0xFF,
+        };
         self->class->writeColor(self, project, outputStream, rgba);
     }
 }
@@ -398,7 +411,12 @@ MELImagePalette * _Nullable MELMmkProjectFormatReadImagePalette(MELProjectFormat
             char *function = MELInputStreamReadNullableString(inputStream);
             if (function != NULL) {
                 MELFunctionDecorator *functionDecorator = malloc(sizeof(MELFunctionDecorator));
-                *functionDecorator = (MELFunctionDecorator) {{MELDecoratorTypeFunction}, function};
+                *functionDecorator = (MELFunctionDecorator) {
+                    .super = {
+                        .type = MELDecoratorTypeFunction,
+                    },
+                    .function = function,
+                };
                 MELDecoratorRefListPush(&image.decorators, &functionDecorator->super);
             }
         }
@@ -406,7 +424,12 @@ MELImagePalette * _Nullable MELMmkProjectFormatReadImagePalette(MELProjectFormat
             char *function = MELInputStreamReadNullableString(inputStream);
             if (function != NULL) {
                 MELFunctionDecorator *yFunctionDecorator = malloc(sizeof(MELFunctionDecorator));
-                *yFunctionDecorator = (MELFunctionDecorator) {{MELDecoratorTypeYFunction}, function};
+                *yFunctionDecorator = (MELFunctionDecorator) {
+                    .super = {
+                        .type = MELDecoratorTypeYFunction,
+                    },
+                    .function = function,
+                };
                 MELDecoratorRefListPush(&image.decorators, &yFunctionDecorator->super);
             }
         }
@@ -449,12 +472,21 @@ void MELMmkProjectFormatWriteImagePalette(MELProjectFormat * _Nonnull self, MELP
 
 MELImagePaletteImage MELMmkProjectFormatReadImagePaletteImage(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
     MELLayer layer = self->class->readLayer(self, project, inputStream);
-    free(layer.name);
-    return (MELImagePaletteImage) {layer.tiles, layer.size, MELDecoratorRefListEmpty};
+    return (MELImagePaletteImage) {
+        .name = layer.name,
+        .tiles = layer.tiles,
+        .size = layer.size,
+        .decorators = MELDecoratorRefListEmpty,
+    };
 }
 
 void MELMmkProjectFormatWriteImagePaletteImage(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELImagePaletteImage image) {
-    MELLayer layer = (MELLayer) {NULL, image.size, image.size.width * image.size.height, image.tiles, MELPointZero, false, MELSpriteInstanceListEmpty};
+    MELLayer layer = (MELLayer) {
+        .name = image.name,
+        .size = image.size,
+        .tileCount = image.size.width * image.size.height,
+        .tiles = image.tiles,
+    };
     self->class->writeLayer(self, project, outputStream, layer);
 }
 
@@ -497,7 +529,15 @@ MELLayer MELMmkProjectFormatReadLayer(MELProjectFormat * _Nonnull self, MELProje
     int32_t count;
     int32_t *tiles = MELInputStreamReadIntArray(inputStream, &count);
 
-    return (MELLayer) {name, MELIntSizeMake(width, height), count, tiles, scrollRate, isSolid, MELSpriteInstanceListEmpty};
+    return (MELLayer) {
+        .name = name,
+        .size = MELIntSizeMake(width, height),
+        .tileCount = count,
+        .tiles = tiles,
+        .scrollRate = scrollRate,
+        .isSolid = isSolid,
+        .sprites = MELSpriteInstanceListEmpty,
+    };
 }
 
 void MELMmkProjectFormatWriteLayer(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELLayer layer) {

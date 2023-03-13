@@ -14,6 +14,7 @@
 #include "size.h"
 
 typedef struct {
+    char * _Nullable name;
     int * _Nullable tiles;
     MELIntSize size;
     MELDecoratorRefList decorators;

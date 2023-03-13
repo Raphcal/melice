@@ -22,7 +22,11 @@ MELImagePalette MELImagePaletteMakeWithColorPalette(MELColorPalette * _Nonnull c
     self.images = malloc(DEFAULT_EMPTY_IMAGE_COUNT * sizeof(MELImagePaletteImage));
     const size_t tileCount = self.super.tileSize.width * self.super.tileSize.height;
     for (unsigned int index = 0; index < DEFAULT_EMPTY_IMAGE_COUNT; index++) {
-        MELImagePaletteImage image = {malloc(tileCount * sizeof(int32_t)), DEFAULT_TILE_SIZE, MELDecoratorRefListEmpty};
+        MELImagePaletteImage image = {
+            .tiles = malloc(tileCount * sizeof(int32_t)),
+            .size = DEFAULT_TILE_SIZE,
+            .decorators = MELDecoratorRefListEmpty,
+        };
         for (unsigned int tile = 0; tile < tileCount; tile++) {
             image.tiles[tile] = -1;
         }
