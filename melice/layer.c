@@ -117,7 +117,8 @@ void MELLayerRendererToSurfaceArray(MELLayer self, MELSurfaceArray * _Nonnull de
         const int tile = self.tiles[index];
         if (tile >= 0) {
             // TODO: N'ajouter que les points nécessaire et faire des sauts quand x != oldX + 1 et y != oldY
-            MELSurfaceArrayAppendTexturedQuad(destination, MELRectangleMake(x * MELTileSize, y * MELTileSize, MELTileSize, MELTileSize), tile, textureAtlas);
+            const MELIntSize size = textureAtlas.sources[tile].size;
+            MELSurfaceArrayAppendTexturedQuad(destination, MELRectangleMake(x * size.width, y * size.height, size.width, size.height), tile, textureAtlas);
         }
     }
 }

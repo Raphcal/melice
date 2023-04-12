@@ -21,7 +21,9 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
     MELMapRenderer self;
     self.renderer = renderer;
     self.map = map;
-    self.tileSize = MELIntSizeMake(MELTileSize, MELTileSize);
+    self.tileSize = atlas.frameCount > 0
+        ? atlas.sources[0].size
+        : MELIntSizeMake(MELTileSize, MELTileSize);
     self.atlas = atlas;
 
     MELSurfaceArray *layerSurfaces = calloc(map->layers.count, sizeof(MELSurfaceArray));
@@ -36,7 +38,8 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
             for (int x = 0; x < width; x++) {
                 int tile = MELLayerTileAtXAndY(layer, x, y);
                 if (tile >= 0) {
-                    MELSurfaceArrayAppendTexturedQuad(&layerSurface, MELRectangleMake((GLfloat)x * MELTileSize, (GLfloat)y * MELTileSize, MELTileSize, MELTileSize), tile, atlas);
+                    const MELSize size = atlas.frames[tile].size;
+                    MELSurfaceArrayAppendTexturedQuad(&layerSurface, MELRectangleMake((GLfloat)x * self.tileSize.width, (GLfloat)y * self.tileSize.height, self.tileSize.width, self.tileSize.height), tile, atlas);
                 }
             }
         }
@@ -74,7 +77,7 @@ MELMapRenderer MELMapRendererMakeWithMapAndColorPalette(MELMap * _Nonnull map, M
                 int tile = MELLayerTileAtXAndY(layer, x, y);
                 if (tile >= 0) {
                     MELUInt32Color color = MELColorPaletteColorForTile(colorPalette, tile);
-                    MELSurfaceArrayAppendColoredQuad(&layerSurface, MELRectangleMake((GLfloat)x * MELTileSize, (GLfloat)y * MELTileSize, MELTileSize, MELTileSize), MELRGBAUInt32ColorToMELUInt8Color(color));
+                    MELSurfaceArrayAppendColoredQuad(&layerSurface, MELRectangleMake((GLfloat)x * self.tileSize.width, (GLfloat)y * self.tileSize.height, self.tileSize.width, self.tileSize.height), MELRGBAUInt32ColorToMELUInt8Color(color));
                 }
             }
         }
