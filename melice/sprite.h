@@ -16,6 +16,7 @@
 #include "spritedefinition.h"
 #include "rectangle.h"
 #include "surface.h"
+#include "spriteinstance.h"
 
 typedef struct melanimation MELAnimation;
 typedef struct melmotion MELMotion;
@@ -27,6 +28,7 @@ typedef struct melspritemanager MELSpriteManager;
 typedef struct melsprite {
     MELSpriteManager * _Nullable parent;
     MELSpriteDefinition definition;
+    MELSpriteInstance * _Nullable instance;
 
     MELRectangle frame;
     MELDirection direction;

@@ -31,17 +31,17 @@ MELSprite * _Nonnull MELSpriteAlloc(MELSpriteManager * _Nonnull manager, MELSpri
     MELHitbox *hitbox = !MELIntRectangleEquals(animation->frame.hitbox, MELIntRectangleZero) ? MELSpriteHitboxAlloc(self) : MELSimpleSpriteHitboxAlloc(self);
     
     *self = (MELSprite) {
-        /* parent */ manager,
-        /* definition */ definition,
-        /* frame */ frame,
-        /* direction */ MELDirectionRight,
-        /* layer */ layer,
-        /* surface */ MELSurfaceArrayAvailableSurface(manager->layerSurfaces + layer),
-        /* isRemoved */ false,
-        /* hitbox */ hitbox,
-        /* motion */ MELNoMotionAlloc(),
-        /* animationIndex */ 0,
-        /* animation */ animation
+        .parent = manager,
+        .definition = definition,
+        .frame = frame,
+        .direction = MELDirectionRight,
+        .layer = layer,
+        .surface = MELSurfaceArrayAvailableSurface(manager->layerSurfaces + layer),
+        .isRemoved = false,
+        .hitbox = hitbox,
+        .motion = MELNoMotionAlloc(),
+        .animationIndex = 0,
+        .animation = animation,
     };
 
 	MELListPush(manager->sprites, self);
