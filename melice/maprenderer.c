@@ -38,7 +38,6 @@ MELMapRenderer MELMapRendererMakeWithRendererAndMapAndAtlas(MELRenderer * _Nonnu
             for (int x = 0; x < width; x++) {
                 int tile = MELLayerTileAtXAndY(layer, x, y);
                 if (tile >= 0) {
-                    const MELSize size = atlas.frames[tile].size;
                     MELSurfaceArrayAppendTexturedQuad(&layerSurface, MELRectangleMake((GLfloat)x * self.tileSize.width, (GLfloat)y * self.tileSize.height, self.tileSize.width, self.tileSize.height), tile, atlas);
                 }
             }
