@@ -14,6 +14,7 @@
 #include "animationdefinition.h"
 #include "animationframe.h"
 #include "sprite.h"
+#include "outputstream.h"
 
 /**
  * Instance of an animation.

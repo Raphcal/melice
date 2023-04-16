@@ -10,6 +10,7 @@
 
 #include <assert.h>
 #include "melstring.h"
+#include "melmath.h"
 #include "primitives.h"
 
 MELListImplement(MELLayer);

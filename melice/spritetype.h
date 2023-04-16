@@ -17,6 +17,8 @@ typedef enum {
     MELSpriteTypeEnemy,
     MELSpriteTypeCollidable,
     MELSpriteTypeFont,
+    MELSpriteTypeFriendlyShot,
+    MELSpriteTypeEnemyShot,
 } MELSpriteType;
 
 #endif /* spritetype_h */
