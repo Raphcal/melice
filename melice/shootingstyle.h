@@ -16,20 +16,20 @@
 #include "point.h"
 #include "spritemanager.h"
 
-typedef struct shootingstyle ShootingStyle;
+typedef struct shootingstyle MELShootingStyle;
 
 typedef struct {
-    void (* _Nonnull update)(ShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate);
-    void (* _Nonnull shoot)(ShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer);
-    void (* _Nonnull invert)(ShootingStyle * _Nonnull self);
-    void (* _Nonnull deinit)(ShootingStyle * _Nonnull self);
-} ShootingStyleClass;
+    void (* _Nonnull update)(MELShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate);
+    void (* _Nonnull shoot)(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer);
+    void (* _Nonnull invert)(MELShootingStyle * _Nonnull self);
+    void (* _Nonnull deinit)(MELShootingStyle * _Nonnull self);
+} MELShootingStyleClass;
 
-#define ShootingStyleClassDefaults .update = &ShootingStyleUpdate, .shoot = &NoShootingStyleShoot, .invert = &NoShootingStyleInvert, .deinit = &NoShootingStyleDeinit
+#define MELShootingStyleClassDefaults .update = &MELShootingStyleUpdate, .shoot = &NoShootingStyleShoot, .invert = &NoShootingStyleInvert, .deinit = &NoShootingStyleDeinit
 
 struct shootingstyle {
-    const ShootingStyleClass * _Nonnull class;
-    const ShootingStyleDefinition * _Nonnull definition;
+    const MELShootingStyleClass * _Nonnull class;
+    const MELShootingStyleDefinition * _Nonnull definition;
     MELSpriteManager * _Nonnull spriteManager;
     
     MELTimeInterval shootInterval;
@@ -39,7 +39,7 @@ struct shootingstyle {
     int inversionInterval;
 };
 
-ShootingStyle ShootingStyleMake(const ShootingStyleClass * _Nonnull class, const ShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+MELShootingStyle MELShootingStyleMake(const MELShootingStyleClass * _Nonnull class, const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
 /**
  * Fait tirer le sprite donné dans la direction donnée (généralement -pi/2 pour tirer vers le haut ou pi/2 pour tirer vers le bas).
@@ -49,21 +49,21 @@ ShootingStyle ShootingStyleMake(const ShootingStyleClass * _Nonnull class, const
  * @param angle Direction dans laquelle sont dirigés les tirs.
  * @param timeSinceLastUpdate Temps écoulé depuis le dernier appel.
  */
-void ShootingStyleUpdate(ShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate);
+void MELShootingStyleUpdate(MELShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate);
 
 /**
  * Ne tire pas.
  */
-void NoShootingStyleShoot(ShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer);
+void NoShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer);
 
 /**
  * Ne fait aucune inversion.
  */
-void NoShootingStyleInvert(ShootingStyle * _Nonnull self);
+void NoShootingStyleInvert(MELShootingStyle * _Nonnull self);
 
 /**
  * Ne fait aucun traitement.
  */
-void NoShootingStyleDeinit(ShootingStyle * _Nonnull self);
+void NoShootingStyleDeinit(MELShootingStyle * _Nonnull self);
 
 #endif /* shootingstyle_h */

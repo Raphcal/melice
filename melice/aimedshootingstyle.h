@@ -15,15 +15,15 @@
 /**
  * Classe du style de tir guidé.
  */
-extern const ShootingStyleClass AimedShootingStyleClass;
+extern const MELShootingStyleClass MELAimedShootingStyleClass;
 
 typedef struct {
-    ShootingStyleDefinition super;
+    MELShootingStyleDefinition super;
     MELSpriteType targetType;
-} AimedShootingStyleDefinition;
+} MELAimedShootingStyleDefinition;
 
-AimedShootingStyleDefinition * _Nonnull ShootingStyleDefinitionAlloc(void);
+MELAimedShootingStyleDefinition * _Nonnull MELShootingStyleDefinitionAlloc(void);
 
-ShootingStyle * _Nonnull AimedShootingStyleAlloc(const AimedShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELAimedShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
 #endif /* aimedshootingstyle_h */

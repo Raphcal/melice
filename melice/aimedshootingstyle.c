@@ -11,40 +11,40 @@
 #include "shotmotion.h"
 #include "random.h"
 
-AimedShootingStyleDefinition * _Nonnull ShootingStyleDefinitionAlloc(void) {
-    AimedShootingStyleDefinition value = (AimedShootingStyleDefinition) {
+MELAimedShootingStyleDefinition * _Nonnull MELShootingStyleDefinitionAlloc(void) {
+    MELAimedShootingStyleDefinition value = (MELAimedShootingStyleDefinition) {
         {
-            ShootingStyleDefinitionDefaults,
-            .shootingStyleAlloc = (ShootingStyleDefinitionShootingStyleAlloc) AimedShootingStyleAlloc
+            MELShootingStyleDefinitionDefaults,
+            .shootingStyleAlloc = (MELShootingStyleDefinitionShootingStyleAlloc) MELAimedShootingStyleAlloc
         },
         MELSpriteTypePlayer
     };
-    AimedShootingStyleDefinition *self = malloc(sizeof(AimedShootingStyleDefinition));
-    memcpy(self, &value, sizeof(AimedShootingStyleDefinition));
+    MELAimedShootingStyleDefinition *self = malloc(sizeof(MELAimedShootingStyleDefinition));
+    memcpy(self, &value, sizeof(MELAimedShootingStyleDefinition));
     return self;
 }
 
-ShootingStyle * _Nonnull AimedShootingStyleAlloc(const AimedShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
-    ShootingStyle *self = malloc(sizeof(ShootingStyle));
-    *self = ShootingStyleMake(&AimedShootingStyleClass, (const ShootingStyleDefinition *)definition, spriteManager);
+MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELAimedShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
+    MELShootingStyle *self = malloc(sizeof(MELShootingStyle));
+    *self = MELShootingStyleMake(&MELAimedShootingStyleClass, (const MELShootingStyleDefinition *)definition, spriteManager);
     return self;
 }
 
-MELList(MELSpriteRef) AimedShootingStyleGetTargets(ShootingStyle * _Nonnull self) {
-    const AimedShootingStyleDefinition *definition = (const AimedShootingStyleDefinition *) self->definition;
+MELList(MELSpriteRef) MELAimedShootingStyleGetTargets(MELShootingStyle * _Nonnull self) {
+    const MELAimedShootingStyleDefinition *definition = (const MELAimedShootingStyleDefinition *) self->definition;
     MELSpriteManager *spriteManager = self->spriteManager;
     // TODO: Filtrer le groupe pour ne prendre que les sprites dont la type est TargetType car plusieurs types peuvent être dans le même groupe.
     return spriteManager->groups[spriteManager->groupForType[definition->targetType]];
 }
 
-void AimedShootingStyleShoot(ShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
-    const AimedShootingStyleDefinition *definition = (const AimedShootingStyleDefinition *) self->definition;
+void MELAimedShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
+    const MELAimedShootingStyleDefinition *definition = (const MELAimedShootingStyleDefinition *) self->definition;
     MELSpriteManager *spriteManager = self->spriteManager;
 
     MELSpriteDefinition spriteDefinition = spriteManager->definitions.memory[definition->super.spriteDefinition];
     spriteDefinition.type = type;
     
-    MELList(MELSpriteRef) targets = AimedShootingStyleGetTargets(self);
+    MELList(MELSpriteRef) targets = MELAimedShootingStyleGetTargets(self);
     
     const GLfloat shotSpeed = definition->super.shotSpeed;
     const int damage = definition->super.damage;
@@ -64,13 +64,13 @@ void AimedShootingStyleShoot(ShootingStyle * _Nonnull self, MELPoint origin, GLf
         
         MELSpriteSetFrameOrigin(shot, origin);
 
-        MELSpriteSetMotion(shot, ShotMotionAlloc(angleToTarget, speed, damage));
+        MELSpriteSetMotion(shot, MELShotMotionAlloc(angleToTarget, speed, damage));
     }
 }
 
-const ShootingStyleClass AimedShootingStyleClass = {
-    .update = &ShootingStyleUpdate,
-    .shoot = &AimedShootingStyleShoot,
+const MELShootingStyleClass MELAimedShootingStyleClass = {
+    .update = &MELShootingStyleUpdate,
+    .shoot = &MELAimedShootingStyleShoot,
     .invert = &NoShootingStyleInvert,
     .deinit = &NoShootingStyleDeinit,
 };

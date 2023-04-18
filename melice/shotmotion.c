@@ -12,14 +12,14 @@
 #include <math.h>
 #include "camera.h"
 
-MELMotion * _Nonnull ShotMotionAlloc(GLfloat angle, MELPoint speed, int damage) {
+MELMotion * _Nonnull MELShotMotionAlloc(GLfloat angle, MELPoint speed, int damage) {
     MELPoint *camera = MELCameraGetCurrent();
     assert(camera != NULL);
     
-    ShotMotion *self = malloc(sizeof(ShotMotion));
-    *self = (ShotMotion) {
+    MELShotMotion *self = malloc(sizeof(MELShotMotion));
+    *self = (MELShotMotion) {
         {
-            &ShotMotionClass
+            &MELShotMotionClass
         },
         angle + M_PI / 2,
         speed,
@@ -29,7 +29,7 @@ MELMotion * _Nonnull ShotMotionAlloc(GLfloat angle, MELPoint speed, int damage) 
     return (MELMotion *)self;
 }
 
-void ShotMotionUpdate(ShotMotion * _Nonnull self, MELSprite * _Nonnull sprite, MELTimeInterval timeSinceLastUpdate) {
+void MELShotMotionUpdate(MELShotMotion * _Nonnull self, MELSprite * _Nonnull sprite, MELTimeInterval timeSinceLastUpdate) {
     MELRectangle frame = sprite->frame;
     
     frame.origin = MELPointAdd(frame.origin, MELPointMultiplyByValue(self->speed, (GLfloat)timeSinceLastUpdate));
@@ -39,8 +39,8 @@ void ShotMotionUpdate(ShotMotion * _Nonnull self, MELSprite * _Nonnull sprite, M
     MELCameraRemoveSpriteIfOutOfView(sprite);
 }
 
-const MELMotionClass ShotMotionClass = {
+const MELMotionClass MELShotMotionClass = {
     .load = &MELMotionLoadUnload,
     .unload = &MELMotionLoadUnload,
-    .update = (void (*)(MELMotion *, MELSprite *, MELTimeInterval))&ShotMotionUpdate,
+    .update = (void (*)(MELMotion *, MELSprite *, MELTimeInterval))&MELShotMotionUpdate,
 };

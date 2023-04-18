@@ -14,7 +14,7 @@
 #include "motion.h"
 #include "point.h"
 
-extern const MELMotionClass ShotMotionClass;
+extern const MELMotionClass MELShotMotionClass;
 
 typedef struct {
     MELMotion super;
@@ -22,8 +22,8 @@ typedef struct {
     MELPoint speed;
     int damage;
     MELPoint * _Nonnull camera;
-} ShotMotion;
+} MELShotMotion;
 
-MELMotion * _Nonnull ShotMotionAlloc(GLfloat angle, MELPoint speed, int damage);
+MELMotion * _Nonnull MELShotMotionAlloc(GLfloat angle, MELPoint speed, int damage);
 
 #endif /* shotmotion_h */

@@ -15,25 +15,25 @@
 #pragma mark - Definition
 
 typedef struct {
-    ShootingStyleDefinitionShootingStyleAlloc shootingStyleAlloc;
-    ShootingStyleDefinition * _Nonnull * _Nullable definitions;
+    MELShootingStyleDefinitionShootingStyleAlloc shootingStyleAlloc;
+    MELShootingStyleDefinition * _Nonnull * _Nullable definitions;
     unsigned int count;
-} CompositeShootingStyleDefinition;
+} MELCompositeShootingStyleDefinition;
 
-CompositeShootingStyleDefinition * _Nonnull CompositeShootingStyleDefinitionAlloc(unsigned int count, ...);
+MELCompositeShootingStyleDefinition * _Nonnull MELCompositeShootingStyleDefinitionAlloc(unsigned int count, ...);
 
-void CompositeShootingStyleDefinitionDeinit(CompositeShootingStyleDefinition * _Nonnull self);
+void MELCompositeShootingStyleDefinitionDeinit(MELCompositeShootingStyleDefinition * _Nonnull self);
 
 #pragma mark - Shooting style
 
-extern const ShootingStyleClass CompositeShootingStyleClass;
+extern const MELShootingStyleClass MELCompositeShootingStyleClass;
 
 typedef struct {
-    const ShootingStyleClass * _Nonnull class;
-    const CompositeShootingStyleDefinition * _Nonnull definition;
-    ShootingStyle * _Nonnull * _Nullable styles;
-} CompositeShootingStyle;
+    const MELShootingStyleClass * _Nonnull class;
+    const MELCompositeShootingStyleDefinition * _Nonnull definition;
+    MELShootingStyle * _Nonnull * _Nullable styles;
+} MELCompositeShootingStyle;
 
-ShootingStyle * _Nonnull CompositeShootingStyleAlloc(const CompositeShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+MELShootingStyle * _Nonnull MELCompositeShootingStyleAlloc(const MELCompositeShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
 #endif /* compositeshootingstyle_h */

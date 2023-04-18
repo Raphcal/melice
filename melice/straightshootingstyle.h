@@ -15,16 +15,16 @@
 /**
  * Classe du style de tir droit.
  */
-extern const ShootingStyleClass StraightShootingStyleClass;
+extern const MELShootingStyleClass MELStraightShootingStyleClass;
 
 typedef struct {
-    ShootingStyleDefinition super;
+    MELShootingStyleDefinition super;
     GLfloat space;
     MELPoint translation;
-} StraightShootingStyleDefinition;
+} MELStraightShootingStyleDefinition;
 
-StraightShootingStyleDefinition * _Nonnull StraightShootingStyleDefinitionAlloc(void);
+MELStraightShootingStyleDefinition * _Nonnull MELStraightShootingStyleDefinitionAlloc(void);
 
-ShootingStyle * _Nonnull StraightShootingStyleAlloc(const StraightShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+MELShootingStyle * _Nonnull MELStraightShootingStyleAlloc(const MELStraightShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
 #endif /* straightshootingstyle_h */

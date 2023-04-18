@@ -10,28 +10,28 @@
 
 #include "shotmotion.h"
 
-StraightShootingStyleDefinition * _Nonnull StraightShootingStyleDefinitionAlloc(void) {
-    StraightShootingStyleDefinition value = {
+MELStraightShootingStyleDefinition * _Nonnull MELStraightShootingStyleDefinitionAlloc(void) {
+    MELStraightShootingStyleDefinition value = {
         {
-            ShootingStyleDefinitionDefaults,
-            .shootingStyleAlloc = (ShootingStyleDefinitionShootingStyleAlloc) StraightShootingStyleAlloc
+            MELShootingStyleDefinitionDefaults,
+            .shootingStyleAlloc = (MELShootingStyleDefinitionShootingStyleAlloc) MELStraightShootingStyleAlloc
         },
         0,
         MELPointZero
     };
-    StraightShootingStyleDefinition *self = malloc(sizeof(StraightShootingStyleDefinition));
-    memcpy(self, &value, sizeof(StraightShootingStyleDefinition));
+    MELStraightShootingStyleDefinition *self = malloc(sizeof(MELStraightShootingStyleDefinition));
+    memcpy(self, &value, sizeof(MELStraightShootingStyleDefinition));
     return self;
 }
 
-ShootingStyle * _Nonnull StraightShootingStyleAlloc(const StraightShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
-    ShootingStyle *self = malloc(sizeof(ShootingStyle));
-    *self = ShootingStyleMake(&StraightShootingStyleClass, (const ShootingStyleDefinition *)definition, spriteManager);
+MELShootingStyle * _Nonnull MELStraightShootingStyleAlloc(const MELStraightShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
+    MELShootingStyle *self = malloc(sizeof(MELShootingStyle));
+    *self = MELShootingStyleMake(&MELStraightShootingStyleClass, (const MELShootingStyleDefinition *)definition, spriteManager);
     return self;
 }
 
-void StraightShootingStyleShoot(ShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
-    const StraightShootingStyleDefinition *definition = (const StraightShootingStyleDefinition *) self->definition;
+static void MELStraightShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
+    const MELStraightShootingStyleDefinition *definition = (const MELStraightShootingStyleDefinition *) self->definition;
     MELSpriteManager *spriteManager = self->spriteManager;
     
     MELSpriteDefinition spriteDefinition = spriteManager->definitions.memory[definition->super.spriteDefinition];
@@ -53,15 +53,15 @@ void StraightShootingStyleShoot(ShootingStyle * _Nonnull self, MELPoint origin, 
         
         MELSpriteSetFrameOrigin(shot, MELPointMake(left, origin.y));
         
-        MELSpriteSetMotion(shot, ShotMotionAlloc(angle, speed, damage));
+        MELSpriteSetMotion(shot, MELShotMotionAlloc(angle, speed, damage));
         
         left += space;
     }
 }
 
-const ShootingStyleClass StraightShootingStyleClass = {
-    .update = &ShootingStyleUpdate,
-    .shoot = &StraightShootingStyleShoot,
+const MELShootingStyleClass MELStraightShootingStyleClass = {
+    .update = &MELShootingStyleUpdate,
+    .shoot = &MELStraightShootingStyleShoot,
     .invert = &NoShootingStyleInvert,
     .deinit = &NoShootingStyleDeinit,
 };

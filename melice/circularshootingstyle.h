@@ -15,10 +15,10 @@
 /**
  * Classe du style de tir en cercles.
  */
-extern const ShootingStyleClass CircularShootingStyleClass;
+extern const MELShootingStyleClass MELCircularShootingStyleClass;
 
 typedef struct {
-    ShootingStyleDefinition super;
+    MELShootingStyleDefinition super;
 
     /// Angle du premier tir.
     GLfloat baseAngle;
@@ -28,16 +28,16 @@ typedef struct {
     
     /// Différence d'angle entre 2 tirs.
     GLfloat angleIncrement;
-} CircularShootingStyleDefinition;
+} MELCircularShootingStyleDefinition;
 
 typedef struct {
-    ShootingStyle super;
+    MELShootingStyle super;
     GLfloat baseAngle;
     GLfloat baseAngleVariation;
-} CircularShootingStyle;
+} MELCircularShootingStyle;
 
-CircularShootingStyleDefinition * _Nonnull CircularShootingStyleDefinitionAlloc(void);
+MELCircularShootingStyleDefinition * _Nonnull MELCircularShootingStyleDefinitionAlloc(void);
 
-ShootingStyle * _Nonnull CircularShootingStyleAlloc(const CircularShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELCircularShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
 #endif /* circularshootingstyle_h */

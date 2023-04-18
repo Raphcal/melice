@@ -10,65 +10,65 @@
 
 #include <stdarg.h>
 
-#pragma mark - CompositeShootingStyleDefinition
+#pragma mark - MELCompositeShootingStyleDefinition
 
-CompositeShootingStyleDefinition * _Nonnull CompositeShootingStyleDefinitionAlloc(unsigned int count, ...) {
-    ShootingStyleDefinition **definitions = malloc((count + 1) * sizeof(ShootingStyleDefinition *));
+MELCompositeShootingStyleDefinition * _Nonnull MELCompositeShootingStyleDefinitionAlloc(unsigned int count, ...) {
+    MELShootingStyleDefinition **definitions = malloc((count + 1) * sizeof(MELShootingStyleDefinition *));
     va_list ap;
     va_start(ap, count);
     for (unsigned int index = 0; index < count; index++) {
-        definitions[index] = va_arg(ap, ShootingStyleDefinition *);
+        definitions[index] = va_arg(ap, MELShootingStyleDefinition *);
     }
     va_end(ap);
     definitions[count] = NULL;
-    CompositeShootingStyleDefinition *self = malloc(sizeof(CompositeShootingStyleDefinition));
-    *self = (CompositeShootingStyleDefinition) {
-        (ShootingStyleDefinitionShootingStyleAlloc) &CompositeShootingStyleAlloc,
+    MELCompositeShootingStyleDefinition *self = malloc(sizeof(MELCompositeShootingStyleDefinition));
+    *self = (MELCompositeShootingStyleDefinition) {
+        (MELShootingStyleDefinitionShootingStyleAlloc) &MELCompositeShootingStyleAlloc,
         definitions,
         count
     };
     return self;
 }
 
-void CompositeShootingStyleDefinitionDeinit(CompositeShootingStyleDefinition * _Nonnull self) {
-    for (ShootingStyleDefinition **definition = self->definitions; definition != NULL; definition++) {
+void MELCompositeShootingStyleDefinitionDeinit(MELCompositeShootingStyleDefinition * _Nonnull self) {
+    for (MELShootingStyleDefinition **definition = self->definitions; definition != NULL; definition++) {
         free(*definition);
     }
     free(self->definitions);
     self->definitions = NULL;
 }
 
-#pragma mark - CompositeShootingStyle
+#pragma mark - MELCompositeShootingStyle
 
-ShootingStyle * _Nonnull CompositeShootingStyleAlloc(const CompositeShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
+MELShootingStyle * _Nonnull MELCompositeShootingStyleAlloc(const MELCompositeShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
     const unsigned int count = definition->count;
-    ShootingStyle **styles = malloc((count + 1) * sizeof(ShootingStyle *));
-    ShootingStyleDefinition **definitions = definition->definitions;
+    MELShootingStyle **styles = malloc((count + 1) * sizeof(MELShootingStyle *));
+    MELShootingStyleDefinition **definitions = definition->definitions;
     
     for (int index = 0; index < count; index++) {
-        ShootingStyleDefinition *definition = definitions[index];
+        MELShootingStyleDefinition *definition = definitions[index];
         styles[index] = definition->shootingStyleAlloc(definition, spriteManager);
     }
     styles[count] = NULL;
     
-    CompositeShootingStyle *self = malloc(sizeof(CompositeShootingStyle));
-    *self = (CompositeShootingStyle) {
-        &CompositeShootingStyleClass,
+    MELCompositeShootingStyle *self = malloc(sizeof(MELCompositeShootingStyle));
+    *self = (MELCompositeShootingStyle) {
+        &MELCompositeShootingStyleClass,
         definition,
         styles
     };
-    return (ShootingStyle *)self;
+    return (MELShootingStyle *)self;
 }
 
-void CompositeShootingStyleUpdate(CompositeShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate) {
-    for (ShootingStyle **styles = self->styles; *styles != NULL; styles++) {
-        ShootingStyle *style = *styles;
+void MELCompositeShootingStyleUpdate(MELCompositeShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate) {
+    for (MELShootingStyle **styles = self->styles; *styles != NULL; styles++) {
+        MELShootingStyle *style = *styles;
         style->class->update(style, sprite, angle, timeSinceLastUpdate);
     }
 }
 
-const ShootingStyleClass CompositeShootingStyleClass = {
-    .update = (void (*)(ShootingStyle *, MELSprite *, GLfloat, MELTimeInterval))&CompositeShootingStyleUpdate,
+const MELShootingStyleClass MELCompositeShootingStyleClass = {
+    .update = (void (*)(MELShootingStyle *, MELSprite *, GLfloat, MELTimeInterval))&MELCompositeShootingStyleUpdate,
     .shoot = &NoShootingStyleShoot,
     .invert = &NoShootingStyleInvert,
     .deinit = &NoShootingStyleDeinit,

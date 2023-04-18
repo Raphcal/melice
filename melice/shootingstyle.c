@@ -13,8 +13,8 @@
 
 MELPoint MELRectanglePointAtAngle(MELRectangle self, GLfloat angle);
 
-ShootingStyle ShootingStyleMake(const ShootingStyleClass * _Nonnull class, const ShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
-    return (ShootingStyle) {
+MELShootingStyle MELShootingStyleMake(const MELShootingStyleClass * _Nonnull class, const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
+    return (MELShootingStyle) {
         class,
         definition,
         spriteManager,
@@ -25,25 +25,25 @@ ShootingStyle ShootingStyleMake(const ShootingStyleClass * _Nonnull class, const
     };
 }
 
-void ShootingStyleInvert(ShootingStyle * _Nonnull self) {
-    if (self->definition->inversions & ShootingStyleInversionAmount) {
+void MELShootingStyleInvert(MELShootingStyle * _Nonnull self) {
+    if (self->definition->inversions & MELShootingStyleInversionAmount) {
         self->shotAmountVariation = -self->shotAmountVariation;
     }
     self->class->invert(self);
 }
 
-void ShootingStyleUpdate(ShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate) {
+void MELShootingStyleUpdate(MELShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate) {
     MELTimeInterval shootInterval = self->shootInterval;
     if (shootInterval > 0) {
         shootInterval -= timeSinceLastUpdate;
     } else {
         shootInterval += self->definition->shootInterval;
         
-        const ShootingStyleDefinition *definition = self->definition;
+        const MELShootingStyleDefinition *definition = self->definition;
         
         MELPoint origin;
         switch (definition->origin) {
-            case ShotOriginFront:
+            case MELShotOriginFront:
                 origin = MELRectanglePointAtAngle(sprite->frame, angle);
                 break;
             default:
@@ -62,7 +62,7 @@ void ShootingStyleUpdate(ShootingStyle * _Nonnull self, MELSprite * _Nonnull spr
                 inversionInterval--;
             } else {
                 inversionInterval = definition->inversionInterval;
-                ShootingStyleInvert(self);
+                MELShootingStyleInvert(self);
             }
             self->inversionInterval = inversionInterval;
         }
@@ -70,15 +70,15 @@ void ShootingStyleUpdate(ShootingStyle * _Nonnull self, MELSprite * _Nonnull spr
     self->shootInterval = shootInterval;
 }
 
-void NoShootingStyleShoot(ShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
+void NoShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
     // Aucune action.
 }
 
-void NoShootingStyleInvert(ShootingStyle * _Nonnull self) {
+void NoShootingStyleInvert(MELShootingStyle * _Nonnull self) {
     // Pas d'inversion.
 }
 
-void NoShootingStyleDeinit(ShootingStyle * _Nonnull self) {
+void NoShootingStyleDeinit(MELShootingStyle * _Nonnull self) {
     // Rien à libérer.
 }
 
