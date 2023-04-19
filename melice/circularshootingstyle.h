@@ -40,4 +40,6 @@ MELCircularShootingStyleDefinition * _Nonnull MELCircularShootingStyleDefinition
 
 MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELCircularShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
+MELShootingStyleDefinition * _Nonnull MELCircularShootingStyleCast(MELCircularShootingStyleDefinition * _Nonnull self);
+
 #endif /* circularshootingstyle_h */

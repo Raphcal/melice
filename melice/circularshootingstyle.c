@@ -39,23 +39,26 @@ void MELCircularShootingStyleShoot(MELCircularShootingStyle * _Nonnull self, MEL
     const MELCircularShootingStyleDefinition *definition = (const MELCircularShootingStyleDefinition *) self->super.definition;
     MELSpriteManager *spriteManager = self->super.spriteManager;
     
-    MELSpriteDefinition spriteDefinition = spriteManager->definitions.memory[definition->super.spriteDefinition];
-    spriteDefinition.type = type;
+    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->super.bulletDefinition];
+    bulletDefinition.type = type;
     
-    const int shotAmount = self->super.shotAmount;
+    const int bulletAmount = self->super.bulletAmount;
     
     GLfloat currentAngle = angle + definition->baseAngle;
-    const GLfloat angleIncrement = definition->angleIncrement || M_PI * 2 / shotAmount;
+    GLfloat angleIncrement = definition->angleIncrement;
+    if (!angleIncrement) {
+        angleIncrement = MEL_2_PI / bulletAmount;
+    }
     
-    const GLfloat shotSpeed = definition->super.shotSpeed;
+    const GLfloat bulletSpeed = definition->super.bulletSpeed;
     const int damage = definition->super.damage;
     
-    for (int index = 0; index < shotAmount; index++) {
-        MELPoint speed = MELPointMake(cosf(currentAngle) * shotSpeed, sinf(currentAngle) * shotSpeed);
+    for (int index = 0; index < bulletAmount; index++) {
+        MELPoint speed = MELPointMake(cosf(currentAngle) * bulletSpeed, sinf(currentAngle) * bulletSpeed);
         
-        MELSprite *shot = MELSpriteAlloc(spriteManager, spriteDefinition, layer);
+        MELSprite *shot = MELSpriteAlloc(spriteManager, bulletDefinition, layer);
         MELSpriteSetFrameOrigin(shot, origin);
-        MELSpriteSetMotion(shot, MELShotMotionAlloc(currentAngle, speed, damage));
+        MELSpriteSetMotion(shot, MELBulletMotionAlloc(currentAngle, speed, damage));
         
         currentAngle += angleIncrement;
     }
@@ -67,6 +70,10 @@ void MELCircularShootingStyleInvert(MELCircularShootingStyle * _Nonnull self) {
     if (self->super.definition->inversions & MELShootingStyleInversionAngle) {
         self->baseAngleVariation = -self->baseAngleVariation;
     }
+}
+
+MELShootingStyleDefinition * _Nonnull MELCircularShootingStyleCast(MELCircularShootingStyleDefinition * _Nonnull self) {
+    return &self->super;
 }
 
 const MELShootingStyleClass MELCircularShootingStyleClass = {

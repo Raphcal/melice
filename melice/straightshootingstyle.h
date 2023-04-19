@@ -27,4 +27,6 @@ MELStraightShootingStyleDefinition * _Nonnull MELStraightShootingStyleDefinition
 
 MELShootingStyle * _Nonnull MELStraightShootingStyleAlloc(const MELStraightShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
+MELShootingStyleDefinition * _Nonnull MELStraightShootingStyleCast(MELStraightShootingStyleDefinition * _Nonnull self);
+
 #endif /* straightshootingstyle_h */

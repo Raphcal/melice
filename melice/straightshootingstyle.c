@@ -34,29 +34,33 @@ static void MELStraightShootingStyleShoot(MELShootingStyle * _Nonnull self, MELP
     const MELStraightShootingStyleDefinition *definition = (const MELStraightShootingStyleDefinition *) self->definition;
     MELSpriteManager *spriteManager = self->spriteManager;
     
-    MELSpriteDefinition spriteDefinition = spriteManager->definitions.memory[definition->super.spriteDefinition];
-    spriteDefinition.type = type;
+    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->super.bulletDefinition];
+    bulletDefinition.type = type;
     
-    const GLfloat shotSpeed = definition->super.shotSpeed;
+    const GLfloat bulletSpeed = definition->super.bulletSpeed;
     const int damage = definition->super.damage;
     const GLfloat space = definition->space;
     
-    const int shotAmount = self->shotAmount;
+    const int bulletAmount = self->bulletAmount;
     
     origin = MELPointAdd(origin, definition->translation);
     
-    GLfloat left = origin.x - (((GLfloat)shotAmount - 1) * space) / 2;
+    GLfloat left = origin.x - (((GLfloat)bulletAmount - 1) * space) / 2;
     
-    for (int index = 0; index < shotAmount; index++) {
-        MELPoint speed = MELPointMake(cosf(angle) * shotSpeed, sinf(angle) * shotSpeed);
-        MELSprite *shot = MELSpriteAlloc(spriteManager, spriteDefinition, layer);
+    for (int index = 0; index < bulletAmount; index++) {
+        MELPoint speed = MELPointMake(cosf(angle) * bulletSpeed, sinf(angle) * bulletSpeed);
+        MELSprite *shot = MELSpriteAlloc(spriteManager, bulletDefinition, layer);
         
         MELSpriteSetFrameOrigin(shot, MELPointMake(left, origin.y));
         
-        MELSpriteSetMotion(shot, MELShotMotionAlloc(angle, speed, damage));
+        MELSpriteSetMotion(shot, MELBulletMotionAlloc(angle, speed, damage));
         
         left += space;
     }
+}
+
+MELShootingStyleDefinition * _Nonnull MELStraightShootingStyleCast(MELStraightShootingStyleDefinition * _Nonnull self) {
+    return &self->super;
 }
 
 const MELShootingStyleClass MELStraightShootingStyleClass = {

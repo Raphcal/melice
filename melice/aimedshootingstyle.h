@@ -22,8 +22,10 @@ typedef struct {
     MELSpriteType targetType;
 } MELAimedShootingStyleDefinition;
 
-MELAimedShootingStyleDefinition * _Nonnull MELShootingStyleDefinitionAlloc(void);
+MELAimedShootingStyleDefinition * _Nonnull MELAimedShootingStyleDefinitionAlloc(void);
 
 MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELAimedShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+
+MELShootingStyleDefinition * _Nonnull MELAimedShootingStyleCast(MELAimedShootingStyleDefinition * _Nonnull self);
 
 #endif /* aimedshootingstyle_h */

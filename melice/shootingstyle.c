@@ -15,19 +15,19 @@ MELPoint MELRectanglePointAtAngle(MELRectangle self, GLfloat angle);
 
 MELShootingStyle MELShootingStyleMake(const MELShootingStyleClass * _Nonnull class, const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
     return (MELShootingStyle) {
-        class,
-        definition,
-        spriteManager,
-        MELRandomTimeIntervalWithRange(0, definition->shootInterval),
-        definition->shotAmount,
-        definition->shotAmountVariation,
-        definition->inversionInterval
+        .class = class,
+        .definition = definition,
+        .spriteManager = spriteManager,
+        .shootInterval = MELRandomTimeIntervalWithRange(0, definition->shootInterval),
+        .bulletAmount = definition->bulletAmount,
+        .bulletAmountVariation = definition->bulletAmountVariation,
+        .inversionInterval = definition->inversionInterval,
     };
 }
 
 void MELShootingStyleInvert(MELShootingStyle * _Nonnull self) {
     if (self->definition->inversions & MELShootingStyleInversionAmount) {
-        self->shotAmountVariation = -self->shotAmountVariation;
+        self->bulletAmountVariation = -self->bulletAmountVariation;
     }
     self->class->invert(self);
 }
@@ -54,7 +54,7 @@ void MELShootingStyleUpdate(MELShootingStyle * _Nonnull self, MELSprite * _Nonnu
         // Salve de tir
         self->class->shoot(self, origin, angle, sprite->definition.type == MELSpriteTypePlayer ? MELSpriteTypeFriendlyShot : MELSpriteTypeEnemyShot, sprite->layer);
         
-        self->shotAmount += self->shotAmountVariation;
+        self->bulletAmount += self->bulletAmountVariation;
         
         if (definition->inversions != 0) {
             int inversionInterval = self->inversionInterval;

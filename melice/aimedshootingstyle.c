@@ -11,7 +11,7 @@
 #include "shotmotion.h"
 #include "random.h"
 
-MELAimedShootingStyleDefinition * _Nonnull MELShootingStyleDefinitionAlloc(void) {
+MELAimedShootingStyleDefinition * _Nonnull MELAimedShootingStyleDefinitionAlloc(void) {
     MELAimedShootingStyleDefinition value = (MELAimedShootingStyleDefinition) {
         {
             MELShootingStyleDefinitionDefaults,
@@ -41,16 +41,16 @@ void MELAimedShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origi
     const MELAimedShootingStyleDefinition *definition = (const MELAimedShootingStyleDefinition *) self->definition;
     MELSpriteManager *spriteManager = self->spriteManager;
 
-    MELSpriteDefinition spriteDefinition = spriteManager->definitions.memory[definition->super.spriteDefinition];
-    spriteDefinition.type = type;
+    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->super.bulletDefinition];
+    bulletDefinition.type = type;
     
     MELList(MELSpriteRef) targets = MELAimedShootingStyleGetTargets(self);
     
-    const GLfloat shotSpeed = definition->super.shotSpeed;
+    const GLfloat bulletSpeed = definition->super.bulletSpeed;
     const int damage = definition->super.damage;
     
-    const int shotAmount = self->shotAmount;
-    for (int index = 0; index < shotAmount; index++) {
+    const int bulletAmount = self->bulletAmount;
+    for (int index = 0; index < bulletAmount; index++) {
         GLfloat angleToTarget;
         if (targets.count > 0) {
             MELSpriteRef target = targets.memory[MELRandomInt((int)targets.count)];
@@ -59,13 +59,17 @@ void MELAimedShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origi
             angleToTarget = angle;
         }
         
-        MELPoint speed = MELPointMake(cosf(angleToTarget) * shotSpeed, sinf(angleToTarget) * shotSpeed);
-        MELSprite *shot = MELSpriteAlloc(spriteManager, spriteDefinition, layer);
+        MELPoint speed = MELPointMake(cosf(angleToTarget) * bulletSpeed, sinf(angleToTarget) * bulletSpeed);
+        MELSprite *shot = MELSpriteAlloc(spriteManager, bulletDefinition, layer);
         
         MELSpriteSetFrameOrigin(shot, origin);
 
-        MELSpriteSetMotion(shot, MELShotMotionAlloc(angleToTarget, speed, damage));
+        MELSpriteSetMotion(shot, MELBulletMotionAlloc(angleToTarget, speed, damage));
     }
+}
+
+MELShootingStyleDefinition * _Nonnull MELAimedShootingStyleCast(MELAimedShootingStyleDefinition * _Nonnull self) {
+    return &self->super;
 }
 
 const MELShootingStyleClass MELAimedShootingStyleClass = {

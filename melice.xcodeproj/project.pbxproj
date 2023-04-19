@@ -1648,20 +1648,20 @@
 		64EECBB329EC2861005D1CB3 /* shots */ = {
 			isa = PBXGroup;
 			children = (
-				64EECBBB29EC28C9005D1CB3 /* aimedshootingstyle.c */,
-				64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */,
-				64EECBBC29EC28C9005D1CB3 /* circularshootingstyle.c */,
-				64EECBBD29EC28C9005D1CB3 /* circularshootingstyle.h */,
-				64EECBB829EC28C8005D1CB3 /* compositeshootingstyle.c */,
-				64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */,
 				64EECBBF29EC28C9005D1CB3 /* shootingstyle.c */,
 				64EECBBA29EC28C8005D1CB3 /* shootingstyle.h */,
 				64EECBB429EC28C7005D1CB3 /* shootingstyledefinition.c */,
 				64EECBBE29EC28C9005D1CB3 /* shootingstyledefinition.h */,
-				64EECBC029EC28CA005D1CB3 /* shotmotion.c */,
-				64EECBB929EC28C8005D1CB3 /* shotmotion.h */,
+				64EECBB829EC28C8005D1CB3 /* compositeshootingstyle.c */,
+				64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */,
+				64EECBBB29EC28C9005D1CB3 /* aimedshootingstyle.c */,
+				64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */,
+				64EECBBC29EC28C9005D1CB3 /* circularshootingstyle.c */,
+				64EECBBD29EC28C9005D1CB3 /* circularshootingstyle.h */,
 				64EECBC129EC28CA005D1CB3 /* straightshootingstyle.c */,
 				64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */,
+				64EECBC029EC28CA005D1CB3 /* shotmotion.c */,
+				64EECBB929EC28C8005D1CB3 /* shotmotion.h */,
 			);
 			name = shots;
 			sourceTree = "<group>";

@@ -26,6 +26,12 @@ typedef enum {
     MELShotOriginFront
 } MELShotOrigin;
 
+typedef enum {
+    MELShootingStyleTypeAimed,
+    MELShootingStyleTypeCircular,
+    MELShootingStyleTypeStraight,
+} MELShootingStyleType;
+
 typedef struct shootingstyle MELShootingStyle;
 typedef struct shootingstyledefinition MELShootingStyleDefinition;
 
@@ -41,24 +47,24 @@ typedef struct shootingstyledefinition {
     int damage;
 
     /// Nombre de tirs
-    int shotAmount;
+    int bulletAmount;
     /// Augmentation ou diminution du nombre de tirs
-    const int shotAmountVariation;
+    int bulletAmountVariation;
 
     /// Vitesse d'un tir
-    GLfloat shotSpeed;
+    GLfloat bulletSpeed;
     /// Interval de temps entre chaque tir
     MELTimeInterval shootInterval;
 
     /// Nombre d'inversions
     MELShootingStyleInversion inversions;
     /// Nombre de tirs avant l'inversion
-    const int inversionInterval;
+    int inversionInterval;
 
     /// Numéro du sprite dans l'atlas
-    int spriteDefinition;
+    int bulletDefinition;
 } MELShootingStyleDefinition;
 
-#define MELShootingStyleDefinitionDefaults .origin = MELShotOriginFront, .damage = 1, .shotAmount = 1, .shotAmountVariation = 0, .shotSpeed = 500, .shootInterval = 0.1, .inversions = 0, .inversionInterval = 0, .spriteDefinition = 0
+#define MELShootingStyleDefinitionDefaults .origin = MELShotOriginFront, .damage = 1, .bulletAmount = 1, .bulletAmountVariation = 0, .bulletSpeed = 500, .shootInterval = 0.1, .inversions = 0, .inversionInterval = 0, .bulletDefinition = 0
 
 #endif /* shootingstyledefinition_h */

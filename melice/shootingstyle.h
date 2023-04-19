@@ -33,8 +33,8 @@ struct shootingstyle {
     MELSpriteManager * _Nonnull spriteManager;
     
     MELTimeInterval shootInterval;
-    int shotAmount;
-    int shotAmountVariation;
+    int bulletAmount;
+    int bulletAmountVariation;
     
     int inversionInterval;
 };
