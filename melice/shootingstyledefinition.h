@@ -35,34 +35,50 @@ typedef enum {
 typedef struct shootingstyle MELShootingStyle;
 typedef struct shootingstyledefinition MELShootingStyleDefinition;
 
-typedef MELShootingStyle * _Nonnull (* _Nonnull MELShootingStyleDefinitionShootingStyleAlloc)(const MELShootingStyleDefinition * _Nonnull self, MELSpriteManager * _Nonnull spriteManager);
-
 typedef struct shootingstyledefinition {
-    MELShootingStyleDefinitionShootingStyleAlloc shootingStyleAlloc;
-
-    /// Point d'origine des tirs
+    /// Origin of the shots.
     MELShotOrigin origin;
 
-    /// Dommages provoqués par chaque tir
+    /// Damage made by each bullet.
     int damage;
 
-    /// Nombre de tirs
+    /// Sprite index inside the atlas.
+    int bulletDefinition;
+    /// Animation index inside the sprite definition.
+    int animation;
+
+    /// Number of bullets shot at once.
     int bulletAmount;
-    /// Augmentation ou diminution du nombre de tirs
+    /// Bullet count increment or decrement at each variation.
     int bulletAmountVariation;
 
-    /// Vitesse d'un tir
+    /// Distance in pixel travelled by each bullet in one second.
     GLfloat bulletSpeed;
-    /// Interval de temps entre chaque tir
+    /// Time interval between each shot.
     MELTimeInterval shootInterval;
 
-    /// Nombre d'inversions
+    /// Inversions.
     MELShootingStyleInversion inversions;
-    /// Nombre de tirs avant l'inversion
+    /// Number of shots before an inversion occurs.
     int inversionInterval;
 
-    /// Numéro du sprite dans l'atlas
-    int bulletDefinition;
+    /// For aimed shooting style: target type.
+    MELSpriteType targetType;
+
+    /// For circular shooting style: base angle of the first shot.
+    GLfloat baseAngle;
+
+    /// For circular shooting style: value added to the base angle when a variation occurs.
+    GLfloat baseAngleVariation;
+
+    /// For circular shooting style: when more than one shot is fired, angle difference between one shot and the next one. If zero, it will equals 2π divided by the number of bullets.
+    GLfloat angleIncrement;
+
+    /// For straight shooting style: space between each bullet.
+    GLfloat space;
+
+    /// For straight shooting style: translation added to the firing sprite location.
+    MELPoint translation;
 } MELShootingStyleDefinition;
 
 #define MELShootingStyleDefinitionDefaults .origin = MELShotOriginFront, .damage = 1, .bulletAmount = 1, .bulletAmountVariation = 0, .bulletSpeed = 500, .shootInterval = 0.1, .inversions = 0, .inversionInterval = 0, .bulletDefinition = 0

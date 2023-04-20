@@ -11,7 +11,6 @@
 		641793D729EEE84500D9D0A1 /* animationdefinitionframes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64A3D3A1288A848200B894D7 /* animationdefinitionframes.h */; };
 		641793D829EEE84500D9D0A1 /* aimedshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */; };
 		641793D929EEE84500D9D0A1 /* circularshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBD29EC28C9005D1CB3 /* circularshootingstyle.h */; };
-		641793DA29EEE84500D9D0A1 /* compositeshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */; };
 		641793DB29EEE84500D9D0A1 /* shootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBA29EC28C8005D1CB3 /* shootingstyle.h */; };
 		641793DC29EEE84500D9D0A1 /* shootingstyledefinition.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBE29EC28C9005D1CB3 /* shootingstyledefinition.h */; };
 		641793DD29EEE84500D9D0A1 /* shotmotion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* shotmotion.h */; };
@@ -22,7 +21,6 @@
 		641793E229EEE85400D9D0A1 /* animationdefinitionframes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64A3D3A1288A848200B894D7 /* animationdefinitionframes.h */; };
 		641793E329EEE85400D9D0A1 /* aimedshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */; };
 		641793E429EEE85400D9D0A1 /* circularshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBD29EC28C9005D1CB3 /* circularshootingstyle.h */; };
-		641793E529EEE85400D9D0A1 /* compositeshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */; };
 		641793E629EEE85400D9D0A1 /* shootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBA29EC28C8005D1CB3 /* shootingstyle.h */; };
 		641793E729EEE85400D9D0A1 /* shootingstyledefinition.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBE29EC28C9005D1CB3 /* shootingstyledefinition.h */; };
 		641793E829EEE85400D9D0A1 /* shotmotion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* shotmotion.h */; };
@@ -645,21 +643,12 @@
 		64EEAA5727426CE700776662 /* melstring.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64718A21273AAE5300547977 /* melstring.h */; };
 		64EEAA59274280B500776662 /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
 		64EEAA5A274280B500776662 /* decorator.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EEAA58274280B500776662 /* decorator.c */; };
-		64EECBC229EC28CA005D1CB3 /* shootingstyledefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBB429EC28C7005D1CB3 /* shootingstyledefinition.c */; };
-		64EECBC329EC28CA005D1CB3 /* shootingstyledefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBB429EC28C7005D1CB3 /* shootingstyledefinition.c */; };
-		64EECBC429EC28CA005D1CB3 /* shootingstyledefinition.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBB429EC28C7005D1CB3 /* shootingstyledefinition.c */; };
-		64EECBC529EC28CA005D1CB3 /* compositeshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64EECBC629EC28CA005D1CB3 /* compositeshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64EECBC729EC28CA005D1CB3 /* compositeshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBC829EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBC929EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBCA29EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBCB29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBCC29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBCD29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64EECBCE29EC28CA005D1CB3 /* compositeshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBB829EC28C8005D1CB3 /* compositeshootingstyle.c */; };
-		64EECBCF29EC28CA005D1CB3 /* compositeshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBB829EC28C8005D1CB3 /* compositeshootingstyle.c */; };
-		64EECBD029EC28CA005D1CB3 /* compositeshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBB829EC28C8005D1CB3 /* compositeshootingstyle.c */; };
 		64EECBD129EC28CA005D1CB3 /* shotmotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* shotmotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBD229EC28CA005D1CB3 /* shotmotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* shotmotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBD329EC28CA005D1CB3 /* shotmotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* shotmotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -727,7 +716,6 @@
 				641793D729EEE84500D9D0A1 /* animationdefinitionframes.h in CopyFiles */,
 				641793D829EEE84500D9D0A1 /* aimedshootingstyle.h in CopyFiles */,
 				641793D929EEE84500D9D0A1 /* circularshootingstyle.h in CopyFiles */,
-				641793DA29EEE84500D9D0A1 /* compositeshootingstyle.h in CopyFiles */,
 				641793DB29EEE84500D9D0A1 /* shootingstyle.h in CopyFiles */,
 				641793DC29EEE84500D9D0A1 /* shootingstyledefinition.h in CopyFiles */,
 				641793DD29EEE84500D9D0A1 /* shotmotion.h in CopyFiles */,
@@ -823,7 +811,6 @@
 				641793E229EEE85400D9D0A1 /* animationdefinitionframes.h in CopyFiles */,
 				641793E329EEE85400D9D0A1 /* aimedshootingstyle.h in CopyFiles */,
 				641793E429EEE85400D9D0A1 /* circularshootingstyle.h in CopyFiles */,
-				641793E529EEE85400D9D0A1 /* compositeshootingstyle.h in CopyFiles */,
 				641793E629EEE85400D9D0A1 /* shootingstyle.h in CopyFiles */,
 				641793E729EEE85400D9D0A1 /* shootingstyledefinition.h in CopyFiles */,
 				641793E829EEE85400D9D0A1 /* shotmotion.h in CopyFiles */,
@@ -1106,11 +1093,8 @@
 		64D24D8D276A7FB30088D3B8 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		64EEAA4627418C7500776662 /* melstring-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "melstring-test.c"; sourceTree = "<group>"; };
 		64EEAA58274280B500776662 /* decorator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = decorator.c; sourceTree = "<group>"; };
-		64EECBB429EC28C7005D1CB3 /* shootingstyledefinition.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shootingstyledefinition.c; sourceTree = "<group>"; };
-		64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compositeshootingstyle.h; sourceTree = "<group>"; };
 		64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aimedshootingstyle.h; sourceTree = "<group>"; };
 		64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = straightshootingstyle.h; sourceTree = "<group>"; };
-		64EECBB829EC28C8005D1CB3 /* compositeshootingstyle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compositeshootingstyle.c; sourceTree = "<group>"; };
 		64EECBB929EC28C8005D1CB3 /* shotmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shotmotion.h; sourceTree = "<group>"; };
 		64EECBBA29EC28C8005D1CB3 /* shootingstyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shootingstyle.h; sourceTree = "<group>"; };
 		64EECBBB29EC28C9005D1CB3 /* aimedshootingstyle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aimedshootingstyle.c; sourceTree = "<group>"; };
@@ -1650,10 +1634,7 @@
 			children = (
 				64EECBBF29EC28C9005D1CB3 /* shootingstyle.c */,
 				64EECBBA29EC28C8005D1CB3 /* shootingstyle.h */,
-				64EECBB429EC28C7005D1CB3 /* shootingstyledefinition.c */,
 				64EECBBE29EC28C9005D1CB3 /* shootingstyledefinition.h */,
-				64EECBB829EC28C8005D1CB3 /* compositeshootingstyle.c */,
-				64EECBB529EC28C7005D1CB3 /* compositeshootingstyle.h */,
 				64EECBBB29EC28C9005D1CB3 /* aimedshootingstyle.c */,
 				64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */,
 				64EECBBC29EC28C9005D1CB3 /* circularshootingstyle.c */,
@@ -1797,7 +1778,6 @@
 				64EECBD129EC28CA005D1CB3 /* shotmotion.h in Headers */,
 				64EECBE029EC28CA005D1CB3 /* shootingstyledefinition.h in Headers */,
 				64EECBD429EC28CA005D1CB3 /* shootingstyle.h in Headers */,
-				64EECBC529EC28CA005D1CB3 /* compositeshootingstyle.h in Headers */,
 				64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */,
 				643EEC85275D50B70039FDAB /* mapgroup.h in Headers */,
 				641FB72D277B46E3006DD7C3 /* drawmode.h in Headers */,
@@ -1890,7 +1870,6 @@
 				64EECBD629EC28CA005D1CB3 /* shootingstyle.h in Headers */,
 				64EECBCA29EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */,
 				64EECBF029EC8B04005D1CB3 /* camera.h in Headers */,
-				64EECBC729EC28CA005D1CB3 /* compositeshootingstyle.h in Headers */,
 				64EECBCD29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */,
 				64EECBE229EC28CA005D1CB3 /* shootingstyledefinition.h in Headers */,
 				64EECBDF29EC28CA005D1CB3 /* circularshootingstyle.h in Headers */,
@@ -1983,7 +1962,6 @@
 				64CB6706271F514300663A2E /* melmath.h in Headers */,
 				64CB6707271F514300663A2E /* operation.h in Headers */,
 				6460F0DF275411340040F95A /* keyvaluetable.h in Headers */,
-				64EECBC629EC28CA005D1CB3 /* compositeshootingstyle.h in Headers */,
 				64EECBDE29EC28CA005D1CB3 /* circularshootingstyle.h in Headers */,
 				64EECBC929EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */,
 				64EECBCC29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */,
@@ -2193,7 +2171,6 @@
 				642B2AC025FD4A6900183D42 /* textureatlas.c in Sources */,
 				642B2A6425FD456B00183D42 /* maprenderer.c in Sources */,
 				642B2AD325FD4E9800183D42 /* texture.c in Sources */,
-				64EECBCE29EC28CA005D1CB3 /* compositeshootingstyle.c in Sources */,
 				642B2A8725FD49C100183D42 /* singleframeanimation.c in Sources */,
 				642B2ABF25FD4A6900183D42 /* surfacememory.c in Sources */,
 				64C35482281006D000D843C2 /* stringdictionary.c in Sources */,
@@ -2212,7 +2189,6 @@
 				642B2AC925FD4A6900183D42 /* surface.c in Sources */,
 				642B2AAC25FD49F600183D42 /* nomotion.c in Sources */,
 				642B2AA125FD49E500183D42 /* simplespritehitbox.c in Sources */,
-				64EECBC229EC28CA005D1CB3 /* shootingstyledefinition.c in Sources */,
 				64F5D1562760E46C000C3967 /* mmkprojectformat-test.c in Sources */,
 				642B2A9125FD49C100183D42 /* noanimation.c in Sources */,
 				642B2A5725FD451F00183D42 /* inputstream.c in Sources */,
@@ -2316,11 +2292,9 @@
 				643EED11275E8D7E0039FDAB /* animation.c in Sources */,
 				643EED12275E8D7E0039FDAB /* animationframe.c in Sources */,
 				643EED13275E8D7E0039FDAB /* animationtype.c in Sources */,
-				64EECBD029EC28CA005D1CB3 /* compositeshootingstyle.c in Sources */,
 				64F5D17A2760FDE1000C3967 /* Named.swift in Sources */,
 				64F5D16D2760F6AD000C3967 /* Scene.swift in Sources */,
 				643EED14275E8D7E0039FDAB /* loopinganimation.c in Sources */,
-				64EECBC429EC28CA005D1CB3 /* shootingstyledefinition.c in Sources */,
 				643EED15275E8D7E0039FDAB /* noanimation.c in Sources */,
 				643EED16275E8D7E0039FDAB /* playonceanimation.c in Sources */,
 				643EED17275E8D7E0039FDAB /* singleframeanimation.c in Sources */,
@@ -2420,7 +2394,6 @@
 				64718A26273AAE5300547977 /* melstring.c in Sources */,
 				64CB6725271F51E300663A2E /* hitbox.c in Sources */,
 				64CB6726271F51E300663A2E /* rotatedhitbox.c in Sources */,
-				64EECBCF29EC28CA005D1CB3 /* compositeshootingstyle.c in Sources */,
 				64D00E852731D85500C8A675 /* project.c in Sources */,
 				64CB6727271F51E300663A2E /* simplespritehitbox.c in Sources */,
 				64C35483281006D000D843C2 /* stringdictionary.c in Sources */,
@@ -2455,7 +2428,6 @@
 				64A3D3A6288A848200B894D7 /* animationdefinitionframes.c in Sources */,
 				64CB673B271F51E400663A2E /* random.c in Sources */,
 				64CB673C271F51E400663A2E /* meltime.c in Sources */,
-				64EECBC329EC28CA005D1CB3 /* shootingstyledefinition.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

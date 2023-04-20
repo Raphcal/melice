@@ -23,8 +23,12 @@ void MELCameraSetSize(MELSize size) {
 }
 
 MELBoolean MELCameraSpriteIsInView(MELSprite * _Nonnull sprite) {
+    MELPoint origin = *cameraOrigin;
     return MELHitboxCollidesWithRectangle(sprite->hitbox, (MELRectangle) {
-        .origin = *cameraOrigin,
+        .origin = {
+            .x = origin.x + cameraSize.width / 2,
+            .y = origin.y + cameraSize.height / 2,
+        },
         .size = cameraSize,
     });
 }

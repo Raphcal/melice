@@ -9,37 +9,24 @@
 #include "circularshootingstyle.h"
 
 #include "shotmotion.h"
+#include "melmath.h"
 
-MELCircularShootingStyleDefinition * _Nonnull MELCircularShootingStyleDefinitionAlloc(void) {
-    MELCircularShootingStyleDefinition value = (MELCircularShootingStyleDefinition) {
-        {
-            MELShootingStyleDefinitionDefaults,
-            .shootingStyleAlloc = (MELShootingStyleDefinitionShootingStyleAlloc) MELCircularShootingStyleAlloc
-        },
-        0,
-        0,
-        0
-    };
-    MELCircularShootingStyleDefinition *self = malloc(sizeof(MELCircularShootingStyleDefinition));
-    memcpy(self, &value, sizeof(MELCircularShootingStyleDefinition));
-    return self;
-}
-
-MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELCircularShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
+MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
     MELCircularShootingStyle *self = malloc(sizeof(MELCircularShootingStyle));
     *self = (MELCircularShootingStyle) {
-        MELShootingStyleMake(&MELCircularShootingStyleClass, (const MELShootingStyleDefinition *)definition, spriteManager),
-        definition->baseAngle,
-        definition->baseAngleVariation
+        .super = MELShootingStyleMake(&MELCircularShootingStyleClass, definition, spriteManager),
+        .baseAngle = definition->baseAngle,
+        .baseAngleVariation = definition->baseAngleVariation,
     };
     return (MELShootingStyle *)self;
 }
 
-void MELCircularShootingStyleShoot(MELCircularShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
-    const MELCircularShootingStyleDefinition *definition = (const MELCircularShootingStyleDefinition *) self->super.definition;
+void MELCircularShootingStyleShoot(MELShootingStyle * _Nonnull shootingStyle, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
+    MELCircularShootingStyle *self = (MELCircularShootingStyle *)shootingStyle;
+    const MELShootingStyleDefinition *definition = self->super.definition;
     MELSpriteManager *spriteManager = self->super.spriteManager;
     
-    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->super.bulletDefinition];
+    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->bulletDefinition];
     bulletDefinition.type = type;
     
     const int bulletAmount = self->super.bulletAmount;
@@ -50,8 +37,8 @@ void MELCircularShootingStyleShoot(MELCircularShootingStyle * _Nonnull self, MEL
         angleIncrement = MEL_2_PI / bulletAmount;
     }
     
-    const GLfloat bulletSpeed = definition->super.bulletSpeed;
-    const int damage = definition->super.damage;
+    const GLfloat bulletSpeed = definition->bulletSpeed;
+    const int damage = definition->damage;
     
     for (int index = 0; index < bulletAmount; index++) {
         MELPoint speed = MELPointMake(cosf(currentAngle) * bulletSpeed, sinf(currentAngle) * bulletSpeed);
@@ -66,19 +53,16 @@ void MELCircularShootingStyleShoot(MELCircularShootingStyle * _Nonnull self, MEL
     self->baseAngle += self->baseAngleVariation;
 }
 
-void MELCircularShootingStyleInvert(MELCircularShootingStyle * _Nonnull self) {
+void MELCircularShootingStyleInvert(MELShootingStyle * _Nonnull shootingStyle) {
+    MELCircularShootingStyle *self = (MELCircularShootingStyle *)shootingStyle;
     if (self->super.definition->inversions & MELShootingStyleInversionAngle) {
         self->baseAngleVariation = -self->baseAngleVariation;
     }
 }
 
-MELShootingStyleDefinition * _Nonnull MELCircularShootingStyleCast(MELCircularShootingStyleDefinition * _Nonnull self) {
-    return &self->super;
-}
-
 const MELShootingStyleClass MELCircularShootingStyleClass = {
     .update = &MELShootingStyleUpdate,
-    .shoot = (void (*)(MELShootingStyle *, MELPoint, GLfloat, MELSpriteType, unsigned int)) &MELCircularShootingStyleShoot,
-    .invert = (void (*)(MELShootingStyle *)) &MELCircularShootingStyleInvert,
+    .shoot = &MELCircularShootingStyleShoot,
+    .invert = &MELCircularShootingStyleInvert,
     .deinit = &NoShootingStyleDeinit,
 };

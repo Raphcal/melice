@@ -8,8 +8,6 @@
 
 #include "playonceanimation.h"
 
-#include "meltime.h"
-
 void MELPlayOnceAnimationStart(MELPlayOnceAnimation * _Nonnull self) {
     MELAnimationSetFrameIndex((MELAnimation *)self, 0);
     self->startDate = MELMilliTime();

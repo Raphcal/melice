@@ -11,43 +11,30 @@
 #include "shotmotion.h"
 #include "random.h"
 
-MELAimedShootingStyleDefinition * _Nonnull MELAimedShootingStyleDefinitionAlloc(void) {
-    MELAimedShootingStyleDefinition value = (MELAimedShootingStyleDefinition) {
-        {
-            MELShootingStyleDefinitionDefaults,
-            .shootingStyleAlloc = (MELShootingStyleDefinitionShootingStyleAlloc) MELAimedShootingStyleAlloc
-        },
-        MELSpriteTypePlayer
-    };
-    MELAimedShootingStyleDefinition *self = malloc(sizeof(MELAimedShootingStyleDefinition));
-    memcpy(self, &value, sizeof(MELAimedShootingStyleDefinition));
-    return self;
-}
-
-MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELAimedShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
+MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
     MELShootingStyle *self = malloc(sizeof(MELShootingStyle));
-    *self = MELShootingStyleMake(&MELAimedShootingStyleClass, (const MELShootingStyleDefinition *)definition, spriteManager);
+    *self = MELShootingStyleMake(&MELAimedShootingStyleClass, definition, spriteManager);
     return self;
 }
 
 MELList(MELSpriteRef) MELAimedShootingStyleGetTargets(MELShootingStyle * _Nonnull self) {
-    const MELAimedShootingStyleDefinition *definition = (const MELAimedShootingStyleDefinition *) self->definition;
+    const MELShootingStyleDefinition *definition = self->definition;
     MELSpriteManager *spriteManager = self->spriteManager;
     // TODO: Filtrer le groupe pour ne prendre que les sprites dont la type est TargetType car plusieurs types peuvent être dans le même groupe.
     return spriteManager->groups[spriteManager->groupForType[definition->targetType]];
 }
 
 void MELAimedShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
-    const MELAimedShootingStyleDefinition *definition = (const MELAimedShootingStyleDefinition *) self->definition;
+    const MELShootingStyleDefinition *definition = self->definition;
     MELSpriteManager *spriteManager = self->spriteManager;
 
-    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->super.bulletDefinition];
+    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->bulletDefinition];
     bulletDefinition.type = type;
     
     MELList(MELSpriteRef) targets = MELAimedShootingStyleGetTargets(self);
     
-    const GLfloat bulletSpeed = definition->super.bulletSpeed;
-    const int damage = definition->super.damage;
+    const GLfloat bulletSpeed = definition->bulletSpeed;
+    const int damage = definition->damage;
     
     const int bulletAmount = self->bulletAmount;
     for (int index = 0; index < bulletAmount; index++) {
@@ -66,10 +53,6 @@ void MELAimedShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origi
 
         MELSpriteSetMotion(shot, MELBulletMotionAlloc(angleToTarget, speed, damage));
     }
-}
-
-MELShootingStyleDefinition * _Nonnull MELAimedShootingStyleCast(MELAimedShootingStyleDefinition * _Nonnull self) {
-    return &self->super;
 }
 
 const MELShootingStyleClass MELAimedShootingStyleClass = {

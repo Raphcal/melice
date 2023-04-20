@@ -13,6 +13,7 @@
 
 #include "animation.h"
 #include "animationdefinition.h"
+#include "meltime.h"
 
 /**
  * Class of playing once animations.

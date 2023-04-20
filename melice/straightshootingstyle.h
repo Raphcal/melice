@@ -17,16 +17,6 @@
  */
 extern const MELShootingStyleClass MELStraightShootingStyleClass;
 
-typedef struct {
-    MELShootingStyleDefinition super;
-    GLfloat space;
-    MELPoint translation;
-} MELStraightShootingStyleDefinition;
-
-MELStraightShootingStyleDefinition * _Nonnull MELStraightShootingStyleDefinitionAlloc(void);
-
-MELShootingStyle * _Nonnull MELStraightShootingStyleAlloc(const MELStraightShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
-
-MELShootingStyleDefinition * _Nonnull MELStraightShootingStyleCast(MELStraightShootingStyleDefinition * _Nonnull self);
+MELShootingStyle * _Nonnull MELStraightShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
 #endif /* straightshootingstyle_h */

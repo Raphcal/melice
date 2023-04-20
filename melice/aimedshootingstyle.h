@@ -17,15 +17,6 @@
  */
 extern const MELShootingStyleClass MELAimedShootingStyleClass;
 
-typedef struct {
-    MELShootingStyleDefinition super;
-    MELSpriteType targetType;
-} MELAimedShootingStyleDefinition;
-
-MELAimedShootingStyleDefinition * _Nonnull MELAimedShootingStyleDefinitionAlloc(void);
-
-MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELAimedShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
-
-MELShootingStyleDefinition * _Nonnull MELAimedShootingStyleCast(MELAimedShootingStyleDefinition * _Nonnull self);
+MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
 #endif /* aimedshootingstyle_h */

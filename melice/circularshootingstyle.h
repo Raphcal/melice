@@ -18,28 +18,11 @@
 extern const MELShootingStyleClass MELCircularShootingStyleClass;
 
 typedef struct {
-    MELShootingStyleDefinition super;
-
-    /// Angle du premier tir.
-    GLfloat baseAngle;
-    
-    /// Variation de l'angle de départ.
-    GLfloat baseAngleVariation;
-    
-    /// Différence d'angle entre 2 tirs.
-    GLfloat angleIncrement;
-} MELCircularShootingStyleDefinition;
-
-typedef struct {
     MELShootingStyle super;
     GLfloat baseAngle;
     GLfloat baseAngleVariation;
 } MELCircularShootingStyle;
 
-MELCircularShootingStyleDefinition * _Nonnull MELCircularShootingStyleDefinitionAlloc(void);
-
-MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELCircularShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
-
-MELShootingStyleDefinition * _Nonnull MELCircularShootingStyleCast(MELCircularShootingStyleDefinition * _Nonnull self);
+MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
 
 #endif /* circularshootingstyle_h */

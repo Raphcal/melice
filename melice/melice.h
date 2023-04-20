@@ -68,7 +68,6 @@
 #import "shootingstyle.h"
 #import "aimedshootingstyle.h"
 #import "circularshootingstyle.h"
-#import "compositeshootingstyle.h"
 #import "straightshootingstyle.h"
 #import "bitmap.h"
 #import "color.h"
