@@ -21,7 +21,7 @@ MELMotion * _Nonnull MELBulletMotionAlloc(GLfloat angle, MELPoint speed, int dam
         {
             &MELBulletMotionClass
         },
-        angle + M_PI / 2,
+        angle,
         speed,
         damage,
         camera
@@ -34,7 +34,7 @@ void MELBulletMotionUpdate(MELBulletMotion * _Nonnull self, MELSprite * _Nonnull
     
     frame.origin = MELPointAdd(frame.origin, MELPointMultiplyByValue(self->speed, (GLfloat)timeSinceLastUpdate));
     sprite->frame = frame;
-    
+
     MELSurfaceSetVerticesWithQuadrilateral(sprite->surface, MELRectangleRotateWithPivot(frame, self->angle, frame.origin));
     MELCameraRemoveSpriteIfOutOfView(sprite);
 }

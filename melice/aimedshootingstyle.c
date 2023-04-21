@@ -35,7 +35,9 @@ void MELAimedShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origi
     
     const GLfloat bulletSpeed = definition->bulletSpeed;
     const int damage = definition->damage;
-    
+    const int animationIndex = definition->animation;
+    const float animationAngle = definition->animationAngle;
+
     const int bulletAmount = self->bulletAmount;
     for (int index = 0; index < bulletAmount; index++) {
         GLfloat angleToTarget;
@@ -48,10 +50,11 @@ void MELAimedShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origi
         
         MELPoint speed = MELPointMake(cosf(angleToTarget) * bulletSpeed, sinf(angleToTarget) * bulletSpeed);
         MELSprite *shot = MELSpriteAlloc(spriteManager, bulletDefinition, layer);
-        
         MELSpriteSetFrameOrigin(shot, origin);
-
-        MELSpriteSetMotion(shot, MELBulletMotionAlloc(angleToTarget, speed, damage));
+        MELSpriteSetMotion(shot, MELBulletMotionAlloc(animationAngle + angleToTarget, speed, damage));
+        if (animationIndex != 0) {
+            MELSpriteSetAnimation(shot, MELAnimationAlloc(bulletDefinition.animations.memory + animationIndex));
+        }
     }
 }
 

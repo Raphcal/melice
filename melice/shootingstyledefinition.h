@@ -46,6 +46,8 @@ typedef struct shootingstyledefinition {
     int bulletDefinition;
     /// Animation index inside the sprite definition.
     int animation;
+    /// Base angle of the animation. Will be used to rotate the bullets.
+    GLfloat animationAngle;
 
     /// Number of bullets shot at once.
     int bulletAmount;

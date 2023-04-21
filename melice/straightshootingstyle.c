@@ -25,22 +25,25 @@ static void MELStraightShootingStyleShoot(MELShootingStyle * _Nonnull self, MELP
     
     const GLfloat bulletSpeed = definition->bulletSpeed;
     const int damage = definition->damage;
+    const int animationIndex = definition->animation;
+    const float animationAngle = definition->animationAngle;
     const GLfloat space = definition->space;
-    
+
     const int bulletAmount = self->bulletAmount;
-    
+
     origin = MELPointAdd(origin, definition->translation);
-    
+
     GLfloat left = origin.x - (((GLfloat)bulletAmount - 1) * space) / 2;
-    
+
     for (int index = 0; index < bulletAmount; index++) {
         MELPoint speed = MELPointMake(cosf(angle) * bulletSpeed, sinf(angle) * bulletSpeed);
         MELSprite *shot = MELSpriteAlloc(spriteManager, bulletDefinition, layer);
-        
         MELSpriteSetFrameOrigin(shot, MELPointMake(left, origin.y));
-        
-        MELSpriteSetMotion(shot, MELBulletMotionAlloc(angle, speed, damage));
-        
+        MELSpriteSetMotion(shot, MELBulletMotionAlloc(animationAngle + angle, speed, damage));
+        if (animationIndex != 0) {
+            MELSpriteSetAnimation(shot, MELAnimationAlloc(bulletDefinition.animations.memory + animationIndex));
+        }
+
         left += space;
     }
 }
