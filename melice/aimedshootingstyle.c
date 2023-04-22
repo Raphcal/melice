@@ -8,7 +8,8 @@
 
 #include "aimedshootingstyle.h"
 
-#include "shotmotion.h"
+#include "bulletmotion.h"
+#include "animation.h"
 #include "random.h"
 
 MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {

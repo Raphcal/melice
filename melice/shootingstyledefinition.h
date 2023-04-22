@@ -23,7 +23,8 @@ typedef int MELShootingStyleInversion;
 
 typedef enum {
     MELShotOriginCenter,
-    MELShotOriginFront
+    MELShotOriginFront,
+    MELShotOriginBack,
 } MELShotOrigin;
 
 typedef enum {

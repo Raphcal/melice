@@ -8,7 +8,8 @@
 
 #include "straightshootingstyle.h"
 
-#include "shotmotion.h"
+#include "bulletmotion.h"
+#include "animation.h"
 
 MELShootingStyle * _Nonnull MELStraightShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
     MELShootingStyle *self = malloc(sizeof(MELShootingStyle));

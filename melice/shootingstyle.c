@@ -46,6 +46,9 @@ void MELShootingStyleUpdate(MELShootingStyle * _Nonnull self, MELSprite * _Nonnu
             case MELShotOriginFront:
                 origin = MELRectanglePointAtAngle(sprite->frame, angle);
                 break;
+            case MELShotOriginBack:
+                origin = MELRectanglePointAtAngle(sprite->frame, angle + MEL_PI);
+                break;
             default:
                 origin = sprite->frame.origin;
                 break;

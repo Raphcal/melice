@@ -6,8 +6,8 @@
 //  Copyright © 2019 Raphaël Calabro. All rights reserved.
 //
 
-#ifndef shotmotion_h
-#define shotmotion_h
+#ifndef bulletmotion_h
+#define bulletmotion_h
 
 #include "melstd.h"
 
@@ -21,9 +21,8 @@ typedef struct {
     GLfloat angle;
     MELPoint speed;
     int damage;
-    MELPoint * _Nonnull camera;
 } MELBulletMotion;
 
 MELMotion * _Nonnull MELBulletMotionAlloc(GLfloat angle, MELPoint speed, int damage);
 
-#endif /* shotmotion_h */
+#endif /* bulletmotion_h */

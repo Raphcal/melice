@@ -8,7 +8,8 @@
 
 #include "circularshootingstyle.h"
 
-#include "shotmotion.h"
+#include "bulletmotion.h"
+#include "animation.h"
 #include "melmath.h"
 
 MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
