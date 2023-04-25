@@ -32,8 +32,6 @@ static void MELStraightShootingStyleShoot(MELShootingStyle * _Nonnull self, MELP
 
     const int bulletAmount = self->bulletAmount;
 
-    origin = MELPointAdd(origin, definition->translation);
-
     GLfloat left = origin.x - (((GLfloat)bulletAmount - 1) * space) / 2;
 
     for (int index = 0; index < bulletAmount; index++) {

@@ -53,7 +53,13 @@ void MELShootingStyleUpdate(MELShootingStyle * _Nonnull self, MELSprite * _Nonnu
                 origin = sprite->frame.origin;
                 break;
         }
-        
+
+        const MELPoint translation = definition->translation;
+        origin = (MELPoint) {
+            .x = origin.x + translation.x,
+            .y = origin.y + translation.y
+        };
+
         // Salve de tir
         self->class->shoot(self, origin, angle, sprite->definition.type == MELSpriteTypePlayer ? MELSpriteTypeFriendlyShot : MELSpriteTypeEnemyShot, sprite->layer);
         
