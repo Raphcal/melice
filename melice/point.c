@@ -11,6 +11,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "size.h"
+#include "direction.h"
 
 const MELPoint MELPointZero = {0, 0};
 const MELIntPoint MELIntPointZero = {0, 0};
@@ -105,6 +106,24 @@ MELPoint MELPointMultiplyByValue(MELPoint self, GLfloat value) {
         self.x * value,
         self.y * value
     };
+}
+
+MELPoint MELPointMultiplyByDirection(MELPoint self, MELDirection direction) {
+    switch (direction) {
+        case MELDirectionLeft:
+            return (MELPoint) {
+                // NOTE: May be better to return -fabsf(self.x) here instead and fabsf(self.x) for right direction.
+                .x = -self.x,
+                .y = self.y
+            };
+        case MELDirectionUp:
+            return (MELPoint) {
+                .x = self.x,
+                .y = -self.y
+            };
+        default:
+            return self;
+    }
 }
 
 MELPoint MELPointDivide(MELPoint lhs, MELPoint rhs) {

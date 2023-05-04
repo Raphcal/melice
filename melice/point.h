@@ -14,6 +14,7 @@
 #include "dictionary.h"
 
 typedef struct melsize MELSize;
+typedef enum meldirection MELDirection;
 
 /**
  * Floating coordinates of a point in a 2D plane.
@@ -141,11 +142,22 @@ MELPoint MELPointSubstractValue(MELPoint point, GLfloat value);
 MELPoint MELPointMultiply(MELPoint lhs, MELPoint rhs);
 
 /**
- * Multiplies the coordinates of the given points by the given value.
+ * Multiplies the coordinates of the given point by the given value.
  *
  * @return A point whose coordinates are self.x * value and self.y * value.
  */
 MELPoint MELPointMultiplyByValue(MELPoint self, GLfloat value);
+
+/**
+ * Multiplies the x or y coordinate of the given point by the value of the given direction.
+ * <ul>
+ * <li> When direction is <code>MELDirectionLeft</code>, the <code>x</code> coordinate is multiplied by -1.</li>
+ * <li> When direction is <code>MELDirectionUp</code>, the <code>y</code> coordinate is multiplied by -1.</li>
+ * </ul>
+ *
+ * @return A point with x or y coordinate multiplied by the value of the given direction.
+ */
+MELPoint MELPointMultiplyByDirection(MELPoint self, MELDirection direction);
 
 /**
  * Divides the coordinates of <code>lhs</code> points by those of <code>rhs</code>.
@@ -156,7 +168,7 @@ MELPoint MELPointMultiplyByValue(MELPoint self, GLfloat value);
 MELPoint MELPointDivide(MELPoint lhs, MELPoint rhs);
 
 /**
- * Divides the coordinates of the given points by the given value.
+ * Divides the coordinates of the given point by the given value.
  * If value is 0, the returned point will be (0, 0).
  *
  * @return A point whose coordinates are self.x / value and self.y / value.

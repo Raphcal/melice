@@ -24,6 +24,21 @@ public extension MELDirection {
         return MELDirectionAxeOf(self)
     }
 
+    var name: String {
+        switch self {
+        case MELDirectionLeft:
+            return "left"
+        case MELDirectionRight:
+            return "right"
+        case MELDirectionUp:
+            return "up"
+        case MELDirectionDown:
+            return "down"
+        default:
+            return "bad direction: \(self)"
+        }
+    }
+
     static func named(_ name: String) throws -> MELDirection {
         switch name {
         case "up":

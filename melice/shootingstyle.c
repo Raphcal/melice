@@ -10,6 +10,7 @@
 
 #include <math.h>
 #include "random.h"
+#include "melmath.h"
 
 MELPoint MELRectanglePointAtAngle(MELRectangle self, GLfloat angle);
 

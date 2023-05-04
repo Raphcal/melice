@@ -14,7 +14,7 @@
 #include "axe.h"
 #include "flip.h"
 
-typedef enum {
+typedef enum meldirection {
     MELDirectionLeft,
     MELDirectionRight,
     MELDirectionUp,
