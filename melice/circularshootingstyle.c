@@ -32,7 +32,7 @@ void MELCircularShootingStyleShoot(MELShootingStyle * _Nonnull shootingStyle, ME
 
     const int bulletAmount = self->super.bulletAmount;
 
-    GLfloat currentAngle = angle + definition->baseAngle;
+    GLfloat currentAngle = angle + self->baseAngle;
     GLfloat angleIncrement = definition->angleIncrement;
     if (!angleIncrement) {
         angleIncrement = MEL_2_PI / bulletAmount;
