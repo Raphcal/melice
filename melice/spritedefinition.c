@@ -26,8 +26,9 @@ MELSpriteDefinition MELSpriteDefinitionMakeWithInputStream(MELInputStream * _Non
 
     MELSpriteDefinition self;
     self.name = MELInputStreamReadNullableString(inputStream);
-    /* width */ MELInputStreamReadInt(inputStream);
-    /* height */ MELInputStreamReadInt(inputStream);
+    int32_t width = MELInputStreamReadInt(inputStream);
+    int32_t height = MELInputStreamReadInt(inputStream);
+    self.size = MELIntSizeMake(width, height);
     self.type = (MELSpriteType) MELInputStreamReadInt(inputStream);
     self.motionName = MELInputStreamReadNullableString(inputStream);
     self.loadScript = NULL;

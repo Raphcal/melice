@@ -17,9 +17,11 @@
 #include "palette.h"
 #include "imagepaletteimage.h"
 #include "spritetype.h"
+#include "size.h"
 
 typedef struct {
     char * _Nullable name;
+    MELIntSize size;
     MELSpriteType type;
     MELPaletteRef palette;
     MELAnimationDefinitionList animations;

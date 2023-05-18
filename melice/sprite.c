@@ -56,12 +56,20 @@ MELSprite * _Nonnull MELSpriteAlloc(MELSpriteManager * _Nonnull manager, MELSpri
 }
 
 MELSprite * _Nonnull MELSpriteAllocStandalone(MELSpriteDefinition definition) {
-    MELSprite *self = calloc(1, sizeof(MELSprite));
-    self->definition = definition;
-    self->direction = MELDirectionRight;
-    self->motion = MELNoMotionAlloc();
-    self->animation = MELNoAnimationAlloc(NULL);
-    self->hitbox = MELSimpleSpriteHitboxAlloc(self);
+    MELSprite *self = malloc(sizeof(MELSprite));
+    *self = (MELSprite) {
+        .definition = definition,
+        .frame = {
+            .size = {
+                .width = definition.size.width,
+                .height = definition.size.height,
+            }
+        },
+        .direction = MELDirectionRight,
+        .motion = MELNoMotionAlloc(),
+        .animation = MELNoAnimationAlloc(NULL),
+        .hitbox = MELSimpleSpriteHitboxAlloc(self)
+    };
     return self;
 }
 

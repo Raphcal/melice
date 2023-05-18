@@ -650,13 +650,18 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
         }
     }
 
-    MELSpriteDefinition spriteDefinition;
-    spriteDefinition.name = name;
-    spriteDefinition.type = type;
-    spriteDefinition.palette = defaultColorPalette;
-    spriteDefinition.animations = MELAnimationDefinitionListEmpty;
-    spriteDefinition.motionName = scriptFile;
-    spriteDefinition.loadScript = loadScript;
+    MELSpriteDefinition spriteDefinition = (MELSpriteDefinition) {
+        .name = name,
+        .size = {
+            .width = width,
+            .height = height,
+        },
+        .type = type,
+        .palette = defaultColorPalette,
+        .animations = MELAnimationDefinitionListEmpty,
+        .motionName = scriptFile,
+        .loadScript = loadScript,
+    };
 
     MELAnimationDefinitionListEnsureCapacity(&spriteDefinition.animations, project->animationNames.count);
     memset(spriteDefinition.animations.memory, 0, sizeof(MELAnimationDefinition) * spriteDefinition.animations.capacity);
@@ -676,31 +681,13 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
     return spriteDefinition;
 }
 
-// TODO: Read and store the sprite size instead of guessing it ?
-MELIntSize guessSpriteSize(MELSpriteDefinition spriteDefinition) {
-    MELIntSize size = MELIntSizeZero;
-    for (unsigned int index = 0; index < spriteDefinition.animations.count; index++) {
-        MELAnimationDefinition animationDefinition = spriteDefinition.animations.memory[index];
-        if (animationDefinition.frameCount > 0 && animationDefinition.images != NULL) {
-            size = animationDefinition.images[0].size;
-            if (MELStringEquals(animationDefinition.name, "stand")) {
-                break;
-            }
-        }
-    }
-    return MELIntSizeEquals(size, MELIntSizeZero)
-            ? MELIntSizeMake(32, 32)
-            : size;
-}
-
 void MELMmkProjectFormatWriteSpriteDefinition(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELSpriteDefinition spriteDefinition) {
     // Name.
     MELOutputStreamWriteNullableString(outputStream, spriteDefinition.name);
 
     // General properties.
-    MELIntSize spriteSize = guessSpriteSize(spriteDefinition);
-    MELOutputStreamWriteInt(outputStream, spriteSize.width);
-    MELOutputStreamWriteInt(outputStream, spriteSize.height);
+    MELOutputStreamWriteInt(outputStream, spriteDefinition.size.width);
+    MELOutputStreamWriteInt(outputStream, spriteDefinition.size.height);
     MELOutputStreamWriteInt(outputStream, spriteDefinition.type);
     
     if (self->version >= 9) {
