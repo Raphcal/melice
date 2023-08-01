@@ -32,16 +32,16 @@ typedef struct melsprite {
 
     MELRectangle frame;
     MELDirection direction;
-    
+
     unsigned int layer;
     MELSurface surface;
     
     MELBoolean isRemoved;
-    
+
     MELHitbox * _Nullable hitbox;
     MELMotion * _Nullable motion;
-    
-	unsigned int animationIndex;
+
+    unsigned int animationIndex;
     MELAnimation * _Nonnull animation;
 } MELSprite;
 

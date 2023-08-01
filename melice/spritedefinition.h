@@ -25,6 +25,9 @@ typedef struct {
     MELSpriteType type;
     MELPaletteRef palette;
     MELAnimationDefinitionList animations;
+    int distance;
+    MELBoolean isExportable;
+    MELBoolean isGlobal;
     char * _Nullable motionName;
     char * _Nullable loadScript;
 } MELSpriteDefinition;

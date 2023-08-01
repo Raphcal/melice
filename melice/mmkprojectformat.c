@@ -612,6 +612,7 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
     char *name = NULL;
     int width, height;
     int type = 0;
+    int distance = 0;
     MELBoolean exportable = true;
     MELBoolean global = false;
     char *loadScript = NULL;
@@ -623,7 +624,7 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
         height = MELInputStreamReadInt(inputStream);
         type = MELInputStreamReadInt(inputStream);
         if (self->version >= 9) {
-            /* distance */ MELInputStreamReadInt(inputStream);
+            distance = MELInputStreamReadInt(inputStream);
         }
         if (self->version >= 10) {
             exportable = MELInputStreamReadBoolean(inputStream);
@@ -659,6 +660,9 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
         .type = type,
         .palette = defaultColorPalette,
         .animations = MELAnimationDefinitionListEmpty,
+        .distance = distance,
+        .isExportable = exportable,
+        .isGlobal = global,
         .motionName = scriptFile,
         .loadScript = loadScript,
     };
@@ -691,13 +695,13 @@ void MELMmkProjectFormatWriteSpriteDefinition(MELProjectFormat * _Nonnull self, 
     MELOutputStreamWriteInt(outputStream, spriteDefinition.type);
     
     if (self->version >= 9) {
-        MELOutputStreamWriteInt(outputStream, /* distance */ 1);
+        MELOutputStreamWriteInt(outputStream, spriteDefinition.distance);
     }
     if (self->version >= 10) {
-        MELOutputStreamWriteBoolean(outputStream, /* exportable */ true);
+        MELOutputStreamWriteBoolean(outputStream, spriteDefinition.isExportable);
     }
     if (self->version >= 11) {
-        MELOutputStreamWriteBoolean(outputStream, /* global */ false);
+        MELOutputStreamWriteBoolean(outputStream, spriteDefinition.isGlobal);
     }
 
     // Script
