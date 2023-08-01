@@ -575,6 +575,12 @@ MELMutableMap MELMmkProjectFormatReadMap(MELProjectFormat * _Nonnull self, MELPr
         map.super.size = MELIntSizeMake(layerWidth > map.super.size.width ? layerWidth : map.super.size.width, layerHeight > map.super.size.height ? layerHeight : map.super.size.height);
     }
 
+    if (self->version >= 16) {
+        map.isExportable = MELInputStreamReadBoolean(inputStream);
+    } else {
+        map.isExportable = true;
+    }
+
     return map;
 }
 
@@ -605,6 +611,10 @@ void MELMmkProjectFormatWriteMap(MELProjectFormat * _Nonnull self, MELProject pr
 
     for (unsigned int index = 0; index < map.super.layers.count; index++) {
         self->class->writeLayer(self, project, outputStream, map.super.layers.memory[index]);
+    }
+
+    if (self->version >= 16) {
+        MELOutputStreamWriteBoolean(outputStream, map.isExportable);
     }
 }
 
