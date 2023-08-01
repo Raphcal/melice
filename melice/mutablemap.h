@@ -21,6 +21,7 @@ typedef struct {
     MELMap super;
     MELPalette * _Nonnull palette;
     char * _Nullable name;
+    MELBoolean isExportable;
 } MELMutableMap;
 
 extern const MELMutableMap MELMutableMapEmpty;

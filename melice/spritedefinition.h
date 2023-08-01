@@ -25,11 +25,11 @@ typedef struct {
     MELSpriteType type;
     MELPaletteRef palette;
     MELAnimationDefinitionList animations;
-    int distance;
-    MELBoolean isExportable;
-    MELBoolean isGlobal;
     char * _Nullable motionName;
     char * _Nullable loadScript;
+    uint8_t distance;
+    uint8_t exportable;
+    uint8_t global;
 } MELSpriteDefinition;
 
 MELListDefine(MELSpriteDefinition);

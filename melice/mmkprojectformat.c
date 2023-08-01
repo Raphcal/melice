@@ -12,7 +12,7 @@
 #include "melstring.h"
 #include "melmath.h"
 
-#define LAST_SUPPORTED_VERSION 15
+#define LAST_SUPPORTED_VERSION 16
 #define DATA_ENTRY "data"
 
 const MELProjectFormat MELMmkProjectFormat = {&MELMmkProjectFormatClass, NULL, LAST_SUPPORTED_VERSION};
@@ -575,6 +575,12 @@ MELMutableMap MELMmkProjectFormatReadMap(MELProjectFormat * _Nonnull self, MELPr
         map.super.size = MELIntSizeMake(layerWidth > map.super.size.width ? layerWidth : map.super.size.width, layerHeight > map.super.size.height ? layerHeight : map.super.size.height);
     }
 
+    if (self->version >= 16) {
+        map.isExportable = MELInputStreamReadBoolean(inputStream);
+    } else {
+        map.isExportable = true;
+    }
+
     return map;
 }
 
@@ -606,15 +612,21 @@ void MELMmkProjectFormatWriteMap(MELProjectFormat * _Nonnull self, MELProject pr
     for (unsigned int index = 0; index < map.super.layers.count; index++) {
         self->class->writeLayer(self, project, outputStream, map.super.layers.memory[index]);
     }
+
+    if (self->version >= 16) {
+        MELOutputStreamWriteBoolean(outputStream, map.isExportable);
+    }
 }
 
 MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
+    MELSpriteDefinition spriteDefinition;
+
     char *name = NULL;
     int width, height;
     int type = 0;
     int distance = 0;
-    MELBoolean exportable = true;
-    MELBoolean global = false;
+    uint8_t exportable = 1;
+    uint8_t global = 0;
     char *loadScript = NULL;
     char *scriptFile = NULL;
     
@@ -651,7 +663,7 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
         }
     }
 
-    MELSpriteDefinition spriteDefinition = (MELSpriteDefinition) {
+    spriteDefinition = (MELSpriteDefinition) {
         .name = name,
         .size = {
             .width = width,
@@ -661,8 +673,8 @@ MELSpriteDefinition MELMmkProjectFormatReadSpriteDefinition(MELProjectFormat * _
         .palette = defaultColorPalette,
         .animations = MELAnimationDefinitionListEmpty,
         .distance = distance,
-        .isExportable = exportable,
-        .isGlobal = global,
+        .exportable = exportable,
+        .global = global,
         .motionName = scriptFile,
         .loadScript = loadScript,
     };
@@ -693,15 +705,15 @@ void MELMmkProjectFormatWriteSpriteDefinition(MELProjectFormat * _Nonnull self, 
     MELOutputStreamWriteInt(outputStream, spriteDefinition.size.width);
     MELOutputStreamWriteInt(outputStream, spriteDefinition.size.height);
     MELOutputStreamWriteInt(outputStream, spriteDefinition.type);
-    
+
     if (self->version >= 9) {
         MELOutputStreamWriteInt(outputStream, spriteDefinition.distance);
     }
     if (self->version >= 10) {
-        MELOutputStreamWriteBoolean(outputStream, spriteDefinition.isExportable);
+        MELOutputStreamWriteBoolean(outputStream, spriteDefinition.exportable);
     }
     if (self->version >= 11) {
-        MELOutputStreamWriteBoolean(outputStream, spriteDefinition.isGlobal);
+        MELOutputStreamWriteBoolean(outputStream, spriteDefinition.global);
     }
 
     // Script
