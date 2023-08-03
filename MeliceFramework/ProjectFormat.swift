@@ -52,7 +52,7 @@ extension MELProjectFormat {
         let result = openProject(&self, &inputStream, &project)
         MELInputStreamDeinit(&inputStream)
 
-        if !result {
+        if result == .false {
             throw ProjectFormatError.unableToOpenProject
         }
     }
@@ -62,7 +62,7 @@ extension MELProjectFormat {
         else {
             throw ProjectFormatError.openOperationNotSupported
         }
-        if !openProject(&self, inputStream, &project) {
+        if openProject(&self, inputStream, &project) == .false {
             throw ProjectFormatError.unableToOpenProject
         }
     }

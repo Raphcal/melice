@@ -62,7 +62,7 @@ typedef enum {
     true
 } MELBoolean;
 #else
-typedef bool MELBoolean;
+typedef uint8_t MELBoolean;
 #endif
 
 #endif /* melstd_h */

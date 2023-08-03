@@ -39,11 +39,11 @@ public extension MELStringDictionary {
     }
 
     func contains(key: String) -> Bool {
-        return MELStringDictionaryContainsKey(self, key)
+        return MELStringDictionaryContainsKey(self, key) != .false
     }
 
     func contains(key: UnsafePointer<CChar>) -> Bool {
-        return MELStringDictionaryContainsKey(self, key)
+        return MELStringDictionaryContainsKey(self, key) != .false
     }
 
     func data(for key: String) -> Data? {

@@ -414,6 +414,7 @@
 		648DA2C4280EA5D2002E4435 /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648DA2C3280EA5D2002E4435 /* Sprite.swift */; };
 		648DA2C6280EA6E7002E4435 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648DA2C5280EA6E7002E4435 /* Animation.swift */; };
 		6491F44C2810583F00226603 /* stringdictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = 64C3547E281006D000D843C2 /* stringdictionary.c */; };
+		64948BB92A7AEC6300C649A5 /* MELBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64948BB82A7AEC6300C649A5 /* MELBoolean.swift */; };
 		64985A6127FB7EC800B5EEB7 /* MmkbProjectFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */; };
 		64A005A729F45E6D0038C266 /* simpleshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A005A529F45E6D0038C266 /* simpleshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64A005A829F45E6D0038C266 /* simpleshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64A005A529F45E6D0038C266 /* simpleshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1096,6 +1097,7 @@
 		648589E22784DAC900650C98 /* SpriteInstance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteInstance.swift; sourceTree = "<group>"; };
 		648DA2C3280EA5D2002E4435 /* Sprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
 		648DA2C5280EA6E7002E4435 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		64948BB82A7AEC6300C649A5 /* MELBoolean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MELBoolean.swift; sourceTree = "<group>"; };
 		64985A6027FB7EC800B5EEB7 /* MmkbProjectFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MmkbProjectFormat.swift; sourceTree = "<group>"; };
 		64A005A529F45E6D0038C266 /* simpleshootingstyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simpleshootingstyle.h; sourceTree = "<group>"; };
 		64A005A629F45E6D0038C266 /* simpleshootingstyle.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = simpleshootingstyle.c; sourceTree = "<group>"; };
@@ -1719,6 +1721,7 @@
 				64F5D1792760FDE1000C3967 /* Named.swift */,
 				64F5D17E276109C7000C3967 /* List.swift */,
 				64C3548528103AA800D843C2 /* StringDictionary.swift */,
+				64948BB82A7AEC6300C649A5 /* MELBoolean.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -2368,6 +2371,7 @@
 				643EED1C275E8D7E0039FDAB /* rotatedhitbox.c in Sources */,
 				64F5D16B2760F6AD000C3967 /* Rectangle.swift in Sources */,
 				643EED1D275E8D7E0039FDAB /* simplespritehitbox.c in Sources */,
+				64948BB92A7AEC6300C649A5 /* MELBoolean.swift in Sources */,
 				643EED1E275E8D7E0039FDAB /* spritehitbox.c in Sources */,
 				64EECBD929EC28CA005D1CB3 /* aimedshootingstyle.c in Sources */,
 				64F5D1732760FA49000C3967 /* imagepaletteimage.c in Sources */,

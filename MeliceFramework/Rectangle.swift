@@ -19,11 +19,11 @@ public extension MELRectangle {
     }
 
     func contains(_ point: MELPoint) -> Bool {
-        return MELRectangleContainsPoint(self, point)
+        return MELRectangleContainsPoint(self, point) != 0
     }
 
     func intersects(with rectangle: MELRectangle) -> Bool {
-        return MELRectangleIntersectsWithRectangle(self, rectangle)
+        return MELRectangleIntersectsWithRectangle(self, rectangle) != .false
     }
 
     static func + (lhs: MELRectangle, rhs: MELPoint) -> MELRectangle {
@@ -42,7 +42,7 @@ public extension MELRectangle {
 
 extension MELRectangle: Equatable {
     public static func == (lhs: MELRectangle, rhs: MELRectangle) -> Bool {
-        return MELRectangleEquals(lhs, rhs)
+        return MELRectangleEquals(lhs, rhs) != .false
     }
 }
 
@@ -58,11 +58,11 @@ public extension MELIntRectangle {
     }
 
     func contains(_ point: MELIntPoint) -> Bool {
-        return MELIntRectangleContainsPoint(self, point)
+        return MELIntRectangleContainsPoint(self, point) != .false
     }
 
     func intersects(with rectangle: MELIntRectangle) -> Bool {
-        return MELIntRectangleIntersectsWithRectangle(self, rectangle)
+        return MELIntRectangleIntersectsWithRectangle(self, rectangle) != .false
     }
 
     static func + (lhs: MELIntRectangle, rhs: MELIntPoint) -> MELIntRectangle {
@@ -81,7 +81,7 @@ public extension MELIntRectangle {
 
 extension MELIntRectangle: Equatable {
     public static func == (lhs: MELIntRectangle, rhs: MELIntRectangle) -> Bool {
-        return MELIntRectangleEquals(lhs, rhs)
+        return MELIntRectangleEquals(lhs, rhs) != .false
     }
 }
 

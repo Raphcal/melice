@@ -15,7 +15,7 @@ extension MELPoint: Equatable {
     /// Compares the two given point.
     /// - returns: `true` if the points are the same, `false` otherwise.
     public static func ==(lhs: MELPoint, rhs: MELPoint) -> Bool {
-        return MELPointEquals(lhs, rhs)
+        return MELPointEquals(lhs, rhs) != .false
     }
 }
 
@@ -136,7 +136,7 @@ extension MELIntPoint: Equatable {
     /// Compares the two given point.
     /// - returns: `true` if the points are the same, `false` otherwise.
     public static func ==(lhs: MELIntPoint, rhs: MELIntPoint) -> Bool {
-        return MELIntPointEquals(lhs, rhs)
+        return MELIntPointEquals(lhs, rhs) != 0
     }
 }
 

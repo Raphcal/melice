@@ -68,7 +68,7 @@ public struct MELMmkbProjectFormat {
 
                 if let palette = palette {
                     MELPaletteRefListPush(&project.palettes, palette)
-                    hasDefaultColorPalette = hasDefaultColorPalette || (MELPaletteIsColorPalette(palette) && palette.count == 256)
+                    hasDefaultColorPalette = hasDefaultColorPalette || (MELPaletteIsColorPalette(palette) != .false && palette.count == 256)
                 }
             }
         }
@@ -88,7 +88,7 @@ public struct MELMmkbProjectFormat {
                 var map = format.class.pointee.readMap!(&format, &project, &inputStream)
                 MELInputStreamDeinit(&inputStream)
 
-                let groundIndex = map.layers.firstIndex { layer in layer.isSolid || layer.nameAsString == "Piste" } ?? 0
+                let groundIndex = map.layers.firstIndex { layer in layer.isSolid != .false || layer.nameAsString == "Piste" } ?? 0
                 var ground = map.layers[groundIndex]
 
                 mutableData = NSMutableData(data: instancesData)

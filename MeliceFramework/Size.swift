@@ -36,7 +36,7 @@ extension MELSize: AdditiveArithmetic {
 
 extension MELSize: Equatable {
     public static func == (lhs: MELSize, rhs: MELSize) -> Bool {
-        return MELSizeEquals(lhs, rhs)
+        return MELSizeEquals(lhs, rhs) != .false
     }
 }
 
@@ -65,6 +65,6 @@ extension MELIntSize: AdditiveArithmetic {
 
 extension MELIntSize: Equatable {
     public static func == (lhs: MELIntSize, rhs: MELIntSize) -> Bool {
-        return MELIntSizeEquals(lhs, rhs)
+        return MELIntSizeEquals(lhs, rhs) != .false
     }
 }
