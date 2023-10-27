@@ -83,7 +83,7 @@ void MELSpriteDeinit(MELSprite *_Nonnull self) {
     MELSpriteSetMotion(self, NULL);
     MELSpriteSetHitbox(self, NULL);
     MELSpriteSetAnimation(self, NULL);
-    
+
     MELSurfaceArrayReleaseSurface(self->surface.parent, self->surface);
     self->parent = NULL;
 }
