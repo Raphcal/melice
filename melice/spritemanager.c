@@ -67,7 +67,7 @@ void MELSpriteManagerRemoveAllSprites(MELSpriteManager * _Nonnull self) {
         self->groups[index].count = 0;
     }
 
-    MELSurfaceArrayClear(self->layerSurfaces);
+    MELSurfaceArrayClearPool(self->layerSurfaces);
 }
 
 void MELSpriteManagerCommitRemoval(MELSpriteManager * _Nonnull self) {

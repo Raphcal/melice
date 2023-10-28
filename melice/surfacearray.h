@@ -56,10 +56,14 @@ void MELSurfaceArrayAppendTexturedColoredQuad(MELSurfaceArray * _Nonnull self, M
 void MELSurfaceArrayAppendTilesWithAlpha(MELSurfaceArray * _Nonnull self, int32_t * _Nonnull tiles, MELIntSize size, MELIntSize tileSize, uint8_t alpha, MELTextureAtlas atlas);
 
 /**
- * Fill the entire memory of the given surface with zeroes.
- * Cursor value is untouched.
+ * Remove every surface but keep the allocated memory.
  */
 void MELSurfaceArrayClear(MELSurfaceArray * _Nonnull self);
+
+/**
+ * Clear the pool and its allocated surfaces.
+ */
+void MELSurfaceArrayClearPool(MELSurfaceArray * _Nonnull self);
 
 /**
  * Returns a surface from the pool if available, creates a new one otherwise.

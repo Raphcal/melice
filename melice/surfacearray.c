@@ -106,6 +106,15 @@ void MELSurfaceArrayClear(MELSurfaceArray * _Nonnull self) {
     self->pool.count = 0;
 }
 
+void MELSurfaceArrayClearPool(MELSurfaceArray * _Nonnull self) {
+    const size_t poolCount = self->pool.count;
+    self->count -= poolCount;
+    self->vertex.count -= MELCoordinatesByVertex * MELVertexesByQuad * poolCount;
+    self->texture.count -= MELCoordinatesByTexture * MELVertexesByQuad * poolCount;
+    self->color.count -= MELCoordinatesByColor * MELVertexesByQuad * poolCount;
+    self->pool.count = 0;
+}
+
 MELSurface MELSurfaceArrayAvailableSurface(MELSurfaceArray * _Nonnull self) {
     if (self->pool.count > 0 && self->pool.capacity > 0) {
         return MELListPop(self->pool);
