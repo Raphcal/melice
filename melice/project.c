@@ -13,7 +13,7 @@
 
 #define DEFAULT_MAP_SIZE ((MELIntSize){20,15})
 
-static const unsigned int defaultAnimationNameCount = 15;
+#define defaultAnimationNameCount 15
 
 static const char defaultAnimationNames[defaultAnimationNameCount][10] = {
     "stand", "walk", "run", "skid", "jump", "fall", "shaky", "bounce", "duck", "raise", "appear", "disappear", "attack", "hurt", "die"
