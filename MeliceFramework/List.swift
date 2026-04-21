@@ -143,7 +143,7 @@ extension MELBooleanList: EquatableMELList {
         newSelf[index] = value
         var oldSelf = self
         self = newSelf
-        DispatchQueue.main.async {
+        Task { @MainActor in
             MELBooleanListDeinit(&oldSelf)
         }
     }
