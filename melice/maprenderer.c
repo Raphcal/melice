@@ -140,12 +140,10 @@ void MELMapRendererDrawTranslated(MELMapRenderer self, MELPoint translation) {
 void MELMapRendererDrawTranslatedShowing(MELMapRenderer self, MELPoint translation, MELBooleanList visibilities) {
     MELRendererRefBindTexture(self.renderer, &self.atlas.texture);
 
-    assert(visibilities.count == self.map->layers.count);
-
     MELSurfaceArray *layerSurfaces = self.layerSurfaces;
     MELLayer *layers = self.map->layers.memory;
     for (unsigned int index = 0; index < self.map->layers.count; index++) {
-        if (visibilities.memory[index]) {
+        if (index >= visibilities.count || visibilities.memory[index]) {
             MELRendererRefTranslateToTopLeft(self.renderer, MELPointMultiply(translation, layers[index].scrollRate));
 
             MELSurfaceArray layerSurface = layerSurfaces[index];

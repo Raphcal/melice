@@ -45,10 +45,16 @@ double MELDoubleMaxVariadic(int count, ...) {
 }
 
 GLfloat MELFloatBound(GLfloat min, GLfloat value, GLfloat max) {
+    if (max < min) {
+        return min;
+    }
     return value < min ? min : (value < max ? value : max);
 }
 
 int32_t MELIntBound(int32_t min, int32_t value, int32_t max) {
+    if (max < min) {
+        return min;
+    }
     return value < min ? min : (value < max ? value : max);
 }
 
