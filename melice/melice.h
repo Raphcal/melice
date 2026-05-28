@@ -27,6 +27,7 @@
 #import "mutablemap.h"
 #import "maprenderer.h"
 #import "mapgroup.h"
+#import "autotile.h"
 #import "palette.h"
 #import "colorpalette.h"
 #import "imagepalette.h"

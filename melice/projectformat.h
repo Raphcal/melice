@@ -63,6 +63,15 @@ typedef struct {
 
     MELSpriteInstance (* _Nullable readSpriteInstance)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
     void (* _Nullable writeSpriteInstance)(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELSpriteInstance spriteInstance);
+
+    MELAutoTileGroup (* _Nullable readAutoTileGroup)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
+    void (* _Nullable writeAutoTileGroup)(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELAutoTileGroup group);
+
+    MELAutoTilePattern (* _Nullable readAutoTilePattern)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
+    void (* _Nullable writeAutoTilePattern)(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELAutoTilePattern pattern);
+
+    MELAutoTileOutput (* _Nullable readAutoTileOutput)(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream);
+    void (* _Nullable writeAutoTileOutput)(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELAutoTileOutput output);
 } MELProjectFormatClass;
 
 typedef struct melprojectformat {

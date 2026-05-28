@@ -13,6 +13,7 @@
 #include "list.h"
 #include "rectangle.h"
 #include "size.h"
+#include "autotile.h"
 
 typedef enum {
     MELDecoratorTypeHitbox,
@@ -20,6 +21,7 @@ typedef enum {
     MELDecoratorTypeFunction,
     MELDecoratorTypeYFunction,
     MELDecoratorTypeFlag,
+    MELDecoratorTypeAutoTileGroup,
     MELDecoratorTypeSize,
 } MELDecoratorType;
 
@@ -42,6 +44,11 @@ typedef struct {
     MELIntSize size;
 } MELSizeDecorator;
 
+typedef struct {
+    MELDecorator super;
+    MELAutoTileGroup * _Nullable group;
+} MELAutoTileGroupDecorator;
+
 typedef MELDecorator * _Nullable MELDecoratorRef;
 
 MELListDefine(MELDecoratorRef);
@@ -63,5 +70,9 @@ void MELHitboxDecoratorDeinit(MELHitboxDecorator * _Nonnull self);
 MELSizeDecorator * _Nonnull MELSizeDecoratorRefMakeWithSizeDecoratorRef(MELSizeDecorator * _Nonnull other);
 void MELSizeDecoratorDeinit(MELSizeDecorator * _Nonnull self);
 MELSizeDecorator * _Nullable MELDecoratorRefListGetSizeDecorator(MELDecoratorRefList self);
+
+MELAutoTileGroupDecorator * _Nullable MELDecoratorRefListGetAutoTileGroupDecorator(MELDecoratorRefList self);
+void MELAutoTileGroupDecoratorDeinit(MELAutoTileGroupDecorator * _Nonnull self);
+MELAutoTileGroupDecorator * _Nonnull MELFunctionDecoratorRefMakeWithAutoTileGroupDecoratorRef(MELAutoTileGroupDecorator * _Nonnull other);
 
 #endif /* decorator_h */

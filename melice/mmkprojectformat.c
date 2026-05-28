@@ -12,7 +12,7 @@
 #include "melstring.h"
 #include "melmath.h"
 
-#define LAST_SUPPORTED_VERSION 16
+#define LAST_SUPPORTED_VERSION 18
 #define DATA_ENTRY "data"
 
 const MELProjectFormat MELMmkProjectFormat = {&MELMmkProjectFormatClass, NULL, LAST_SUPPORTED_VERSION};
@@ -400,9 +400,33 @@ MELImagePalette * _Nullable MELMmkProjectFormatReadImagePalette(MELProjectFormat
 
     MELColorPalette *colorPalette = self->class->readColorPalette(self, project, inputStream);
 
+    MELAutoTileGroupList groups = MELAutoTileGroupListEmpty;
+    if (self->version >= 18) {
+        const int32_t groupCount = MELInputStreamReadInt(inputStream);
+        groups = MELAutoTileGroupListMakeWithInitialCapacity(groupCount);
+        for (unsigned int index = 0; index < groupCount; index++) {
+            MELAutoTileGroup group = self->class->readAutoTileGroup(self, project, inputStream);
+            MELAutoTileGroupListPush(&groups, group);
+        }
+    }
+
     const int count = MELInputStreamReadInt(inputStream);
 
-    MELImagePalette imagePalette = {{&MELImagePaletteClass, name, MELIntSizeMake(tileSize, tileSize), (uint8_t) MELIntBound(0, columns, 0xFF), count}, colorPalette, malloc(sizeof(MELImagePaletteImage) * count)};
+    MELImagePalette imagePalette = {
+        .super = {
+            .class = &MELImagePaletteClass,
+            .name = name,
+            .tileSize = {
+                .width = tileSize,
+                .height = tileSize,
+            },
+            .columns = (uint8_t) MELIntBound(0, columns, 0xFF),
+            .count = count
+        },
+        .colorPalette = colorPalette,
+        .images = malloc(sizeof(MELImagePaletteImage) * count),
+        .autoTileGroups = groups,
+    };
 
     for (int index = 0; index < count; index++) {
         MELImagePaletteImage image = self->class->readImagePaletteImage(self, project, inputStream);
@@ -433,12 +457,28 @@ MELImagePalette * _Nullable MELMmkProjectFormatReadImagePalette(MELProjectFormat
                 MELDecoratorRefListPush(&image.decorators, &yFunctionDecorator->super);
             }
         }
+        if (self->version >= 18) {
+            MELBoolean hasGroup = MELInputStreamReadBoolean(inputStream);
+            if (hasGroup) {
+                int32_t groupIndex = MELInputStreamReadInt(inputStream);
+                MELAutoTileGroupDecorator *decorator = malloc(sizeof(MELAutoTileGroupDecorator));
+                *decorator = (MELAutoTileGroupDecorator) {
+                    .super = {
+                        .type = MELDecoratorTypeAutoTileGroup,
+                    },
+                    .group = groups.memory + groupIndex
+                };
+            }
+        }
 
         imagePalette.images[index] = image;
     }
 
     MELImagePalette *result = malloc(sizeof(MELImagePalette));
     *result = imagePalette;
+    for (unsigned int index = 0; index < groups.count; index++) {
+        groups.memory[index].palette = result;
+    }
     return result;
 }
 
@@ -448,6 +488,14 @@ void MELMmkProjectFormatWriteImagePalette(MELProjectFormat * _Nonnull self, MELP
     MELOutputStreamWriteInt(outputStream, imagePalette->super.columns);
 
     self->class->writeColorPalette(self, project, outputStream, imagePalette->colorPalette);
+
+    if (self->version >= 18) {
+        const MELAutoTileGroupList groups = imagePalette->autoTileGroups;
+        MELOutputStreamWriteInt(outputStream, (int)groups.count);
+        for (unsigned int index = 0; index < groups.count; index++) {
+            self->class->writeAutoTileGroup(self, project, outputStream, groups.memory[index]);
+        }
+    }
 
     const uint32_t count = imagePalette->super.count;
     MELOutputStreamWriteInt(outputStream, count);
@@ -466,6 +514,11 @@ void MELMmkProjectFormatWriteImagePalette(MELProjectFormat * _Nonnull self, MELP
             MELFunctionDecorator *yFunctionDecorator = MELDecoratorRefListGetYFunctionDecorator(image.decorators);
             char *function = yFunctionDecorator != NULL ? yFunctionDecorator->function : NULL;
             MELOutputStreamWriteNullableString(outputStream, function);
+        }
+        if (self->version >= 18) {
+            MELAutoTileGroupDecorator *decorator = MELDecoratorRefListGetAutoTileGroupDecorator(image.decorators);
+            MELAutoTileGroup *group = decorator != NULL ? decorator->group : NULL;
+            MELOutputStreamWriteBoolean(outputStream, group != NULL);
         }
     }
 }
@@ -884,6 +937,100 @@ void MELMmkProjectFormatWriteSpriteInstance(MELProjectFormat * _Nonnull self, ME
     }
 }
 
+MELAutoTileGroup MELMmkProjectFormatReadAutoTileGroup(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
+    char *name = MELInputStreamReadString(inputStream);
+    MELColor color = MELInputStreamReadColor(inputStream);
+    int32_t layer = MELInputStreamReadInt(inputStream);
+
+    const int patternCount = MELInputStreamReadInt(inputStream);
+    MELAutoTilePatternList patterns = MELAutoTilePatternListMakeWithInitialCapacity(patternCount);
+    for (unsigned int index = 0; index < patternCount; index++) {
+        MELAutoTilePattern pattern = self->class->readAutoTilePattern(self, project, inputStream);
+        // TODO: Définir le groupe au dessus ?
+        MELAutoTilePatternListPush(&patterns, pattern);
+    }
+
+    return (MELAutoTileGroup) {
+        .name = name,
+        .color = color,
+        .layer = layer,
+        .patterns = patterns,
+    };
+}
+
+void MELMmkProjectFormatWriteAutoTileGroup(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELAutoTileGroup group) {
+    MELOutputStreamWriteString(outputStream, group.name);
+    MELOutputStreamWriteColor(outputStream, group.color);
+    MELOutputStreamWriteInt(outputStream, group.layer);
+    MELOutputStreamWriteInt(outputStream, (int)group.patterns.count);
+    for (size_t index = 0; index < group.patterns.count; index++) {
+        self->class->writeAutoTilePattern(self, project, outputStream, group.patterns.memory[index]);
+    }
+}
+
+MELAutoTilePattern MELMmkProjectFormatReadAutoTilePattern(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
+    int count = 0;
+    char *name = MELInputStreamReadString(inputStream);
+    int32_t width = MELInputStreamReadInt(inputStream);
+    int32_t height = MELInputStreamReadInt(inputStream);
+    int32_t *pattern = MELInputStreamReadIntArray(inputStream, &count);
+    int32_t outputCount = MELInputStreamReadInt(inputStream);
+
+    MELAutoTilePattern result = (MELAutoTilePattern) {
+        .name = name,
+        .width = width,
+        .height = height,
+    };
+    memcpy(result.pattern, pattern, sizeof(int32_t) * MELAutoTilePatternSize);
+
+    result.outputs = MELAutoTileOutputListMakeWithInitialCapacity(outputCount);
+    for (unsigned int index = 0; index < outputCount; index++) {
+        MELAutoTileOutput output = self->class->readAutoTileOutput(self, project, inputStream);
+        // TODO: Définir le pattern au dessus ?
+        MELAutoTileOutputListPush(&result.outputs, output);
+    }
+    return result;
+}
+
+void MELMmkProjectFormatWriteAutoTilePattern(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELAutoTilePattern pattern) {
+    MELOutputStreamWriteString(outputStream, pattern.name);
+    MELOutputStreamWriteInt(outputStream, pattern.width);
+    MELOutputStreamWriteInt(outputStream, pattern.height);
+    MELOutputStreamWriteIntArray(outputStream, pattern.pattern, MELAutoTilePatternSize);
+    MELOutputStreamWriteInt(outputStream, (int)pattern.outputs.count);
+
+    for (size_t index = 0; index < pattern.outputs.count; index++) {
+        self->class->writeAutoTileOutput(self, project, outputStream, pattern.outputs.memory[index]);
+    }
+}
+
+MELAutoTileOutput MELMmkProjectFormatReadAutoTileOutput(MELProjectFormat * _Nonnull self, MELProject * _Nonnull project, MELInputStream * _Nonnull inputStream) {
+    int count = 0;
+    char *name = MELInputStreamReadNullableString(inputStream);
+    int32_t width = MELInputStreamReadInt(inputStream);
+    int32_t height = MELInputStreamReadInt(inputStream);
+    int32_t *tiles = MELInputStreamReadIntArray(inputStream, &count);
+    int32_t weight = MELInputStreamReadInt(inputStream);
+
+    MELAutoTileOutput result = (MELAutoTileOutput) {
+        .name = name,
+        .width = width,
+        .height = height,
+        .weight = weight,
+    };
+    memcpy(result.tiles, tiles, sizeof(int32_t) * MELAutoTilePatternSize);
+
+    return result;
+}
+
+void MELMmkProjectFormatWriteAutoTileOutput(MELProjectFormat * _Nonnull self, MELProject project, MELOutputStream * _Nonnull outputStream, MELAutoTileOutput output) {
+    MELOutputStreamWriteNullableString(outputStream, output.name);
+    MELOutputStreamWriteInt(outputStream, output.width);
+    MELOutputStreamWriteInt(outputStream, output.height);
+    MELOutputStreamWriteIntArray(outputStream, output.tiles, MELAutoTilePatternSize);
+    MELOutputStreamWriteInt(outputStream, output.weight);
+}
+
 const MELProjectFormatClass MELMmkProjectFormatClass = {
     .openProject = &MELMmkProjectFormatOpenProject,
     .openProjectAtPath = &MELMmkProjectFormatOpenProjectAtPath,
@@ -915,5 +1062,11 @@ const MELProjectFormatClass MELMmkProjectFormatClass = {
     .readAnimationDefinition = &MELMmkProjectFormatReadAnimationDefinition,
     .writeAnimationDefinition = &MELMmkProjectFormatWriteAnimationDefinition,
     .readSpriteInstance = &MELMmkProjectFormatReadSpriteInstance,
-    .writeSpriteInstance = &MELMmkProjectFormatWriteSpriteInstance
+    .writeSpriteInstance = &MELMmkProjectFormatWriteSpriteInstance,
+    .readAutoTileGroup = &MELMmkProjectFormatReadAutoTileGroup,
+    .writeAutoTileGroup = &MELMmkProjectFormatWriteAutoTileGroup,
+    .readAutoTileOutput = &MELMmkProjectFormatReadAutoTileOutput,
+    .writeAutoTileOutput = &MELMmkProjectFormatWriteAutoTileOutput,
+    .readAutoTilePattern = &MELMmkProjectFormatReadAutoTilePattern,
+    .writeAutoTilePattern = &MELMmkProjectFormatWriteAutoTilePattern,
 };

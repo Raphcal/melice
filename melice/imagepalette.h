@@ -13,13 +13,15 @@
 #include "palette.h"
 #include "colorpalette.h"
 #include "imagepaletteimage.h"
+#include "autotile.h"
 
 extern const MELPaletteClass MELImagePaletteClass;
 
-typedef struct {
+typedef struct melimagepalette {
     MELPalette super;
     MELColorPalette * _Nonnull colorPalette;
     MELImagePaletteImage * _Nullable images;
+    MELAutoTileGroupList autoTileGroups;
 } MELImagePalette;
 
 extern const MELImagePalette MELImagePaletteEmpty;

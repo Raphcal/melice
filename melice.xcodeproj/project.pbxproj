@@ -729,6 +729,12 @@
 		64F5D17F276109C7000C3967 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D17E276109C7000C3967 /* List.swift */; };
 		64F5D18127610A4D000C3967 /* MutableMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D18027610A4D000C3967 /* MutableMap.swift */; };
 		64F5D18327610A69000C3967 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D18227610A69000C3967 /* Palette.swift */; };
+		64FE7E6D2FC8566E00C62C25 /* autotile.c in Sources */ = {isa = PBXBuildFile; fileRef = 64FE7E6C2FC8566E00C62C25 /* autotile.c */; };
+		64FE7E6E2FC8566E00C62C25 /* autotile.h in Headers */ = {isa = PBXBuildFile; fileRef = 64FE7E6B2FC8566E00C62C25 /* autotile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64FE7E6F2FC8566E00C62C25 /* autotile.c in Sources */ = {isa = PBXBuildFile; fileRef = 64FE7E6C2FC8566E00C62C25 /* autotile.c */; };
+		64FE7E702FC8566E00C62C25 /* autotile.h in Headers */ = {isa = PBXBuildFile; fileRef = 64FE7E6B2FC8566E00C62C25 /* autotile.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64FE7E712FC8566E00C62C25 /* autotile.c in Sources */ = {isa = PBXBuildFile; fileRef = 64FE7E6C2FC8566E00C62C25 /* autotile.c */; };
+		64FE7E722FC8566E00C62C25 /* autotile.h in Headers */ = {isa = PBXBuildFile; fileRef = 64FE7E6B2FC8566E00C62C25 /* autotile.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1157,6 +1163,8 @@
 		64F5D17E276109C7000C3967 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		64F5D18027610A4D000C3967 /* MutableMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableMap.swift; sourceTree = "<group>"; };
 		64F5D18227610A69000C3967 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		64FE7E6B2FC8566E00C62C25 /* autotile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = autotile.h; sourceTree = "<group>"; };
+		64FE7E6C2FC8566E00C62C25 /* autotile.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = autotile.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1271,6 +1279,8 @@
 		642B29DF25FD448A00183D42 /* map */ = {
 			isa = PBXGroup;
 			children = (
+				64FE7E6B2FC8566E00C62C25 /* autotile.h */,
+				64FE7E6C2FC8566E00C62C25 /* autotile.c */,
 				64D00E65272F37A500C8A675 /* decorator.h */,
 				64EEAA58274280B500776662 /* decorator.c */,
 				642B29E225FD448A00183D42 /* layer.h */,
@@ -1829,6 +1839,7 @@
 				643EEC85275D50B70039FDAB /* mapgroup.h in Headers */,
 				64A005AF29F45E840038C266 /* particuleshootingstyle.h in Headers */,
 				641FB72D277B46E3006DD7C3 /* drawmode.h in Headers */,
+				64FE7E702FC8566E00C62C25 /* autotile.h in Headers */,
 				642B2AC225FD4A6900183D42 /* surfacearray.h in Headers */,
 				64F35E3F280CACAD00A5A620 /* flip.h in Headers */,
 				642B29D625FD444600183D42 /* random.h in Headers */,
@@ -1931,6 +1942,7 @@
 				643EECF4275E6A6C0039FDAB /* random.h in Headers */,
 				641FB733277B5DD4006DD7C3 /* drawmode.h in Headers */,
 				64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */,
+				64FE7E6E2FC8566E00C62C25 /* autotile.h in Headers */,
 				64F35E3E280CAC9F00A5A620 /* flip.h in Headers */,
 				643EECF5275E6A6C0039FDAB /* miniz.h in Headers */,
 			);
@@ -1955,6 +1967,7 @@
 				64CB66D8271F514100663A2E /* buttonmapping.h in Headers */,
 				64CB66D9271F514100663A2E /* filemanager.h in Headers */,
 				64CB66DA271F514100663A2E /* gamecontroller.h in Headers */,
+				64FE7E722FC8566E00C62C25 /* autotile.h in Headers */,
 				64CB66DC271F514100663A2E /* inputsource.h in Headers */,
 				64CB66DD271F514100663A2E /* inputsourcetype.h in Headers */,
 				64CB66DE271F514100663A2E /* inputstream.h in Headers */,
@@ -2119,7 +2132,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
 					642B298A25FD340C00183D42 = {
 						CreatedOnToolsVersion = 12.4;
@@ -2227,6 +2240,7 @@
 				642B2AC025FD4A6900183D42 /* textureatlas.c in Sources */,
 				642B2A6425FD456B00183D42 /* maprenderer.c in Sources */,
 				642B2AD325FD4E9800183D42 /* texture.c in Sources */,
+				64FE7E6F2FC8566E00C62C25 /* autotile.c in Sources */,
 				642B2A8725FD49C100183D42 /* singleframeanimation.c in Sources */,
 				642B2ABF25FD4A6900183D42 /* surfacememory.c in Sources */,
 				64C35482281006D000D843C2 /* stringdictionary.c in Sources */,
@@ -2333,6 +2347,7 @@
 				643EED05275E8D7D0039FDAB /* mutablemap.c in Sources */,
 				64EECBEB29EC28CA005D1CB3 /* straightshootingstyle.c in Sources */,
 				643EED06275E8D7D0039FDAB /* mapgroup.c in Sources */,
+				64FE7E6D2FC8566E00C62C25 /* autotile.c in Sources */,
 				64F5D18327610A69000C3967 /* Palette.swift in Sources */,
 				643EED07275E8D7D0039FDAB /* maprenderer.c in Sources */,
 				643EED08275E8D7D0039FDAB /* palette.c in Sources */,
@@ -2427,6 +2442,7 @@
 				64CB6711271F51E100663A2E /* gamecontroller.c in Sources */,
 				64D00E8C2731D9A700C8A675 /* mutablemap.c in Sources */,
 				64CB6712271F51E100663A2E /* gamecontrollerlistener.c in Sources */,
+				64FE7E712FC8566E00C62C25 /* autotile.c in Sources */,
 				64EECBD829EC28CA005D1CB3 /* aimedshootingstyle.c in Sources */,
 				64CB6713271F51E100663A2E /* inputsource.c in Sources */,
 				64A005B329F45E840038C266 /* particuleshootingstyle.c in Sources */,

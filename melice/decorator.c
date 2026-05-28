@@ -123,3 +123,22 @@ MELSizeDecorator * _Nonnull MELSizeDecoratorRefMakeWithSizeDecoratorRef(MELSizeD
 MELSizeDecorator * _Nullable MELDecoratorRefListGetSizeDecorator(MELDecoratorRefList self) {
     return (MELSizeDecorator *)MELDecoratorRefListForType(self, MELDecoratorTypeSize);
 }
+
+#pragma mark - MELAutoTileGroupDecorator
+
+MELAutoTileGroupDecorator * _Nullable MELDecoratorRefListGetAutoTileGroupDecorator(MELDecoratorRefList self) {
+    return (MELAutoTileGroupDecorator *)MELDecoratorRefListForType(self, MELDecoratorTypeAutoTileGroup);
+}
+
+void MELAutoTileGroupDecoratorDeinit(MELAutoTileGroupDecorator * _Nonnull self) {
+    self->group = NULL;
+}
+
+MELAutoTileGroupDecorator * _Nonnull MELFunctionDecoratorRefMakeWithAutoTileGroupDecoratorRef(MELAutoTileGroupDecorator * _Nonnull other) {
+    MELAutoTileGroupDecorator *self = malloc(sizeof(MELAutoTileGroupDecorator));
+    *self = (MELAutoTileGroupDecorator) {
+        .super = other->super,
+        .group = other->group,
+    };
+    return self;
+}
