@@ -1,74 +1,76 @@
 //
 //  circularshootingstyle.c
-//  shmup
+//  Kuroobi
 //
-//  Created by Raphaël Calabro on 18/03/2019.
-//  Copyright © 2019 Raphaël Calabro. All rights reserved.
+//  Created by Raphaël Calabro on 10/02/2023.
 //
 
 #include "circularshootingstyle.h"
 
-#include "bulletmotion.h"
-#include "animation.h"
+#include "bullet.h"
 #include "melmath.h"
+#include "random.h"
 
-MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
-    MELCircularShootingStyle *self = malloc(sizeof(MELCircularShootingStyle));
-    *self = (MELCircularShootingStyle) {
-        .super = MELShootingStyleMake(&MELCircularShootingStyleClass, definition, spriteManager),
-        .baseAngle = definition->baseAngle,
-        .baseAngleVariation = definition->baseAngleVariation,
-    };
-    return (MELShootingStyle *)self;
+static void createBullets(MELShootingStyle * _Nonnull self, MELPoint origin, float angle, float initialDelta);
+
+static const MELShootingStyleClass CircularShootingStyleClass = (MELShootingStyleClass) {
+    .name = MELShootingStyleClassNameCircular,
+    .createBullets = createBullets,
+};
+
+const MELShootingStyleClass * _Nonnull CircularShootingStyleGetClass(void) {
+    return &CircularShootingStyleClass;
 }
 
-void MELCircularShootingStyleShoot(MELShootingStyle * _Nonnull shootingStyle, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
-    MELCircularShootingStyle *self = (MELCircularShootingStyle *)shootingStyle;
-    const MELShootingStyleDefinition *definition = self->super.definition;
-    MELSpriteManager *spriteManager = self->super.spriteManager;
-    
-    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->bulletDefinition];
-    bulletDefinition.type = type;
+void CircularShootingStyleInit(MELShootingStyle * _Nonnull self, const MELShootingStyleDefinition * _Nonnull definition) {
+    *self = (MELShootingStyle) {
+        .class = &CircularShootingStyleClass,
+        .definition = definition,
+        .baseAngle = definition->baseAngle,
+    };
+    MELShootingStyleInit(self);
+}
 
-    const int bulletAmount = self->super.bulletAmount;
+static void createBullets(MELShootingStyle * _Nonnull self, MELPoint origin, float angle, float initialDelta) {
+    const MELShootingStyleDefinition *definition = self->definition;
 
-    GLfloat currentAngle = angle + self->baseAngle;
-    GLfloat angleIncrement = definition->angleIncrement;
+    const float bulletSpeed = definition->bulletSpeed;
+    const float baseAngle = self->baseAngle;
+    self->baseAngle = baseAngle + definition->baseAngleVariation;
+    angle += baseAngle;
+
+    const unsigned int bulletAmount = self->bulletAmount;
+    float angleIncrement = definition->angleIncrement;
     if (!angleIncrement) {
         angleIncrement = MEL_2_PI / bulletAmount;
     }
 
-    const GLfloat bulletSpeed = definition->bulletSpeed;
-    const int damage = definition->damage;
-    const int animationIndex = definition->animation;
-    const float animationAngle = definition->animationAngle;
-
-    for (int index = 0; index < bulletAmount; index++) {
-        MELPoint speed = MELPointMake(cosf(currentAngle) * bulletSpeed, sinf(currentAngle) * bulletSpeed);
-        
-        MELSprite *shot = MELSpriteAlloc(spriteManager, bulletDefinition, layer);
-        MELSpriteSetFrameOrigin(shot, origin);
-        MELSpriteSetMotion(shot, MELBulletMotionAlloc(animationAngle + currentAngle, speed, damage));
-        if (animationIndex != 0) {
-            MELSpriteSetAnimation(shot, MELAnimationAlloc(bulletDefinition.animations.memory + animationIndex));
+    MELSprite *melTarget = MELShootingStyleGetTarget(self);
+    if (melTarget == NULL) {
+        for (unsigned int index = 0; index < bulletAmount; index++) {
+            const float cosAngle = cosf(angle);
+            const float sinAngle = sinf(angle);
+            BulletConstructor(self, (MELPoint) {
+                .x = origin.x + cosAngle * definition->space,
+                .y = origin.y + sinAngle * definition->space,
+            }, (MELPoint) {
+                .x = cosAngle * bulletSpeed,
+                .y = sinAngle * bulletSpeed,
+            }, angle, initialDelta);
+            angle += angleIncrement;
         }
-
-        currentAngle += angleIncrement;
+    } else {
+        const float angleToTarget = MELPointAngleToPoint(melTarget->frame.origin, origin);
+        const MELPoint speed = (MELPoint) {
+            .x = cosf(angleToTarget) * bulletSpeed,
+            .y = sinf(angleToTarget) * bulletSpeed
+        };
+        for (unsigned int index = 0; index < bulletAmount; index++) {
+            BulletConstructor(self, (MELPoint) {
+                .x = origin.x + cosf(angle) * definition->space,
+                .y = origin.y + sinf(angle) * definition->space,
+            }, speed, angleToTarget, initialDelta);
+            angle += angleIncrement;
+        }
     }
-    
-    self->baseAngle += self->baseAngleVariation;
 }
-
-void MELCircularShootingStyleInvert(MELShootingStyle * _Nonnull shootingStyle) {
-    MELCircularShootingStyle *self = (MELCircularShootingStyle *)shootingStyle;
-    if (self->super.definition->inversions & MELShootingStyleInversionAngle) {
-        self->baseAngleVariation = -self->baseAngleVariation;
-    }
-}
-
-const MELShootingStyleClass MELCircularShootingStyleClass = {
-    .update = &MELShootingStyleUpdate,
-    .shoot = &MELCircularShootingStyleShoot,
-    .invert = &MELCircularShootingStyleInvert,
-    .deinit = &NoShootingStyleDeinit,
-};

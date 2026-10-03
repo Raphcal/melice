@@ -1,60 +1,67 @@
 //
 //  shootingstyle.c
-//  shmup
+//  Kuroobi
 //
-//  Created by Raphaël Calabro on 14/03/2019.
-//  Copyright © 2019 Raphaël Calabro. All rights reserved.
+//  Created by Raphaël Calabro on 27/01/2023.
 //
 
 #include "shootingstyle.h"
 
-#include <math.h>
-#include "random.h"
+#include "burstshootingstyle.h"
+#include "circularshootingstyle.h"
+#include "simpleshootingstyle.h"
+#include "particuleshootingstyle.h"
+#include "sprite.h"
 #include "melmath.h"
+#include "random.h"
 
-MELPoint MELRectanglePointAtAngle(MELRectangle self, GLfloat angle);
+const MELShootingStyle MELShootingStyleEmpty = (MELShootingStyle) {};
 
-MELShootingStyle MELShootingStyleMake(const MELShootingStyleClass * _Nonnull class, const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
-    return (MELShootingStyle) {
-        .class = class,
-        .definition = definition,
-        .spriteManager = spriteManager,
-        .shootInterval = MELRandomTimeIntervalWithRange(0, definition->shootInterval),
-        .bulletAmount = definition->bulletAmount,
-        .bulletAmountVariation = definition->bulletAmountVariation,
-        .inversionInterval = definition->inversionInterval,
-    };
+static MELPoint shotOrigin(MELShotOrigin origin, MELRectangle frame, float angle) {
+    switch (origin) {
+        case MELShotOriginFront:
+            return MELRectangleOriginIsCenterGetPointAtAngle(frame, angle);
+        case MELShotOriginCenter:
+            return frame.origin;
+        case MELShotOriginBack:
+            return MELRectangleOriginIsCenterGetPointAtAngle(frame, angle + MEL_PI);
+        default:
+            return frame.origin;
+    }
 }
 
-void MELShootingStyleInvert(MELShootingStyle * _Nonnull self) {
-    if (self->definition->inversions & MELShootingStyleInversionAmount) {
+void MELShootingStyleInit(MELShootingStyle * _Nonnull self) {
+    const MELShootingStyleDefinition *definition = self->definition;
+    self->shootInterval = MELRandomFloat(definition->shootInterval);
+    self->bulletAmount = definition->bulletAmount;
+    self->bulletAmountVariation = definition->bulletAmountVariation;
+    self->inversionInterval = definition->inversionInterval;
+    self->shotsBeforePause = definition->pauseAfterShots;
+}
+
+#if ENABLE_SHOOTING_STYLE_INVERSIONS
+static void invert(MELShootingStyle * _Nonnull self, const MELShootingStyleInversion inversions) {
+    if (inversions & MELShootingStyleInversionAmount) {
         self->bulletAmountVariation = -self->bulletAmountVariation;
     }
-    self->class->invert(self);
 }
+#endif
 
-void MELShootingStyleUpdate(MELShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, GLfloat angle, MELTimeInterval timeSinceLastUpdate) {
-    MELTimeInterval shootInterval = self->shootInterval;
-    if (shootInterval > 0) {
-        shootInterval -= timeSinceLastUpdate;
-    } else {
-        shootInterval += self->definition->shootInterval;
-        
+void MELShootingStyleShootFromSprite(MELShootingStyle * _Nonnull self, MELSprite * _Nonnull sprite, float angle, MELTimeInterval timeSinceLastUpdate) {
+    MELTimeInterval shootInterval = self->shootInterval - timeSinceLastUpdate;
+    while (shootInterval <= 0) {
+        const float initialDelta = -shootInterval;
         const MELShootingStyleDefinition *definition = self->definition;
-        
-        MELPoint origin;
-        switch (definition->origin) {
-            case MELShotOriginFront:
-                origin = MELRectanglePointAtAngle(sprite->frame, angle);
-                break;
-            case MELShotOriginBack:
-                origin = MELRectanglePointAtAngle(sprite->frame, angle + MEL_PI);
-                break;
-            default:
-                origin = sprite->frame.origin;
-                break;
+
+        if (!definition->pauseDuration || self->shotsBeforePause > 0) {
+            shootInterval += MELFloatMax(definition->shootInterval, 0.01f);
+            self->shotsBeforePause -= definition->pauseDuration > 0;
+        } else if (self->shotsBeforePause == 0) {
+            shootInterval += MELFloatMax(definition->pauseDuration, 0.01f);
+            self->shotsBeforePause = definition->pauseAfterShots;
         }
 
+        MELPoint origin = shotOrigin(definition->origin, sprite->frame, angle);
         const MELPoint translation = definition->translation;
         origin = (MELPoint) {
             .x = origin.x + translation.x,
@@ -62,36 +69,52 @@ void MELShootingStyleUpdate(MELShootingStyle * _Nonnull self, MELSprite * _Nonnu
         };
 
         // Salve de tir
-        self->class->shoot(self, origin, angle, sprite->definition.type == MELSpriteTypePlayer ? MELSpriteTypeFriendlyShot : MELSpriteTypeEnemyShot, sprite->layer);
-        
-        self->bulletAmount += self->bulletAmountVariation;
-        
-        if (definition->inversions != 0) {
-            int inversionInterval = self->inversionInterval;
-            if (inversionInterval > 0) {
-                inversionInterval--;
-            } else {
-                inversionInterval = definition->inversionInterval;
-                MELShootingStyleInvert(self);
-            }
-            self->inversionInterval = inversionInterval;
+        self->spriteManager = sprite->parent;
+        self->layer = sprite->layer;
+        self->type = sprite->definition.type == MELSpriteTypePlayer ? MELSpriteTypeFriendlyShot : MELSpriteTypeEnemyShot;
+        self->class->createBullets(self, origin, angle, initialDelta);
+
+        self->bulletAmount += definition->bulletAmountVariation;
+
+#if ENABLE_SHOOTING_STYLE_INVERSIONS
+        const MELShootingStyleInversion inversions = definition->inversions;
+        if (inversions && self->inversionInterval > 0) {
+            self->inversionInterval--;
+        } else if (inversions) {
+            self->inversionInterval = definition->inversionInterval;
+            invert(self, inversions);
         }
+#endif
     }
     self->shootInterval = shootInterval;
 }
 
-void NoShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
-    // Aucune action.
+MELSprite * _Nullable MELShootingStyleGetTarget(const MELShootingStyle * _Nonnull self) {
+    const MELShootingStyleDefinition *definition = self->definition;
+    if (!definition->aimed) {
+        return NULL;
+    }
+    MELSpriteManager *spriteManager = self->spriteManager;
+    // TODO: Filtrer le groupe pour ne prendre que les sprites dont la type est TargetType car plusieurs types peuvent être dans le même groupe.
+    MELSpriteRefList sprites = spriteManager->groups[spriteManager->groupForType[definition->targetType]];
+    if (sprites.count > 0) {
+        return sprites.memory[MELRandomInt((int)sprites.count)];
+    } else {
+        return NULL;
+    }
 }
 
-void NoShootingStyleInvert(MELShootingStyle * _Nonnull self) {
-    // Pas d'inversion.
-}
-
-void NoShootingStyleDeinit(MELShootingStyle * _Nonnull self) {
-    // Rien à libérer.
-}
-
-MELPoint MELRectanglePointAtAngle(MELRectangle self, GLfloat angle) {
-    return MELPointMake(self.origin.x + self.size.width / 2 * cosf(angle), self.origin.y + self.size.height / 2 * sinf(angle));
+const MELShootingStyleClass * _Nullable MELShootingStyleClassForName(MELShootingStyleClassName className) {
+    switch (className) {
+        case MELShootingStyleClassNameBurst:
+            return BurstShootingStyleGetClass();
+        case MELShootingStyleClassNameCircular:
+            return CircularShootingStyleGetClass();
+        case MELShootingStyleClassNameSimple:
+            return SimpleShootingStyleGetClass();
+        case MELShootingStyleClassNameParticule:
+            return ParticuleShootingStyleGetClass();
+        default:
+            return NULL;
+    }
 }

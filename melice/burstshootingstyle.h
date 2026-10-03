@@ -11,11 +11,8 @@
 #include "shootingstyle.h"
 #include "shootingstyledefinition.h"
 
-/**
- * Classe du style de tir burst.
- */
-extern const MELShootingStyleClass MELBurstShootingStyleClass;
+const MELShootingStyleClass * _Nonnull BurstShootingStyleGetClass(void);
 
-MELShootingStyle * _Nonnull MELBurstShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+void BurstShootingStyleInit(MELShootingStyle * _Nonnull self, const MELShootingStyleDefinition * _Nonnull definition);
 
 #endif /* burstshootingstyle_h */

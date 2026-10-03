@@ -12,11 +12,6 @@
 #include "shootingstyle.h"
 #include "shootingstyledefinition.h"
 
-/**
- * Classe du style de tir guidé.
- */
-extern const MELShootingStyleClass MELAimedShootingStyleClass;
-
-MELShootingStyle * _Nonnull MELAimedShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+void AimedShootingStyleInit(MELShootingStyle * _Nonnull self, const MELShootingStyleDefinition * _Nonnull definition);
 
 #endif /* aimedshootingstyle_h */

@@ -1,8 +1,8 @@
 //
 //  simpleshootingstyle.h
-//  melice
+//  Kuroobi
 //
-//  Created by Raphaël Calabro on 22/04/2023.
+//  Created by Raphaël Calabro on 21/03/2023.
 //
 
 #ifndef simpleshootingstyle_h
@@ -11,8 +11,8 @@
 #include "shootingstyle.h"
 #include "shootingstyledefinition.h"
 
-extern const MELShootingStyleClass MELSimpleShootingStyleClass;
+const MELShootingStyleClass * _Nonnull SimpleShootingStyleGetClass(void);
 
-MELShootingStyle * _Nonnull MELSimpleShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+void SimpleShootingStyleInit(MELShootingStyle * _Nonnull self, const MELShootingStyleDefinition * _Nonnull definition);
 
 #endif /* simpleshootingstyle_h */

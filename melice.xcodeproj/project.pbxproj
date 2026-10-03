@@ -14,7 +14,6 @@
 		641793DB29EEE84500D9D0A1 /* shootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBA29EC28C8005D1CB3 /* shootingstyle.h */; };
 		641793DC29EEE84500D9D0A1 /* shootingstyledefinition.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBE29EC28C9005D1CB3 /* shootingstyledefinition.h */; };
 		641793DD29EEE84500D9D0A1 /* bulletmotion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* bulletmotion.h */; };
-		641793DE29EEE84500D9D0A1 /* straightshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */; };
 		641793DF29EEE84500D9D0A1 /* spritetype.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6428EF4D28D2753E00071B9B /* spritetype.h */; };
 		641793E029EEE84500D9D0A1 /* flip.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64F35E3D280CABEC00A5A620 /* flip.h */; };
 		641793E129EEE85400D9D0A1 /* camera.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBEC29EC8B04005D1CB3 /* camera.h */; };
@@ -24,7 +23,6 @@
 		641793E629EEE85400D9D0A1 /* shootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBA29EC28C8005D1CB3 /* shootingstyle.h */; };
 		641793E729EEE85400D9D0A1 /* shootingstyledefinition.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBBE29EC28C9005D1CB3 /* shootingstyledefinition.h */; };
 		641793E829EEE85400D9D0A1 /* bulletmotion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* bulletmotion.h */; };
-		641793E929EEE85400D9D0A1 /* straightshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */; };
 		641793EA29EEE85400D9D0A1 /* spritetype.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6428EF4D28D2753E00071B9B /* spritetype.h */; };
 		641793EB29EEE85400D9D0A1 /* flip.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64F35E3D280CABEC00A5A620 /* flip.h */; };
 		641FB72D277B46E3006DD7C3 /* drawmode.h in Headers */ = {isa = PBXBuildFile; fileRef = 641FB72C277B46E3006DD7C3 /* drawmode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -371,6 +369,12 @@
 		64532E3429F29B8400E766B5 /* burstshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64532E2E29F29B8300E766B5 /* burstshootingstyle.c */; };
 		64532E3529F2A4F500E766B5 /* burstshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64532E2D29F29B8300E766B5 /* burstshootingstyle.h */; };
 		64532E3629F2A4FC00E766B5 /* burstshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64532E2D29F29B8300E766B5 /* burstshootingstyle.h */; };
+		645C970D3071437D002E218A /* bullet.h in Headers */ = {isa = PBXBuildFile; fileRef = 645C970B3071437D002E218A /* bullet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		645C970E3071437D002E218A /* bullet.c in Sources */ = {isa = PBXBuildFile; fileRef = 645C970C3071437D002E218A /* bullet.c */; };
+		645C970F3071437D002E218A /* bullet.h in Headers */ = {isa = PBXBuildFile; fileRef = 645C970B3071437D002E218A /* bullet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		645C97103071437D002E218A /* bullet.c in Sources */ = {isa = PBXBuildFile; fileRef = 645C970C3071437D002E218A /* bullet.c */; };
+		645C97113071437D002E218A /* bullet.c in Sources */ = {isa = PBXBuildFile; fileRef = 645C970C3071437D002E218A /* bullet.c */; };
+		645C97123071437D002E218A /* bullet.h in Headers */ = {isa = PBXBuildFile; fileRef = 645C970B3071437D002E218A /* bullet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6460F0042746E5010040F95A /* packmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0022746E5010040F95A /* packmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6460F0052746E5010040F95A /* packmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 6460F0022746E5010040F95A /* packmap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6460F0062746E5010040F95A /* packmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 6460F0032746E5010040F95A /* packmap.c */; };
@@ -447,6 +451,12 @@
 		64A3D3AE288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */; };
 		64A3D3AF288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */; };
 		64A3D3B0288A84ED00B894D7 /* degreeanimationdefinitionframestable.c in Sources */ = {isa = PBXBuildFile; fileRef = 64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */; };
+		64ABB7193072879F00826509 /* sinussimpleshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB7183072879F00826509 /* sinussimpleshootingstyle.c */; };
+		64ABB71A3072879F00826509 /* sinussimpleshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64ABB7173072879F00826509 /* sinussimpleshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64ABB71B3072879F00826509 /* sinussimpleshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB7183072879F00826509 /* sinussimpleshootingstyle.c */; };
+		64ABB71C3072879F00826509 /* sinussimpleshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64ABB7173072879F00826509 /* sinussimpleshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64ABB71D3072879F00826509 /* sinussimpleshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB7183072879F00826509 /* sinussimpleshootingstyle.c */; };
+		64ABB71E3072879F00826509 /* sinussimpleshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64ABB7173072879F00826509 /* sinussimpleshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43094277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43095277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64B43096277FA406004185E3 /* pointerintrectangletable.h in Headers */ = {isa = PBXBuildFile; fileRef = 64B43092277FA406004185E3 /* pointerintrectangletable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -672,9 +682,6 @@
 		64EECBC829EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBC929EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBCA29EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64EECBCB29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64EECBCC29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		64EECBCD29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBD129EC28CA005D1CB3 /* bulletmotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* bulletmotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBD229EC28CA005D1CB3 /* bulletmotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* bulletmotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBD329EC28CA005D1CB3 /* bulletmotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBB929EC28C8005D1CB3 /* bulletmotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -699,9 +706,6 @@
 		64EECBE629EC28CA005D1CB3 /* bulletmotion.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBC029EC28CA005D1CB3 /* bulletmotion.c */; };
 		64EECBE729EC28CA005D1CB3 /* bulletmotion.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBC029EC28CA005D1CB3 /* bulletmotion.c */; };
 		64EECBE829EC28CA005D1CB3 /* bulletmotion.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBC029EC28CA005D1CB3 /* bulletmotion.c */; };
-		64EECBE929EC28CA005D1CB3 /* straightshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBC129EC28CA005D1CB3 /* straightshootingstyle.c */; };
-		64EECBEA29EC28CA005D1CB3 /* straightshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBC129EC28CA005D1CB3 /* straightshootingstyle.c */; };
-		64EECBEB29EC28CA005D1CB3 /* straightshootingstyle.c in Sources */ = {isa = PBXBuildFile; fileRef = 64EECBC129EC28CA005D1CB3 /* straightshootingstyle.c */; };
 		64EECBEE29EC8B04005D1CB3 /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBEC29EC8B04005D1CB3 /* camera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBEF29EC8B04005D1CB3 /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBEC29EC8B04005D1CB3 /* camera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64EECBF029EC8B04005D1CB3 /* camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 64EECBEC29EC8B04005D1CB3 /* camera.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -729,6 +733,14 @@
 		64F5D17F276109C7000C3967 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D17E276109C7000C3967 /* List.swift */; };
 		64F5D18127610A4D000C3967 /* MutableMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D18027610A4D000C3967 /* MutableMap.swift */; };
 		64F5D18327610A69000C3967 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F5D18227610A69000C3967 /* Palette.swift */; };
+		64FD323B307194B2002E9CA4 /* bullet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 645C970B3071437D002E218A /* bullet.h */; };
+		64FD323C307194C4002E9CA4 /* particuleshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64A005AD29F45E840038C266 /* particuleshootingstyle.h */; };
+		64FD323D307194C4002E9CA4 /* simpleshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64A005A529F45E6D0038C266 /* simpleshootingstyle.h */; };
+		64FD323E307194C4002E9CA4 /* bullet.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 645C970B3071437D002E218A /* bullet.h */; };
+		64FD323F307194C4002E9CA4 /* particulemotion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64A005B529F464770038C266 /* particulemotion.h */; };
+		64FD3240307194CD002E9CA4 /* particuleshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64A005AD29F45E840038C266 /* particuleshootingstyle.h */; };
+		64FD3241307194CD002E9CA4 /* simpleshootingstyle.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64A005A529F45E6D0038C266 /* simpleshootingstyle.h */; };
+		64FD3242307194CD002E9CA4 /* particulemotion.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 64A005B529F464770038C266 /* particulemotion.h */; };
 		64FE7E6D2FC8566E00C62C25 /* autotile.c in Sources */ = {isa = PBXBuildFile; fileRef = 64FE7E6C2FC8566E00C62C25 /* autotile.c */; };
 		64FE7E6E2FC8566E00C62C25 /* autotile.h in Headers */ = {isa = PBXBuildFile; fileRef = 64FE7E6B2FC8566E00C62C25 /* autotile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64FE7E6F2FC8566E00C62C25 /* autotile.c in Sources */ = {isa = PBXBuildFile; fileRef = 64FE7E6C2FC8566E00C62C25 /* autotile.c */; };
@@ -744,6 +756,10 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				64FD3240307194CD002E9CA4 /* particuleshootingstyle.h in CopyFiles */,
+				64FD3241307194CD002E9CA4 /* simpleshootingstyle.h in CopyFiles */,
+				64FD3242307194CD002E9CA4 /* particulemotion.h in CopyFiles */,
+				64FD323B307194B2002E9CA4 /* bullet.h in CopyFiles */,
 				64532E3529F2A4F500E766B5 /* burstshootingstyle.h in CopyFiles */,
 				641793D629EEE84500D9D0A1 /* camera.h in CopyFiles */,
 				641793D729EEE84500D9D0A1 /* animationdefinitionframes.h in CopyFiles */,
@@ -752,7 +768,6 @@
 				641793DB29EEE84500D9D0A1 /* shootingstyle.h in CopyFiles */,
 				641793DC29EEE84500D9D0A1 /* shootingstyledefinition.h in CopyFiles */,
 				641793DD29EEE84500D9D0A1 /* bulletmotion.h in CopyFiles */,
-				641793DE29EEE84500D9D0A1 /* straightshootingstyle.h in CopyFiles */,
 				641793DF29EEE84500D9D0A1 /* spritetype.h in CopyFiles */,
 				641793E029EEE84500D9D0A1 /* flip.h in CopyFiles */,
 				641FB72F277B5DA5006DD7C3 /* imagepaletteimage.h in CopyFiles */,
@@ -840,6 +855,10 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				64FD323C307194C4002E9CA4 /* particuleshootingstyle.h in CopyFiles */,
+				64FD323D307194C4002E9CA4 /* simpleshootingstyle.h in CopyFiles */,
+				64FD323E307194C4002E9CA4 /* bullet.h in CopyFiles */,
+				64FD323F307194C4002E9CA4 /* particulemotion.h in CopyFiles */,
 				64532E3629F2A4FC00E766B5 /* burstshootingstyle.h in CopyFiles */,
 				641793E129EEE85400D9D0A1 /* camera.h in CopyFiles */,
 				641793E229EEE85400D9D0A1 /* animationdefinitionframes.h in CopyFiles */,
@@ -848,7 +867,6 @@
 				641793E629EEE85400D9D0A1 /* shootingstyle.h in CopyFiles */,
 				641793E729EEE85400D9D0A1 /* shootingstyledefinition.h in CopyFiles */,
 				641793E829EEE85400D9D0A1 /* bulletmotion.h in CopyFiles */,
-				641793E929EEE85400D9D0A1 /* straightshootingstyle.h in CopyFiles */,
 				641793EA29EEE85400D9D0A1 /* spritetype.h in CopyFiles */,
 				641793EB29EEE85400D9D0A1 /* flip.h in CopyFiles */,
 				641FB731277B5DC9006DD7C3 /* imagepaletteimage.h in CopyFiles */,
@@ -1075,6 +1093,8 @@
 		6452604B2614F8A900BB78AC /* Director.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Director.swift; sourceTree = "<group>"; };
 		64532E2D29F29B8300E766B5 /* burstshootingstyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = burstshootingstyle.h; sourceTree = "<group>"; };
 		64532E2E29F29B8300E766B5 /* burstshootingstyle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = burstshootingstyle.c; sourceTree = "<group>"; };
+		645C970B3071437D002E218A /* bullet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bullet.h; sourceTree = "<group>"; };
+		645C970C3071437D002E218A /* bullet.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = bullet.c; sourceTree = "<group>"; };
 		645F1593276CBBC4007AD2CB /* surfacearray-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "surfacearray-test.c"; sourceTree = "<group>"; };
 		6460EFFD27452B600040F95A /* HelloVita.mmk */ = {isa = PBXFileReference; lastKnownFileType = file; path = HelloVita.mmk; sourceTree = "<group>"; };
 		6460EFFE27452C9D0040F95A /* mmkprojectformat-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "mmkprojectformat-test.c"; sourceTree = "<group>"; };
@@ -1115,6 +1135,8 @@
 		64A3D3A2288A848200B894D7 /* animationdefinitionframes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = animationdefinitionframes.c; sourceTree = "<group>"; };
 		64A3D3A9288A84ED00B894D7 /* degreeanimationdefinitionframestable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = degreeanimationdefinitionframestable.h; sourceTree = "<group>"; };
 		64A3D3AA288A84ED00B894D7 /* degreeanimationdefinitionframestable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = degreeanimationdefinitionframestable.c; sourceTree = "<group>"; };
+		64ABB7173072879F00826509 /* sinussimpleshootingstyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sinussimpleshootingstyle.h; sourceTree = "<group>"; };
+		64ABB7183072879F00826509 /* sinussimpleshootingstyle.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sinussimpleshootingstyle.c; sourceTree = "<group>"; };
 		64B43092277FA406004185E3 /* pointerintrectangletable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pointerintrectangletable.h; sourceTree = "<group>"; };
 		64B43093277FA406004185E3 /* pointerintrectangletable.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pointerintrectangletable.c; sourceTree = "<group>"; };
 		64C3547D281006D000D843C2 /* stringdictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stringdictionary.h; sourceTree = "<group>"; };
@@ -1136,7 +1158,6 @@
 		64EEAA4627418C7500776662 /* melstring-test.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "melstring-test.c"; sourceTree = "<group>"; };
 		64EEAA58274280B500776662 /* decorator.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = decorator.c; sourceTree = "<group>"; };
 		64EECBB629EC28C7005D1CB3 /* aimedshootingstyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aimedshootingstyle.h; sourceTree = "<group>"; };
-		64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = straightshootingstyle.h; sourceTree = "<group>"; };
 		64EECBB929EC28C8005D1CB3 /* bulletmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bulletmotion.h; sourceTree = "<group>"; };
 		64EECBBA29EC28C8005D1CB3 /* shootingstyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shootingstyle.h; sourceTree = "<group>"; };
 		64EECBBB29EC28C9005D1CB3 /* aimedshootingstyle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aimedshootingstyle.c; sourceTree = "<group>"; };
@@ -1145,7 +1166,6 @@
 		64EECBBE29EC28C9005D1CB3 /* shootingstyledefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shootingstyledefinition.h; sourceTree = "<group>"; };
 		64EECBBF29EC28C9005D1CB3 /* shootingstyle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shootingstyle.c; sourceTree = "<group>"; };
 		64EECBC029EC28CA005D1CB3 /* bulletmotion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bulletmotion.c; sourceTree = "<group>"; };
-		64EECBC129EC28CA005D1CB3 /* straightshootingstyle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = straightshootingstyle.c; sourceTree = "<group>"; };
 		64EECBEC29EC8B04005D1CB3 /* camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = camera.h; sourceTree = "<group>"; };
 		64EECBED29EC8B04005D1CB3 /* camera.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = camera.c; sourceTree = "<group>"; };
 		64F35E3D280CABEC00A5A620 /* flip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = flip.h; sourceTree = "<group>"; };
@@ -1691,8 +1711,10 @@
 				64A005AE29F45E840038C266 /* particuleshootingstyle.c */,
 				64A005A529F45E6D0038C266 /* simpleshootingstyle.h */,
 				64A005A629F45E6D0038C266 /* simpleshootingstyle.c */,
-				64EECBB729EC28C8005D1CB3 /* straightshootingstyle.h */,
-				64EECBC129EC28CA005D1CB3 /* straightshootingstyle.c */,
+				64ABB7173072879F00826509 /* sinussimpleshootingstyle.h */,
+				64ABB7183072879F00826509 /* sinussimpleshootingstyle.c */,
+				645C970B3071437D002E218A /* bullet.h */,
+				645C970C3071437D002E218A /* bullet.c */,
 				64EECBB929EC28C8005D1CB3 /* bulletmotion.h */,
 				64EECBC029EC28CA005D1CB3 /* bulletmotion.c */,
 				64A005B529F464770038C266 /* particulemotion.h */,
@@ -1753,6 +1775,7 @@
 				64749396272C2ABA004F3D97 /* primitives.h in Headers */,
 				642B2A6625FD456B00183D42 /* layer.h in Headers */,
 				642B2AB625FD4A0300183D42 /* direction.h in Headers */,
+				645C97123071437D002E218A /* bullet.h in Headers */,
 				642B2A6525FD456B00183D42 /* maprenderer.h in Headers */,
 				642B2AB025FD4A0300183D42 /* sprite.h in Headers */,
 				642B2AC425FD4A6900183D42 /* color.h in Headers */,
@@ -1800,6 +1823,7 @@
 				642B2A4B25FD44AB00183D42 /* point.h in Headers */,
 				642B2A9325FD49C100183D42 /* synchronizedanimation.h in Headers */,
 				642B2ABC25FD4A6900183D42 /* renderer.h in Headers */,
+				64ABB71E3072879F00826509 /* sinussimpleshootingstyle.h in Headers */,
 				642B2A6025FD451F00183D42 /* gamecontroller.h in Headers */,
 				64C3547F281006D000D843C2 /* stringdictionary.h in Headers */,
 				642B2A6E25FD462F00183D42 /* director.h in Headers */,
@@ -1828,7 +1852,6 @@
 				64A3D3A3288A848200B894D7 /* animationdefinitionframes.h in Headers */,
 				643EEC6E2757ABD30039FDAB /* atlaspalette.h in Headers */,
 				64EECBC829EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */,
-				64EECBCB29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */,
 				64EECBEE29EC8B04005D1CB3 /* camera.h in Headers */,
 				64EECBDD29EC28CA005D1CB3 /* circularshootingstyle.h in Headers */,
 				64EECBD129EC28CA005D1CB3 /* bulletmotion.h in Headers */,
@@ -1856,7 +1879,9 @@
 				643EECAD275E6A6B0039FDAB /* point.h in Headers */,
 				643EECAE275E6A6B0039FDAB /* quadrilateral.h in Headers */,
 				64C35481281006D000D843C2 /* stringdictionary.h in Headers */,
+				645C970F3071437D002E218A /* bullet.h in Headers */,
 				643EECAF275E6A6B0039FDAB /* rectangle.h in Headers */,
+				64ABB71A3072879F00826509 /* sinussimpleshootingstyle.h in Headers */,
 				643EECB0275E6A6B0039FDAB /* size.h in Headers */,
 				643EECB1275E6A6B0039FDAB /* buttonstate.h in Headers */,
 				643EECB2275E6A6B0039FDAB /* buttonmapping.h in Headers */,
@@ -1933,7 +1958,6 @@
 				64EECBD629EC28CA005D1CB3 /* shootingstyle.h in Headers */,
 				64EECBCA29EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */,
 				64EECBF029EC8B04005D1CB3 /* camera.h in Headers */,
-				64EECBCD29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */,
 				64EECBE229EC28CA005D1CB3 /* shootingstyledefinition.h in Headers */,
 				64EECBDF29EC28CA005D1CB3 /* circularshootingstyle.h in Headers */,
 				643EECF2275E6A6C0039FDAB /* operation.h in Headers */,
@@ -1998,6 +2022,7 @@
 				64CB66F3271F514200663A2E /* spritehitbox.h in Headers */,
 				64CB66F4271F514200663A2E /* statichitbox.h in Headers */,
 				64CB66F5271F514200663A2E /* motion.h in Headers */,
+				64ABB71C3072879F00826509 /* sinussimpleshootingstyle.h in Headers */,
 				64718A24273AAE5300547977 /* melstring.h in Headers */,
 				64CB66F6271F514200663A2E /* nomotion.h in Headers */,
 				64CB66F7271F514200663A2E /* axe.h in Headers */,
@@ -2008,6 +2033,7 @@
 				64CB66FC271F514200663A2E /* color.h in Headers */,
 				64CB66FD271F514200663A2E /* renderer.h in Headers */,
 				64CB66FE271F514200663A2E /* referencepool.h in Headers */,
+				645C970D3071437D002E218A /* bullet.h in Headers */,
 				64CB66FF271F514200663A2E /* surface.h in Headers */,
 				64C35480281006D000D843C2 /* stringdictionary.h in Headers */,
 				64CB6700271F514200663A2E /* surfacearray.h in Headers */,
@@ -2033,7 +2059,6 @@
 				64532E3029F29B8400E766B5 /* burstshootingstyle.h in Headers */,
 				64EECBDE29EC28CA005D1CB3 /* circularshootingstyle.h in Headers */,
 				64EECBC929EC28CA005D1CB3 /* aimedshootingstyle.h in Headers */,
-				64EECBCC29EC28CA005D1CB3 /* straightshootingstyle.h in Headers */,
 				64EECBD529EC28CA005D1CB3 /* shootingstyle.h in Headers */,
 				64EECBEF29EC8B04005D1CB3 /* camera.h in Headers */,
 				64EECBD229EC28CA005D1CB3 /* bulletmotion.h in Headers */,
@@ -2238,6 +2263,7 @@
 				642B2A5425FD451F00183D42 /* inputsource.c in Sources */,
 				642B2AA925FD49F600183D42 /* motion.c in Sources */,
 				642B2AC025FD4A6900183D42 /* textureatlas.c in Sources */,
+				64ABB71D3072879F00826509 /* sinussimpleshootingstyle.c in Sources */,
 				642B2A6425FD456B00183D42 /* maprenderer.c in Sources */,
 				642B2AD325FD4E9800183D42 /* texture.c in Sources */,
 				64FE7E6F2FC8566E00C62C25 /* autotile.c in Sources */,
@@ -2286,7 +2312,6 @@
 				64B43097277FA406004185E3 /* pointerintrectangletable.c in Sources */,
 				643EEC87275D50B70039FDAB /* mapgroup.c in Sources */,
 				643EEC702757ABD30039FDAB /* atlaspalette.c in Sources */,
-				64EECBE929EC28CA005D1CB3 /* straightshootingstyle.c in Sources */,
 				64718A0227390F2A00547977 /* miniz.c in Sources */,
 				64A005BA29F464770038C266 /* particulemotion.c in Sources */,
 				642B2A9225FD49C100183D42 /* playonceanimation.c in Sources */,
@@ -2310,6 +2335,7 @@
 				642B29C825FD43DC00183D42 /* operation.c in Sources */,
 				642B2A4A25FD44AB00183D42 /* rectangle.c in Sources */,
 				6460F0062746E5010040F95A /* packmap.c in Sources */,
+				645C97113071437D002E218A /* bullet.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2326,6 +2352,7 @@
 				641FB738277C52F4006DD7C3 /* ImagePaletteImage.swift in Sources */,
 				648589D827839BD500650C98 /* SpriteDefinition.swift in Sources */,
 				643EECFA275E8D7D0039FDAB /* buttonstate.c in Sources */,
+				64ABB7193072879F00826509 /* sinussimpleshootingstyle.c in Sources */,
 				64F5D18127610A4D000C3967 /* MutableMap.swift in Sources */,
 				643EECFB275E8D7D0039FDAB /* buttonmapping.c in Sources */,
 				643EECFC275E8D7D0039FDAB /* filemanager.c in Sources */,
@@ -2345,7 +2372,6 @@
 				64B43099277FA406004185E3 /* pointerintrectangletable.c in Sources */,
 				64464C1C27625D610038B044 /* Size.swift in Sources */,
 				643EED05275E8D7D0039FDAB /* mutablemap.c in Sources */,
-				64EECBEB29EC28CA005D1CB3 /* straightshootingstyle.c in Sources */,
 				643EED06275E8D7D0039FDAB /* mapgroup.c in Sources */,
 				64FE7E6D2FC8566E00C62C25 /* autotile.c in Sources */,
 				64F5D18327610A69000C3967 /* Palette.swift in Sources */,
@@ -2370,6 +2396,7 @@
 				643EED12275E8D7E0039FDAB /* animationframe.c in Sources */,
 				643EED13275E8D7E0039FDAB /* animationtype.c in Sources */,
 				64F5D17A2760FDE1000C3967 /* Named.swift in Sources */,
+				645C97103071437D002E218A /* bullet.c in Sources */,
 				64F5D16D2760F6AD000C3967 /* Scene.swift in Sources */,
 				643EED14275E8D7E0039FDAB /* loopinganimation.c in Sources */,
 				643EED15275E8D7E0039FDAB /* noanimation.c in Sources */,
@@ -2447,7 +2474,6 @@
 				64CB6713271F51E100663A2E /* inputsource.c in Sources */,
 				64A005B329F45E840038C266 /* particuleshootingstyle.c in Sources */,
 				64CB6714271F51E200663A2E /* inputstream.c in Sources */,
-				64EECBEA29EC28CA005D1CB3 /* straightshootingstyle.c in Sources */,
 				64CB6715271F51E200663A2E /* map.c in Sources */,
 				64CB6716271F51E200663A2E /* maprenderer.c in Sources */,
 				64718A0327390F2A00547977 /* miniz.c in Sources */,
@@ -2460,6 +2486,7 @@
 				64CB671B271F51E200663A2E /* animation.c in Sources */,
 				64EECBDB29EC28CA005D1CB3 /* circularshootingstyle.c in Sources */,
 				64CB671C271F51E200663A2E /* animationframe.c in Sources */,
+				64ABB71B3072879F00826509 /* sinussimpleshootingstyle.c in Sources */,
 				64CB671D271F51E200663A2E /* animationtype.c in Sources */,
 				64CB671E271F51E200663A2E /* loopinganimation.c in Sources */,
 				64CB671F271F51E200663A2E /* noanimation.c in Sources */,
@@ -2494,6 +2521,7 @@
 				64CB672E271F51E300663A2E /* spriteinstance.c in Sources */,
 				64CB672F271F51E300663A2E /* spritemanager.c in Sources */,
 				64CB6730271F51E300663A2E /* color.c in Sources */,
+				645C970E3071437D002E218A /* bullet.c in Sources */,
 				64CB6731271F51E300663A2E /* renderer.c in Sources */,
 				64CB6732271F51E400663A2E /* referencepool.c in Sources */,
 				64A005BB29F464770038C266 /* particulemotion.c in Sources */,

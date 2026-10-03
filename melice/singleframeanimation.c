@@ -28,3 +28,8 @@ MELAnimation * _Nonnull MELSingleFrameAnimationAlloc(MELAnimationDefinition * _N
     *self = MELSingleFrameAnimationMake(definition);
     return self;
 }
+
+void MELSingleFrameAnimationReuse(MELAnimation * _Nonnull self, int frameIndex) {
+    self->class = &MELSingleFrameAnimationClass;
+    MELAnimationSetFrameIndex(self, frameIndex);
+}

@@ -1,6 +1,6 @@
 //
 //  particuleshootingstyle.c
-//  melice
+//  Kuroobi
 //
 //  Created by Raphaël Calabro on 22/04/2023.
 //
@@ -11,13 +11,28 @@
 #include "animation.h"
 #include "random.h"
 
-MELShootingStyle * _Nonnull MELParticuleShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
-    MELShootingStyle *self = malloc(sizeof(MELShootingStyle));
-    *self = MELShootingStyleMake(&MELParticuleShootingStyleClass, definition, spriteManager);
-    return self;
+static void createBullets(MELShootingStyle * _Nonnull self, MELPoint origin, float angle, float initialDelta);
+
+static const MELShootingStyleClass ParticuleShootingStyleClass = (MELShootingStyleClass) {
+    .name = MELShootingStyleClassNameParticule,
+    .createBullets = createBullets,
+};
+
+const MELShootingStyleClass * _Nonnull ParticuleShootingStyleGetClass(void) {
+    return &ParticuleShootingStyleClass;
 }
 
-static void MELParticuleShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
+void ParticuleShootingStyleInit(MELShootingStyle * _Nonnull self, const MELShootingStyleDefinition * _Nonnull definition) {
+    *self = (MELShootingStyle) {
+        .class = &ParticuleShootingStyleClass,
+        .definition = definition,
+        .shootInterval = MELRandomFloat(definition->shootInterval),
+        .canShootWhenHitPointsAreZero = true,
+    };
+    MELShootingStyleInit(self);
+}
+
+static void createBullets(MELShootingStyle * _Nonnull self, MELPoint origin, float angle, float initialDelta) {
     const MELShootingStyleDefinition *definition = self->definition;
     MELSpriteManager *spriteManager = self->spriteManager;
 
@@ -30,7 +45,7 @@ static void MELParticuleShootingStyleShoot(MELShootingStyle * _Nonnull self, MEL
 
     const int bulletAmount = self->bulletAmount;
     for (int index = 0; index < bulletAmount; index++) {
-        MELSprite *particule = MELSpriteAlloc(spriteManager, bulletDefinition, layer);
+        MELSprite *particule = MELSpriteAlloc(spriteManager, bulletDefinition, self->layer);
         MELSpriteSetFrameOrigin(particule, (MELPoint) {
             .x = origin.x + MELRandomFloat(space) - halfSpace,
             .y = origin.y + MELRandomFloat(space) - halfSpace,
@@ -41,10 +56,3 @@ static void MELParticuleShootingStyleShoot(MELShootingStyle * _Nonnull self, MEL
         }
     }
 }
-
-const MELShootingStyleClass MELParticuleShootingStyleClass = {
-    .update = &MELShootingStyleUpdate,
-    .shoot = &MELParticuleShootingStyleShoot,
-    .invert = &NoShootingStyleInvert,
-    .deinit = &NoShootingStyleDeinit,
-};

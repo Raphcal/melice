@@ -16,7 +16,7 @@
 const MELRectangle MELRectangleZero = { {0, 0}, {0, 0} };
 const MELIntRectangle MELIntRectangleZero = { {0, 0}, {0, 0} };
 
-MELRectangle MELRectangleMake(GLfloat x, GLfloat y, GLfloat width, GLfloat height) {
+MELRectangle MELRectangleMake(float x, float y, float width, float height) {
     return (MELRectangle) {
         {
             x,
@@ -94,20 +94,54 @@ MELIntRectangle MELIntRectangleMakeWithPoints(MELIntPoint a, MELIntPoint b) {
     return self;
 }
 
-GLfloat MELRectangleOriginIsCenterGetLeft(MELRectangle self) {
-    return self.origin.x - self.size.width / 2;
+float MELRectangleOriginIsCenterGetLeft(MELRectangle self) {
+    return self.origin.x - self.size.width / 2.0f;
 }
 
-GLfloat MELRectangleOriginIsCenterGetRight(MELRectangle self) {
-    return self.origin.x + self.size.width / 2;
+void MELRectangleOriginIsCenterSetLeft(MELRectangle * _Nonnull self, float left) {
+    self->origin.x = left + self->size.width / 2.0f;
 }
 
-GLfloat MELRectangleOriginIsCenterGetTop(MELRectangle self) {
-    return self.origin.y - self.size.height / 2;
+float MELRectangleOriginIsCenterGetRight(MELRectangle self) {
+    return self.origin.x + self.size.width / 2.0f;
 }
 
-GLfloat MELRectangleOriginIsCenterGetBottom(MELRectangle self) {
-    return self.origin.y + self.size.height / 2;
+void MELRectangleOriginIsCenterSetRight(MELRectangle * _Nonnull self, float right) {
+    self->origin.x = right - self->size.width / 2.0f;
+}
+
+float MELRectangleOriginIsCenterGetTop(MELRectangle self) {
+    return self.origin.y - self.size.height / 2.0f;
+}
+
+void MELRectangleOriginIsCenterSetTop(MELRectangle * _Nonnull self, float top) {
+    self->origin.y = top + self->size.height / 2.0f;
+}
+
+float MELRectangleOriginIsCenterGetBottom(MELRectangle self) {
+    return self.origin.y + self.size.height / 2.0f;
+}
+
+void MELRectangleOriginIsCenterSetBottom(MELRectangle * _Nonnull self, float bottom) {
+    self->origin.y = bottom - self->size.height / 2.0f;
+}
+
+MELPoint MELRectangleOriginIsCenterGetTopLeft(MELRectangle self) {
+    return (MELPoint) {
+        .x = MELRectangleOriginIsCenterGetLeft(self),
+        .y = MELRectangleOriginIsCenterGetTop(self),
+    };
+}
+MELPoint MELRectangleOriginIsCenterGetTopRight(MELRectangle self) {
+    return (MELPoint) {
+        .x = MELRectangleOriginIsCenterGetRight(self),
+        .y = MELRectangleOriginIsCenterGetTop(self),
+    };
+}
+
+MELPoint MELRectangleOriginIsCenterGetPointAtAngle(MELRectangle self, GLfloat angle) {
+    const GLfloat halfHeight = self.size.height / 2.0f;
+    return MELPointMake(self.origin.x + halfHeight * cosf(angle), self.origin.y + halfHeight * sinf(angle));
 }
 
 MELBoolean MELRectangleEquals(MELRectangle lhs, MELRectangle rhs) {
@@ -124,16 +158,16 @@ MELBoolean MELIntRectangleEquals(MELIntRectangle lhs, MELIntRectangle rhs) {
         lhs.size.height == rhs.size.height;
 }
 
-MELQuadrilateral MELRectangleRotate(MELRectangle self, GLfloat rotation) {
+MELQuadrilateral MELRectangleRotate(MELRectangle self, float rotation) {
     return MELRectangleRotateWithPivot(self, rotation, self.origin);
 }
 
-MELQuadrilateral MELRectangleRotateWithPivot(MELRectangle self, GLfloat rotation, MELPoint pivot) {
+MELQuadrilateral MELRectangleRotateWithPivot(MELRectangle self, float rotation, MELPoint pivot) {
     MELPoint vertices[4];
-    const GLfloat left = MELRectangleOriginIsCenterGetLeft(self);
-    const GLfloat right = MELRectangleOriginIsCenterGetRight(self);
-    const GLfloat top = MELRectangleOriginIsCenterGetTop(self);
-    const GLfloat bottom = MELRectangleOriginIsCenterGetBottom(self);
+    const float left = MELRectangleOriginIsCenterGetLeft(self);
+    const float right = MELRectangleOriginIsCenterGetRight(self);
+    const float top = MELRectangleOriginIsCenterGetTop(self);
+    const float bottom = MELRectangleOriginIsCenterGetBottom(self);
     MELPoint source[4] = {
         MELPointMake(left, top),
         MELPointMake(right, top),
@@ -142,33 +176,70 @@ MELQuadrilateral MELRectangleRotateWithPivot(MELRectangle self, GLfloat rotation
     };
     for (int index = 0; index < 4; index++) {
         const MELPoint vertex = source[index];
-        const GLfloat length = MELPointDistanceToPoint(vertex, pivot);
-        const GLfloat angle = MELPointAngleToPoint(vertex, pivot);
+        const float length = MELPointDistanceToPoint(vertex, pivot);
+        const float angle = MELPointAngleToPoint(vertex, pivot);
         vertices[index] = MELPointMake(pivot.x + cosf(angle + rotation) * length, pivot.y + sinf(angle + rotation) * length);
     }
     return MELQuadrilateralMake(vertices[0], vertices[1], vertices[2], vertices[3]);
 }
 
-MELBoolean MELRectangleContainsPoint(MELRectangle self, MELPoint point) {
-    return point.x >= self.origin.x &&
-        point.x < self.origin.x + self.size.width &&
-        point.y >= self.origin.y &&
-        point.y < self.origin.y + self.size.height;
+MELBoolean MELRectangleContainsPoint(const MELRectangle self, const MELPoint point) {
+    return point.x >= self.origin.x - self.size.width / 2 &&
+        point.x < self.origin.x + self.size.width / 2 &&
+        point.y >= self.origin.y - self.size.height / 2 &&
+        point.y < self.origin.y + self.size.height / 2;
 }
-MELBoolean MELIntRectangleContainsPoint(MELIntRectangle self, MELIntPoint point) {
+MELBoolean MELIntRectangleContainsPoint(const MELIntRectangle self, const MELIntPoint point) {
     return point.x >= self.origin.x &&
         point.x < self.origin.x + self.size.width &&
         point.y >= self.origin.y &&
         point.y < self.origin.y + self.size.height;
 }
 
-MELBoolean MELRectangleIntersectsWithRectangle(MELRectangle self, MELRectangle other) {
-    const MELBoolean x = fabsf(self.origin.x + self.size.width / 2 - (other.origin.x + other.size.width / 2)) <= (self.size.width + other.size.width) / 2;
-    const MELBoolean y = fabsf(self.origin.y + self.size.height / 2 - (other.origin.y + other.size.height / 2)) <= (self.size.height + other.size.height) / 2;
+MELBoolean MELRectangleOriginIsTopLeftContainsPoint(const MELRectangle self, const MELPoint point) {
+    return point.x >= self.origin.x &&
+        point.x < self.origin.x + self.size.width &&
+        point.y >= self.origin.y &&
+        point.y < self.origin.y + self.size.height;
+}
+MELBoolean MELIntRectangleOriginIsTopLeftContainsPoint(const MELIntRectangle self, const MELIntPoint point) {
+    return point.x >= self.origin.x &&
+        point.x < self.origin.x + self.size.width &&
+        point.y >= self.origin.y &&
+        point.y < self.origin.y + self.size.height;
+}
+
+MELBoolean MELRectangleIntersectsWithRectangle(const MELRectangle self, const MELRectangle other) {
+    const MELBoolean x = fabsf(self.origin.x - other.origin.x) <= (self.size.width + other.size.width) / 2;
+    const MELBoolean y = fabsf(self.origin.y - other.origin.y) <= (self.size.height + other.size.height) / 2;
     return x && y;
 }
-MELBoolean MELIntRectangleIntersectsWithRectangle(MELIntRectangle self, MELIntRectangle other) {
-    const MELBoolean x = abs(self.origin.x + self.size.width / 2 - (other.origin.x + other.size.width / 2)) <= (self.size.width + other.size.width) / 2;
-    const MELBoolean y = abs(self.origin.y + self.size.height / 2 - (other.origin.y + other.size.height / 2)) <= (self.size.height + other.size.height) / 2;
+MELBoolean MELIntRectangleIntersectsWithRectangle(const MELIntRectangle self, const MELIntRectangle other) {
+    const MELBoolean x = abs(self.origin.x - other.origin.x) <= (self.size.width + other.size.width) / 2;
+    const MELBoolean y = abs(self.origin.y - other.origin.y) <= (self.size.height + other.size.height) / 2;
     return x && y;
+}
+
+MELBoolean MELRectangleOriginIsTopLeftContainsRectangle(MELRectangle self, MELRectangle other) {
+    return
+    // Gauche
+    other.origin.x >= self.origin.x
+    // Droite
+    && (other.origin.x + other.size.width <= self.origin.x + self.size.width)
+    // Haut
+    && other.origin.y >= self.origin.y
+    // Droite
+    && (other.origin.y + other.size.height <= self.origin.y + self.size.height);
+}
+
+MELBoolean MELIntRectangleOriginIsTopLeftContainsRectangle(MELIntRectangle self, MELIntRectangle other) {
+    return
+    // Gauche
+    other.origin.x >= self.origin.x
+    // Droite
+    && (other.origin.x + other.size.width <= self.origin.x + self.size.width)
+    // Haut
+    && other.origin.y >= self.origin.y
+    // Droite
+    && (other.origin.y + other.size.height <= self.origin.y + self.size.height);
 }

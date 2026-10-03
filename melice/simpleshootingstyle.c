@@ -1,47 +1,44 @@
 //
 //  simpleshootingstyle.c
-//  melice
+//  Kuroobi
 //
-//  Created by Raphaël Calabro on 22/04/2023.
+//  Created by Raphaël Calabro on 21/03/2023.
 //
 
 #include "simpleshootingstyle.h"
 
-#include "bulletmotion.h"
-#include "animation.h"
+#include "bullet.h"
+#include "melmath.h"
+#include "random.h"
 
-MELShootingStyle * _Nonnull MELSimpleShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager) {
-    MELShootingStyle *self = malloc(sizeof(MELShootingStyle));
-    *self = MELShootingStyleMake(&MELSimpleShootingStyleClass, definition, spriteManager);
-    return self;
+static void createBullets(MELShootingStyle * _Nonnull self, MELPoint origin, float angle, float initialDelta);
+
+static const MELShootingStyleClass SimpleShootingStyleClass = (MELShootingStyleClass) {
+    .name = MELShootingStyleClassNameSimple,
+    .createBullets = createBullets,
+};
+
+const MELShootingStyleClass * _Nonnull SimpleShootingStyleGetClass(void) {
+    return &SimpleShootingStyleClass;
 }
 
-static void MELSimpleShootingStyleShoot(MELShootingStyle * _Nonnull self, MELPoint origin, GLfloat angle, MELSpriteType type, unsigned int layer) {
+void SimpleShootingStyleInit(MELShootingStyle * _Nonnull self, const MELShootingStyleDefinition * _Nonnull definition) {
+    *self = (MELShootingStyle) {
+        .class = &SimpleShootingStyleClass,
+        .definition = definition,
+    };
+    MELShootingStyleInit(self);
+}
+
+static void createBullets(MELShootingStyle * _Nonnull self, MELPoint origin, float angle, float initialDelta) {
     const MELShootingStyleDefinition *definition = self->definition;
-    MELSpriteManager *spriteManager = self->spriteManager;
-
-    MELSpriteDefinition bulletDefinition = spriteManager->definitions.memory[definition->bulletDefinition];
-    bulletDefinition.type = type;
-
     const float bulletSpeed = definition->bulletSpeed;
-    const int damage = definition->damage;
-    const int animationIndex = definition->animation;
-    const float animationAngle = definition->animationAngle;
-
-    MELSprite *shot = MELSpriteAlloc(spriteManager, bulletDefinition, layer);
-    MELSpriteSetFrameOrigin(shot, origin);
-    MELSpriteSetMotion(shot, MELBulletMotionAlloc(animationAngle + angle, (MELPoint) {
+    MELSprite *melTarget = MELShootingStyleGetTarget(self);
+    if (melTarget) {
+        angle = MELPointAngleToPoint(melTarget->frame.origin, origin);
+    }
+    BulletConstructor(self, origin, (MELPoint) {
         .x = bulletSpeed * cosf(angle),
         .y = bulletSpeed * sinf(angle)
-    }, damage));
-    if (animationIndex != 0) {
-        MELSpriteSetAnimation(shot, MELAnimationAlloc(bulletDefinition.animations.memory + animationIndex));
-    }
+    }, angle, initialDelta);
 }
-
-const MELShootingStyleClass MELSimpleShootingStyleClass = {
-    .update = &MELShootingStyleUpdate,
-    .shoot = &MELSimpleShootingStyleShoot,
-    .invert = &NoShootingStyleInvert,
-    .deinit = &NoShootingStyleDeinit,
-};

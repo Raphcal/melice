@@ -11,15 +11,19 @@
 
 #include "melstd.h"
 
-#include "spritemanager.h"
+#include "point.h"
+#include "spritedefinition.h"
+#include "melmath.h"
 
-#define MELShootingStyleInversionX 1
-#define MELShootingStyleInversionY 2
-#define MELShootingStyleInversionAim 4
-#define MELShootingStyleInversionAngle 8
-#define MELShootingStyleInversionAmount 16
-
-typedef int MELShootingStyleInversion;
+// TODO: Retirer les inversions inutilisées à la fin.
+typedef enum {
+    MELShootingStyleNone            =       0,
+    MELShootingStyleInversionX      =       1,
+    MELShootingStyleInversionY      =    0b10,
+    MELShootingStyleInversionAim    =   0b100,
+    MELShootingStyleInversionAngle  =  0b1000,
+    MELShootingStyleInversionAmount = 0b10000,
+} MELShootingStyleInversion;
 
 typedef enum {
     MELShotOriginCenter,
@@ -27,18 +31,25 @@ typedef enum {
     MELShotOriginBack,
 } MELShotOrigin;
 
-typedef enum {
-    MELShootingStyleTypeAimed,
-    MELShootingStyleTypeCircular,
-    MELShootingStyleTypeStraight,
-} MELShootingStyleType;
-
 typedef struct shootingstyle MELShootingStyle;
 typedef struct shootingstyledefinition MELShootingStyleDefinition;
 
 typedef struct shootingstyledefinition {
     /// Origin of the shots.
     MELShotOrigin origin;
+
+    /// For straight shooting style: translation added to the firing sprite location.
+    MELPoint translation;
+
+    /// Mouvement des tirs.
+    MELPoint speeds;
+
+    /// Si non null, tire en direction de la cible donnée.
+    MELSprite * _Nullable (* _Nullable getTarget)(void * _Nullable userdata);
+    MELBoolean aimed;
+
+    /// Fonction pour le mouvement des tirs.
+    MELEasingFunction easingFunction;
 
     /// Damage made by each bullet.
     int damage;
@@ -56,10 +67,15 @@ typedef struct shootingstyledefinition {
     int bulletAmountVariation;
 
     /// Distance in pixel travelled by each bullet in one second.
-    GLfloat bulletSpeed;
+    float bulletSpeed;
     /// Time interval between each shot.
     MELTimeInterval shootInterval;
 
+    /// Nombre de tirs avant une pause.
+    int pauseAfterShots;
+    /// Durée de la pause.
+    MELTimeInterval pauseDuration;
+    
     /// Inversions.
     MELShootingStyleInversion inversions;
     /// Number of shots before an inversion occurs.
@@ -79,11 +95,6 @@ typedef struct shootingstyledefinition {
 
     /// For straight shooting style: space between each bullet.
     GLfloat space;
-
-    /// For straight shooting style: translation added to the firing sprite location.
-    MELPoint translation;
 } MELShootingStyleDefinition;
-
-#define MELShootingStyleDefinitionDefaults .origin = MELShotOriginFront, .damage = 1, .bulletAmount = 1, .bulletAmountVariation = 0, .bulletSpeed = 500, .shootInterval = 0.1, .inversions = 0, .inversionInterval = 0, .bulletDefinition = 0
 
 #endif /* shootingstyledefinition_h */

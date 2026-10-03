@@ -1,9 +1,8 @@
 //
 //  circularshootingstyle.h
-//  shmup
+//  Kuroobi
 //
-//  Created by Raphaël Calabro on 18/03/2019.
-//  Copyright © 2019 Raphaël Calabro. All rights reserved.
+//  Created by Raphaël Calabro on 10/02/2023.
 //
 
 #ifndef circularshootingstyle_h
@@ -12,17 +11,8 @@
 #include "shootingstyle.h"
 #include "shootingstyledefinition.h"
 
-/**
- * Classe du style de tir en cercles.
- */
-extern const MELShootingStyleClass MELCircularShootingStyleClass;
+const MELShootingStyleClass * _Nonnull CircularShootingStyleGetClass(void);
 
-typedef struct {
-    MELShootingStyle super;
-    GLfloat baseAngle;
-    GLfloat baseAngleVariation;
-} MELCircularShootingStyle;
-
-MELShootingStyle * _Nonnull MELCircularShootingStyleAlloc(const MELShootingStyleDefinition * _Nonnull definition, MELSpriteManager * _Nonnull spriteManager);
+void CircularShootingStyleInit(MELShootingStyle * _Nonnull self, const MELShootingStyleDefinition * _Nonnull definition);
 
 #endif /* circularshootingstyle_h */

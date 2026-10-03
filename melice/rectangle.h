@@ -51,7 +51,7 @@ extern const MELIntRectangle MELIntRectangleZero;
  * @param height Height of the rectangle.
  * @return A rectangle.
  */
-MELRectangle MELRectangleMake(GLfloat x, GLfloat y, GLfloat width, GLfloat height);
+MELRectangle MELRectangleMake(float x, float y, float width, float height);
 
 /**
  * Returns a rectangle with the given origin and size.
@@ -106,7 +106,15 @@ MELIntRectangle MELIntRectangleMakeWithPoints(MELIntPoint a, MELIntPoint b);
  * @param self Rectangle.
  * @return The left coordinate of the given rectangle.
  */
-GLfloat MELRectangleOriginIsCenterGetLeft(MELRectangle self);
+float MELRectangleOriginIsCenterGetLeft(MELRectangle self);
+
+/**
+ * Sets the X coordinate.
+ *
+ * @param self Rectangle.
+ * @param left Left X coordinate of the rectangle.
+ */
+void MELRectangleOriginIsCenterSetLeft(MELRectangle * _Nonnull self, float left);
 
 /**
  * Returns the maximum X coordinate of a rectangle whose center is its origin.
@@ -114,7 +122,15 @@ GLfloat MELRectangleOriginIsCenterGetLeft(MELRectangle self);
  * @param self Rectangle.
  * @return The right coordinate of the given rectangle.
  */
-GLfloat MELRectangleOriginIsCenterGetRight(MELRectangle self);
+float MELRectangleOriginIsCenterGetRight(MELRectangle self);
+
+/**
+ * Sets the X coordinate.
+ *
+ * @param self Rectangle.
+ * @param right Right X coordinate of the rectangle.
+ */
+void MELRectangleOriginIsCenterSetRight(MELRectangle * _Nonnull self, float right);
 
 /**
  * Returns the minimum Y coordinate of a rectangle whose center is its origin.
@@ -122,7 +138,15 @@ GLfloat MELRectangleOriginIsCenterGetRight(MELRectangle self);
  * @param self Rectangle.
  * @return The top coordinate of the given rectangle.
  */
-GLfloat MELRectangleOriginIsCenterGetTop(MELRectangle self);
+float MELRectangleOriginIsCenterGetTop(MELRectangle self);
+
+/**
+ * Sets the Y coordinate.
+ *
+ * @param self Rectangle.
+ * @param top Upper Y coordinate of the rectangle.
+ */
+void MELRectangleOriginIsCenterSetTop(MELRectangle * _Nonnull self, float top);
 
 /**
  * Returns the maximum Y coordinate of a rectangle whose center is its origin.
@@ -130,19 +154,40 @@ GLfloat MELRectangleOriginIsCenterGetTop(MELRectangle self);
  * @param self Rectangle.
  * @return The bottom coordinate of the given rectangle.
  */
-GLfloat MELRectangleOriginIsCenterGetBottom(MELRectangle self);
+float MELRectangleOriginIsCenterGetBottom(MELRectangle self);
+
+/**
+ * Sets the Y coordinate.
+ *
+ * @param self Rectangle.
+ * @param bottom Lower Y coordinate of the rectangle.
+ */
+void MELRectangleOriginIsCenterSetBottom(MELRectangle * _Nonnull self, float bottom);
+
+MELPoint MELRectangleOriginIsCenterGetTopLeft(MELRectangle self);
+MELPoint MELRectangleOriginIsCenterGetTopRight(MELRectangle self);
+
+MELPoint MELRectangleOriginIsCenterGetPointAtAngle(MELRectangle self, GLfloat angle);
 
 MELBoolean MELRectangleEquals(MELRectangle lhs, MELRectangle rhs);
 MELBoolean MELIntRectangleEquals(MELIntRectangle lhs, MELIntRectangle rhs);
 
-MELQuadrilateral MELRectangleRotate(MELRectangle self, GLfloat rotation);
+MELQuadrilateral MELRectangleRotate(MELRectangle self, float rotation);
 
-MELQuadrilateral MELRectangleRotateWithPivot(MELRectangle self, GLfloat rotation, MELPoint pivot);
+MELQuadrilateral MELRectangleRotateWithPivot(MELRectangle self, float rotation, MELPoint pivot);
 
-MELBoolean MELRectangleContainsPoint(MELRectangle self, MELPoint point);
-MELBoolean MELIntRectangleContainsPoint(MELIntRectangle self, MELIntPoint point);
+MELBoolean MELRectangleContainsPoint(const MELRectangle self, const MELPoint point);
+MELBoolean MELIntRectangleContainsPoint(const MELIntRectangle self, const MELIntPoint point);
 
-MELBoolean MELRectangleIntersectsWithRectangle(MELRectangle self, MELRectangle other);
-MELBoolean MELIntRectangleIntersectsWithRectangle(MELIntRectangle self, MELIntRectangle other);
+MELBoolean MELRectangleOriginIsTopLeftContainsPoint(const MELRectangle self, const MELPoint point);
+MELBoolean MELIntRectangleOriginIsTopLeftContainsPoint(const MELIntRectangle self, const MELIntPoint point);
+
+MELBoolean MELRectangleIntersectsWithRectangle(const MELRectangle self, const MELRectangle other);
+MELBoolean MELIntRectangleIntersectsWithRectangle(const MELIntRectangle self, const MELIntRectangle other);
+
+MELBoolean MELIntRectangleOriginIsTopLeftGetIntersection(const MELIntRectangle self, const MELIntRectangle other, MELIntRectangle * _Nonnull intersection);
+
+MELBoolean MELRectangleOriginIsTopLeftContainsRectangle(MELRectangle self, MELRectangle other);
+MELBoolean MELIntRectangleOriginIsTopLeftContainsRectangle(MELIntRectangle self, MELIntRectangle other);
 
 #endif /* rectangle_h */

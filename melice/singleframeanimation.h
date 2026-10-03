@@ -20,5 +20,6 @@
 extern const MELAnimationClass MELSingleFrameAnimationClass;
 
 MELAnimation * _Nonnull MELSingleFrameAnimationAlloc(MELAnimationDefinition * _Nonnull definition);
+void MELSingleFrameAnimationReuse(MELAnimation * _Nonnull self, int frameIndex);
 
 #endif /* singleframeanimation_h */
