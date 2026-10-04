@@ -61,4 +61,13 @@ void MELShootingStyleShootFromSprite(MELShootingStyle * _Nonnull self, MELSprite
 
 MELSprite * _Nullable MELShootingStyleGetTarget(const MELShootingStyle * _Nonnull self);
 
+float MELShootingStyleEaseNone(MELTimeInterval time);
+float MELShootingStyleEaseInSine(MELTimeInterval time);
+float MELShootingStyleEaseInQuad(MELTimeInterval time);
+float MELShootingStyleEaseInCubic(MELTimeInterval time);
+float MELShootingStyleEaseInQuart(MELTimeInterval time);
+float MELShootingStyleEaseInQuint(MELTimeInterval time);
+float MELShootingStyleEaseInExpo(MELTimeInterval time);
+float MELShootingStyleEaseInBack(MELTimeInterval time);
+
 #endif /* shootingstyle_h */

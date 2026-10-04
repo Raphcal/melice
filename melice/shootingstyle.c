@@ -118,3 +118,32 @@ const MELShootingStyleClass * _Nullable MELShootingStyleClassForName(MELShooting
             return NULL;
     }
 }
+
+#pragma mark - Fonctions d'easing
+
+float MELShootingStyleEaseNone(MELTimeInterval time) {
+    return time;
+}
+float MELShootingStyleEaseInSine(MELTimeInterval time) {
+    return 1 - cosf(time * MEL_PI_2);
+}
+float MELShootingStyleEaseInQuad(MELTimeInterval time) {
+    return time * time;
+}
+float MELShootingStyleEaseInCubic(MELTimeInterval time) {
+    return time * time * time;
+}
+float MELShootingStyleEaseInQuart(MELTimeInterval time) {
+    return time * time * time * time;
+}
+float MELShootingStyleEaseInQuint(MELTimeInterval time) {
+    return time * time * time * time * time;
+}
+float MELShootingStyleEaseInExpo(MELTimeInterval time) {
+    return time == 0 ? 0 : powf(2, 10 * time - 10);
+}
+float MELShootingStyleEaseInBack(MELTimeInterval time) {
+    const float c1 = 1.70158f;
+    const float c3 = c1 + 1;
+    return c3 * time * time * time - c1 * time * time;
+}

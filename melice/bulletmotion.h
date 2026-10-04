@@ -13,16 +13,20 @@
 
 #include "motion.h"
 #include "point.h"
+#include "shootingstyledefinition.h"
 
 extern const MELMotionClass MELBulletMotionClass;
 
 typedef struct {
     MELMotion super;
-    GLfloat angle;
+    MELPoint from;
+    MELShootingStyleEasingFunction easingFunction;
+    MELTimeInterval time;
+    float angle;
     MELPoint speed;
     int damage;
 } MELBulletMotion;
 
-MELMotion * _Nonnull MELBulletMotionAlloc(GLfloat angle, MELPoint speed, int damage);
+MELMotion * _Nonnull MELBulletMotionAlloc(MELPoint origin, GLfloat angle, MELPoint speed, int damage, MELShootingStyleEasingFunction easingFunction);
 
 #endif /* bulletmotion_h */

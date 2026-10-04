@@ -31,6 +31,8 @@ typedef enum {
     MELShotOriginBack,
 } MELShotOrigin;
 
+typedef float (* _Nullable MELShootingStyleEasingFunction)(MELTimeInterval time);
+
 typedef struct shootingstyle MELShootingStyle;
 typedef struct shootingstyledefinition MELShootingStyleDefinition;
 
@@ -49,7 +51,7 @@ typedef struct shootingstyledefinition {
     MELBoolean aimed;
 
     /// Fonction pour le mouvement des tirs.
-    MELEasingFunction easingFunction;
+    MELShootingStyleEasingFunction easingFunction;
 
     /// Damage made by each bullet.
     int damage;

@@ -9,6 +9,7 @@
 
 #include "bulletmotion.h"
 #include "animation.h"
+#include "singleframeanimation.h"
 
 void BulletConstructor(const MELShootingStyle * _Nonnull shootingStyle, MELPoint origin, MELPoint speed, float angle, float initialDelta) {
     MELSpriteManager *spriteManager = shootingStyle->spriteManager;
@@ -20,7 +21,7 @@ void BulletConstructor(const MELShootingStyle * _Nonnull shootingStyle, MELPoint
     MELSpriteSetFrameOrigin(shot, origin);
 
     /// NOTE: Pas besoin de faire la rotation à `definition->animationAngle + angle` car le code ci-après le fait de la même façon que pour Playdate.
-    MELSpriteSetMotion(shot, MELBulletMotionAlloc(0, speed, definition->damage));
+    MELSpriteSetMotion(shot, MELBulletMotionAlloc(origin, 0, speed, definition->damage, definition->easingFunction));
 
     MELAnimation *animation;
     if (definition->animation == 0) {
